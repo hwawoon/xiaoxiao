@@ -1,0 +1,47 @@
+.article-content a img {
+    width: 580px;
+}
+
+.sticky-action {
+    position: absolute;
+    right: 80px;
+    width: 44px;
+    top: 66px;
+}
+
+.vertical-vote {
+    width: 42px;
+    margin-bottom: 10px;
+}
+
+.vertical-vote a.up, .horizontal-vote a.up {
+    background: url(../img/sticky-vote.png) no-repeat;
+}
+
+.vertical-vote a, .horizontal-vote a {
+    display: block;
+    width: 42px;
+    height: 32px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    text-indent: -999px;
+    border-radius: 3px;
+}
+
+.vertical-vote a.down, .horizontal-vote a.down {
+    background: url(../img/sticky-vote.png) no-repeat 0 -32px;
+}
+
+.others a.comment:hover {
+    border: 1px solid #999;
+}
+.others a.comment {
+    width: 42px;
+    height: 32px;
+    border: 1px solid #ddd;
+    display: block;
+    overflow: hidden;
+    text-indent: -999px;
+    border-radius: 3px;
+    background: url(../img/other-buttons.png) no-repeat 0 -32px;
+}
