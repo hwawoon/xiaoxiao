@@ -30,9 +30,9 @@ Route::get('user/setting/security', function(){
     return View::make('user.setting.security');
 });
 
-Route::get('toRegister', function()
+Route::get('user/register', function()
 {
-    return View::make('register');
+    return View::make('register.register');
 });
 
 Route::post('user/doRegister', 'UserController@doRegister');

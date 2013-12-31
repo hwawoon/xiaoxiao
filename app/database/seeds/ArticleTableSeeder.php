@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: mini
- * Date: 13-12-30
- * Time: 下午2:18
- */
 
 class ArticleTableSeeder extends Seeder
 {

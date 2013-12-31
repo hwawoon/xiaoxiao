@@ -40,15 +40,23 @@
     @include('header');
     <!-- Begin page content -->
     <div class="container">
-        <div class="col-sm-8">
+        <div class="col-sm-7">
             @foreach ($articles as $art)
-            <section style="padding-bottom: 50px; padding-left: -15px;">
+            <section style="padding-bottom: 20px;">
                 <div class="row">
                     <h2><a href="#" class="article_title" style="tex">{{$art->title}}</a></h2>
                 </div>
+                <div class="row" style="padding: 5px 0px;">
+                    <!-- JiaThis Button BEGIN -->
+                    <div class="jiathis_style">
+                        <a class="jiathis_like_tsinat" data="width=320"></a>
+                    </div>
+                    <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+                    <!-- JiaThis Button END -->
+                </div>
                 <div class="row">
                     <a href="#">
-                        <img class="img-responsive img-thumbnail" src="{{$art->savepath}}" style="width: 560px;">
+                        <img class="img-responsive img-thumbnail" src="{{$art->savepath}}" style="width: 100%;">
                     </a>
                 </div>
             </section>

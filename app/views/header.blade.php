@@ -8,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{URL::to('/')}}">~\(≧▽≦)/~</a>
+            <a class="navbar-brand" href="{{URL::to('/')}}">xiao</a>
         </div>
         <div class="collapse navbar-collapse">
             <div class="col-sm-3 col-md-3 pull-left">
@@ -36,7 +36,7 @@
                     </li>
                     @else
                     <li><a href="#login" id="login" class="" data-toggle="modal" data-target="#loginModal">登录</a></li>
-                    <li><a href="toRegister" id="register">注册</a></li>
+                    <li><a href="{{URL::to('/user/register')}}" id="register">注册</a></li>
                     @endif
                 </ul>
             </div>
@@ -65,7 +65,7 @@
                 <h4 class="modal-title">
                     &nbsp;&nbsp;登录
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <small><a href="toRegister">没有账号？现在就去注册！</a></small>
+                    <small><a href="{{URL::to('/user/register')}}">没有账号？现在就去注册！</a></small>
                 </h4>
             </div>
             <div class="modal-body" style="padding-left: 70px;padding-right: 70px;">
