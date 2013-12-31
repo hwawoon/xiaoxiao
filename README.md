@@ -1,5 +1,5 @@
 
-�LARAVEL framwork��CMS
+搭建LARAVEL framework的CMS
 
 ### License
 
