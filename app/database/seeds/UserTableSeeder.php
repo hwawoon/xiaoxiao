@@ -16,7 +16,7 @@ class UserTableSeeder extends Seeder
             array(
                 'email' => 'hwawoon@163.com',
                 'name' => 'hwawoon',
-                'password' => 'hwawoon'
+                'password' => '123456'
             )
         );
 

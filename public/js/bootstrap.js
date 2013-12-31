@@ -1072,9 +1072,9 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
       })
   })
 
-  $(document)
-    .on('show.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
-    .on('hidden.bs.modal', '.modal', function () { $(document.body).removeClass('modal-open') })
+//  $(document)
+//    .on('show.bs.modal',  '.modal', function () { $(document.body).addClass('modal-open') })
+//    .on('hidden.bs.modal', '.modal', function () { $(document.body).removeClass('modal-open') })
 
 }(jQuery);
 

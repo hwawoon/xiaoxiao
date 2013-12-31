@@ -15,10 +15,16 @@
                 <ul class="nav navbar-nav">
                     <li class="active"><a href="#">热门</a></li>
                     <li><a href="#about">最新</a></li>
-                    <li><a href="#contact">趋势</a></li>
                 </ul>
             </div>
-            <div class="col-sm-3 col-md-3 pull-right">
+            <div class="col-sm-1 col-md-1 pull-right">
+                <form class="navbar-form" role="search">
+                    <div class="input-group">
+                            <button class="btn btn-danger" type="submit">上传</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-sm-2 col-md-2 pull-right">
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session::has('user'))
                     <li class="dropdown">
@@ -82,7 +88,6 @@
                     </div>
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">&nbsp;</label>
-
                         <div>
                             <div style="float: left;"><input type="checkbox" checked/> 记住我<br></div>
                             <div style="float: right;margin-right: 15px;"><a>忘记密码</div>

@@ -26,10 +26,13 @@
 <style type="text/css">
     a.article_title {
         text-decoration:none;
+        font-size: 22px;
+        font-weight: bold;
+        color: #000;
     }
 
     a.article_title:hover {
-        color: red;
+        color: #39b3d7;
         text-decoration:none;
     }
 </style>
@@ -39,17 +42,22 @@
     <div class="container">
         <div class="col-sm-8">
             @foreach ($articles as $art)
-            <div class="row">
-                <h3><a href="#" class="article_title" style="tex">{{$art->title}}</a></h3>
-            </div>
-            <div class="row">
-                <a href="#">
-                    <img class="img-responsive" src="{{$art->savepath}}" style="width: 100%;" />
-                </a>
-            </div>
+            <section style="padding-bottom: 50px; padding-left: -15px;">
+                <div class="row">
+                    <h2><a href="#" class="article_title" style="tex">{{$art->title}}</a></h2>
+                </div>
+                <div class="row">
+                    <a href="#">
+                        <img class="img-responsive img-thumbnail" src="{{$art->savepath}}" style="width: 560px;">
+                    </a>
+                </div>
+            </section>
             @endforeach
         </div>
-        <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
+        <div class="col-sm-3">
+            <div class="row" style="padding-top: 30px; text-align: center;">
+                推荐！
+            </div>
         </div>
     </div>
 </div>
