@@ -57,8 +57,8 @@ code {
     width: 50px;
     height: 50px;
     background:url(../img/gotop.gif) no-repeat ;
-    bottom:100px;
-    right:150px;
+    bottom:50px;
+    right:50px;
     z-index:9999;
 }
 
@@ -67,7 +67,7 @@ code {
 }
 
 /* to be added to your global CSS file */
-div small.error {
+div label.error {
     color: #B94A48; /* color to match Bootstraps error class */
     font-size: 14px;
 }

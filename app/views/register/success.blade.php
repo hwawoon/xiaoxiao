@@ -21,7 +21,6 @@
     <![endif]-->
 </head>
 <style type="text/css">
-
 </style>
 <body>
 <!-- Wrap all page content here -->
@@ -29,19 +28,12 @@
     @include('header');
     <!-- Begin page content -->
     <div class="container">
-        <div class="page-header">
-            <h1>欢迎加入我们！<small>go! go! go! </small></h1>
+        <div class="page-header" style="padding-top: 100px;">
+            <p class="text-center">亲，注册成功，去确认邮件吧！</p>
         </div>
-        <p class="text-center">{{$info}}</p>
-
     </div>
 </div>
 </div>
-
 @include("footer")
-
-{{ HTML::script('js/jquery.js') }}
-{{ HTML::script('js/bootstrap.js') }}
-{{ HTML::script('js/header.js') }}
 </body>
 </html>

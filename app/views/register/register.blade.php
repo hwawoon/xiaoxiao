@@ -30,9 +30,9 @@
     <!-- Begin page content -->
     <div class="container">
         <div class="page-header">
-            <h1>加入我们吧！<small>go! go! go! </small></h1>
+            <h2>亲，欢迎加入我们！</h2>
         </div>
-        <form class="form-horizontal" role="form" id="registerform" action="user/doRegister" method="post">
+        <form class="form-horizontal" role="form" id="registerform" action="{{URL::to('/user/doRegister')}}" method="post">
             <div class="form-group">
                 <label for="name" class="col-sm-2 control-label">尊称</label>
                 <div class="col-sm-6">
@@ -72,15 +72,9 @@
     </div>
 </div>
 </div>
-
 @include("footer")
-
-{{ HTML::script('js/jquery.js') }}
-{{ HTML::script('js/bootstrap.js') }}
-{{ HTML::script('js/header.js') }}
-
-{{ HTML::script('js/jquery.validate.js') }}
-
+</body>
+</html>
 <script type="text/javascript">
     $(document).ready(function() {
         $('#registerform').validate(
@@ -124,5 +118,3 @@
             });
     });
 </script>
-</body>
-</html>

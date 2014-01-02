@@ -95,15 +95,7 @@
 </div>
 </div>
 </div>
-
 @include("footer")
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-{{ HTML::script('js/jquery.js') }}
-{{ HTML::script('js/bootstrap.js') }}
-{{ HTML::script('js/header.js') }}
 {{ HTML::script('js/usersetting.js') }}
 </body>
 </html>

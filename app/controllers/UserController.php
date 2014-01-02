@@ -29,19 +29,19 @@ class UserController extends BaseController
 
     public function doLogin()
     {
-        // validate the info, create rules for the inputs
         $rules = array(
-            'email' => 'required|email', // make sure the email is an actual email
-            'password' => 'required|min:6' // password can only be alphanumeric and has to be greater than 3 characters
+            'email' => 'required|email',
+            'password' => 'required|min:6'
         );
 
-        // run the validation rules on the inputs from the form
         $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails())
         {
             return Response::json(array("state" => 0));
-        } else {
+        }
+        else
+        {
             $userdata = array(
                 'email' => Input::get('email'),
                 'password' => Input::get('password')
@@ -57,7 +57,7 @@ class UserController extends BaseController
             else
             {
                 // validation not successful, send back to form
-                return Response::json(array("state" => 0));
+                return Response::json(array("state" => 0,"message"=>"邮箱或密码错误！"));
             }
         }
     }
@@ -80,17 +80,13 @@ class UserController extends BaseController
 
         if ($validator->passes())
         {
-            $user = User::create(Input::all());
+            User::create(Input::all());
 
-            Auth::login($user,true);
-
-            Session::put("user",$user);
-
-            return View::make('register.success', array('info' => "亲，注册成功！ 去邮箱确认邮件吧！"));
+            return View::make('register.success');
         }
         else
         {
-            return Redirect::to('toRegister')->withErrors($validator);
+            return Redirect::to('user/register')->withErrors($validator);
         }
     }
 
