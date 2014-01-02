@@ -34,12 +34,21 @@ $(function () {
         submitHandler: function (form) {
             var username = $("#inputLoginEmail").val();
             var pwd = $("#inputLoginPassword").val();
+            var rememberme = $(":input[name=rememberme][checked]").val();
             $.ajax({
                 url: form.action,
                 type: form.method,
-                data: {"email":username,"password":pwd},
-                success: function () {
-                    document.windows.reload();
+                data: {"email":username,"password":pwd, "rememberme" : rememberme},
+                success: function (data) {
+                    if(data.state == 1)
+                    {
+                        window.location.reload();
+                    }
+                    else
+                    {
+                        $("#loginAlert").show();
+                        window.setTimeout(function() { $("#loginAlert").slideUp(600); }, 2000);
+                    }
                 },
                 error: function (data) {
                     $("#loginAlert").show();

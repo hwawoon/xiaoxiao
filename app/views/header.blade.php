@@ -30,8 +30,10 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Session::get('user')->getUserName()}}<b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a href="user/setting">设置</a></li>
-                            <li><a href="user/logout" id="alogout">退出</a></li>
+                            <li><a href="{{URL::to('/user/setting')}}">个人主页</a></li>
+                            <li><a href="{{URL::to('/user/setting')}}">设置</a></li>
+                            <li><div class="divider"></div> </li>
+                            <li><a href="{{URL::to('/user/logout')}}" id="alogout">退出</a></li>
                         </ul>
                     </li>
                     @else
@@ -79,7 +81,6 @@
                 <strong>用户名或密码错误</strong>
             </div>
             <div class="modal-body" style="padding-left: 70px;">
-
                 <form class="form-horizontal" role="form" id="loginForm" method="post" action="user/doLogin">
                     <div class="form-group">
                         <label for="inputLoginEmail" class="col-sm-2 control-label">邮箱</label>
@@ -97,7 +98,7 @@
                     <div class="form-group">
                         <label for="inputPassword3" class="col-sm-2 control-label">&nbsp;</label>
                         <div class="col-sm-10">
-                            <div style="float: left;"><input type="checkbox" checked/> 记住我</div>
+                            <div style="float: left;"><input type="checkbox" name="rememberme" id="rememberme" value="1" checked /> 记住我</div>
                             <div style="float: right;margin-right: 100px;"><a>忘记密码</div>
                         </div>
                     </div>

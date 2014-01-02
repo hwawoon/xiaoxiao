@@ -44,13 +44,13 @@
                 <div>
                     <form role="form" style="line-height: 40px;">
                         <div class="form-group">
-                            <label for="inputName">昵称</label>
-                            <input type="text" class="form-control" id="inputName" placeholder="昵称">
+                            <label for="inputName">尊称</label>
+                            <input type="text" class="form-control" id="inputName" placeholder="尊称">
                             <span class="help-block">建议使用实名、或您常用的昵称注册</span>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail1">一句话介绍</label>
-                            <textarea class="form-control" rows="3" placeholder="让人们认识你这个大英雄"></textarea>
+                            <textarea class="form-control" rows="3" placeholder="让人们认识你"></textarea>
                         </div>
                         <div class="form-group">
                             <label for="">所在地</label><br>

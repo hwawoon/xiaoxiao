@@ -42,22 +42,22 @@ class UserController extends BaseController
         }
         else
         {
-            $userdata = array(
-                'email' => Input::get('email'),
+            $rememberme = Input::get('rememberme');
+
+            $credentials = array(
+                'email' => strtolower(Input::get('email')),
                 'password' => Input::get('password')
             );
 
-            $user = User::where('email', '=', $userdata['email'])->first();
-
-            if ($user->getAuthPassword() == $userdata['password'])
+            if (Auth::attempt($credentials, $rememberme))
             {
-                Session::put('user', $user);
+                // The user is being remembered...
+                Session::put('user', Auth::user());
                 return Response::json(array("state" => 1));
             }
             else
             {
-                // validation not successful, send back to form
-                return Response::json(array("state" => 0,"message"=>"邮箱或密码错误！"));
+                return Response::json(array("state" => 0));
             }
         }
     }

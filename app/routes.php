@@ -11,24 +11,11 @@
 |
 */
 
-
 Route::get('/',  'HomeController@showHome');
 
 Route::post('user/doLogin', 'UserController@doLogin');
 
 Route::any('user/logout', 'UserController@logout');
-
-Route::get('user/setting', function(){
-    return View::make('user.setting.basic');
-});
-
-Route::get('user/setting/icon', function(){
-    return View::make('user.setting.icon');
-});
-
-Route::get('user/setting/security', function(){
-    return View::make('user.setting.security');
-});
 
 Route::get('user/register', function()
 {
@@ -37,4 +24,20 @@ Route::get('user/register', function()
 
 Route::post('user/doRegister', 'UserController@doRegister');
 
+//个人设置
+Route::get('user/setting', array('before' => 'guest', function()
+{
+    return View::make('user.setting.basic');
+}));
+
+Route::get('user/setting/icon', array('before' => 'guest', function()
+{
+    return View::make('user.setting.icon');
+}));
+
 Route::any('user/uploadIcon', 'UserController@uploadIcon');
+
+Route::get('user/setting/security', array('before' => 'guest', function()
+{
+    return View::make('user.setting.security');
+}));
