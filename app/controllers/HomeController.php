@@ -19,6 +19,8 @@ class HomeController extends BaseController {
 	{
         $articles = DB::table('articles')->skip(0)->take(5)->get();
 
-        return View::make('/home')->with('articles',$articles);
+        $users = DB::table('users')->skip(0)->take(5)->get();
+
+        return View::make('/home')->with('articles',$articles)->with('users',$users);
     }
 }

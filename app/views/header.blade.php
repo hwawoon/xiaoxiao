@@ -13,14 +13,22 @@
         <div class="collapse navbar-collapse">
             <div class="col-sm-3 col-md-3 pull-left">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{URL::to('/')}}">热门</a></li>
-                    <li><a href="#about">最新</a></li>
+                    <li class="active"><a href="{{URL::to('/')}}">热门的</a></li>
+                    <li><a href="#about">新鲜的</a></li>
                 </ul>
             </div>
             <div class="col-sm-1 col-md-1 pull-right">
                 <form class="navbar-form" role="search" method="post">
                     <div class="input-group">
-                            <button class="btn btn-danger" type="submit">上传</button>
+                        @if (Session::has('user'))
+                            <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#">上传</a>
+                            <ul class="dropdown-menu" role="menu" style="min-width: 100px;">
+                                <li><a data-toggle="modal" data-target="#uploadModal">本地上传</a></li>
+                                <li><a  data-toggle="modal" data-target="#forwardModal">转发图片</a></li>
+                            </ul>
+                        @else
+                            <a class="btn btn-danger" data-toggle="modal" data-target="#loginModal">上传</a>
+                        @endif
                     </div>
                 </form>
             </div>
@@ -81,7 +89,7 @@
                 <strong>用户名或密码错误</strong>
             </div>
             <div class="modal-body" style="padding-left: 70px;">
-                <form class="form-horizontal" role="form" id="loginForm" method="post" action="user/doLogin">
+                <form class="form-horizontal" role="form" id="loginForm" method="post" action="{{URL::to('/user/doLogin')}}">
                     <div class="form-group">
                         <label for="inputLoginEmail" class="col-sm-2 control-label">邮箱</label>
                         <div class="col-sm-10">
@@ -120,16 +128,53 @@
 <div class="modal fade" id="uploadModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">上传</h4>
-            </div>
-            <div class="modal-body">
+            <form action="{{URL::to('/article/uploadImage')}}" method="post" name="uploadImageForm" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Just For Fun!</h3>
+                    Upload funny pictures, paste pictures or YouTube URL, accepting GIF/JPG/PNG (最大: 3MB)
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <input type="file" id="uploadImage" name="uploadImage" />
+                    </div>
+                    <div class="form-group">
+                        <label>标题</label>
+                        <textarea class="form-control" rows="2" id="title" name="title" placeholder="标题..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="uploadImageBtn" class="btn btn-success">上传</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">上传</button>
-            </div>
+<!-- feedback Modal -->
+<div class="modal fade" id="forwardModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{URL::to('/article/forwardImage')}}" method="post">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h3 class="modal-title">Just For Fun!</h3>
+                    Upload funny pictures, paste pictures or YouTube URL, accepting GIF/JPG/PNG (最大: 3MB)
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="forwardUrl">地址</label>
+                        <input type="text" class="form-control" id="forwardUrl" placeholder="http;//">
+                    </div>
+                    <div class="form-group">
+                        <label>标题</label>
+                        <textarea class="form-control" rows="2" name="title" placeholder="标题..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-success">上传</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
 </div>

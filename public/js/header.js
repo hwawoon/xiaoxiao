@@ -2,7 +2,7 @@ $(function () {
     $(window).bind("scroll", function () {
         var scrollTopNum = $(document).scrollTop(),
             returnTop = $("a.goto-top");
-        (scrollTopNum > 0) ? returnTop.fadeIn("fast") : returnTop.fadeOut("fast");
+        (scrollTopNum > 400) ? returnTop.fadeIn("fast") : returnTop.fadeOut("fast");
     });
 
     // 点击按钮后，滚动条的垂直方向的值逐渐变为0，也就是滑动向上的效果
