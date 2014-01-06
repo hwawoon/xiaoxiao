@@ -128,7 +128,7 @@
 <div class="modal fade" id="uploadModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{URL::to('/article/uploadImage')}}" method="post" name="uploadImageForm" enctype="multipart/form-data">
+            <form action="{{URL::to('/article/uploadImage')}}" method="post" id="uploadImageForm" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h3 class="modal-title">Just For Fun!</h3>

@@ -66,6 +66,7 @@ class UserController extends BaseController
     {
         try {
             Session::flush();
+            Auth::logout();
             return Redirect::to('/');
         }
         catch (Exception $e)

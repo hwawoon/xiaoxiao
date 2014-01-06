@@ -26,7 +26,7 @@ Route::post('user/doRegister', 'UserController@doRegister');
 
 Route::any('user/uploadIcon', 'UserController@uploadIcon');
 
-Route::group(array('before' => 'guest'), function()
+Route::group(array('before' => 'auth'), function()
 {
     //个人设置
     Route::get('user/setting', function()

@@ -59,4 +59,15 @@ $(function () {
         }
     });
 
+    $("#uploadImageBtn").bind("click",function(){
+        $("#uploadImageForm").ajaxSubmit({
+            dataType:'json',
+            success:function(data)
+            {
+                $("#uploadModal").modal('hide');
+                window.location.reload();
+                alert(data.message);
+            }
+        });
+});
 });

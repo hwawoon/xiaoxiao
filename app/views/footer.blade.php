@@ -9,4 +9,5 @@
 {{ HTML::script('js/jquery.js') }}
 {{ HTML::script('js/bootstrap.js') }}
 {{ HTML::script('js/jquery.validate.js') }}
+{{ HTML::script('js/jquery.form.js') }}
 {{ HTML::script('js/header.js') }}

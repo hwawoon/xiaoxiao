@@ -27,35 +27,4 @@ $(function (){
         }
     });
 
-    $("#uploadImageBtn").bind("click",function(){
-        debugger;
-        ajaxFileUpload();
-    });
 });
-
-function ajaxFileUpload()
-{
-    var title = $("#title").val();
-    var uploadUrl = document.uploadImageForm.action;
-    $.ajaxFileUpload
-    (
-        {
-            url:uploadUrl,
-            secureuri:false,
-            fileElementId:'uploadImage',
-            dataType: 'json',
-            data:{title:title},
-            success: function (data, status)
-            {
-                alert(data.message);
-            },
-            error: function (data, status, e)
-            {
-                alert(e);
-            }
-        }
-    )
-
-    return false;
-
-}

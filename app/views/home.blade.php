@@ -69,7 +69,6 @@
     </div>
 </div>
 @include("footer")
-{{ HTML::script('AjaxFileUploader/ajaxfileupload.js') }}
 {{ HTML::script('js/home.js') }}
 </body>
 </html>
