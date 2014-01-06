@@ -66,10 +66,6 @@
     </div>
 </div>
 
-<div class="feedback">
-    <a href="#" class="btn btn-default btn-lg" role="button" data-toggle="modal" data-target="#feedbackModal">反<br>馈</a>
-</div>
-<a href="#" title="返回顶部" class="goto-top"></a>
 
 
 <!-- login Modal -->
@@ -85,7 +81,7 @@
                 </h4>
             </div>
             <div class="alert alert-danger" id="loginAlert" style="display: none;text-align: center;">
-            <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+                <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
                 <strong>用户名或密码错误</strong>
             </div>
             <div class="modal-body" style="padding-left: 70px;">
@@ -196,3 +192,8 @@
         </div>
     </div>
 </div>
+
+<div class="feedback">
+    <a href="#" class="btn btn-default btn-lg" role="button" data-toggle="modal" data-target="#feedbackModal">反<br>馈</a>
+</div>
+<a href="#" title="返回顶部" class="goto-top"></a>

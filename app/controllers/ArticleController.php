@@ -8,7 +8,6 @@
 
 class ArticleController extends BaseController
 {
-
     public function uploadImageArticle()
     {
         if (Input::hasFile('uploadImage'))
@@ -49,6 +48,14 @@ class ArticleController extends BaseController
         {
             return Response::json(array("message" => "发布失败！"),400);
         }
+    }
 
+    public function getMoreArticle()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $articles = DB::table('articles')->skip($articleOffset)->take(5)->get();
+
+        return Response::json($articles , 200 );
     }
 }

@@ -22,6 +22,8 @@ Route::get('user/register', function()
     return View::make('register.register');
 });
 
+Route::any('article/getmore', 'ArticleController@getMoreArticle');
+
 Route::post('user/doRegister', 'UserController@doRegister');
 
 Route::any('user/uploadIcon', 'UserController@uploadIcon');

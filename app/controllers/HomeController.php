@@ -17,10 +17,10 @@ class HomeController extends BaseController {
 
 	public function showHome()
 	{
-        $articles = DB::table('articles')->skip(0)->take(100)->get();
+        $getnum = 5;
 
-        $users = DB::table('users')->skip(0)->take(5)->get();
+        $articles = DB::table('articles')->skip(0)->take($getnum)->get();
 
-        return View::make('/home')->with('articles',$articles)->with('users',$users);
+        return View::make('/home')->with('articles',$articles)->with('articlenum',$getnum);;
     }
 }

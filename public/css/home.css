@@ -1,3 +1,17 @@
 #tags a {
     padding: 10px;
+    text-decoration: none;
+    line-height: 40px;
+}
+
+a.article_title {
+    text-decoration:none;
+    font-size: 22px;
+    font-weight: bold;
+    color: #000;
+}
+
+a.article_title:hover {
+    color: #39b3d7;
+    text-decoration:none;
 }
