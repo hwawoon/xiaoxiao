@@ -51,3 +51,6 @@ Route::group(array('before' => 'auth'), function()
     Route::post('article/uploadImage',  'ArticleController@uploadImageArticle');
     Route::post('article/forwardImage',  'ArticleController@forwardImageArticle');
 });
+
+Route::get('article/articlePointUp',  'ArticleController@articlePointUp');
+Route::get('article/articlePointDown',  'ArticleController@articlePointDown');

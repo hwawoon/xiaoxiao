@@ -56,4 +56,18 @@ class ArticleController extends BaseController
 
         return View::make('/article/article')->with('article',$article);
     }
+
+    public function articlePointUp()
+    {
+        $id = Input::get("id");
+        DB::table('articles')->where('id', $id)->increment('up',1);
+        return Response::json(array("state" => 1),200);
+    }
+
+    public function articlePointDown()
+    {
+        $id = Input::get("id");
+        DB::table('articles')->where('id', $id)->increment('down',1);
+        return Response::json(array("state" => 1),200);
+    }
 }
