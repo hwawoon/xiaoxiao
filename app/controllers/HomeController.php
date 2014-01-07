@@ -19,8 +19,38 @@ class HomeController extends BaseController {
 	{
         $getnum = 5;
 
-        $articles = DB::table('articles')->skip(0)->take($getnum)->get();
+        $articles = DB::table('articles')->orderBy('up', 'desc')
+                                         ->skip(0)->take($getnum)->get();
 
-        return View::make('/home')->with('articles',$articles)->with('articlenum',$getnum);;
+        $rarticles = $this->getRecommendArticle();
+
+        return View::make('/home')->with('articles',$articles)
+                                    ->with('articlenum',$getnum)
+                                    ->with('rarticles',$rarticles);
+    }
+
+    public function getMoreHotArticle()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $articles = DB::table('articles')->orderBy('up', 'desc')->skip($articleOffset)->take(10)->get();
+
+        return Response::json($articles , 200 );
+    }
+
+    public function getRecommendArticle()
+    {
+        $articles = DB::table('articles')->orderBy('comments', 'desc')->skip(0)->take(20)->get();
+
+        return $articles;
+    }
+
+    public function getMoreNewArticle()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $articles = DB::table('articles')->orderBy('up', 'desc')->skip($articleOffset)->take(10)->get();
+
+        return Response::json($articles , 200 );
     }
 }

@@ -13,8 +13,8 @@
         <div class="collapse navbar-collapse">
             <div class="col-sm-3 col-md-3 pull-left">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{URL::to('/')}}">热门的</a></li>
-                    <li><a href="#about">新鲜的</a></li>
+                    <li class="active"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
+                    <li><a href="#about">新鲜</a></li>
                 </ul>
             </div>
             <div class="col-sm-1 col-md-1 pull-right">
@@ -194,6 +194,6 @@
 </div>
 
 <div class="feedback">
-    <a href="#" class="btn btn-default btn-lg" role="button" data-toggle="modal" data-target="#feedbackModal">反<br>馈</a>
+    <a href="#" class="btn btn-primary" style="border-radius: 0px;" role="button" data-toggle="modal" data-target="#feedbackModal">反<br>馈</a>
 </div>
 <a href="#" title="返回顶部" class="goto-top"></a>

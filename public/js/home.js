@@ -44,7 +44,7 @@ $(function (){
                     var loArtcleNumber = $('#articlenum').val();
                     $.ajax({
                         type: 'POST',
-                        url: 'article/getmore',
+                        url: 'article/getmorehot',
                         data: {'articleOffset':loArtcleNumber},
                         success: function(datas){
                             if(datas.length != 0)

@@ -50,12 +50,10 @@ class ArticleController extends BaseController
         }
     }
 
-    public function getMoreArticle()
+    public function getArticle($id)
     {
-        $articleOffset = Input::get('articleOffset');
+        $article = DB::table('articles')->where('id', $id)->first();
 
-        $articles = DB::table('articles')->skip($articleOffset)->take(5)->get();
-
-        return Response::json($articles , 200 );
+        return View::make('/article/article')->with('article',$article);
     }
 }

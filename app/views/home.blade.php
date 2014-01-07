@@ -23,11 +23,11 @@
             @foreach ($articles as $art)
             <section style="padding-bottom: 20px;">
                 <div class="row">
-                    <h2><a href="#" class="article_title">{{$art->title}}</a></h2>
+                    <h2><a href="{{URL::to('/article').'/'.$art->id}}" class="article_title">{{$art->title}}</a></h2>
                 </div>
                 <div class="row">
-                    <a href="#">
-                        <img class="img-responsive img-thumbnail" src="{{$art->savepath}}" style="width: 100%;">
+                    <a href="{{URL::to('/article').'/'.$art->id}}">
+                        <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$art->savepath}}" style="width: 100%;">
                     </a>
                 </div>
             </section>
@@ -37,7 +37,7 @@
             <h4>推荐</h4>
             <div class="row" style="padding: 5px;">
                 <div class="row" id="tags">
-                @foreach ($articles as $art)
+                @foreach ($rarticles as $art)
                     <a href="#"><span class="label">{{$art->title}}</span></a>
                 @endforeach
                 </div>

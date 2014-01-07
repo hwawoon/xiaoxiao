@@ -22,11 +22,13 @@ Route::get('user/register', function()
     return View::make('register.register');
 });
 
-Route::any('article/getmore', 'ArticleController@getMoreArticle');
+Route::any('article/getmorehot', 'HomeController@getMoreHotArticle');
 
 Route::post('user/doRegister', 'UserController@doRegister');
 
 Route::any('user/uploadIcon', 'UserController@uploadIcon');
+
+Route::get('article/{id}', 'ArticleController@getArticle')->where('id', '[0-9]+');
 
 Route::group(array('before' => 'auth'), function()
 {
