@@ -2,7 +2,17 @@
  * Created by kimi on 14-1-8.
  */
 $(function(){
-
+    $("#articleCommentBtn").bind("click",function(){
+        $("#articleCommentForm").ajaxSubmit({
+            dataType:'json',
+            success:function(data)
+            {
+                document.getElementById("articleCommentForm").reset();
+                //下面添加新评论
+                $("#articlereplies").prepend(data.content);
+            }
+        });
+    });
 });
 
 function articlePointUp(id)

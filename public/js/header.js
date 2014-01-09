@@ -69,5 +69,5 @@ $(function () {
                 alert(data.message);
             }
         });
-});
+    });
 });

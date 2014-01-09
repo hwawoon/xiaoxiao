@@ -54,7 +54,15 @@ class ArticleController extends BaseController
     {
         $article = DB::table('articles')->where('id', $id)->first();
 
-        return View::make('/article/article')->with('article',$article);
+        $loAllComments = DB::table('comments')
+                            ->join('users', 'users.id', '=', 'comments.userid')
+                            ->where('comments.articleid',$article->id)
+                            ->orderBy('comments.created_at', 'desc')
+                            ->select('comments.content','users.name','comments.created_at')
+                            ->get();
+
+        return View::make('/article/article')->with('article',$article)
+                                              ->with('comments',$loAllComments);
     }
 
     public function articlePointUp()
@@ -70,4 +78,5 @@ class ArticleController extends BaseController
         DB::table('articles')->where('id', $id)->increment('down',1);
         return Response::json(array("state" => 1),200);
     }
+
 }

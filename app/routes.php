@@ -50,6 +50,9 @@ Route::group(array('before' => 'auth'), function()
 
     Route::post('article/uploadImage',  'ArticleController@uploadImageArticle');
     Route::post('article/forwardImage',  'ArticleController@forwardImageArticle');
+
+    Route::post('comment/addComment/{userid}/{articleid}', 'CommentController@addComment')
+        ->where(array('userid' => '[0-9]+', 'articleid' => '[0-9]+'));
 });
 
 Route::get('article/articlePointUp',  'ArticleController@articlePointUp');
