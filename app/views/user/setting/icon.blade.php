@@ -12,6 +12,7 @@
     {{ HTML::style('css/bootstrap.css') }}
     <!-- Custom styles for this template -->
     {{ HTML::style('css/header.css') }}
+    {{ HTML::style('jcrop/jquery.Jcrop.css') }}
     <!-- Just for debugging purposes. Don't actually copy this line! -->
     <!--[if lt IE 9]>
     <script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
@@ -38,7 +39,7 @@
             <!--/span-->
             <div class="col-xs-9">
                 <div class="page-header">
-                    <h3>修改头像</h3>
+                    <h3>头像设置</h3>
                 </div>
                 <div>
                     <p id="swfContainer">
@@ -51,6 +52,9 @@
     </div>
 </div>
 @include("footer")
-{{ HTML::script('js/jquery.validate.js') }}
+{{ HTML::script('jcrop/jquery.Jcrop.js') }}
+<script type="text/javascript">
+
+</script>
 </body>
 </html>

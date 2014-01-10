@@ -4,14 +4,18 @@
     line-height: 40px;
 }
 
+.artileparam {
+    color: #000000;
+}
+
 a.article_title {
     text-decoration:none;
     font-size: 22px;
-    font-weight: bold;
+    /*font-weight: bold;*/
     color: #000;
 }
 
 a.article_title:hover {
-    color: #39b3d7;
+    color: #4499EE;
     text-decoration:none;
 }

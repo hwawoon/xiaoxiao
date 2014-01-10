@@ -31,6 +31,7 @@ $(function (){
             $(obj).css("font-size","19px");
             $(obj).addClass("label-danger");
         }
+
     });
 
     //滚动加载

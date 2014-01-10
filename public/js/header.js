@@ -71,3 +71,8 @@ $(function () {
         });
     });
 });
+
+function openLoginModal()
+{
+    $("#loginModal").modal();
+}

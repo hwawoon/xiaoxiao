@@ -7,9 +7,28 @@ $(function(){
             dataType:'json',
             success:function(data)
             {
-                document.getElementById("articleCommentForm").reset();
-                //下面添加新评论
-                $("#articlereplies").prepend(data.content);
+                if(null != data && data.length != 0 )
+                {
+                    data = data[0];
+                    document.getElementById("articleCommentForm").reset();
+                    //下面添加新评论
+                    var loCount = $("#commentCount").html();
+                    $("#commentCount").html(parseInt(loCount) + 1);
+                    $("#articlereplies").prepend('<div class="row">' +
+                        '<div class="useravatar">' +
+                        '<img src="' + ROOT_PATH +
+                        '/'+data.avatar+'" class="img-responsive img-thumbnail" style="width: 50px;"/>' +
+                        '</div>' +
+                        '<div class="userreply">' +
+                        '<div style="padding-bottom: 1px;">' +
+                        '<span style="color: #269abc;">' + data.name +
+                        ' 发表于 '+data.created_at+'</span></div><div>' + data.content +
+                        '</div></div> </div>');
+                }
+                else
+                {
+                    alert("评论失败，请稍后再试！");
+                }
             }
         });
     });

@@ -46,6 +46,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
         return $this->name;
     }
 
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
 	/**
 	 * Get the password for the user.
 	 *

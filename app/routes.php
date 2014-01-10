@@ -13,6 +13,8 @@
 
 Route::get('/',  'HomeController@showHome');
 
+Route::get('/latest',  'HomeController@showLatest');
+
 Route::post('user/doLogin', 'UserController@doLogin');
 
 Route::any('user/logout', 'UserController@logout');
@@ -23,6 +25,8 @@ Route::get('user/register', function()
 });
 
 Route::any('article/getmorehot', 'HomeController@getMoreHotArticle');
+
+Route::any('article/getmorelatest', 'HomeController@getMoreLatestArticle');
 
 Route::post('user/doRegister', 'UserController@doRegister');
 

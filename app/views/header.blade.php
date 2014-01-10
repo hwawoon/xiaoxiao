@@ -8,13 +8,17 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{URL::to('/')}}">xiao</a>
+            <a class="navbar-brand nav" href="{{URL::to('/')}}" alt="搞笑哇" style="padding: 0px; text-align: right; margin-top: 5px;" >
+                {{HTML::image('img/logo.png','',array(
+                    "style" => "width:70%"
+                ))}}
+            </a>
         </div>
         <div class="collapse navbar-collapse">
             <div class="col-sm-3 col-md-3 pull-left">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
-                    <li><a href="#about">新鲜</a></li>
+                    <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
+                    <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
                 </ul>
             </div>
             <div class="col-sm-1 col-md-1 pull-right">
@@ -36,7 +40,10 @@
                 <ul class="nav navbar-nav navbar-right">
                     @if (Session::has('user'))
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{Session::get('user')->getUserName()}}<b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 10px;">
+                            <img src="{{URL::to('/')}}/{{Session::get('user')->getAvatar()}}" width="30px" />
+                            {{Session::get('user')->getUserName()}}<b class="caret"></b>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="{{URL::to('/user/setting')}}">个人主页</a></li>
                             <li><a href="{{URL::to('/user/setting')}}">设置</a></li>
@@ -65,8 +72,6 @@
         <!--/.nav-collapse -->
     </div>
 </div>
-
-
 
 <!-- login Modal -->
 <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

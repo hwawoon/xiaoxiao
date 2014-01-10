@@ -29,6 +29,29 @@ class HomeController extends BaseController {
                                     ->with('rarticles',$rarticles);
     }
 
+    public function showLatest()
+    {
+        $getnum = 5;
+
+        $articles = DB::table('articles')->orderBy('created_at', 'desc')
+            ->skip(0)->take($getnum)->get();
+
+        $rarticles = $this->getRecommendArticle();
+
+        return View::make('/latest')->with('articles',$articles)
+                                   ->with('articlenum',$getnum)
+                                   ->with('rarticles',$rarticles);
+    }
+
+    public function getMoreLatestArticle()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $articles = DB::table('articles')->orderBy('created_at', 'desc')->skip($articleOffset)->take(10)->get();
+
+        return Response::json($articles , 200 );
+    }
+
     public function getMoreHotArticle()
     {
         $articleOffset = Input::get('articleOffset');

@@ -85,6 +85,14 @@ class CommentController extends BaseController {
         $loComment->userid = $userid;
         $loComment->save();
 
-        return Response::json(array("comment" => $loComment),200);
+        DB::table('articles')->where('id', $articleid)->increment('comments',1);
+
+        $inssertComment = DB::table('comments')
+                            ->join('users', 'users.id', '=', 'comments.userid')
+                            ->where('comments.id',$loComment->id)
+                            ->select('comments.content','users.name','users.avatar','comments.created_at')
+                            ->get();
+
+        return Response::json($inssertComment,200);
     }
 }
