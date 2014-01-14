@@ -4,6 +4,7 @@
 $(function(){
     $("#articleCommentBtn").bind("click",function(){
         $("#articleCommentForm").ajaxSubmit({
+            beforeSubmit: validateComment,
             dataType:'json',
             success:function(data)
             {
@@ -33,6 +34,17 @@ $(function(){
         });
     });
 });
+
+function validateComment(formData, jqForm, options)
+{
+    if (!jqForm[0].myComment.value)
+    {
+        alert('请输入评论内容！');
+        return false;
+    }
+
+    return true;
+}
 
 function articlePointUp(id)
 {

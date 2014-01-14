@@ -27,12 +27,16 @@ class ArticleController extends BaseController
             $filename = Str::random(32) . '.' . $extension;
             $upload_success = $imgFile->move($destinationPath.'/upload', $filename);
 
-            if( $upload_success )
+            //裁剪图片
+            $thumbnailResult = $this->imagecropper($destinationPath.'/upload/'.$filename,250,120,$destinationPath.'/thumbnail/'.$filename);
+
+            if( $upload_success && $thumbnailResult )
             {
                 $article = new Article();
 
                 $article->title = $fileTitle;
                 $article->savepath = 'upload/' . $filename;
+                $article->thumbnailpath = 'thumbnail/' . $filename;
                 $article->userid = Auth::user()->getId();
 
                 $article->save();
@@ -79,4 +83,74 @@ class ArticleController extends BaseController
         return Response::json(array("state" => 1),200);
     }
 
+    function imagecropper($source_path, $target_width, $target_height, $target_path)
+    {
+        $source_info   = getimagesize($source_path);
+        $source_width  = $source_info[0];
+        $source_height = $source_info[1];
+        $source_mime   = $source_info['mime'];
+        $source_ratio  = $source_height / $source_width;
+        $target_ratio  = $target_height / $target_width;
+
+        // 源图过高
+        if ($source_ratio > $target_ratio)
+        {
+            $cropped_width  = $source_width;
+            $cropped_height = $source_width * $target_ratio;
+            $source_x = 0;
+            $source_y = ($source_height - $cropped_height) / 2;
+        }
+        // 源图过宽
+        elseif ($source_ratio < $target_ratio)
+        {
+            $cropped_width  = $source_height / $target_ratio;
+            $cropped_height = $source_height;
+            $source_x = ($source_width - $cropped_width) / 2;
+            $source_y = 0;
+        }
+        // 源图适中
+        else
+        {
+            $cropped_width  = $source_width;
+            $cropped_height = $source_height;
+            $source_x = 0;
+            $source_y = 0;
+        }
+
+        switch ($source_mime)
+        {
+            case 'image/gif':
+                $source_image = imagecreatefromgif($source_path);
+                break;
+
+            case 'image/jpeg':
+                $source_image = imagecreatefromjpeg($source_path);
+                break;
+
+            case 'image/png':
+                $source_image = imagecreatefrompng($source_path);
+                break;
+
+            default:
+                return false;
+                break;
+        }
+
+        $target_image  = imagecreatetruecolor($target_width, $target_height);
+        $cropped_image = imagecreatetruecolor($cropped_width, $cropped_height);
+
+        // 裁剪
+        imagecopy($cropped_image, $source_image, 0, 0, $source_x, $source_y, $cropped_width, $cropped_height);
+        // 缩放
+        imagecopyresampled($target_image, $cropped_image, 0, 0, 0, 0, $target_width, $target_height, $cropped_width, $cropped_height);
+
+        imagedestroy($source_image);
+        imagedestroy($cropped_image);
+
+        $result = imagejpeg($target_image,$target_path);
+
+        imagedestroy($target_image);
+
+        return $result;
+    }
 }

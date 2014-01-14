@@ -1,7 +1,10 @@
+#tags {
+    padding: 5px;
+}
+
 #tags a {
-    padding: 10px;
     text-decoration: none;
-    line-height: 40px;
+    color: #000000;
 }
 
 .artileparam {

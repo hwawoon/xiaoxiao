@@ -17,6 +17,7 @@ class CreateArticlesTable extends Migration {
             $table->increments('id');
             $table->string('title');
             $table->string('savepath');
+            $table->string('thumbnailpath');
             $table->integer('comments');
             $table->integer('up');
             $table->integer('down');

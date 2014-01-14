@@ -125,7 +125,7 @@
                                 class="img-responsive img-thumbnail" style="width: 50px;"/>
                         </div>
                         <div class="myreplay">
-                            <textarea class="form-control" name="myComment" rows="3"></textarea>
+                            <textarea class="form-control" name="myComment" id="myComment" rows="3" placeholder="平平仄仄"></textarea>
                         </div>
                         <div class="myreplybtn">
                                 <button type="button" id="articleCommentBtn" class="btn btn-default btn-sm">发送</button>
@@ -152,7 +152,30 @@
                 </div>
             </section>
         </div>
-        <div class="col-sm-5">
+        <div class="col-sm-4" style="padding-left: 40px;">
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row">
+                &nbsp;
+            </div>
+            <div class="row" style="text-align: center; padding-left: 20px;">
+                    <a href="#" class="btn btn-info" style="padding: 10px;">
+                        <i class="glyphicon glyphicon-arrow-left"></i>
+                        上一页
+                    </a>
+                &nbsp;&nbsp;
+                    <a href="#" class="btn btn-success" style="padding: 10px;">
+                        下一页
+                        <i class="glyphicon glyphicon-arrow-right"></i>
+                    </a>
+            </div>
         </div>
     </div>
     <div class="containerbottom"></div>

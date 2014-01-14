@@ -10,8 +10,8 @@ class Article extends Eloquent
 {
     public static $upload_rules = array(
         'title'=>'required',
-        'uploadImage' => 'required|image'
+        'uploadImage' => 'required|image|mimes:jpeg,gif,png'
     );
 
-    protected $fillable = array('title', 'savepath', 'userid');
+    protected $fillable = array('title', 'savepath', 'thumbnailpath', 'userid');
 }
