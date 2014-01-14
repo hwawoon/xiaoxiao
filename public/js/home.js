@@ -35,7 +35,7 @@ $(function (){
         if ($(window).scrollTop() + $(window).height() >=
             $('.containerbottom').offset().top + $('.containerbottom').height() )
             {
-                if(XIAO.loadingArticle == 0)
+                if(XIAO.loadingArticle == 0 && XIAO.getMoreUrl != "")
                 {
                     XIAO.loadingArticle = 1;
                     var loArtcleNumber = XIAO.loadedCount;
@@ -44,7 +44,16 @@ $(function (){
                         url: XIAO.getMoreUrl,
                         data: {'articleOffset':loArtcleNumber},
                         success: function(datas){
-                            loadPageContent(loadingDatas)
+                            if(datas.length != 0)
+                            {
+                                XIAO.loadedCount = parseInt(loArtcleNumber) + datas.length;
+                                $.each(datas, function (i, data)
+                                {
+                                    var loInsertHtml = getLoadingPage(data);
+                                    $("#home_articles").append(loInsertHtml);
+                                });
+                            }
+                            XIAO.loadingArticle = 0;
                         },
                         dataType: 'json'
                     });
@@ -53,24 +62,21 @@ $(function (){
     });
 });
 
-function loadPageContent(loadingDatas)
+String.prototype.template = function(obj)
 {
-    if(datas.length != 0)
+    return this.replace(/\$\w+\$/gi, function(matchs)
     {
-        XIAO.loadedCount = parseInt(loArtcleNumber) + datas.length;
-        $.each(loadingDatas, function (i, data)
-        {
-            var loInsertHtml = '<section style="padding-bottom: 20px;">' +
-                '<div class="row"><h2><a href="#" class="article_title">'+data.title+'</a></h2>' +
-                '</div><div class="row">' +
-                '<a href="#"><img class="img-responsive img-thumbnail" src="'+data.savepath
-                +'" style="width: 100%;">' +
-                '</a></div>' +
-                '</section>';
-            $("#home_articles").append(loInsertHtml);
-        });
-    }
-    XIAO.loadingArticle = 0;
+        var returns = obj[matchs.replace(/\$/g, "")];
+        return (returns + "") == "undefined"? "": returns;
+    });
+}
+
+function getLoadingPage(data)
+{
+    data.points = data.up - data.down;
+    var insertTempl = $('#section_template').val();
+    insertTempl = insertTempl.template(data);
+    return insertTempl;
 }
 
 function articlePointUp(tartget,id)

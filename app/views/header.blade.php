@@ -59,7 +59,7 @@
             </div>
             <!--              搜索框预留位置-->
             <div class="col-sm-3 col-md-3 pull-right">
-                <form class="navbar-form" role="search">
+                <form class="navbar-form" role="search" method="get" action="{{URL::to('/article/search')}}">
                     <div class="input-group">
                         <input type="text" class="form-control" placeholder="搜索" name="srch-term" id="srch-term">
                         <div class="input-group-btn">

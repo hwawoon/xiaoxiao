@@ -54,8 +54,8 @@
                     <h3>{{$article->title}}</h3>
                 </div>
                 <div class="row">
-                    <a href="#" class="artileparam">{{$article->up - $article->down}}分</a>
-                    <a href="#commentArea" class="artileparam">{{$article->comments}}评论</a>
+                    <a href="#" class="artileparam btn btn-default btn-xs">{{$article->up - $article->down}}分</a>
+                    <a href="#commentArea" class="artileparam btn btn-default btn-xs">{{$article->comments}}评论</a>
                 </div>
                 <div class="row" style="padding: 0px;">
                     <div style="display: inline;float: left; padding-right: 10px;margin-top: 5px;">

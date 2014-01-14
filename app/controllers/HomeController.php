@@ -83,4 +83,21 @@ class HomeController extends BaseController {
 
         return $articles;
     }
+
+    public function searchArticle()
+    {
+        $rarticles = $this->getRecommendArticle();
+
+        $searchTerm = Input::get('srch-term');
+        $articles = DB::table('articles')->where('title', 'like' , "%$searchTerm%" )
+                                         ->orderBy('comments', 'desc')->get();
+
+
+
+        return View::make('/search')->with('pagetitle',"搜索 ".$searchTerm )
+                                    ->with('getmore',"")
+                                    ->with('articles',$articles)
+                                    ->with('articlenum',0)
+                                    ->with('rarticles',$rarticles);
+    }
 }

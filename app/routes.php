@@ -34,6 +34,8 @@ Route::any('user/uploadIcon', 'UserController@uploadIcon');
 
 Route::get('article/{id}', 'ArticleController@getArticle')->where('id', '[0-9]+');
 
+Route::get('article/search','HomeController@searchArticle');
+
 Route::group(array('before' => 'auth'), function()
 {
     //个人设置
