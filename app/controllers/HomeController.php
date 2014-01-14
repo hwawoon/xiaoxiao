@@ -15,7 +15,11 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function showHome()
+    /**
+     * 获取热门
+     * @return mixed
+     */
+    public function showHome()
 	{
         $getnum = 5;
 
@@ -24,11 +28,26 @@ class HomeController extends BaseController {
 
         $rarticles = $this->getRecommendArticle();
 
-        return View::make('/home')->with('articles',$articles)
-                                    ->with('articlenum',$getnum)
-                                    ->with('rarticles',$rarticles);
+        return View::make('/home')->with('pagetitle',"热门")
+                                   ->with('getmore',"article/getMoreHot")
+                                   ->with('articles',$articles)
+                                   ->with('articlenum',$getnum)
+                                   ->with('rarticles',$rarticles);
     }
 
+    public function getMoreHotArticle()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $articles = DB::table('articles')->orderBy('up', 'desc')->skip($articleOffset)->take(10)->get();
+
+        return Response::json($articles , 200 );
+    }
+
+    /**
+     * 获取新鲜
+     * @return mixed
+     */
     public function showLatest()
     {
         $getnum = 5;
@@ -38,7 +57,9 @@ class HomeController extends BaseController {
 
         $rarticles = $this->getRecommendArticle();
 
-        return View::make('/latest')->with('articles',$articles)
+        return View::make('/home')->with('pagetitle',"新鲜")
+                                   ->with('getmore',"article/getMoreLatest")
+                                   ->with('articles',$articles)
                                    ->with('articlenum',$getnum)
                                    ->with('rarticles',$rarticles);
     }
@@ -52,28 +73,14 @@ class HomeController extends BaseController {
         return Response::json($articles , 200 );
     }
 
-    public function getMoreHotArticle()
-    {
-        $articleOffset = Input::get('articleOffset');
-
-        $articles = DB::table('articles')->orderBy('up', 'desc')->skip($articleOffset)->take(10)->get();
-
-        return Response::json($articles , 200 );
-    }
-
+    /**
+     * 获取推荐列表，一获取20个
+     * @return mixed
+     */
     public function getRecommendArticle()
     {
         $articles = DB::table('articles')->orderBy('comments', 'desc')->skip(0)->take(20)->get();
 
         return $articles;
-    }
-
-    public function getMoreNewArticle()
-    {
-        $articleOffset = Input::get('articleOffset');
-
-        $articles = DB::table('articles')->orderBy('up', 'desc')->skip($articleOffset)->take(10)->get();
-
-        return Response::json($articles , 200 );
     }
 }

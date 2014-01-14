@@ -1,9 +1,5 @@
 "use strict";
 
-var XIAO = {
-    "loadingArticle" : 0
-};
-
 $(function (){
     $("#tags span").each(function(i,obj){
         if(i%5 == 0)
@@ -42,26 +38,13 @@ $(function (){
                 if(XIAO.loadingArticle == 0)
                 {
                     XIAO.loadingArticle = 1;
-                    var loArtcleNumber = $('#articlenum').val();
+                    var loArtcleNumber = XIAO.loadedCount;
                     $.ajax({
                         type: 'POST',
-                        url: 'article/getmorehot',
+                        url: XIAO.getMoreUrl,
                         data: {'articleOffset':loArtcleNumber},
                         success: function(datas){
-                            if(datas.length != 0)
-                            {
-                                $('#articlenum').val(parseInt(loArtcleNumber) + datas.length);
-                                $.each(datas, function (i, data) {
-                                    $("#home_articles").append('<section style="padding-bottom: 20px;">' +
-                                        '<div class="row"><h2><a href="#" class="article_title">'+data.title+'</a></h2>' +
-                                        '</div><div class="row">' +
-                                        '<a href="#"><img class="img-responsive img-thumbnail" src="'+data.savepath
-                                        +'" style="width: 100%;">' +
-                                        '</a></div>' +
-                                        '</section>');
-                                });
-                            }
-                            XIAO.loadingArticle = 0;
+                            loadPageContent(loadingDatas)
                         },
                         dataType: 'json'
                     });
@@ -69,3 +52,73 @@ $(function (){
             }
     });
 });
+
+function loadPageContent(loadingDatas)
+{
+    if(datas.length != 0)
+    {
+        XIAO.loadedCount = parseInt(loArtcleNumber) + datas.length;
+        $.each(loadingDatas, function (i, data)
+        {
+            var loInsertHtml = '<section style="padding-bottom: 20px;">' +
+                '<div class="row"><h2><a href="#" class="article_title">'+data.title+'</a></h2>' +
+                '</div><div class="row">' +
+                '<a href="#"><img class="img-responsive img-thumbnail" src="'+data.savepath
+                +'" style="width: 100%;">' +
+                '</a></div>' +
+                '</section>';
+            $("#home_articles").append(loInsertHtml);
+        });
+    }
+    XIAO.loadingArticle = 0;
+}
+
+function articlePointUp(tartget,id)
+{
+    var curDom = $(tartget);
+    $.ajax({
+        url: ROOT_PATH + "/article/articlePointUp",
+        type: "GET",
+        data: {"id":id},
+        dataType: "json",
+        success: function (data) {
+            if(data.state == 1)
+            {
+                var val = curDom.find(".article_up").html();
+                curDom.find(".article_up").html(parseInt(val) + 1);
+            }
+            else
+            {
+                alert("评分失败，请反馈给管理员！");
+            }
+        },
+        error: function (data) {
+            alert("评分失败，请反馈给管理员！");
+        }
+    });
+}
+
+function articlePointDown(tartget,id)
+{
+    var curDom = $(tartget);
+    $.ajax({
+        url: ROOT_PATH + "/article/articlePointDown",
+        type: "GET",
+        data: {"id":id},
+        dataType: "json",
+        success: function (data) {
+            if(data.state == 1)
+            {
+                var val = curDom.find(".article_down").html();
+                curDom.find(".article_down").html(parseInt(val) + 1);
+            }
+            else
+            {
+                alert("评分失败，请反馈给管理员！");
+            }
+        },
+        error: function (data) {
+            alert("评分失败，请反馈给管理员！");
+        }
+    });
+}

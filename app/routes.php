@@ -24,9 +24,9 @@ Route::get('user/register', function()
     return View::make('register.register');
 });
 
-Route::any('article/getmorehot', 'HomeController@getMoreHotArticle');
+Route::any('article/getMoreHot', 'HomeController@getMoreHotArticle');
 
-Route::any('article/getmorelatest', 'HomeController@getMoreLatestArticle');
+Route::any('article/getMoreLatest', 'HomeController@getMoreLatestArticle');
 
 Route::post('user/doRegister', 'UserController@doRegister');
 
@@ -57,7 +57,7 @@ Route::group(array('before' => 'auth'), function()
 
     Route::post('comment/addComment/{userid}/{articleid}', 'CommentController@addComment')
         ->where(array('userid' => '[0-9]+', 'articleid' => '[0-9]+'));
-});
 
-Route::get('article/articlePointUp',  'ArticleController@articlePointUp');
-Route::get('article/articlePointDown',  'ArticleController@articlePointDown');
+    Route::get('article/articlePointUp',  'ArticleController@articlePointUp');
+    Route::get('article/articlePointDown',  'ArticleController@articlePointDown');
+});

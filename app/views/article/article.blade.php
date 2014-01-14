@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="shortcut icon" href="../../docs-assets/ico/favicon.png">
+    <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
     <title>{{$article->title}}</title>
     <!-- Bootstrap core CSS -->
     {{ HTML::style('css/bootstrap.css') }}
@@ -50,40 +50,34 @@
     <div class="container">
         <div class="col-sm-8">
             <section style="padding-bottom: 20px;">
-                <div class="row">
+                <div class="row" style="padding: 0px;">
                     <h3>{{$article->title}}</h3>
                 </div>
                 <div class="row">
-                    <a href="javascript:void(0)">
-                        <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->savepath}}" style="width: 100%;">
-                    </a>
+                    <a href="#" class="artileparam">{{$article->up - $article->down}}分</a>
+                    <a href="#commentArea" class="artileparam">{{$article->comments}}评论</a>
                 </div>
-                <div class="row">
+                <div class="row" style="padding: 0px;">
                     <div style="display: inline;float: left; padding-right: 10px;margin-top: 5px;">
-                    @if (Auth::check())
-                        <button type="button" class="btn btn-success" onclick="articlePointUp({{$article->id}});"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;<span id="article_up">{{$article->up}}</span></button>
+                        @if (Auth::check())
+                        <button type="button" class="btn" onclick="articlePointUp({{$article->id}});"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;<span id="article_up">{{$article->up}}</span></button>
                         <span style="width: 50px;">&nbsp;</span>
-                        <button type="button" class="btn btn-success" onclick="articlePointDown({{$article->id}});"><i class="glyphicon glyphicon-thumbs-down"></i>&nbsp;&nbsp;<span id="article_down">{{$article->down}}</span></button>
-                    @else
-                        <button type="button" class="btn btn-success" onclick="openLoginModal();"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;<span id="article_up">{{$article->up}}</span></button>
+                        <button type="button" class="btn" onclick="articlePointDown({{$article->id}});"><i class="glyphicon glyphicon-thumbs-down"></i>&nbsp;&nbsp;<span id="article_down">{{$article->down}}</span></button>
+                        @else
+                        <button type="button" class="btn" onclick="openLoginModal();"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;<span id="article_up">{{$article->up}}</span></button>
                         <span style="width: 50px;">&nbsp;</span>
-                        <button type="button" class="btn btn-success" onclick="openLoginModal();"><i class="glyphicon glyphicon-thumbs-down"></i>&nbsp;&nbsp;<span id="article_down">{{$article->down}}</span></button>
-                    @endif
+                        <button type="button" class="btn" onclick="openLoginModal();"><i class="glyphicon glyphicon-thumbs-down"></i>&nbsp;&nbsp;<span id="article_down">{{$article->down}}</span></button>
+                        @endif
                     </div>
-                    <div style="display: inline;float: left;">
-                        <div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a
-                                href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq"
-                                                                                                   data-cmd="tqq"
-                                                                                                   title="分享到腾讯微博"></a><a
-                                href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#"
-                                                                                                    class="bds_t163"
-                                                                                                    data-cmd="t163"
-                                                                                                    title="分享到网易微博"></a><a
-                                href="#" class="bds_kaixin001" data-cmd="kaixin001" title="分享到开心网"></a><a href="#"
-                                                                                                          class="bds_sqq"
-                                                                                                          data-cmd="sqq"
-                                                                                                          title="分享到QQ好友"></a><a
-                                href="#" class="bds_more" data-cmd="more"></a></div>
+                    <div style="display: inline;float: right;">
+                        <div class="bdsharebuttonbox">
+                            <a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+                            <a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a>
+                            <a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a>
+                            <a href="#" class="bds_t163" data-cmd="t163" title="分享到网易微博"></a>
+                            <a href="#" class="bds_kaixin001" data-cmd="kaixin001" title="分享到开心网"></a>
+                            <a href="#" class="bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+                            <a href="#" class="bds_more" data-cmd="more"></a></div>
                         <script>
                             window._bd_share_config = {
                                 "common": {
@@ -98,11 +92,24 @@
                                     "bdSize": "32"
                                 },
                                 "share": {}
-                                };
+                            };
                             with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=86835285.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
                     </div>
                 </div>
-                <div class="row" style="margin-top: 5px;">
+                <div class="row">
+                    <a href="javascript:void(0)">
+                        <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->savepath}}" style="width: 100%;">
+                    </a>
+                </div>
+                <div class="row" style="text-align: center;">
+                    <a href="javascript:void(0)" onclick="sinaweibo('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->savepath}}');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
+                        分享到新浪微博
+                    </a>
+                    <a href="javascript:void(0)" onclick="postToWb('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->savepath}}');return false;" class="tmblog">
+                        <img src="http://v.t.qq.com/share/images/s/b32.png" border="0" alt="转播到腾讯微博" >
+                    </a>
+                    </div>
+                <div class="row" style="margin-top: 0px;" id="commentArea">
                     <div style="margin-bottom: 0px; margin-top: 0px; border-bottom: 1px solid #eeeeee;">
                         <ul class="nav nav-tabs">
                             <li class="active"><a href="#">全部评论(<span id="commentCount">{{$article->comments}}</span>)</a></li>
@@ -152,5 +159,6 @@
 </div>
 @include("footer")
 {{ HTML::script('js/article/article.js') }}
+{{ HTML::script('js/ishare.js') }}
 </body>
 </html>
