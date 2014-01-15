@@ -13,16 +13,15 @@
     <!-- Custom styles for this template -->
     {{ HTML::style('css/header.css') }}
     <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
-<style type="text/css">
-
-</style>
+<script type="text/javascript">
+    var ROOT_PATH = "{{URL::to('/')}}";
+</script>
 <body>
 <!-- Wrap all page content here -->
 <div id="wrap">
@@ -30,7 +29,7 @@
     <!-- Begin page content -->
     <div class="container">
         <div class="page-header">
-            <h2>亲，欢迎加入我们！</h2>
+            <h2>注册</h2>
         </div>
         <form class="form-horizontal" role="form" id="registerform" action="{{URL::to('/user/doRegister')}}" method="post">
             <div class="form-group">
@@ -73,48 +72,6 @@
 </div>
 </div>
 @include("footer")
+{{ HTML::script('js/user.register.js') }}
 </body>
 </html>
-<script type="text/javascript">
-    $(document).ready(function() {
-        $('#registerform').validate(
-            {
-                rules: {
-                    name: {
-                        required: true
-                    },
-                    email: {
-                        required: true,
-                        email: true
-                    },
-                    password: {
-                        required: true,
-                        minlength: 6
-                    },
-                    password_confirmation: {
-                        required: true,
-                        minlength: 6,
-                        equalTo: "#password"
-                    }
-                },
-                messages: {
-                    name: {
-                        required: "请输入您的尊称！"
-                    },
-                    email: {
-                        required: "请输入Email地址！",
-                        email: "请输入正确的email地址"
-                    },
-                    password: {
-                        required: "请输入密码",
-                        minlength: jQuery.format("密码不能小于{0}个字 符")
-                    },
-                    password_confirmation: {
-                        required: "请输入确认密码",
-                        minlength: "确认密码不能小于6个字符",
-                        equalTo: "两次输入密码不一致"
-                    }
-                }
-            });
-    });
-</script>

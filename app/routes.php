@@ -24,6 +24,40 @@ Route::get('user/register', function()
     return View::make('register.register');
 });
 
+Route::get('/nameChecker',  function(){
+    $validator = Validator::make(
+        array(
+            'name' => Input::get('name')
+        ),
+        array(
+            'name' => 'unique:users'
+        )
+    );
+    if ($validator->fails())
+    {
+        return Response::json(false,200);
+    }
+
+    return Response::json(true,200);
+});
+
+Route::get('/emailChecker',  function(){
+    $validator = Validator::make(
+        array(
+            'email' => Input::get('email')
+        ),
+        array(
+            'email' => 'unique:users'
+        )
+    );
+    if ($validator->fails())
+    {
+        return Response::json(false,200);
+    }
+
+    return Response::json(true,200);
+});
+
 Route::any('article/getMoreHot', 'HomeController@getMoreHotArticle');
 
 Route::any('article/getMoreLatest', 'HomeController@getMoreLatestArticle');
