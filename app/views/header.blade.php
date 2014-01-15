@@ -45,7 +45,7 @@
                             {{Session::get('user')->getUserName()}}<b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{URL::to('/user/setting')}}">个人主页</a></li>
+                            <li><a href="{{URL::to('/user/profile')}}">个人主页</a></li>
                             <li><a href="{{URL::to('/user/setting')}}">设置</a></li>
                             <li><div class="divider"></div> </li>
                             <li><a href="{{URL::to('/user/logout')}}" id="alogout">退出</a></li>

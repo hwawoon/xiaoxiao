@@ -132,6 +132,22 @@
                         </div>
                     </form>
                 </div>
+                @else
+                <div class="row">
+                    <form class="form-horizontal" id="articleCommentForm" role="form" method="post" action="">
+                        <div class="useravatar">
+                            <img
+                                src="{{URL::to('/')}}/img/defaultavatar.jpg"
+                                class="img-responsive img-thumbnail" style="width: 50px;"/>
+                        </div>
+                        <div class="myreplay">
+                            <textarea class="form-control" name="myComment" id="myComment" rows="3" placeholder="平平仄仄"></textarea>
+                        </div>
+                        <div class="myreplybtn">
+                            <a href="#login" id="login" class="btn btn-default btn-sm" data-toggle="modal" data-target="#loginModal">登录</a>
+                        </div>
+                    </form>
+                </div>
                 @endif
                 <div id="articlereplies">
                 @foreach ($comments as $cmt)
@@ -152,7 +168,7 @@
                 </div>
             </section>
         </div>
-        <div class="col-sm-4" style="padding-left: 40px;">
+        <div class="col-sm-4" style="padding-left: 60px;text-align: center;">
             <div class="row">
                 &nbsp;
             </div>
@@ -165,16 +181,40 @@
             <div class="row">
                 &nbsp;
             </div>
-            <div class="row" style="text-align: center; padding-left: 20px;">
-                    <a href="#" class="btn btn-info" style="padding: 10px;">
+            <div class="row">
+                    <a href="{{URL::to('/')}}/article/previous/{{$article->id}}" class="btn btn-info" style="padding: 10px;"
+                    @if(!$previous)
+                        disabled="disabled"
+                    @endif
+                    >
                         <i class="glyphicon glyphicon-arrow-left"></i>
                         上一页
                     </a>
                 &nbsp;&nbsp;
-                    <a href="#" class="btn btn-success" style="padding: 10px;">
+                    <a href="{{URL::to('/')}}/article/next/{{$article->id}}" class="btn btn-success" style="padding: 10px;"
+                    @if(!$next)
+                        disabled="disabled"
+                    @endif
+                    >
                         下一页
                         <i class="glyphicon glyphicon-arrow-right"></i>
                     </a>
+            </div>
+            <div class="row" id="tags" style="padding-top: 10px;">
+                @foreach ($rarticles as $article)
+                <section style="padding: 10px;">
+                    <div class="row" style="padding: 5px;">
+                        <a href="{{URL::to('/article').'/'.$article->id}}" style="text-decoration: none;color: #000000;">
+                            {{$article->title}}
+                        </a>
+                    </div>
+                    <div class="row">
+                        <a href="{{URL::to('/article').'/'.$article->id}}">
+                            <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->thumbnailpath}}" style="width: 250px;height: 120px;">
+                        </a>
+                    </div>
+                </section>
+                @endforeach
             </div>
         </div>
     </div>

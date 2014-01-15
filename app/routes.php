@@ -34,6 +34,9 @@ Route::any('user/uploadIcon', 'UserController@uploadIcon');
 
 Route::get('article/{id}', 'ArticleController@getArticle')->where('id', '[0-9]+');
 
+Route::get('article/previous/{id}', 'ArticleController@previousArticle')->where('id', '[0-9]+');
+Route::get('article/next/{id}', 'ArticleController@nextArticle')->where('id', '[0-9]+');
+
 Route::get('article/search','HomeController@searchArticle');
 
 Route::group(array('before' => 'auth'), function()
@@ -62,4 +65,6 @@ Route::group(array('before' => 'auth'), function()
 
     Route::get('article/articlePointUp',  'ArticleController@articlePointUp');
     Route::get('article/articlePointDown',  'ArticleController@articlePointDown');
+
+    Route::get('user/profile', 'UserController@getUserProfile');
 });

@@ -105,15 +105,17 @@
             @endforeach
         </div>
         <div class="col-sm-5" style="padding: 30px; text-align: center;">
-            <h4>推荐</h4>
+            <h4><span class="label label-primary">推荐</span></h4>
             <div class="row" id="tags">
                 @foreach ($rarticles as $article)
                     <section style="padding: 10px;">
-                        <div class="row">
-                            <a href="#">{{$article->title}}</a>
+                        <div class="row" style="padding: 5px;">
+                            <a href="{{URL::to('/article').'/'.$article->id}}" style="text-decoration: none;color: #000000;">
+                                {{$article->title}}
+                            </a>
                         </div>
                         <div class="row">
-                            <a href="{{URL::to('/article/').$article->id}}">
+                            <a href="{{URL::to('/article').'/'.$article->id}}">
                                 <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->thumbnailpath}}" style="width: 250px;height: 120px;">
                             </a>
                         </div>

@@ -79,7 +79,7 @@ class HomeController extends BaseController {
      */
     public function getRecommendArticle()
     {
-        $articles = DB::table('articles')->orderBy('comments', 'desc')->skip(0)->take(20)->get();
+        $articles = DB::table('articles')->orderBy('comments', 'desc')->skip(0)->take(10)->get();
 
         return $articles;
     }

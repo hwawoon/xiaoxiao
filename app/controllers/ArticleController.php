@@ -54,9 +54,24 @@ class ArticleController extends BaseController
         }
     }
 
+    public function getRecommendArticle()
+    {
+        $articles = DB::table('articles')->orderBy('comments', 'desc')->skip(0)->take(5)->get();
+
+        return $articles;
+    }
+
     public function getArticle($id)
     {
         $article = DB::table('articles')->where('id', $id)->first();
+
+        $pre_article = DB::table('articles')->where('id',"<", $id)->first();
+        $next_article = DB::table('articles')->where('id',">", $id)->first();
+
+        $previous = !empty($pre_article);
+        $next = !empty($next_article);
+
+        $rarticles = $this->getRecommendArticle();
 
         $loAllComments = DB::table('comments')
                             ->join('users', 'users.id', '=', 'comments.userid')
@@ -66,7 +81,24 @@ class ArticleController extends BaseController
                             ->get();
 
         return View::make('/article/article')->with('article',$article)
-                                              ->with('comments',$loAllComments);
+                                              ->with('comments',$loAllComments)
+                                              ->with('previous',$previous)
+                                              ->with('next',$next)
+                                              ->with('rarticles',$rarticles);
+    }
+
+    public function previousArticle($id)
+    {
+        $article = DB::table('articles')->where('id',"<", $id)->first();
+
+        return $this->getArticle($article->id);
+    }
+
+    public function nextArticle($id)
+    {
+        $article = DB::table('articles')->where('id',">", $id)->first();
+
+        return $this->getArticle($article->id);
     }
 
     public function articlePointUp()

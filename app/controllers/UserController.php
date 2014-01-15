@@ -95,4 +95,14 @@ class UserController extends BaseController
     {
         return "success";
     }
+
+    public function getUserProfile()
+    {
+        $loginUser = Auth::user();
+
+        $articles = DB::table('articles')->where('userid',$loginUser->id)->get();
+
+        return View::make('user.profile')->with("pagetitle","个人主页")
+                                         ->with("articles",$articles);
+    }
 }

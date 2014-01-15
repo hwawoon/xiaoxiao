@@ -61,6 +61,7 @@ $(function () {
 
     $("#uploadImageBtn").bind("click",function(){
         $("#uploadImageForm").ajaxSubmit({
+            beforeSubmit: validateUpload,
             dataType:'json',
             success:function(data)
             {
@@ -71,6 +72,23 @@ $(function () {
         });
     });
 });
+
+function validateUpload(formData, jqForm, options)
+{
+    if (!jqForm[0].title.value)
+    {
+        alert('请输入标题！');
+        return false;
+    }
+
+    if (!jqForm[0].uploadImage.value)
+    {
+        alert('请选择上传文件！');
+        return false;
+    }
+
+    return true;
+}
 
 function openLoginModal()
 {
