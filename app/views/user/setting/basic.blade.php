@@ -27,8 +27,22 @@
     @include('header');
     <!-- Begin page content -->
     <div class="container">
+        @if(Session::get('status'))
+        <div class="row" style="padding: 10px 20px 0px 20px; text-align: center;">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{Session::get('message')}}
+            </div>
+        </div>
+        @elseif(Session::get('status') === false)
+        <div class="row" style="padding: 10px 20px 0px 20px; text-align: center;">
+            <div class="alert alert-danger">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{Session::get('message')}}
+            </div>
+        </div>
+        @endif
         <div class="row">
-
             <div class="col-xs-6 col-sm-3" id="sidebar" role="navigation" style="margin-top: 30px;">
                 <div class="list-group">
                     <a href="{{URL::to('/user/setting')}}" class="list-group-item active">基本信息</a>
@@ -42,47 +56,16 @@
                     <h3>基本信息</h3>
                 </div>
                 <div>
-                    <form role="form" style="line-height: 40px;">
+                    <form role="form" id="basicForm" action="{{URL::to('/user/saveUserBasicInfo')}}" style="line-height: 40px;" method="post">
                         <div class="form-group">
                             <label for="inputName">尊称</label>
-                            <input type="text" class="form-control" id="inputName" placeholder="尊称">
+                            <input type="text" class="form-control" name="username" id="username" value="{{Auth::user()->name}}" placeholder="尊称">
                             <span class="help-block">建议使用实名、或您常用的昵称注册</span>
                         </div>
                         <div class="form-group">
                             <label for="inputEmail1">一句话介绍</label>
-                            <textarea class="form-control" rows="3" placeholder="让人们认识你"></textarea>
+                            <textarea class="form-control" rows="3" name="introduction" id="introduction" placeholder="让人们认识你">{{Auth::user()->introduction}}</textarea>
                         </div>
-                        <div class="form-group">
-                            <label for="">所在地</label><br>
-                            <div class="col-xs-3">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <div class="col-xs-3">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                            <div class="col-xs-3">
-                                <select class="form-control">
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <br>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary btn">保存</button>
                         </div>
@@ -96,6 +79,27 @@
 </div>
 </div>
 @include("footer")
-{{ HTML::script('js/usersetting.js') }}
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+{{ HTML::script('js/jquery.js') }}
+{{ HTML::script('js/bootstrap.js') }}
+{{ HTML::script('js/jquery.validate.js') }}
+{{ HTML::script('js/jquery.form.js') }}
+{{ HTML::script('js/header.js') }}
+<script type="text/javascript">
+    $(function(){
+        $("#basicForm").validate({
+            rules: {
+                username: {
+                    required: true
+                }
+            },
+            messages: {
+                username: "请输入亲的尊称"
+            }
+        });
+    });
+</script>
 </body>
 </html>

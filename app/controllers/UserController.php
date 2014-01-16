@@ -105,4 +105,23 @@ class UserController extends BaseController
         return View::make('user.profile')->with("pagetitle","个人主页")
                                          ->with("articles",$articles);
     }
+
+    public function saveUserBasicInfo()
+    {
+        $updateUserId = Auth::user()->id;
+
+        $affectedRows = User::where('id', $updateUserId)
+                              ->update(array(
+                                            'name' => Input::get('username'),
+                                            'introduction' => Input::get('introduction')
+                                        ));
+        if($affectedRows > 0)
+        {
+            return Redirect::to('user/setting')->with('status', true)->with('message',"个人信息保存成功！");
+        }
+        else
+        {
+            return Redirect::to('user/setting')->with('status', false)->with('message',"个人信息保存失败！");
+        }
+    }
 }

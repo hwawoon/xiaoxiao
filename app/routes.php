@@ -101,4 +101,6 @@ Route::group(array('before' => 'auth'), function()
     Route::get('article/articlePointDown',  'ArticleController@articlePointDown');
 
     Route::get('user/profile', 'UserController@getUserProfile');
+
+    Route::post('user/saveUserBasicInfo', 'UserController@saveUserBasicInfo');
 });
