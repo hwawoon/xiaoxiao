@@ -1,6 +1,8 @@
+###Establish Laravel Framwork Website
+i like Laravel Framework,so i wanna do something using it.
 
-搭建LARAVEL framework的CMS
+it includes multiuser login,publish pics,comments,upload user avatar and so on.
 
 ### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+MIT: http://rem.mit-license.org
+if you like it , you just get it to do anything you like!
