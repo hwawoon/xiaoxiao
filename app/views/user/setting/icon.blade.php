@@ -23,6 +23,9 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
 </head>
+<script type="text/javascript">
+    var ROOT_PATH = "{{URL::to('/')}}";
+</script>
 <body>
 <!-- Wrap all page content here -->
 <div id="wrap">
@@ -42,25 +45,37 @@
                 <div class="page-header">
                     <h3>头像设置</h3>
                 </div>
-                <div class="row" style="padding: 50px;">
+                <div class="row">
                     <div class="row">
-                        <img src="{{URL::to('/')}}/default.jpg" id="target" alt="[Jcrop Example]" width="300" height="280" class="re" />
-                        <div id="preview-pane">
-                            <div class="preview-container">
-                                <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" class="jcrop-preview" alt="Preview" />
+                        <form action="{{URL::to('/user/uploadSourceImage')}}" method="post" id="resizeForm" class="form-inline" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <label class="control-label" for="userSelectIcon">上传头像</label>
+                                <input type="file" name="userSelectIcon" id="userSelectIcon" style="display: inline;" />
+                            </div>
+                            <button type="button" class="btn btn-info" id="uploadResizeBtn">上传</button>
+                        </form>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-7">
+                            <img src="{{URL::to('/')}}/default.jpg" id="targetImage" width="300" height="280" />
+                        </div>
+                        <div class="col-lg-4">
+                            <div id="preview-pane">
+                                <div class="preview-container">
+                                    <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" id="thumnailImage" class="jcrop-preview" />
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <form action="" method="post" id="uploadImageForm" class="form-inline">
-                            <div class="form-group">
-                                <label class="control-label" for="userSelectIcon">上传头像</label>
-                                <input type="file" name="userSelectIcon" id="userSelectIcon" />
-                            </div>
 
-                            <button type="button" class="btn btn-info" id="avatar_submit">上传</button>
-                        </form>
-                    </div>
+                    <form action="{{URL::to('/user/saveUserIcon')}}" method="post" id="saveAvatarForm" class="form-inline" enctype="multipart/form-data">
+                        <input type="hidden" id="cropImgPath" name="cropImgPath" />
+                        <input type="hidden" id="x" name="x" />
+                        <input type="hidden" id="y" name="y" />
+                        <input type="hidden" id="w" name="w" />
+                        <input type="hidden" id="h" name="h" />
+                        <button type="button" class="btn btn-info" id="avatar_submit">保存</button>
+                    </form>
                 </div>
             </div>
             <!--/span-->
@@ -77,72 +92,6 @@
 {{ HTML::script('js/jquery.form.js') }}
 {{ HTML::script('js/header.js') }}
 {{ HTML::script('js/jcrop/jquery.Jcrop.js') }}
+{{ HTML::script('js/user.icon.js') }}
 </body>
 </html>
-<script type="text/javascript">
-    jQuery(function($){
-        // Create variables (in this scope) to hold the API and image size
-        var jcrop_api,
-             boundx,
-             boundy,
-
-        // Grab some information about the preview pane
-            $preview = $('#preview-pane'),
-            $pcnt = $('#preview-pane .preview-container'),
-            $pimg = $('#preview-pane .preview-container img'),
-
-            xsize = $pcnt.width(),
-            ysize = $pcnt.height();
-
-        $('#target').Jcrop({
-            onChange: updatePreview,
-            onSelect: updatePreview,
-            aspectRatio: 1
-        },function(){
-            // Use the API to get the real image size
-            var bounds = this.getBounds();
-            boundx = bounds[0];
-            boundy = bounds[1];
-            // Store the API in the jcrop_api variable
-            jcrop_api = this;
-
-            // Move the preview into the jcrop container for css positioning
-            $preview.appendTo(jcrop_api.ui.holder);
-        });
-
-        function updatePreview(c)
-        {
-            if (parseInt(c.w) > 0)
-            {
-                var rx = xsize / c.w;
-                var ry = ysize / c.h;
-
-                $pimg.css({
-                    width: Math.round(rx * boundx) + 'px',
-                    height: Math.round(ry * boundy) + 'px',
-                    marginLeft: '-' + Math.round(rx * c.x) + 'px',
-                    marginTop: '-' + Math.round(ry * c.y) + 'px'
-                });
-            }
-        };
-
-        $("#avatar_submit").bind("click",function(){
-            $("#uploadImageForm").ajaxSubmit({
-                beforeSubmit: function(){
-                    if($('#userSelectIcon').val() == "")
-                    {
-                        alert("请选择上传图片！");
-                        return false;
-                    }
-                },
-                dataType:'json',
-                success:function(data)
-                {
-
-                }
-            });
-        });
-
-    });
-
-</script>

@@ -24,7 +24,7 @@
             <div class="col-sm-1 col-md-1 pull-right">
                 <form class="navbar-form" role="search" method="post">
                     <div class="input-group">
-                        @if (Session::has('user'))
+                        @if (Auth::check())
                             <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#">上传</a>
                             <ul class="dropdown-menu" role="menu" style="min-width: 100px;">
                                 <li><a data-toggle="modal" data-target="#uploadModal">本地上传</a></li>

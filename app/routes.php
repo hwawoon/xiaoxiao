@@ -103,4 +103,8 @@ Route::group(array('before' => 'auth'), function()
     Route::get('user/profile', 'UserController@getUserProfile');
 
     Route::post('user/saveUserBasicInfo', 'UserController@saveUserBasicInfo');
+
+    Route::post('user/uploadSourceImage', 'UserController@uploadSourceImage');
+
+    Route::post('user/saveUserIcon', 'UserController@saveUserIcon');
 });
