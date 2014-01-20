@@ -104,9 +104,12 @@
             </section>
             @endforeach
         </div>
-        <div class="col-sm-5" style="padding: 30px; text-align: center;">
-            <h4><span class="label label-primary">推荐</span></h4>
-            <div class="row" id="tags">
+        <div class="col-sm-5" style="padding: 30px 100px;">
+            @if(!empty($rarticles))
+            <div class="row" style="">
+                <strong>推荐</strong>
+            </div>
+            <div class="row" id="tags" >
                 @foreach ($rarticles as $article)
                     <section style="padding: 10px;">
                         <div class="row" style="padding: 5px;">
@@ -122,6 +125,7 @@
                     </section>
                 @endforeach
             </div>
+            @endif
         </div>
     </div>
     <div class="containerbottom"></div>

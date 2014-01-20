@@ -112,7 +112,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">&nbsp;</label>
+                        <label for="" class="col-sm-2 control-label">&nbsp;</label>
                         <div style="margin: 0 auto;">
                             <button type="submit" class="btn btn-primary btn-lg" id="btnLogin">
                                 &nbsp;&nbsp;&nbsp;&nbsp;登&nbsp;&nbsp;录&nbsp;&nbsp;&nbsp;&nbsp;
@@ -132,8 +132,8 @@
             <form action="{{URL::to('/article/uploadImage')}}" method="post" id="uploadImageForm" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title">Just For Fun!</h3>
-                    Upload funny pictures, paste pictures or YouTube URL, accepting GIF/JPG/PNG (最大: 3MB)
+                    <h3 class="modal-title">只为搞笑</h3>
+                    上传有趣的图片，也可以从其他地方转载, 图片格式：GIF/JPG/PNG (最大: 3MB)
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
@@ -180,25 +180,8 @@
     </div>
 </div>
 
-<!-- feedback Modal -->
-<div class="modal fade" id="feedbackModal" tabindex="-1">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">亲，有什么好建议吗</h4>
-            </div>
-            <div class="modal-body">
-                ...
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary">提交</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <div class="feedback">
-    <a href="#" class="btn btn-primary" style="border-radius: 0px;" role="button" data-toggle="modal" data-target="#feedbackModal">反<br>馈</a>
+    <a href="mailto:hwawoon@163.com" class="btn btn-primary" style="border-radius: 0px;padding: 10px;"
+        role="button" title="我会认真处理每一个反馈">反<br>馈</a>
 </div>
 <a href="#" title="返回顶部" class="goto-top"></a>

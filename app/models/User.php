@@ -4,7 +4,7 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
-    public static $rules = array(
+    public static $reg_rules = array(
         'name'=>'required|unique:users',
         'email'=>'required|email|unique:users',
         'password'=>'required|alpha_num|min:6|confirmed',

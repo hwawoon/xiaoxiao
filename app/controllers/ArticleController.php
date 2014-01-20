@@ -1,9 +1,9 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: kimi
- * Date: 14-1-4
- * Time: 下午11:00
+ * Created by Kimhwawoon.
+ * kimhwawoon@gmail.com
+ * Date: 13-12-25
  */
 
 class ArticleController extends BaseController
@@ -28,7 +28,7 @@ class ArticleController extends BaseController
             $upload_success = $imgFile->move($destinationPath.'/upload', $filename);
 
             //裁剪图片
-            $thumbnailResult = $this->imagecropper($destinationPath.'/upload/'.$filename,250,120,$destinationPath.'/thumbnail/'.$filename);
+            $thumbnailResult = $this->imagecropper($destinationPath.'/upload/'.$filename,300,100,$destinationPath.'/thumbnail/'.$filename);
 
             if( $upload_success && $thumbnailResult )
             {

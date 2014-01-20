@@ -1,44 +1,38 @@
 <?php
+
 /**
- * Created by PhpStorm.
- * User: mini
+ * Created by Kimhwawoon.
+ * kimhwawoon@gmail.com
  * Date: 13-12-25
- * Time: 下午4:55
  */
 
 class UserController extends BaseController
 {
 
-    /*
-    |--------------------------------------------------------------------------
-    | Default Home Controller
-    |--------------------------------------------------------------------------
-    |
-    | You may wish to use controllers instead of, or in addition to, Closure
-    | based routes. That's great! Here is an example controller method to
-    | get you started. To route to this controller, just add the route:
-    |
-    |	Route::get('/', 'HomeController@showWelcome');
-    |
-    */
-
-    public function getIndex()
-    {
-        return View::make('hello');
-    }
-
+    /**
+     * user sign in
+     * do not send error message
+     * all tip is "username or password is incorrect"
+     */
     public function doLogin()
     {
-        $rules = array(
-            'email' => 'required|email',
-            'password' => 'required|min:6'
+        $validator = Validator::make(
+            array(
+                'password' => Input::get("password"),
+                'email' => Input::get("email")
+            ),
+            array(
+                'email' => 'required|email',
+                'password' => 'required'
+            )
         );
-
-        $validator = Validator::make(Input::all(), $rules);
 
         if ($validator->fails())
         {
-            return Response::json(array("state" => 0));
+            return Response::json(array(
+                "state" => 0,
+                //'msg' => $validator->getMessageBag()->toArray()
+            ));
         }
         else
         {
@@ -51,8 +45,6 @@ class UserController extends BaseController
 
             if (Auth::attempt($credentials, $rememberme))
             {
-                // The user is being remembered...
-                Session::put('user', Auth::user());
                 return Response::json(array("state" => 1));
             }
             else
@@ -62,10 +54,12 @@ class UserController extends BaseController
         }
     }
 
+    /**
+     * flush session
+     */
     public function logout()
     {
         try {
-            Session::flush();
             Auth::logout();
             return Redirect::to('/');
         }
@@ -75,15 +69,45 @@ class UserController extends BaseController
 
     }
 
+    /**
+     * register new user
+     * if register success , then log in
+     * @return mixed
+     */
     public function doRegister()
     {
-        $validator = Validator::make(Input::all(), User::$rules);
+        $postValues = array(
+            "name" => Input::get("name"),
+            "email" => Input::get("email"),
+            "password" => Input::get("password"),
+            "password_confirmation" => Input::get("password_confirmation")
+        );
+
+        $validator = Validator::make($postValues, User::$reg_rules);
 
         if ($validator->passes())
         {
-            User::create(Input::all());
+            $registerIp = Request::getClientIp();
 
-            return View::make('register.success');
+            $user = User::create(array(
+                'name' => $postValues['name'],
+                'email' => $postValues['email'],
+                'password' => Hash::make($postValues['password']),
+                'created_ip' => ip2long($registerIp)
+            ));
+
+            if(empty($user))
+            {
+                $messages = $validator->errors();
+                $messages->add('reg_message', Lang::get('messages.reg_failure'));
+                return Redirect::to('user/register')->withErrors($messages)->withInput();
+            }
+
+            //TO DO send eamil to set user active
+
+            Auth::login($user, true);
+
+            return Redirect::to('/');
         }
         else
         {
