@@ -66,7 +66,7 @@ class ServerBag extends ParameterBag
 
             if (null !== $authorizationHeader) {
                 if (0 === stripos($authorizationHeader, 'basic')) {
-                    // Decode AUTHORIZATION header.css into PHP_AUTH_USER and PHP_AUTH_PW when authorization header.css is basic
+                    // Decode AUTHORIZATION header into PHP_AUTH_USER and PHP_AUTH_PW when authorization header is basic
                     $exploded = explode(':', base64_decode(substr($authorizationHeader, 6)));
                     if (count($exploded) == 2) {
                         list($headers['PHP_AUTH_USER'], $headers['PHP_AUTH_PW']) = $exploded;

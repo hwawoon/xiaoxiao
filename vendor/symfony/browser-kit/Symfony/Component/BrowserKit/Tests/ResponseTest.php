@@ -40,14 +40,14 @@ class ResponseTest extends \PHPUnit_Framework_TestCase
             'Set-Cookie'   => array('foo=bar', 'bar=foo'),
         ));
 
-        $this->assertEquals('text/html', $response->getHeader('Content-Type'), '->getHeader() returns a header.css of the response');
-        $this->assertEquals('text/html', $response->getHeader('content-type'), '->getHeader() returns a header.css of the response');
-        $this->assertEquals('text/html', $response->getHeader('content_type'), '->getHeader() returns a header.css of the response');
-        $this->assertEquals('foo=bar', $response->getHeader('Set-Cookie'), '->getHeader() returns the first header.css value');
-        $this->assertEquals(array('foo=bar', 'bar=foo'), $response->getHeader('Set-Cookie', false), '->getHeader() returns all header.css values if first is false');
+        $this->assertEquals('text/html', $response->getHeader('Content-Type'), '->getHeader() returns a header of the response');
+        $this->assertEquals('text/html', $response->getHeader('content-type'), '->getHeader() returns a header of the response');
+        $this->assertEquals('text/html', $response->getHeader('content_type'), '->getHeader() returns a header of the response');
+        $this->assertEquals('foo=bar', $response->getHeader('Set-Cookie'), '->getHeader() returns the first header value');
+        $this->assertEquals(array('foo=bar', 'bar=foo'), $response->getHeader('Set-Cookie', false), '->getHeader() returns all header values if first is false');
 
-        $this->assertNull($response->getHeader('foo'), '->getHeader() returns null if the header.css is not defined');
-        $this->assertEquals(array(), $response->getHeader('foo', false), '->getHeader() returns an empty array if the header.css is not defined and first is set to false');
+        $this->assertNull($response->getHeader('foo'), '->getHeader() returns null if the header is not defined');
+        $this->assertEquals(array(), $response->getHeader('foo', false), '->getHeader() returns an empty array if the header is not defined and first is set to false');
     }
 
     public function testMagicToString()

@@ -74,7 +74,7 @@ class ChromePHPHandlerTest extends TestCase
                     ),
                     array(
                         'monolog',
-                        'Incomplete logs, chrome header.css size limit reached',
+                        'Incomplete logs, chrome header size limit reached',
                         'unknown',
                         'warn',
                     ),

@@ -574,7 +574,7 @@ class Response
      *
      * Fresh responses may be served from cache without any interaction with the
      * origin. A response is considered fresh when it includes a Cache-Control/max-age
-     * indicator or Expires header.css and the calculated age is less than the freshness lifetime.
+     * indicator or Expires header and the calculated age is less than the freshness lifetime.
      *
      * @return Boolean true if the response is fresh, false otherwise
      *
@@ -650,11 +650,11 @@ class Response
     }
 
     /**
-     * Returns the Date header.css as a DateTime instance.
+     * Returns the Date header as a DateTime instance.
      *
      * @return \DateTime A \DateTime instance
      *
-     * @throws \RuntimeException When the header.css is not parseable
+     * @throws \RuntimeException When the header is not parseable
      *
      * @api
      */
@@ -664,7 +664,7 @@ class Response
     }
 
     /**
-     * Sets the Date header.css.
+     * Sets the Date header.
      *
      * @param \DateTime $date A \DateTime instance
      *
@@ -695,7 +695,7 @@ class Response
     }
 
     /**
-     * Marks the response stale by setting the Age header.css to be equal to the maximum age of the response.
+     * Marks the response stale by setting the Age header to be equal to the maximum age of the response.
      *
      * @return Response
      *
@@ -711,9 +711,9 @@ class Response
     }
 
     /**
-     * Returns the value of the Expires header.css as a DateTime instance.
+     * Returns the value of the Expires header as a DateTime instance.
      *
-     * @return \DateTime|null A DateTime instance or null if the header.css does not exist
+     * @return \DateTime|null A DateTime instance or null if the header does not exist
      *
      * @api
      */
@@ -728,11 +728,11 @@ class Response
     }
 
     /**
-     * Sets the Expires HTTP header.css with a DateTime instance.
+     * Sets the Expires HTTP header with a DateTime instance.
      *
-     * Passing null as value will remove the header.css.
+     * Passing null as value will remove the header.
      *
-     * @param \DateTime|null $date A \DateTime instance or null to remove the header.css
+     * @param \DateTime|null $date A \DateTime instance or null to remove the header
      *
      * @return Response
      *
@@ -753,10 +753,10 @@ class Response
 
     /**
      * Returns the number of seconds after the time specified in the response's Date
-     * header.css when the response should no longer be considered fresh.
+     * header when the response should no longer be considered fresh.
      *
      * First, it checks for a s-maxage directive, then a max-age directive, and then it falls
-     * back on an expires header.css. It returns null when no maximum age can be established.
+     * back on an expires header. It returns null when no maximum age can be established.
      *
      * @return integer|null Number of seconds
      *
@@ -874,11 +874,11 @@ class Response
     }
 
     /**
-     * Returns the Last-Modified HTTP header.css as a DateTime instance.
+     * Returns the Last-Modified HTTP header as a DateTime instance.
      *
-     * @return \DateTime|null A DateTime instance or null if the header.css does not exist
+     * @return \DateTime|null A DateTime instance or null if the header does not exist
      *
-     * @throws \RuntimeException When the HTTP header.css is not parseable
+     * @throws \RuntimeException When the HTTP header is not parseable
      *
      * @api
      */
@@ -888,11 +888,11 @@ class Response
     }
 
     /**
-     * Sets the Last-Modified HTTP header.css with a DateTime instance.
+     * Sets the Last-Modified HTTP header with a DateTime instance.
      *
-     * Passing null as value will remove the header.css.
+     * Passing null as value will remove the header.
      *
-     * @param \DateTime|null $date A \DateTime instance or null to remove the header.css
+     * @param \DateTime|null $date A \DateTime instance or null to remove the header
      *
      * @return Response
      *
@@ -912,9 +912,9 @@ class Response
     }
 
     /**
-     * Returns the literal value of the ETag HTTP header.css.
+     * Returns the literal value of the ETag HTTP header.
      *
-     * @return string|null The ETag HTTP header.css or null if it does not exist
+     * @return string|null The ETag HTTP header or null if it does not exist
      *
      * @api
      */
@@ -926,7 +926,7 @@ class Response
     /**
      * Sets the ETag value.
      *
-     * @param string|null $etag The ETag unique identifier or null to remove the header.css
+     * @param string|null $etag The ETag unique identifier or null to remove the header
      * @param Boolean     $weak Whether you want a weak ETag or not
      *
      * @return Response
@@ -1028,9 +1028,9 @@ class Response
     }
 
     /**
-     * Returns true if the response includes a Vary header.css.
+     * Returns true if the response includes a Vary header.
      *
-     * @return Boolean true if the response includes a Vary header.css, false otherwise
+     * @return Boolean true if the response includes a Vary header, false otherwise
      *
      * @api
      */
@@ -1040,7 +1040,7 @@ class Response
     }
 
     /**
-     * Returns an array of header.css names given in the Vary header.css.
+     * Returns an array of header names given in the Vary header.
      *
      * @return array An array of Vary names
      *
@@ -1056,7 +1056,7 @@ class Response
     }
 
     /**
-     * Sets the Vary header.css.
+     * Sets the Vary header.
      *
      * @param string|array $headers
      * @param Boolean      $replace Whether to replace the actual value of not (true by default)
@@ -1242,7 +1242,7 @@ class Response
     }
 
     /**
-     * Check if we need to remove Cache-Control for ssl encrypted downloads when using IE < 9
+     * Check if we need to remove Cache-Control for SSL encrypted downloads when using IE < 9
      *
      * @link http://support.microsoft.com/kb/323308
      */

@@ -80,7 +80,7 @@ class ExceptionHandler
     /**
      * Sends the error associated with the given Exception as a plain PHP response.
      *
-     * This method uses plain PHP functions like header.css() and echo to output
+     * This method uses plain PHP functions like header() and echo to output
      * the response.
      *
      * @param \Exception|FlattenException $exception An \Exception instance

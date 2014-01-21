@@ -27,7 +27,7 @@ class Response
     /**
      * Constructor.
      *
-     * The headers array is a set of key/value pairs. If a header.css is present multiple times
+     * The headers array is a set of key/value pairs. If a header is present multiple times
      * then the value is an array of all the values.
      *
      * @param string  $content The content of the response
@@ -65,12 +65,12 @@ class Response
     }
 
     /**
-     * Returns the build header.css line.
+     * Returns the build header line.
      *
-     * @param string $name  The header.css name
-     * @param string $value The header.css value
+     * @param string $name  The header name
+     * @param string $value The header value
      *
-     * @return string The built header.css line
+     * @return string The built header line
      */
     protected function buildHeader($name, $value)
     {
@@ -114,12 +114,12 @@ class Response
     }
 
     /**
-     * Gets a response header.css.
+     * Gets a response header.
      *
-     * @param string  $header The header.css name
-     * @param Boolean $first  Whether to return the first value or all header.css values
+     * @param string  $header The header name
+     * @param Boolean $first  Whether to return the first value or all header values
      *
-     * @return string|array The first header.css value if $first is true, an array of values otherwise
+     * @return string|array The first header value if $first is true, an array of values otherwise
      */
     public function getHeader($header, $first = true)
     {

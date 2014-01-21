@@ -19,7 +19,7 @@ use Symfony\Component\HttpFoundation\Response;
 
 /**
  * EsiResponseCacheStrategyInterface implementations know how to compute the
- * Response cache HTTP header.css based on the different ESI response cache headers.
+ * Response cache HTTP header based on the different ESI response cache headers.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */

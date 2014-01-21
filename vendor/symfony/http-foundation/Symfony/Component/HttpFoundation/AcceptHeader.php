@@ -12,9 +12,9 @@
 namespace Symfony\Component\HttpFoundation;
 
 /**
- * Represents an Accept-* header.css.
+ * Represents an Accept-* header.
  *
- * An accept header.css is compound with a list of items,
+ * An accept header is compound with a list of items,
  * sorted by descending quality.
  *
  * @author Jean-François Simon <contact@jfsimon.fr>
@@ -63,7 +63,7 @@ class AcceptHeader
     }
 
     /**
-     * Returns header.css value's string representation.
+     * Returns header value's string representation.
      *
      * @return string
      */
@@ -73,7 +73,7 @@ class AcceptHeader
     }
 
     /**
-     * Tests if header.css has given value.
+     * Tests if header has given value.
      *
      * @param string $value
      *

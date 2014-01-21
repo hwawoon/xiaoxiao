@@ -29,7 +29,7 @@ class JsonResponse extends \Symfony\Component\HttpFoundation\JsonResponse {
 	}
 
 	/**
-	 * Set a header.css on the Response.
+	 * Set a header on the Response.
 	 *
 	 * @param  string  $key
 	 * @param  string  $value

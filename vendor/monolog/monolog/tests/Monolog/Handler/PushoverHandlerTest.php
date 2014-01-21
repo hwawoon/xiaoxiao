@@ -15,7 +15,7 @@ use Monolog\TestCase;
 use Monolog\Logger;
 
 /**
- * Almost all examples (expected header.css, titles, messages) taken from
+ * Almost all examples (expected header, titles, messages) taken from
  * https://www.pushover.net/api
  * @author Sebastian Göttschkes <sebastian.goettschkes@googlemail.com>
  * @see https://www.pushover.net/api

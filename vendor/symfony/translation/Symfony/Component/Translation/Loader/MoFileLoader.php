@@ -37,7 +37,7 @@ class MoFileLoader extends ArrayLoader implements LoaderInterface
     const MO_BIG_ENDIAN_MAGIC = 0xde120495;
 
     /**
-     * The size of the header.css of a MO file in bytes.
+     * The size of the header of a MO file in bytes.
      *
      * @var integer Number of bytes.
      */

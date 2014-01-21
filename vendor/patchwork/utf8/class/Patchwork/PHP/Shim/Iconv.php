@@ -15,11 +15,11 @@ namespace Patchwork\PHP\Shim;
  *
  * Implemented:
  * - iconv              - Convert string to requested character encoding
- * - iconv_mime_decode  - Decodes a MIME header.css field
- * - iconv_mime_decode_headers - Decodes multiple MIME header.css fields at once
+ * - iconv_mime_decode  - Decodes a MIME header field
+ * - iconv_mime_decode_headers - Decodes multiple MIME header fields at once
  * - iconv_get_encoding - Retrieve internal configuration variables of iconv extension
  * - iconv_set_encoding - Set current setting for character encoding conversion
- * - iconv_mime_encode  - Composes a MIME header.css field
+ * - iconv_mime_encode  - Composes a MIME header field
  * - ob_iconv_handler   - Convert character encoding as output buffer handler
  * - iconv_strlen       - Returns the character count of string
  * - iconv_strpos       - Finds position of first occurrence of a needle within a haystack

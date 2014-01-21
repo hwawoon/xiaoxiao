@@ -269,7 +269,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array('foo' => 'foobar'), $dup->query->all(), '->duplicate() overrides the query parameters if provided');
         $this->assertEquals(array('foo' => 'foobar'), $dup->request->all(), '->duplicate() overrides the request parameters if provided');
         $this->assertEquals(array('foo' => 'foobar'), $dup->attributes->all(), '->duplicate() overrides the attributes if provided');
-        $this->assertEquals(array('foo' => array('foobar')), $dup->headers->all(), '->duplicate() overrides the HTTP header.css if provided');
+        $this->assertEquals(array('foo' => array('foobar')), $dup->headers->all(), '->duplicate() overrides the HTTP header if provided');
     }
 
     public function testDuplicateWithFormat()
@@ -672,7 +672,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $request->initialize(array(), array(), array(), array(), array(), array('HTTP_HOST' => 'www.example.com'));
         $this->assertEquals('www.example.com', $request->getHost(), '->getHost() from Host Header');
 
-        // Host header.css with port number
+        // Host header with port number
         $request->initialize(array(), array(), array(), array(), array(), array('HTTP_HOST' => 'www.example.com:8080'));
         $this->assertEquals('www.example.com', $request->getHost(), '->getHost() from Host Header with port number');
 
@@ -681,7 +681,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('www.example.com', $request->getHost(), '->getHost() from server name');
 
         $request->initialize(array(), array(), array(), array(), array(), array('SERVER_NAME' => 'www.example.com', 'HTTP_HOST' => 'www.host.com'));
-        $this->assertEquals('www.host.com', $request->getHost(), '->getHost() value from Host header.css has priority over SERVER_NAME ');
+        $this->assertEquals('www.host.com', $request->getHost(), '->getHost() value from Host header has priority over SERVER_NAME ');
     }
 
     public function testGetPort()
@@ -715,7 +715,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         ));
         $port = $request->getPort();
 
-        $this->assertEquals(80, $port, 'If X_FORWARDED_PROTO is set to http return 80.');
+        $this->assertEquals(80, $port, 'If X_FORWARDED_PROTO is set to HTTP return 80.');
 
         $request = Request::create('http://example.com', 'GET', array(), array(), array(), array(
             'HTTP_X_FORWARDED_PROTO' => 'On'
@@ -1442,14 +1442,14 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(443, $request->getPort());
         $this->assertTrue($request->isSecure());
 
-        // check various X_FORWARDED_PROTO header.css values
+        // check various X_FORWARDED_PROTO header values
         $request->headers->set('X_FORWARDED_PROTO', 'ssl');
         $this->assertTrue($request->isSecure());
 
         $request->headers->set('X_FORWARDED_PROTO', 'https, http');
         $this->assertTrue($request->isSecure());
 
-        // custom header.css names
+        // custom header names
         Request::setTrustedHeaderName(Request::HEADER_CLIENT_IP, 'X_MY_FOR');
         Request::setTrustedHeaderName(Request::HEADER_CLIENT_HOST, 'X_MY_HOST');
         Request::setTrustedHeaderName(Request::HEADER_CLIENT_PORT, 'X_MY_PORT');
@@ -1459,7 +1459,7 @@ class RequestTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(81, $request->getPort());
         $this->assertFalse($request->isSecure());
 
-        // disabling via empty header.css names
+        // disabling via empty header names
         Request::setTrustedHeaderName(Request::HEADER_CLIENT_IP, null);
         Request::setTrustedHeaderName(Request::HEADER_CLIENT_HOST, null);
         Request::setTrustedHeaderName(Request::HEADER_CLIENT_PORT, null);

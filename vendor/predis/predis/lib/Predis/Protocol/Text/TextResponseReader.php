@@ -85,7 +85,7 @@ class TextResponseReader implements ResponseReaderInterface
         $header = $connection->readLine();
 
         if ($header === '') {
-            $this->protocolError($connection, 'Unexpected empty header.css');
+            $this->protocolError($connection, 'Unexpected empty header');
         }
 
         $prefix = $header[0];

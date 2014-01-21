@@ -89,7 +89,7 @@ class TextResponseReaderTest extends PredisTestCase
     /**
      * @group disconnected
      * @expectedException Predis\Protocol\ProtocolException
-     * @expectedExceptionMessage Unexpected empty header.css
+     * @expectedExceptionMessage Unexpected empty header
      */
     public function testEmptyResponseHeader()
     {

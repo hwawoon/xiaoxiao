@@ -39,8 +39,8 @@ class BinaryFileResponse extends Response
      * @param array               $headers            An array of response headers
      * @param boolean             $public             Files are public by default
      * @param null|string         $contentDisposition The type of Content-Disposition to set automatically with the filename
-     * @param boolean             $autoEtag           Whether the ETag header.css should be automatically set
-     * @param boolean             $autoLastModified   Whether the Last-Modified header.css should be automatically set
+     * @param boolean             $autoEtag           Whether the ETag header should be automatically set
+     * @param boolean             $autoLastModified   Whether the Last-Modified header should be automatically set
      */
     public function __construct($file, $status = 200, $headers = array(), $public = true, $contentDisposition = null, $autoEtag = false, $autoLastModified = true)
     {
@@ -59,8 +59,8 @@ class BinaryFileResponse extends Response
      * @param array               $headers            An array of response headers
      * @param boolean             $public             Files are public by default
      * @param null|string         $contentDisposition The type of Content-Disposition to set automatically with the filename
-     * @param boolean             $autoEtag           Whether the ETag header.css should be automatically set
-     * @param boolean             $autoLastModified   Whether the Last-Modified header.css should be automatically set
+     * @param boolean             $autoEtag           Whether the ETag header should be automatically set
+     * @param boolean             $autoLastModified   Whether the Last-Modified header should be automatically set
      */
     public static function create($file = null, $status = 200, $headers = array(), $public = true, $contentDisposition = null, $autoEtag = false, $autoLastModified = true)
     {
@@ -115,7 +115,7 @@ class BinaryFileResponse extends Response
     }
 
     /**
-     * Automatically sets the Last-Modified header.css according the file modification date.
+     * Automatically sets the Last-Modified header according the file modification date.
      */
     public function setAutoLastModified()
     {
@@ -125,7 +125,7 @@ class BinaryFileResponse extends Response
     }
 
     /**
-     * Automatically sets the ETag header.css according to the checksum of the file.
+     * Automatically sets the ETag header according to the checksum of the file.
      */
     public function setAutoEtag()
     {
@@ -135,7 +135,7 @@ class BinaryFileResponse extends Response
     }
 
     /**
-     * Sets the Content-Disposition header.css with the given filename.
+     * Sets the Content-Disposition header with the given filename.
      *
      * @param string $disposition      ResponseHeaderBag::DISPOSITION_INLINE or ResponseHeaderBag::DISPOSITION_ATTACHMENT
      * @param string $filename         Optionally use this filename instead of the real name of the file
@@ -216,15 +216,18 @@ class BinaryFileResponse extends Response
                     $start = (int) $start;
                 }
 
-                $start = max($start, 0);
-                $end = min($end, $fileSize - 1);
+                if ($start <= $end) {
+                    if ($start < 0 || $end > $fileSize - 1) {
+                        $this->setStatusCode(416);
+                    } elseif ($start !== 0 || $end !== $fileSize - 1) {
+                        $this->maxlen = $end < $fileSize ? $end - $start + 1 : -1;
+                        $this->offset = $start;
 
-                $this->maxlen = $end < $fileSize ? $end - $start + 1 : -1;
-                $this->offset = $start;
-
-                $this->setStatusCode(206);
-                $this->headers->set('Content-Range', sprintf('bytes %s-%s/%s', $start, $end, $fileSize));
-                $this->headers->set('Content-Length', $end - $start + 1);
+                        $this->setStatusCode(206);
+                        $this->headers->set('Content-Range', sprintf('bytes %s-%s/%s', $start, $end, $fileSize));
+                        $this->headers->set('Content-Length', $end - $start + 1);
+                    }
+                }
             }
         }
 
@@ -278,7 +281,7 @@ class BinaryFileResponse extends Response
     }
 
     /**
-     * Trust X-Sendfile-Type header.css.
+     * Trust X-Sendfile-Type header.
      */
     public static function trustXSendfileTypeHeader()
     {

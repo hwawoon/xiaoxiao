@@ -12,7 +12,7 @@
 namespace Symfony\Component\HttpFoundation;
 
 /**
- * Represents an Accept-* header.css item.
+ * Represents an Accept-* header item.
  *
  * @author Jean-François Simon <contact@jfsimon.fr>
  */
@@ -82,7 +82,7 @@ class AcceptHeaderItem
     }
 
     /**
-     * Returns header.css  value's string representation.
+     * Returns header  value's string representation.
      *
      * @return string
      */
@@ -90,7 +90,7 @@ class AcceptHeaderItem
     {
         $string = $this->value.($this->quality < 1 ? ';q='.$this->quality : '');
         if (count($this->attributes) > 0) {
-            $string .= ';'.implode(';', array_map(function($name, $value) {
+            $string .= ';'.implode(';', array_map(function ($name, $value) {
                 return sprintf(preg_match('/[,;=]/', $value) ? '%s="%s"' : '%s=%s', $name, $value);
             }, array_keys($this->attributes), $this->attributes));
         }

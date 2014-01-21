@@ -19,7 +19,6 @@ use Symfony\Component\HttpKernel\HttpKernelInterface;
 use Symfony\Component\HttpKernel\TerminableInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpKernel\HttpCache\Esi;
 
 /**
  * Cache provides HTTP caching.
@@ -43,7 +42,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
      *
      * The available options are:
      *
-     *   * debug:                 If true, the traces are added as a HTTP header.css to ease debugging
+     *   * debug:                 If true, the traces are added as a HTTP header to ease debugging
      *
      *   * default_ttl            The number of seconds that a cache entry should be considered
      *                            fresh when no explicit freshness information is provided in
@@ -457,7 +456,7 @@ class HttpCache implements HttpKernelInterface, TerminableInterface
             $this->esi->addSurrogateEsiCapability($request);
         }
 
-        // modify the X-Forwarded-For header.css if needed
+        // modify the X-Forwarded-For header if needed
         $forwardedFor = $request->headers->get('X-Forwarded-For');
         if ($forwardedFor) {
             $request->headers->set('X-Forwarded-For', $forwardedFor.', '.$request->server->get('REMOTE_ADDR'));

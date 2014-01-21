@@ -83,7 +83,7 @@ class Esi
     /**
      * Adds HTTP headers to specify that the Response needs to be parsed for ESI.
      *
-     * This method only adds an ESI HTTP header.css if the Response has some ESI tags.
+     * This method only adds an ESI HTTP header if the Response has some ESI tags.
      *
      * @param Response $response A Response instance
      */
@@ -166,7 +166,7 @@ class Esi
         $response->setContent($content);
         $response->headers->set('X-Body-Eval', 'ESI');
 
-        // remove ESI/1.0 from the Surrogate-Control header.css
+        // remove ESI/1.0 from the Surrogate-Control header
         if ($response->headers->has('Surrogate-Control')) {
             $value = $response->headers->get('Surrogate-Control');
             if ('content="ESI/1.0"' == $value) {

@@ -17,7 +17,7 @@ use Symfony\Component\HttpKernel\HttpCache\Esi;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 
 /**
- * EsiListener adds a Surrogate-Control HTTP header.css when the Response needs to be parsed for ESI.
+ * EsiListener adds a Surrogate-Control HTTP header when the Response needs to be parsed for ESI.
  *
  * @author Fabien Potencier <fabien@symfony.com>
  */

@@ -9,14 +9,11 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
     <title>xiaoxiao</title>
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('css/bootstrap.css') }}
+    {{ HTML::style('packages/bootstrap/css/bootstrap.css') }}
     <!-- Custom styles for this template -->
     {{ HTML::style('css/header.css') }}
-    {{ HTML::style('js/jcrop/jquery.Jcrop.css') }}
+    {{ HTML::style('packages/jcrop/jquery.Jcrop.css') }}
     {{ HTML::style('css/user.icon.css') }}
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]>
-    <script src="../../docs-assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -87,11 +84,11 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 {{ HTML::script('js/jquery.js') }}
-{{ HTML::script('js/bootstrap.js') }}
+{{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
 {{ HTML::script('js/jquery.validate.js') }}
 {{ HTML::script('js/jquery.form.js') }}
 {{ HTML::script('js/header.js') }}
-{{ HTML::script('js/jcrop/jquery.Jcrop.js') }}
+{{ HTML::script('packages/jcrop/jquery.Jcrop.js') }}
 {{ HTML::script('js/user.icon.js') }}
 </body>
 </html>

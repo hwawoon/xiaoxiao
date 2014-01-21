@@ -22,7 +22,7 @@ class RedirectResponse extends \Symfony\Component\HttpFoundation\RedirectRespons
 	protected $session;
 
 	/**
-	 * Set a header.css on the Response.
+	 * Set a header on the Response.
 	 *
 	 * @param  string  $key
 	 * @param  string  $value

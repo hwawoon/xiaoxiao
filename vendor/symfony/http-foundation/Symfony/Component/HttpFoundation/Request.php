@@ -64,6 +64,8 @@ class Request
     protected static $httpMethodParameterOverride = false;
 
     /**
+     * Custom parameters
+     *
      * @var \Symfony\Component\HttpFoundation\ParameterBag
      *
      * @api
@@ -71,6 +73,8 @@ class Request
     public $attributes;
 
     /**
+     * Request body parameters ($_POST)
+     *
      * @var \Symfony\Component\HttpFoundation\ParameterBag
      *
      * @api
@@ -78,6 +82,8 @@ class Request
     public $request;
 
     /**
+     * Query string parameters ($_GET)
+     *
      * @var \Symfony\Component\HttpFoundation\ParameterBag
      *
      * @api
@@ -85,6 +91,8 @@ class Request
     public $query;
 
     /**
+     * Server and execution environment parameters ($_SERVER)
+     *
      * @var \Symfony\Component\HttpFoundation\ServerBag
      *
      * @api
@@ -92,6 +100,8 @@ class Request
     public $server;
 
     /**
+     * Uploaded files ($_FILES)
+     *
      * @var \Symfony\Component\HttpFoundation\FileBag
      *
      * @api
@@ -99,6 +109,8 @@ class Request
     public $files;
 
     /**
+     * Cookies ($_COOKIE)
+     *
      * @var \Symfony\Component\HttpFoundation\ParameterBag
      *
      * @api
@@ -106,6 +118,8 @@ class Request
     public $cookies;
 
     /**
+     * Headers (taken from the $_SERVER)
+     *
      * @var \Symfony\Component\HttpFoundation\HeaderBag
      *
      * @api
@@ -565,42 +579,42 @@ class Request
     /**
      * Sets the name for trusted headers.
      *
-     * The following header.css keys are supported:
+     * The following header keys are supported:
      *
      *  * Request::HEADER_CLIENT_IP:    defaults to X-Forwarded-For   (see getClientIp())
      *  * Request::HEADER_CLIENT_HOST:  defaults to X-Forwarded-Host  (see getClientHost())
      *  * Request::HEADER_CLIENT_PORT:  defaults to X-Forwarded-Port  (see getClientPort())
      *  * Request::HEADER_CLIENT_PROTO: defaults to X-Forwarded-Proto (see getScheme() and isSecure())
      *
-     * Setting an empty value allows to disable the trusted header.css for the given key.
+     * Setting an empty value allows to disable the trusted header for the given key.
      *
-     * @param string $key   The header.css key
-     * @param string $value The header.css name
+     * @param string $key   The header key
+     * @param string $value The header name
      *
      * @throws \InvalidArgumentException
      */
     public static function setTrustedHeaderName($key, $value)
     {
         if (!array_key_exists($key, self::$trustedHeaders)) {
-            throw new \InvalidArgumentException(sprintf('Unable to set the trusted header.css name for key "%s".', $key));
+            throw new \InvalidArgumentException(sprintf('Unable to set the trusted header name for key "%s".', $key));
         }
 
         self::$trustedHeaders[$key] = $value;
     }
 
     /**
-     * Gets the trusted proxy header.css name.
+     * Gets the trusted proxy header name.
      *
-     * @param string $key The header.css key
+     * @param string $key The header key
      *
-     * @return string The header.css name
+     * @return string The header name
      *
      * @throws \InvalidArgumentException
      */
     public static function getTrustedHeaderName($key)
     {
         if (!array_key_exists($key, self::$trustedHeaders)) {
-            throw new \InvalidArgumentException(sprintf('Unable to get the trusted header.css name for key "%s".', $key));
+            throw new \InvalidArgumentException(sprintf('Unable to get the trusted header name for key "%s".', $key));
         }
 
         return self::$trustedHeaders[$key];
@@ -796,13 +810,13 @@ class Request
     /**
      * Returns the client IP address.
      *
-     * This method can read the client IP address from the "X-Forwarded-For" header.css
+     * This method can read the client IP address from the "X-Forwarded-For" header
      * when trusted proxies were set via "setTrustedProxies()". The "X-Forwarded-For"
-     * header.css value is a comma+space separated list of IP addresses, the left-most
+     * header value is a comma+space separated list of IP addresses, the left-most
      * being the original client, and each successive proxy that passed the request
      * adding the IP address where it received the request from.
      *
-     * If your reverse proxy uses a different header.css name than "X-Forwarded-For",
+     * If your reverse proxy uses a different header name than "X-Forwarded-For",
      * ("Client-Ip" for instance), configure it via "setTrustedHeaderName()" with
      * the "client-ip" key.
      *
@@ -881,14 +895,14 @@ class Request
     }
 
     /**
-     * Returns the root url from which this request is executed.
+     * Returns the root URL from which this request is executed.
      *
      * The base URL never ends with a /.
      *
      * This is similar to getBasePath(), except that it also includes the
      * script filename (e.g. index.php) if one exists.
      *
-     * @return string The raw url (i.e. not urldecoded)
+     * @return string The raw URL (i.e. not urldecoded)
      *
      * @api
      */
@@ -916,12 +930,12 @@ class Request
     /**
      * Returns the port on which the request is made.
      *
-     * This method can read the client port from the "X-Forwarded-Port" header.css
+     * This method can read the client port from the "X-Forwarded-Port" header
      * when trusted proxies were set via "setTrustedProxies()".
      *
-     * The "X-Forwarded-Port" header.css must contain the client port.
+     * The "X-Forwarded-Port" header must contain the client port.
      *
-     * If your reverse proxy uses a different header.css name than "X-Forwarded-Port",
+     * If your reverse proxy uses a different header name than "X-Forwarded-Port",
      * configure it via "setTrustedHeaderName()" with the "client-port" key.
      *
      * @return string
@@ -1090,12 +1104,12 @@ class Request
     /**
      * Checks whether the request is secure or not.
      *
-     * This method can read the client port from the "X-Forwarded-Proto" header.css
+     * This method can read the client port from the "X-Forwarded-Proto" header
      * when trusted proxies were set via "setTrustedProxies()".
      *
-     * The "X-Forwarded-Proto" header.css must contain the protocol: "https" or "http".
+     * The "X-Forwarded-Proto" header must contain the protocol: "https" or "http".
      *
-     * If your reverse proxy uses a different header.css name than "X-Forwarded-Proto"
+     * If your reverse proxy uses a different header name than "X-Forwarded-Proto"
      * ("SSL_HTTPS" for instance), configure it via "setTrustedHeaderName()" with
      * the "client-proto" key.
      *
@@ -1115,12 +1129,12 @@ class Request
     /**
      * Returns the host name.
      *
-     * This method can read the client port from the "X-Forwarded-Host" header.css
+     * This method can read the client port from the "X-Forwarded-Host" header
      * when trusted proxies were set via "setTrustedProxies()".
      *
-     * The "X-Forwarded-Host" header.css must contain the client host name.
+     * The "X-Forwarded-Host" header must contain the client host name.
      *
-     * If your reverse proxy uses a different header.css name than "X-Forwarded-Host",
+     * If your reverse proxy uses a different header name than "X-Forwarded-Host",
      * configure it via "setTrustedHeaderName()" with the "client-host" key.
      *
      * @return string
@@ -1152,7 +1166,7 @@ class Request
         }
 
         if (count(self::$trustedHostPatterns) > 0) {
-            // to avoid host header.css injection attacks, you should provide a list of trusted host patterns
+            // to avoid host header injection attacks, you should provide a list of trusted host patterns
 
             if (in_array($host, self::$trustedHosts)) {
                 return $host;
@@ -1188,7 +1202,7 @@ class Request
     /**
      * Gets the request "intended" method.
      *
-     * If the X-HTTP-Method-Override header.css is set, and if the method is a POST,
+     * If the X-HTTP-Method-Override header is set, and if the method is a POST,
      * then it is used to determine the "real" intended HTTP method.
      *
      * The _method request parameter can also be used to determine the HTTP method,
@@ -1578,7 +1592,7 @@ class Request
     /**
      * Returns true if the request is a XMLHttpRequest.
      *
-     * It works if your JavaScript library set an X-Requested-With HTTP header.css.
+     * It works if your JavaScript library set an X-Requested-With HTTP header.
      * It is known to work with common JavaScript frameworks:
      * @link http://en.wikipedia.org/wiki/List_of_Ajax_frameworks#JavaScript
      *
@@ -1615,13 +1629,13 @@ class Request
             $requestUri = $this->headers->get('X_REWRITE_URL');
             $this->headers->remove('X_REWRITE_URL');
         } elseif ($this->server->get('IIS_WasUrlRewritten') == '1' && $this->server->get('UNENCODED_URL') != '') {
-            // IIS7 with URL Rewrite: make sure we get the unencoded url (double slash problem)
+            // IIS7 with URL Rewrite: make sure we get the unencoded URL (double slash problem)
             $requestUri = $this->server->get('UNENCODED_URL');
             $this->server->remove('UNENCODED_URL');
             $this->server->remove('IIS_WasUrlRewritten');
         } elseif ($this->server->has('REQUEST_URI')) {
             $requestUri = $this->server->get('REQUEST_URI');
-            // HTTP proxy reqs setup request uri with scheme and host [and port] + the url path, only use url path
+            // HTTP proxy reqs setup request URI with scheme and host [and port] + the URL path, only use URL path
             $schemeAndHttpHost = $this->getSchemeAndHttpHost();
             if (strpos($requestUri, $schemeAndHttpHost) === 0) {
                 $requestUri = substr($requestUri, strlen($schemeAndHttpHost));

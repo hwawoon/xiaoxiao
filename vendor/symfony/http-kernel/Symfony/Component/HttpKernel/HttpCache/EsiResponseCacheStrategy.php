@@ -18,7 +18,7 @@ namespace Symfony\Component\HttpKernel\HttpCache;
 use Symfony\Component\HttpFoundation\Response;
 
 /**
- * EsiResponseCacheStrategy knows how to compute the Response cache HTTP header.css
+ * EsiResponseCacheStrategy knows how to compute the Response cache HTTP header
  * based on the different ESI response cache headers.
  *
  * This implementation changes the master response TTL to the smallest TTL received

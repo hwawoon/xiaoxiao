@@ -78,7 +78,7 @@ class CookieJarTest extends \PHPUnit_Framework_TestCase
 
         $this->assertInstanceOf('Symfony\Component\BrowserKit\Cookie', $cookieJar->get('foo'));
         $this->assertInstanceOf('Symfony\Component\BrowserKit\Cookie', $cookieJar->get('bar'));
-        $this->assertEquals('foo', $cookieJar->get('foo')->getValue(), '->updateFromSetCookie() updates cookies from a Set-Cookie header.css');
+        $this->assertEquals('foo', $cookieJar->get('foo')->getValue(), '->updateFromSetCookie() updates cookies from a Set-Cookie header');
         $this->assertEquals('bar', $cookieJar->get('bar')->getValue(), '->updateFromSetCookie() keeps existing cookies');
     }
 
@@ -194,6 +194,30 @@ class CookieJarTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(array(), array_keys($cookieJar->allValues('http://example.com/')));
         $this->assertEquals(array('foo' => 'bar1'), $cookieJar->allValues('http://foo.example.com/'));
         $this->assertEquals(array('foo' => 'bar2'), $cookieJar->allValues('http://bar.example.com/'));
+    }
+
+    public function testCookieGetWithSubdomain()
+    {
+        $cookieJar = new CookieJar();
+        $cookieJar->set($cookie1 = new Cookie('foo', 'bar', null, '/', '.example.com'));
+        $cookieJar->set($cookie2 = new Cookie('foo1', 'bar', null, '/', 'test.example.com'));
+
+        $this->assertEquals($cookie1, $cookieJar->get('foo','/','foo.example.com'));
+        $this->assertEquals($cookie1, $cookieJar->get('foo','/','example.com'));
+        $this->assertEquals($cookie2, $cookieJar->get('foo1','/','test.example.com'));
+    }
+
+    public function testCookieGetWithSubdirectory()
+    {
+        $cookieJar = new CookieJar();
+        $cookieJar->set($cookie1 = new Cookie('foo', 'bar', null, '/test', '.example.com'));
+        $cookieJar->set($cookie2 = new Cookie('foo1', 'bar1', null, '/', '.example.com'));
+
+        $this->assertNull($cookieJar->get('foo','/','.example.com'));
+        $this->assertNull($cookieJar->get('foo','/bar','.example.com'));
+        $this->assertEquals($cookie1, $cookieJar->get('foo','/test','example.com'));
+        $this->assertEquals($cookie2, $cookieJar->get('foo1','/','example.com'));
+        $this->assertEquals($cookie2, $cookieJar->get('foo1','/bar','example.com'));
     }
 
     public function testCookieWithWildcardDomain()

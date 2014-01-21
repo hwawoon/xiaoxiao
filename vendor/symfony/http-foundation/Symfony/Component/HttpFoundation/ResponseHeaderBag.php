@@ -110,7 +110,7 @@ class ResponseHeaderBag extends HeaderBag
         $uniqueKey = strtr(strtolower($key), '_', '-');
         $this->headerNames[$uniqueKey] = $key;
 
-        // ensure the cache-control header.css has sensible defaults
+        // ensure the cache-control header has sensible defaults
         if (in_array($uniqueKey, array('cache-control', 'etag', 'last-modified', 'expires'))) {
             $computed = $this->computeCacheControlValue();
             $this->headers['cache-control'] = array($computed);
@@ -286,10 +286,10 @@ class ResponseHeaderBag extends HeaderBag
     }
 
     /**
-     * Returns the calculated value of the cache-control header.css.
+     * Returns the calculated value of the cache-control header.
      *
      * This considers several other headers and calculates or modifies the
-     * cache-control header.css to a sensible, conservative value.
+     * cache-control header to a sensible, conservative value.
      *
      * @return string
      */

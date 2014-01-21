@@ -113,13 +113,13 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Returns a header.css value by name.
+     * Returns a header value by name.
      *
-     * @param string  $key     The header.css name
+     * @param string  $key     The header name
      * @param mixed   $default The default value
-     * @param Boolean $first   Whether to return the first value or all header.css values
+     * @param Boolean $first   Whether to return the first value or all header values
      *
-     * @return string|array The first header.css value if $first is true, an array of values otherwise
+     * @return string|array The first header value if $first is true, an array of values otherwise
      *
      * @api
      */
@@ -143,7 +143,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Sets a header.css by name.
+     * Sets a header by name.
      *
      * @param string       $key     The key
      * @param string|array $values  The value or an array of values
@@ -169,9 +169,9 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Returns true if the HTTP header.css is defined.
+     * Returns true if the HTTP header is defined.
      *
-     * @param string $key The HTTP header.css
+     * @param string $key The HTTP header
      *
      * @return Boolean true if the parameter exists, false otherwise
      *
@@ -183,12 +183,12 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Returns true if the given HTTP header.css contains the given value.
+     * Returns true if the given HTTP header contains the given value.
      *
-     * @param string $key   The HTTP header.css name
+     * @param string $key   The HTTP header name
      * @param string $value The HTTP value
      *
-     * @return Boolean true if the value is contained in the header.css, false otherwise
+     * @return Boolean true if the value is contained in the header, false otherwise
      *
      * @api
      */
@@ -198,9 +198,9 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Removes a header.css.
+     * Removes a header.
      *
-     * @param string $key The HTTP header.css name
+     * @param string $key The HTTP header name
      *
      * @api
      */
@@ -216,14 +216,14 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Returns the HTTP header.css value converted to a date.
+     * Returns the HTTP header value converted to a date.
      *
      * @param string    $key     The parameter key
      * @param \DateTime $default The default value
      *
-     * @return null|\DateTime The parsed DateTime or the default value if the header.css does not exist
+     * @return null|\DateTime The parsed DateTime or the default value if the header does not exist
      *
-     * @throws \RuntimeException When the HTTP header.css is not parseable
+     * @throws \RuntimeException When the HTTP header is not parseable
      *
      * @api
      */
@@ -234,7 +234,7 @@ class HeaderBag implements \IteratorAggregate, \Countable
         }
 
         if (false === $date = \DateTime::createFromFormat(DATE_RFC2822, $value)) {
-            throw new \RuntimeException(sprintf('The %s HTTP header.css is not parseable (%s).', $key, $value));
+            throw new \RuntimeException(sprintf('The %s HTTP header is not parseable (%s).', $key, $value));
         }
 
         return $date;
@@ -304,9 +304,9 @@ class HeaderBag implements \IteratorAggregate, \Countable
     }
 
     /**
-     * Parses a Cache-Control HTTP header.css.
+     * Parses a Cache-Control HTTP header.
      *
-     * @param string $header The value of the Cache-Control HTTP header.css
+     * @param string $header The value of the Cache-Control HTTP header
      *
      * @return array An array representing the attribute values
      */

@@ -119,7 +119,7 @@ class InlineFragmentRenderer extends RoutableFragmentRenderer
 
         // Override the arguments to emulate a sub-request.
         // Sub-request object will point to localhost as client ip and real client ip
-        // will be included into trusted header.css for client ip
+        // will be included into trusted header for client ip
         try {
             if ($trustedHeaderName = Request::getTrustedHeaderName(Request::HEADER_CLIENT_IP)) {
                 $currentXForwardedFor = $request->headers->get($trustedHeaderName, '');

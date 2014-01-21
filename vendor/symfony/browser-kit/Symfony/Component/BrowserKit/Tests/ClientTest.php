@@ -150,16 +150,16 @@ class ClientTest extends \PHPUnit_Framework_TestCase
         $client = new TestClient();
         $client->request('GET', '/');
         $headers = $client->getRequest()->getServer();
-        $this->assertEquals('localhost', $headers['HTTP_HOST'], '->request() sets the HTTP_HOST header.css');
+        $this->assertEquals('localhost', $headers['HTTP_HOST'], '->request() sets the HTTP_HOST header');
 
         $client = new TestClient();
         $client->request('GET', 'http://www.example.com');
         $headers = $client->getRequest()->getServer();
-        $this->assertEquals('www.example.com', $headers['HTTP_HOST'], '->request() sets the HTTP_HOST header.css');
+        $this->assertEquals('www.example.com', $headers['HTTP_HOST'], '->request() sets the HTTP_HOST header');
 
         $client->request('GET', 'https://www.example.com');
         $headers = $client->getRequest()->getServer();
-        $this->assertTrue($headers['HTTPS'], '->request() sets the HTTPS header.css');
+        $this->assertTrue($headers['HTTPS'], '->request() sets the HTTPS header');
     }
 
     public function testRequestURIConversion()

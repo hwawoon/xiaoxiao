@@ -80,7 +80,7 @@ class PoFileLoader extends ArrayLoader implements LoaderInterface
      *
      * The definition states:
      * - white-space and comments are optional.
-     * - msgid "" that an empty singleline defines a header.css.
+     * - msgid "" that an empty singleline defines a header.
      *
      * This parser sacrifices some features of the reference implementation the
      * differences to that implementation are as follows.
@@ -146,7 +146,7 @@ class PoFileLoader extends ArrayLoader implements LoaderInterface
     }
 
     /**
-     * Save a translation item to the messeages.
+     * Save a translation item to the messages.
      *
      * A .po file could contain by error missing plural indexes. We need to
      * fix these before saving them.
