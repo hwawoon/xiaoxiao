@@ -69,37 +69,31 @@
 </textarea>
 <!-- Wrap all page content here -->
 
-<div id="wrap">
-    <!-- Begin page content -->
-    <div class="container">
-        <div class="col-sm-7" id="home_articles">
+<div class="container" id="maintext">
+    <div class="row">
+        <div class="col-xs-8">
             @foreach ($articles as $article)
-            <section style="padding-bottom: 20px;">
-                <div class="row">
-                    <h3><a href="{{URL::to('/article').'/'.$article->id}}" class="article_title">{{$article->title}}</a></h3>
-                </div>
-                <div class="row" style="padding-bottom: 10px;padding-left: 3px;">
-                        <a href="{{URL::to('/article').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">{{$article->up - $article->down}}分</a>
-                        <a href="{{URL::to('/article').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">{{$article->comments}}评论</a>
-                </div>
-                <div class="row">
-                    <a href="{{URL::to('/article').'/'.$article->id}}">
-                        <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->savepath}}" style="width: 100%;">
-                    </a>
-                </div>
-                <div class="row" style="padding-right: 0px;margin-top: 5px;">
-                    <div style="display: inline;float: left;">
-                        @if (Auth::check())
-                        <button type="button" class="btn" onclick="articlePointUp(this,{{$article->id}});"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;<span class="article_up">{{$article->up}}</span></button>
-                        <span style="width: 50px;">&nbsp;</span>
-                        <button type="button" class="btn" onclick="articlePointDown(this,{{$article->id}});"><i class="glyphicon glyphicon-thumbs-down"></i>&nbsp;&nbsp;<span class="article_down">{{$article->down}}</span></button>
-                        @else
-                        <button type="button" class="btn" onclick="openLoginModal();"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;<span id="article_up">{{$article->up}}</span></button>
-                        <span style="width: 50px;">&nbsp;</span>
-                        <button type="button" class="btn" onclick="openLoginModal();"><i class="glyphicon glyphicon-thumbs-down"></i>&nbsp;&nbsp;<span id="article_down">{{$article->down}}</span></button>
-                        @endif
+            <section class="artsection">
+                    <div class="col-xs-10">
+                    <div class="row dnav">
+                        <a href="{{URL::to('/article').'/'.$article->id}}" class="article_title">
+                            <span class="tnav">{{$article->title}}</span>
+                        </a>
                     </div>
-                    <div style="display: inline;float: right;" >
+                    <div class="row nav-point">
+                        <a href="{{URL::to('/article').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
+                            {{$article->up - $article->down}}分
+                        </a>
+                        <a href="{{URL::to('/article').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
+                            {{$article->comments}}评论
+                        </a>
+                    </div>
+                    <div class="row">
+                        <a href="{{URL::to('/article').'/'.$article->id}}">
+                            <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->savepath}}" style="width: 100%;">
+                        </a>
+                    </div>
+                    <div class="row artshare">
                         <a href="javascript:void(0)" onclick="sinaweibo('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->savepath}}');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
                             分享到新浪微博
                         </a>
@@ -108,36 +102,44 @@
                         </a>
                     </div>
                 </div>
+                <div class="col-xs-2">
+                    <div class="row">
+                        <ul class="vertical-vote">
+                            <li><a class="up" href="javascript:void(0);">Upvote</a></li>
+                            <li><a class="down" href="javascript:void(0);">Downvote</a></li>
+                        </ul>
+                    </div>
+                </div>
             </section>
+            <hr class="sectionhr" />
             @endforeach
         </div>
-        <div class="col-sm-5" style="padding: 30px 100px;">
+        <div class="col-xs-4 rrecommend">
             @if(!empty($rarticles))
-            <div class="row" style="">
-                <strong>推荐</strong>
+            <div class="row recomdhead">
+                <span>推荐一下</span>
             </div>
-            <div class="row" id="tags" >
+            <div class="row tags">
                 @foreach ($rarticles as $article)
-                    <section style="padding: 10px;">
-                        <div class="row" style="padding: 5px;">
-                            <a href="{{URL::to('/article').'/'.$article->id}}" style="text-decoration: none;color: #000000;">
-                                {{$article->title}}
-                            </a>
-                        </div>
-                        <div class="row">
-                            <a href="{{URL::to('/article').'/'.$article->id}}">
-                                <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->thumbnailpath}}" style="width: 250px;height: 120px;">
-                            </a>
-                        </div>
-                    </section>
+                <section>
+                    <div class="row tagtitle">
+                        <a href="{{URL::to('/article').'/'.$article->id}}" >
+                            <span>{{$article->title}}</span>
+                        </a>
+                    </div>
+                    <div class="row">
+                        <a href="{{URL::to('/article').'/'.$article->id}}">
+                            <img class="" src="{{URL::to('/')}}/{{$article->thumbnailpath}}" >
+                        </a>
+                    </div>
+                </section>
                 @endforeach
             </div>
             @endif
         </div>
     </div>
-    <div class="containerbottom"></div>
-</div>
-@include("footer")
+</div> <!-- /container -->
+<div class="containerbottom"></div>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

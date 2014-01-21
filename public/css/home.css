@@ -2,6 +2,11 @@
     color: #000000;
 }
 
+a {
+    color: rgb(0, 135, 247);
+    text-decoration: none;
+}
+
 a.article_title {
     text-decoration:none;
     font-size: 22px;
@@ -12,4 +17,104 @@ a.article_title {
 a.article_title:hover {
     color: #4499EE;
     text-decoration:none;
+}
+
+.container .row .col-xs-2 {
+    padding-left: 30px;
+    padding-top: 5px;
+}
+
+.artsection {
+    padding-bottom: 520px;
+}
+
+.artshare {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.dnav {
+    padding: 3px;
+}
+
+span.tnav {
+    font-size: 27px;
+    word-wrap:break-word;
+    overflow:hidden;
+}
+
+.sectionhr {
+    height: 1px;
+    border: none;
+    border-top: 1px solid #A5A5A5;
+}
+
+.nav-point {
+    padding: 3px;
+}
+
+.vertical-vote {
+    padding-left: 10px;
+    padding-top: 10px;
+    width: 42px;
+}
+
+.vertical-vote li {
+    list-style-type: none;
+    margin-bottom: 10px;
+}
+
+.vertical-vote a {
+    display: block;
+    width: 42px;
+    height: 32px;
+    border: 1px solid rgb(221, 221, 221);
+    overflow: hidden;
+    text-indent: -999px;
+    border-radius: 3px;
+}
+
+.vertical-vote a:hover {
+    border-color: rgb(153, 153, 153);
+}
+
+.vertical-vote a.up {
+    background: url("../img/sticky-vote.png") no-repeat scroll 0% 0% transparent;
+}
+
+.vertical-vote a.down {
+    background: url("../img/sticky-vote.png") no-repeat scroll 0px -32px transparent;
+}
+
+.rrecommend section {
+    padding: 10px;
+}
+
+div.recomdhead {
+    padding-top: 10px;
+}
+
+div.recomdhead span {
+    font-size: 20px;
+    word-wrap:break-word;
+    overflow:hidden;
+}
+
+.tags .tagtitle {
+    padding: 5px;
+}
+
+.tagtitle a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.tagtitle span {
+    word-wrap:break-word;
+    overflow:hidden;
+}
+
+.tags img {
+    width: 270px;
+    height: 100px;
 }

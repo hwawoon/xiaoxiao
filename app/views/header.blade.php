@@ -1,41 +1,3 @@
-<!-- Fixed navbar -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#">Project name</a>
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-                    <ul class="dropdown-menu">
-                        <li><a href="#">Action</a></li>
-                        <li><a href="#">Another action</a></li>
-                        <li><a href="#">Something else here</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">Nav header</li>
-                        <li><a href="#">Separated link</a></li>
-                        <li><a href="#">One more separated link</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-                <li><a href="#">Link</a></li>
-            </ul>
-        </div><!--/.nav-collapse -->
-    </div>
-</div>
 
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -47,68 +9,65 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand nav" href="{{URL::to('/')}}" alt="搞笑哇" style="padding: 0px; text-align: right; margin-top: 5px;" >
-                {{HTML::image('img/logo.png','',array(
-                    "style" => "width:70%"
-                ))}}
+            <a class="navbar-brand" href="#">
+                搞笑娃
             </a>
         </div>
-        <div class="collapse navbar-collapse">
-            <div class="col-sm-3 col-md-3 pull-left">
-                <ul class="nav navbar-nav">
-                    <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
-                    <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
-                </ul>
-            </div>
-            <div class="col-sm-1 col-md-1 pull-right">
-                <form class="navbar-form" role="search" method="post">
-                    <div class="input-group">
-                        @if (Auth::check())
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
+                <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <form class="navbar-form" role="search" method="post">
+                        <div class="input-group">
+                            @if (Auth::check())
                             <a class="btn btn-danger dropdown-toggle" data-toggle="dropdown" href="#">上传</a>
                             <ul class="dropdown-menu" role="menu" style="min-width: 100px;">
                                 <li><a data-toggle="modal" data-target="#uploadModal">本地上传</a></li>
                                 <li><a  data-toggle="modal" data-target="#forwardModal">转发图片</a></li>
                             </ul>
-                        @else
+                            @else
                             <a class="btn btn-danger" data-toggle="modal" data-target="#loginModal">上传</a>
-                        @endif
-                    </div>
-                </form>
-            </div>
-            <div class="col-sm-2 col-md-2 pull-right">
-                <ul class="nav navbar-nav navbar-right">
-                    @if (Auth::check())
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="padding: 10px;">
-                            <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" width="30px" />
-                            {{Auth::user()->name}}<b class="caret"></b>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{URL::to('/user/profile')}}">个人主页</a></li>
-                            <li><a href="{{URL::to('/user/setting')}}">设置</a></li>
-                            <li><div class="divider"></div> </li>
-                            <li><a href="{{URL::to('/user/logout')}}" id="alogout">退出</a></li>
-                        </ul>
-                    </li>
-                    @else
-                    <li><a href="#login" id="login" class="" data-toggle="modal" data-target="#loginModal">登录</a></li>
-                    <li><a href="{{URL::to('/user/register')}}" id="register">注册</a></li>
-                    @endif
-                </ul>
-            </div>
-            <!--              搜索框预留位置-->
-            <div class="col-sm-3 col-md-3 pull-right">
-                <form class="navbar-form" role="search" method="get" action="{{URL::to('/article/search')}}">
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="搜索" name="srch-term" id="srch-term">
-                        <div class="input-group-btn">
-                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            @endif
                         </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-        <!--/.nav-collapse -->
+                    </form>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                @if (Auth::check())
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" width="30px" />
+                        {{Auth::user()->name}}<b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{URL::to('/user/profile')}}">个人主页</a></li>
+                        <li><a href="{{URL::to('/user/setting')}}">设置</a></li>
+                        <li><div class="divider"></div> </li>
+                        <li><a href="{{URL::to('/user/logout')}}" id="alogout">退出</a></li>
+                    </ul>
+                </li>
+                @else
+                <li><a href="#login" id="login" class="" data-toggle="modal" data-target="#loginModal">登录</a></li>
+                <li><a href="{{URL::to('/user/register')}}" id="register">注册</a></li>
+                @endif
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <form class="navbar-form" id="searchform" role="search" method="get" action="{{URL::to('/article/search')}}">
+                        <div class="input-group">
+                            <input type="text"  class="form-control" placeholder="搜索" name="srch-term" id="srch-term">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </div><!--/.nav-collapse -->
     </div>
 </div>
 
@@ -118,47 +77,39 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h4 class="modal-title">
-                    &nbsp;&nbsp;登录
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <small><a href="{{URL::to('/user/register')}}">没有账号？现在就去注册！</a></small>
-                </h4>
+                <h3 class="modal-title">
+                    登录
+                </h3>
             </div>
             <div class="alert alert-danger" id="loginAlert" style="display: none;text-align: center;">
                 <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
                 <strong>用户名或密码错误</strong>
             </div>
-            <div class="modal-body" style="padding-left: 70px;">
-                <form class="form-horizontal" role="form" id="loginForm" method="post" action="{{URL::to('/user/doLogin')}}">
-                    <div class="form-group">
-                        <label for="inputLoginEmail" class="col-sm-2 control-label">邮箱</label>
-                        <div class="col-sm-10">
-                            <input type="email" class="form-control inputlog" id="inputLoginEmail" name="inputLoginEmail" placeholder="邮箱">
+            <div class="modal-body">
+                <div class="row">
+                    <form class="form-horizontal" role="form" id="loginForm" method="post" action="{{URL::to('/user/doLogin')}}">
+                        <div class="input-group logininput">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                            <input type="text" id="inputLoginEmail" name="inputLoginEmail" class="form-control" placeholder="邮箱">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputLoginPassword" class="col-sm-2 control-label">密码</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control inputlog" id="inputLoginPassword" name="inputLoginPassword"
-                                   placeholder="密码">
+                        <div class="input-group logininput">
+                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                            <input type="password" class="form-control inputlog" id="inputLoginPassword" name="inputLoginPassword" placeholder="密码">
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputPassword3" class="col-sm-2 control-label">&nbsp;</label>
-                        <div class="col-sm-10">
-                            <div style="float: left;"><input type="checkbox" name="rememberme" id="rememberme" value="1" checked /> 记住我</div>
-                            <div style="float: right;margin-right: 100px;"><a>忘记密码</div>
+                        <div style="width: 408px;padding-top: 5px;">
+                            <div style="float: left;">
+                                <input type="checkbox" name="rememberme" id="rememberme" value="1" checked /> 记住我
+                            </div>
+                            <div style="float: right !important;">
+                                忘记密码
+                            </div>
                         </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="" class="col-sm-2 control-label">&nbsp;</label>
-                        <div style="margin: 0 auto;">
-                            <button type="submit" class="btn btn-primary btn-lg" id="btnLogin">
-                                &nbsp;&nbsp;&nbsp;&nbsp;登&nbsp;&nbsp;录&nbsp;&nbsp;&nbsp;&nbsp;
-                            </button>
+                        <div class="input-group" style="padding: 10px 0px;">
+                            <button type="submit" class="btn btn-primary" id="btnLogin">登录</button>
+                            <a href="{{URL::to('/user/register')}}">还没有账号？立即注册！</a>
                         </div>
-                    </div>
-                </form>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
@@ -221,6 +172,6 @@
 
 <div class="feedback">
     <a href="mailto:hwawoon@163.com" class="btn btn-primary" style="border-radius: 0px;padding: 10px;"
-        role="button" title="我会认真处理每一个反馈">反<br>馈</a>
+       role="button" title="我会认真处理每一个反馈">反<br>馈</a>
 </div>
 <a href="#" title="返回顶部" class="goto-top"></a>
