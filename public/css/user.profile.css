@@ -1,6 +1,5 @@
 .jumbotron {
     text-align: center;
-    /*background-color: transparent;*/
 }
 
 .jumbotron .btn {
@@ -9,12 +8,12 @@
 }
 
 #timeliner {
-    width: 860px;
+    width: 960px;
     margin: 0 auto;
 }
 
 .item {
-    width: 408px;
+    width: 458px;
     margin: 20px 10px 10px 10px;
     float: left;
     background-color: #ffffff;
@@ -22,60 +21,4 @@
     min-height: 50px;
     text-align: center;
     word-wrap: break-word;
-}
-
-.timeline_container {
-    width: 16px;
-    text-align: center;
-    margin: 0 auto;
-    cursor: pointer;
-    display: block;
-}
-
-.timeline {
-    margin: 0 auto;
-    background-color: #e08989;
-    display: block;
-    float: left;
-    height: 100%;
-    left: 428px;
-    margin-top: 10px;
-    position: absolute;
-    width: 4px;
-}
-
-.timeline:hover {
-    cursor: pointer;
-    margin: 0 auto;
-}
-
-.timeline div.plus {
-    width: 14px;
-    height: 14px;
-    position: relative;
-    left: -6px;
-}
-
-.rightCorner {
-    background-image: url("../img/right.png");
-    display: block;
-    height: 15px;
-    margin-left: 408px;
-    margin-top: 8px;
-    padding: 0;
-    vertical-align: top;
-    width: 13px;
-    z-index: 2;
-    position: absolute;
-}
-
-.leftCorner {
-    background-image: url("../img/left.png");
-    display: block;
-    height: 15px;
-    width: 13px;
-    margin-left: -11px;
-    margin-top: 8px;
-    position: absolute;
-    z-index: 2;
 }

@@ -150,6 +150,8 @@
     </div>
 </div> <!-- /container -->
 <div class="containerbottom"></div>
+
+@include('footer')
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->

@@ -1,5 +1,5 @@
 <div id="footer">
     <div class="container">
-        <p class="text-muted">Designed by kimhwawoon</p>
+        Designed by kimhwawoon
     </div>
 </div>

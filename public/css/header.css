@@ -17,6 +17,19 @@ body {
     min-width: 970px;
 }
 
+#footer {
+    width: 350px;
+    background-color: #dddddd;
+    color: #000000;
+    position: fixed;
+    bottom: 0;
+    right: 100px;
+}
+
+#footer .container {
+    line-height: 25px;
+}
+
 .feedback {
     position: fixed;
     top:50%;

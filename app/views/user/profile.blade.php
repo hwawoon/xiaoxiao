@@ -22,41 +22,33 @@
     var ROOT_PATH = "{{URL::to('/')}}";
 </script>
 <body>
-<!-- Wrap all page content here -->
-<div id="wrap">
-    @include('header');
-    <!-- Begin page content -->
-    <div class="container">
-        <div class="jumbotron">
-            <p>
-                <img src="{{URL::to('/')}}/{{Auth::user()->avatar}}" class="img-responsive img-thumbnail" style="width: 100px;"/>
-            </p>
-            <p>{{Auth::user()->name}}</p>
-            <p class="lead">{{Auth::user()->introduction}}</p>
-        </div>
-        <div class="row" id="timeliner">
-            <div class="timeline_container">
-                <div class="timeline">
-                    <div class="plus"></div>
-                </div>
-            </div>
-            @foreach($articles as $article)
-            <div class="item">
-                <div>
-                    <p>
-                        <a href="{{URL::to('/article').'/'.$article->id}}">
-                            {{$article->title}} 发表于{{$article->created_at}}
-                        </a>
-                    </p>
-                    <p>
+@include('header');
+<!-- Begin page content -->
+<div class="container">
+    <div class="jumbotron">
+        <p>
+            <img src="{{URL::to('/')}}/{{Auth::user()->avatar}}" class="img-responsive img-thumbnail" style="width: 100px;"/>
+        </p>
+        <p>{{Auth::user()->name}}</p>
+        <p class="lead">{{Auth::user()->introduction}}</p>
+    </div>
+    <div class="row" id="timeliner">
+        @foreach($articles as $article)
+        <div class="item">
+            <div>
+                <p>
                     <a href="{{URL::to('/article').'/'.$article->id}}">
-                        <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->thumbnailpath}}" style="width: 250px;height: 120px;">
+                        {{$article->title}} 发表于{{$article->created_at}}
                     </a>
-                    </p>
-                </div>
+                </p>
+                <p>
+                <a href="{{URL::to('/article').'/'.$article->id}}">
+                    <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->thumbnailpath}}" style="width: 250px;height: 120px;">
+                </a>
+                </p>
             </div>
-            @endforeach
         </div>
+        @endforeach
     </div>
 </div>
 @include("footer")
