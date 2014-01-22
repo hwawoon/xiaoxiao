@@ -15,14 +15,18 @@ Route::get('/',  'HomeController@showHome');
 
 Route::get('/latest',  'HomeController@showLatest');
 
-Route::post('user/doLogin', 'UserController@doLogin');
+Route::group(array('before' => 'csrf'), function()
+{
+    Route::post('user/doLogin', 'UserController@doLogin');
+
+    Route::post('user/doRegister', 'UserController@doRegister');
+});
 
 Route::any('user/logout', 'UserController@logout');
 
-Route::get('user/register', function()
-{
-    return View::make('register.register');
-});
+Route::get('/user/reset',  'RemindersController@getRemind');
+
+Route::post('/user/postReset','RemindersController@postReset');
 
 Route::get('/nameChecker',  function(){
     $validator = Validator::make(
@@ -61,8 +65,6 @@ Route::get('/emailChecker',  function(){
 Route::any('article/getMoreHot', 'HomeController@getMoreHotArticle');
 
 Route::any('article/getMoreLatest', 'HomeController@getMoreLatestArticle');
-
-Route::post('user/doRegister', 'UserController@doRegister');
 
 Route::any('user/uploadIcon', 'UserController@uploadIcon');
 

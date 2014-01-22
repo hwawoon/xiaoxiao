@@ -46,10 +46,11 @@ $(function () {
             var username = $("#inputLoginEmail").val();
             var pwd = $("#inputLoginPassword").val();
             var rememberme = $(":input[name=rememberme][checked]").val();
+            var _token = $("#_token").val();
             $.ajax({
                 url: form.action,
                 type: form.method,
-                data: {"email":username,"password":pwd, "rememberme" : rememberme},
+                data: {"email":username,"password":pwd, "rememberme" : rememberme , '_token' : _token},
                 success: function (data) {
                     if(data.state == 1)
                     {

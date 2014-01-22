@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
             </button>
             <a class="navbar-brand" href="{{URL::to('/')}}">
-                搞笑娃
+                搞毛啊
             </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -88,7 +88,7 @@
                 <div class="clearfix"></div>
                 <div class="row">
                     <form class="form-horizontal" role="form" id="loginForm" method="post" action="{{URL::to('/user/doLogin')}}">
-
+                        <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
                         <div class="input-group inputfirst">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
                             <input type="text" id="inputLoginEmail" name="inputLoginEmail" class="form-control inputlog" placeholder="邮箱">
@@ -102,7 +102,7 @@
                                 <input type="checkbox" name="rememberme" id="rememberme" value="1" checked /> 下次自动登录
                             </div>
                             <div style="float: right !important;">
-                                <a href="#">忘记密码</a>
+                                <a href="{{URL::to('/user/reset')}}">忘记密码</a>
                             </div>
                         </div>
                         <div class="input-group" style="padding: 15px 0px;">

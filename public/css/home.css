@@ -29,12 +29,12 @@ a.article_title:hover {
 }
 
 .artsection {
-    padding-bottom: 460px;
 }
 
 .artshare {
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding-top: 5px;
+    padding-bottom: 45px;
+    border-bottom: 1px solid #eeeeee;
 }
 
 .dnav {
@@ -54,7 +54,7 @@ span.tnav {
 }
 
 .nav-point {
-    padding: 3px;
+    padding-bottom: 5px;
 }
 
 .vertical-vote {
@@ -83,11 +83,19 @@ span.tnav {
 }
 
 .vertical-vote a.up {
-    background: url("../img/sticky-vote.png") no-repeat scroll 0% 0% transparent;
+     background: url("../img/sticky-vote.png") no-repeat scroll 0% 0% transparent;
+ }
+
+.vertical-vote a.up_c {
+    background: #fff url(../img/sticky-vote.png) no-repeat scroll -42px 0px;
 }
 
 .vertical-vote a.down {
     background: url("../img/sticky-vote.png") no-repeat scroll 0px -32px transparent;
+}
+
+.vertical-vote a.down_c {
+    background: #fff url(../img/sticky-vote.png) no-repeat -42px -32px;
 }
 
 .rrecommend section {

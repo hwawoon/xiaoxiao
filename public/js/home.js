@@ -50,9 +50,13 @@ function getLoadingPage(data)
     return insertTempl;
 }
 
-function articlePointUp(tartget,id)
+function articlePointUp(target,id)
 {
-    var curDom = $(tartget);
+    if($("#up"+id).hasClass('up_c'))
+    {
+        return false;
+    }
+
     $.ajax({
         url: ROOT_PATH + "/article/articlePointUp",
         type: "GET",
@@ -61,8 +65,10 @@ function articlePointUp(tartget,id)
         success: function (data) {
             if(data.state == 1)
             {
-                var val = curDom.find(".article_up").html();
-                curDom.find(".article_up").html(parseInt(val) + 1);
+                var val = $("#rpoints"+id).html();
+                $("#rpoints"+id).html(parseInt(val) + 1);
+                $("#up"+id).addClass('up_c');
+                $("#down"+id).removeClass('down_c');
             }
             else
             {
@@ -75,9 +81,13 @@ function articlePointUp(tartget,id)
     });
 }
 
-function articlePointDown(tartget,id)
+function articlePointDown(target,id)
 {
-    var curDom = $(tartget);
+    if($("#down"+id).hasClass('down_c'))
+    {
+        return false;
+    }
+
     $.ajax({
         url: ROOT_PATH + "/article/articlePointDown",
         type: "GET",
@@ -86,8 +96,10 @@ function articlePointDown(tartget,id)
         success: function (data) {
             if(data.state == 1)
             {
-                var val = curDom.find(".article_down").html();
-                curDom.find(".article_down").html(parseInt(val) + 1);
+                var val = $("#rpoints"+id).html();
+                $("#rpoints"+id).html(parseInt(val) - 1);
+                $("#down"+id).addClass('down_c');
+                $("#up"+id).removeClass('up_c');
             }
             else
             {

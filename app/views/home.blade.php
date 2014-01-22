@@ -82,7 +82,7 @@
                     </div>
                     <div class="row nav-point">
                         <a href="{{URL::to('/article').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
-                            {{$article->up - $article->down}}分
+                            <span id="rpoints{{$article->id}}">{{$article->up - $article->down}}</span>分
                         </a>
                         <a href="{{URL::to('/article').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
                             {{$article->comments}}评论
@@ -90,28 +90,32 @@
                     </div>
                     <div class="row">
                         <a href="{{URL::to('/article').'/'.$article->id}}">
-                            <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->savepath}}" style="width: 100%;">
+                            <img class="" src="{{URL::to('/')}}/{{$article->savepath}}" style="width: 100%;">
                         </a>
                     </div>
                     <div class="row artshare">
                         <a href="javascript:void(0)" onclick="sinaweibo('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->savepath}}');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
                             分享到新浪微博
                         </a>
-                        <a href="javascript:void(0)" onclick="postToWb('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->savepath}}');return false;" class="tmblog">
-                            <img src="http://v.t.qq.com/share/images/s/b32.png" border="0" alt="转播到腾讯微博" >
+                        <a href="javascript:void(0)" onclick="postToWb('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->savepath}}');return false;" class="btn btn-primary"  title="分享到腾讯微博" target="_blank" >
+                            分享到腾讯微博
                         </a>
                     </div>
                 </div>
                 <div class="col-xs-2">
                     <div class="row">
                         <ul class="vertical-vote">
-                            <li><a class="up" href="javascript:void(0);">Upvote</a></li>
-                            <li><a class="down" href="javascript:void(0);">Downvote</a></li>
+                            @if (Auth::check())
+                            <li><a class="up" id="up{{$article->id}}" href="javascript:articlePointUp(this,{{$article->id}});void(0);" title="赞">赞</a></li>
+                            <li><a class="down" id="down{{$article->id}}" href="javascript:articlePointDown(this,{{$article->id}});void(0);" title="踩">踩</a></li>
+                            @else
+                            <li><a class="up" href="javascript:openLoginModal();" title="赞">赞</a></li>
+                            <li><a class="down" href="javascript:openLoginModal();" title="踩">踩</a></li>
+                            @endif
                         </ul>
                     </div>
                 </div>
             </section>
-            <hr class="sectionhr" />
             @endforeach
         </div>
         <div class="col-xs-4 rrecommend">
@@ -124,7 +128,13 @@
                 <section>
                     <div class="row tagtitle">
                         <a href="{{URL::to('/article').'/'.$article->id}}" >
-                            <span>{{$article->title}}</span>
+                            <span>
+                            @if(strlen($article->title) > 51)
+                                {{substr($article->title, 0, 51)}}...
+                            @else
+                                {{$article->title}}
+                            @endif
+                            </span>
                         </a>
                     </div>
                     <div class="row">

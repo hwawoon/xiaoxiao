@@ -44,6 +44,7 @@
                     </div>
                     @endforeach
                 @endif
+                <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
                 <div class="form-group">
                     <label for="name" class="col-sm-2 control-label">尊称</label>
                     <div class="col-sm-10">
