@@ -13,6 +13,17 @@ $(function () {
 
     $('#loginForm').validate(
     {
+        invalidHandler: function(form, validator) {
+            var errors = validator.numberOfInvalids();
+            if (errors) {
+                $('#loginAlert strong').html(validator.errorList[0].message);
+                validator.errorList[0].element.focus();
+                $("#loginAlert").show();
+            }
+        },
+        onkeyup: true,
+        errorPlacement: function(error, element) {
+        },
         rules: {
             inputLoginEmail: {
                 required: true,
@@ -24,8 +35,8 @@ $(function () {
         },
         messages: {
             inputLoginEmail: {
-                required: "请输入Email地址！",
-                email: "请输入正确的email地址！"
+                required: "请输入邮箱！",
+                email: "请输入正确的邮箱！"
             },
             inputLoginPassword: {
                 required: "请输入密码"
@@ -46,13 +57,13 @@ $(function () {
                     }
                     else
                     {
+                        $('#loginAlert strong').html("用户名或密码错误");
                         $("#loginAlert").show();
-                        window.setTimeout(function() { $("#loginAlert").slideUp(600); }, 2000);
                     }
                 },
                 error: function (data) {
+                    $('#loginAlert strong').html("用户名或密码错误");
                     $("#loginAlert").show();
-                    window.setTimeout(function() { $("#loginAlert").slideUp(600); }, 2000);
                 }
             });
             return false;

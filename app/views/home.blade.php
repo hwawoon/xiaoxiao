@@ -28,7 +28,7 @@
     };
 </script>
 <body>
-@include('header');
+@include('header')
 
 <textarea id="section_template" style="display: none;">
     <section style="padding-bottom: 20px;">

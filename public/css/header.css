@@ -17,12 +17,26 @@ body {
     min-width: 970px;
 }
 
-/* Finesse the page header spacing */
-.page-header {
-    margin-bottom: 30px;
+.feedback {
+    position: fixed;
+    top:50%;
+    right: 0;
 }
-.page-header .lead {
-    margin-bottom: 10px;
+
+.goto-top {
+    display: none;
+    position:fixed;
+    width: 50px;
+    height: 50px;
+    background:url(../img/gotop.gif) no-repeat ;
+    bottom:20px;
+    right:20px;
+    z-index:9999;
+}
+
+div label.error {
+    color: #B94A48;
+    font-size: 14px;
 }
 
 /* Non-responsive overrides
@@ -35,24 +49,6 @@ body {
 .container {
     max-width: none !important;
     width: 970px;
-}
-
-/* Demonstrate the grids */
-.col-xs-8 {
-    background-color: #eee;
-    border: 1px solid #ddd;
-    background-color: rgba(86,61,124,.15);
-    border: 1px solid rgba(86,61,124,.2);
-}
-
-/* Demonstrate the grids */
-.col-xs-4 {
-    padding-left: 50px;
-    padding-right: 30px;
-    background-color: #eee;
-    border: 1px solid #ddd;
-    background-color: rgba(86,61,124,.15);
-    border: 1px solid rgba(86,61,124,.2);
 }
 
 .container .navbar-header,
@@ -100,7 +96,7 @@ body {
 /* Redeclare since we override the float above */
 .navbar-nav.navbar-right {
     float: right;
-    padding-left: 15px;
+    padding-left: 25px;
 }
 
 /* Undo custom dropdowns */
@@ -133,28 +129,6 @@ body {
     background-color: transparent !important;
 }
 
-.feedback {
-    position: fixed;
-    top:50%;
-    right: 0;
-}
-
-.goto-top {
-    display: none;
-    position:fixed;
-    width: 50px;
-    height: 50px;
-    background:url(../img/gotop.gif) no-repeat ;
-    bottom:50px;
-    right:50px;
-    z-index:9999;
-}
-
-div label.error {
-    color: #B94A48;
-    font-size: 14px;
-}
-
 /* search */
 .input-group-btn > .btn {
     border-left-width:0;left:-2px;
@@ -179,6 +153,23 @@ div label.error {
     padding-top: 25px;
 }
 
+#loginForm .inputfirst {
+    padding-top: 15px;
+}
+
+#loginForm .inputtwo {
+    padding-top: 25px;
+}
+
+#loginAlert {
+    padding: 0px;
+    margin: 10px 10px 0px 10px;
+}
+
 #searchform .input-group {
     width: 200px;
+}
+
+.searchbar {
+    padding-right: 50px;
 }

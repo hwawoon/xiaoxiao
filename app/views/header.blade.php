@@ -1,4 +1,3 @@
-
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -9,7 +8,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand" href="{{URL::to('/')}}">
                 搞笑娃
             </a>
         </div>
@@ -40,7 +39,7 @@
                 @if (Auth::check())
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" width="30px" />
+                        <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" width="20px" />
                         {{Auth::user()->name}}<b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
@@ -55,7 +54,7 @@
                 <li><a href="{{URL::to('/user/register')}}" id="register">注册</a></li>
                 @endif
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right searchbar">
                 <li>
                     <form class="navbar-form" id="searchform" role="search" method="get" action="{{URL::to('/article/search')}}">
                         <div class="input-group">
@@ -81,32 +80,34 @@
                     登录
                 </h3>
             </div>
-            <div class="alert alert-danger" id="loginAlert" style="display: none;text-align: center;">
-                <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-                <strong>用户名或密码错误</strong>
-            </div>
+
             <div class="modal-body">
+                <div class="alert alert-danger" id="loginAlert" style="display:none; text-align: center;">
+                    <strong></strong>
+                </div>
+                <div class="clearfix"></div>
                 <div class="row">
                     <form class="form-horizontal" role="form" id="loginForm" method="post" action="{{URL::to('/user/doLogin')}}">
-                        <div class="input-group logininput">
+
+                        <div class="input-group inputfirst">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" id="inputLoginEmail" name="inputLoginEmail" class="form-control" placeholder="邮箱">
+                            <input type="text" id="inputLoginEmail" name="inputLoginEmail" class="form-control inputlog" placeholder="邮箱">
                         </div>
-                        <div class="input-group logininput">
+                        <div class="input-group inputtwo">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
                             <input type="password" class="form-control inputlog" id="inputLoginPassword" name="inputLoginPassword" placeholder="密码">
                         </div>
-                        <div style="width: 408px;padding-top: 5px;">
+                        <div class="input-group" style="width: 408px;padding: 5px;">
                             <div style="float: left;">
-                                <input type="checkbox" name="rememberme" id="rememberme" value="1" checked /> 记住我
+                                <input type="checkbox" name="rememberme" id="rememberme" value="1" checked /> 下次自动登录
                             </div>
                             <div style="float: right !important;">
-                                忘记密码
+                                <a href="#">忘记密码</a>
                             </div>
                         </div>
-                        <div class="input-group" style="padding: 10px 0px;">
+                        <div class="input-group" style="padding: 15px 0px;">
                             <button type="submit" class="btn btn-primary" id="btnLogin">登录</button>
-                            <a href="{{URL::to('/user/register')}}">还没有账号？立即注册！</a>
+                            <a href="{{URL::to('/user/register')}}"> 还没有账号？立即注册！</a>
                         </div>
                     </form>
                 </div>

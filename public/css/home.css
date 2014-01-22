@@ -19,13 +19,17 @@ a.article_title:hover {
     text-decoration:none;
 }
 
-.container .row .col-xs-2 {
+#maintext {
+    margin-top: 15px;
+}
+
+#maintext .row .col-xs-2 {
     padding-left: 30px;
     padding-top: 5px;
 }
 
 .artsection {
-    padding-bottom: 520px;
+    padding-bottom: 460px;
 }
 
 .artshare {
@@ -46,7 +50,7 @@ span.tnav {
 .sectionhr {
     height: 1px;
     border: none;
-    border-top: 1px solid #A5A5A5;
+    border-top: 1px solid #dddddd;
 }
 
 .nav-point {
@@ -95,7 +99,7 @@ div.recomdhead {
 }
 
 div.recomdhead span {
-    font-size: 20px;
+    font-size: 15px;
     word-wrap:break-word;
     overflow:hidden;
 }
