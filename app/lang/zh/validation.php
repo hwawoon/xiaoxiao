@@ -41,11 +41,11 @@ return array(
 	"ip"               => "The :attribute must be a valid IP address.",
 	"max"              => array(
 		"numeric" => "The :attribute may not be greater than :max.",
-		"file"    => "The :attribute may not be greater than :max kilobytes.",
+		"file"    => ":attribute不能超过:maxKB.",
 		"string"  => "The :attribute may not be greater than :max characters.",
 		"array"   => "The :attribute may not have more than :max items.",
 	),
-	"mimes"            => "The :attribute must be a file of type: :values.",
+	"mimes"            => ":attribute必须是:values.",
 	"min"              => array(
 		"numeric" => "The :attribute must be at least :min.",
 		"file"    => "The :attribute must be at least :min kilobytes.",
@@ -96,7 +96,8 @@ return array(
 	'attributes' => array(
         "name" => "尊称",
         "email" => "邮箱",
-        "password" => "密码"
+        "password" => "密码",
+        "uploadImage" => "上传图片"
     )
 
 );

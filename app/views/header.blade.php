@@ -123,7 +123,7 @@
             <form action="{{URL::to('/article/uploadImage')}}" method="post" id="uploadImageForm" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title">只为搞笑</h3>
+                    <h3 class="modal-title">分享搞笑图片</h3>
                     上传有趣的图片，也可以从其他地方转载, 图片格式：GIF/JPG/PNG (最大: 3MB)
                 </div>
                 <div class="modal-body">
@@ -150,13 +150,13 @@
             <form action="{{URL::to('/article/forwardImage')}}" method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title">Just For Fun!</h3>
-                    Upload funny pictures, paste pictures or YouTube URL, accepting GIF/JPG/PNG (最大: 3MB)
+                    <h3 class="modal-title">分享搞笑图片</h3>
+                    上传有趣的图片，也可以从其他地方转载, 图片格式：GIF/JPG/PNG (最大: 3MB)
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="forwardUrl">地址</label>
-                        <input type="text" class="form-control" id="forwardUrl" placeholder="http;//">
+                        <input type="text" class="form-control" id="forwardUrl" placeholder="http://">
                     </div>
                     <div class="form-group">
                         <label>标题</label>

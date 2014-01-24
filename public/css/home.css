@@ -9,7 +9,6 @@ a {
 
 a.article_title {
     text-decoration:none;
-    font-size: 22px;
     /*font-weight: bold;*/
     color: #000;
 }
@@ -20,7 +19,7 @@ a.article_title:hover {
 }
 
 #maintext {
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 #maintext .row .col-xs-2 {
@@ -98,8 +97,11 @@ span.tnav {
     background: #fff url(../img/sticky-vote.png) no-repeat -42px -32px;
 }
 
+.rrecommend {
+}
+
 .rrecommend section {
-    padding: 10px;
+    padding: 10px 45px 10px 10px;
 }
 
 div.recomdhead {
@@ -124,9 +126,4 @@ div.recomdhead span {
 .tagtitle span {
     word-wrap:break-word;
     overflow:hidden;
-}
-
-.tags img {
-    width: 270px;
-    height: 100px;
 }

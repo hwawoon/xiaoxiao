@@ -19,7 +19,11 @@ class ArticleController extends BaseController
 
             if($validator->fails())
             {
-                return Response::json(array("message" => $validator->messages()),400);
+                return Response::json(array(
+                    "state" => 0,
+                    "type" => 'validation',
+                    "message" => $validator->messages()->toJson()
+                ),200);
             }
 
             $extension = $imgFile->getClientOriginalExtension();
@@ -28,7 +32,7 @@ class ArticleController extends BaseController
             $upload_success = $imgFile->move($destinationPath.'/upload', $filename);
 
             //裁剪图片
-            $thumbnailResult = $this->imagecropper($destinationPath.'/upload/'.$filename,300,100,$destinationPath.'/thumbnail/'.$filename);
+            $thumbnailResult = Img::imagecropper($destinationPath.'/upload/'.$filename,300,120,$destinationPath.'/thumbnail/'.$filename);
 
             if( $upload_success && $thumbnailResult )
             {
@@ -41,16 +45,31 @@ class ArticleController extends BaseController
 
                 $article->save();
 
-                return Response::json(array("message" => "图片上传成功！"),200);
-            }
+                $insertedId = $article->id;
+
+                $url = route('getArticle', [$insertedId]);
+
+                return Response::json(array(
+                    "state" => 1,
+                    "url" => $url
+                ),200);
+        }
             else
             {
-                return Response::json(array("message" => "图片上传失败，请联系管理员！"),400);
+                return Response::json(array(
+                    "state" => 0,
+                    "type" => 'function',
+                    "message" => Lang::get('messages.upload_failure')
+                ),200);
             }
         }
         else
         {
-            return Response::json(array("message" => "发布失败！"),400);
+            return Response::json(array(
+                "state" => 0,
+                "type" => 'function',
+                "message" => Lang::get('messages.file_no_exist')
+            ),200);
         }
     }
 
@@ -115,74 +134,4 @@ class ArticleController extends BaseController
         return Response::json(array("state" => 1),200);
     }
 
-    function imagecropper($source_path, $target_width, $target_height, $target_path)
-    {
-        $source_info   = getimagesize($source_path);
-        $source_width  = $source_info[0];
-        $source_height = $source_info[1];
-        $source_mime   = $source_info['mime'];
-        $source_ratio  = $source_height / $source_width;
-        $target_ratio  = $target_height / $target_width;
-
-        // 源图过高
-        if ($source_ratio > $target_ratio)
-        {
-            $cropped_width  = $source_width;
-            $cropped_height = $source_width * $target_ratio;
-            $source_x = 0;
-            $source_y = ($source_height - $cropped_height) / 2;
-        }
-        // 源图过宽
-        elseif ($source_ratio < $target_ratio)
-        {
-            $cropped_width  = $source_height / $target_ratio;
-            $cropped_height = $source_height;
-            $source_x = ($source_width - $cropped_width) / 2;
-            $source_y = 0;
-        }
-        // 源图适中
-        else
-        {
-            $cropped_width  = $source_width;
-            $cropped_height = $source_height;
-            $source_x = 0;
-            $source_y = 0;
-        }
-
-        switch ($source_mime)
-        {
-            case 'image/gif':
-                $source_image = imagecreatefromgif($source_path);
-                break;
-
-            case 'image/jpeg':
-                $source_image = imagecreatefromjpeg($source_path);
-                break;
-
-            case 'image/png':
-                $source_image = imagecreatefrompng($source_path);
-                break;
-
-            default:
-                return false;
-                break;
-        }
-
-        $target_image  = imagecreatetruecolor($target_width, $target_height);
-        $cropped_image = imagecreatetruecolor($cropped_width, $cropped_height);
-
-        // 裁剪
-        imagecopy($cropped_image, $source_image, 0, 0, $source_x, $source_y, $cropped_width, $cropped_height);
-        // 缩放
-        imagecopyresampled($target_image, $cropped_image, 0, 0, 0, 0, $target_width, $target_height, $cropped_width, $cropped_height);
-
-        imagedestroy($source_image);
-        imagedestroy($cropped_image);
-
-        $result = imagejpeg($target_image,$target_path);
-
-        imagedestroy($target_image);
-
-        return $result;
-    }
 }

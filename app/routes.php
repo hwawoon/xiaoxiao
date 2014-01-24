@@ -68,7 +68,10 @@ Route::any('article/getMoreLatest', 'HomeController@getMoreLatestArticle');
 
 Route::any('user/uploadIcon', 'UserController@uploadIcon');
 
-Route::get('article/{id}', 'ArticleController@getArticle')->where('id', '[0-9]+');
+Route::get("article/{id}", array(
+    "as"=>"getArticle",
+    "uses"=>"ArticleController@getArticle"
+))->where('id', '[0-9]+');
 
 Route::get('article/previous/{id}', 'ArticleController@previousArticle')->where('id', '[0-9]+');
 Route::get('article/next/{id}', 'ArticleController@nextArticle')->where('id', '[0-9]+');

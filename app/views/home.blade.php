@@ -31,38 +31,46 @@
 @include('header')
 
 <textarea id="section_template" style="display: none;">
-    <section style="padding-bottom: 20px;">
-        <div class="row">
-            <h3><a href="{{URL::to('/article').'/'}}$id$" class="article_title">$title$</a></h3>
-        </div>
-        <div class="row" style="padding-bottom: 10px;padding-left: 3px;">
-            <a href="{{URL::to('/article').'/'}}$id$" class="artileparam btn btn-default btn-xs">$points$分</a>
-            <a href="{{URL::to('/article').'/'}}$id$" class="artileparam btn btn-default btn-xs">$comments$评论</a>
-        </div>
-        <div class="row">
-            <a href="{{URL::to('/article').'/'}}$id$">
-                <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/$savepath$" style="width: 100%;">
-            </a>
-        </div>
-        <div class="row" style="padding-right: 0px;margin-top: 5px;">
-            <div style="display: inline;float: left;">
-                @if (Auth::check())
-                <button type="button" class="btn" onclick="articlePointUp(this,$id$);"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;<span class="article_up">$up$</span></button>
-                <span style="width: 50px;">&nbsp;</span>
-                <button type="button" class="btn" onclick="articlePointDown(this,$id$);"><i class="glyphicon glyphicon-thumbs-down"></i>&nbsp;&nbsp;<span class="article_down">$down$</span></button>
-                @else
-                <button type="button" class="btn" onclick="openLoginModal();"><i class="glyphicon glyphicon-thumbs-up"></i>&nbsp;&nbsp;<span id="article_up">$up$</span></button>
-                <span style="width: 50px;">&nbsp;</span>
-                <button type="button" class="btn" onclick="openLoginModal();"><i class="glyphicon glyphicon-thumbs-down"></i>&nbsp;&nbsp;<span id="article_down">$down$</span></button>
-                @endif
+    <section class="artsection">
+        <div class="col-xs-10">
+            <div class="row dnav">
+                <a href="{{URL::to('/article').'/'}}$id$" class="article_title">
+                    <span class="tnav">$title$</span>
+                </a>
             </div>
-            <div style="display: inline;float: right;" >
+            <div class="row nav-point">
+                <a href="{{URL::to('/article').'/'}}$id$" class="artileparam btn btn-default btn-xs">
+                    <span id="rpoints$id$">$points$</span>分
+                </a>
+                <a href="{{URL::to('/article').'/'}}$id$" class="artileparam btn btn-default btn-xs">
+                    $comments$评论
+                </a>
+            </div>
+            <div class="row">
+                <a href="{{URL::to('/article').'/'}}$id$">
+                    <img class="" src="{{URL::to('/')}}/$savepath$" style="width: 100%;">
+                </a>
+            </div>
+            <div class="row artshare">
                 <a href="javascript:void(0)" onclick="sinaweibo('$title$','{{URL::to('/article').'/'}}$id$','{{URL::to('/').'/'}}$savepath$');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
                     分享到新浪微博
                 </a>
-                <a href="javascript:void(0)" onclick="postToWb('$title$','{{URL::to('/article').'/'}}$id$','{{URL::to('/').'/'}}$savepath$');return false;" class="tmblog">
-                    <img src="http://v.t.qq.com/share/images/s/b32.png" border="0" alt="转播到腾讯微博" >
+                <a href="javascript:void(0)" onclick="postToWb('$title$','{{URL::to('/article').'/'}}$id$','{{URL::to('/').'/'}}$savepath$');return false;" class="btn btn-primary"  title="分享到腾讯微博" target="_blank" >
+                    分享到腾讯微博
                 </a>
+            </div>
+        </div>
+        <div class="col-xs-2">
+            <div class="row">
+                <ul class="vertical-vote">
+                    @if (Auth::check())
+                    <li><a class="up" id="up$id$" href="javascript:articlePointUp(this,$id$);void(0);" title="赞">赞</a></li>
+                    <li><a class="down" id="down$id$" href="javascript:articlePointDown(this,$id$);void(0);" title="踩">踩</a></li>
+                    @else
+                    <li><a class="up" href="javascript:openLoginModal();" title="赞">赞</a></li>
+                    <li><a class="down" href="javascript:openLoginModal();" title="踩">踩</a></li>
+                    @endif
+                </ul>
             </div>
         </div>
     </section>
@@ -71,10 +79,10 @@
 
 <div class="container" id="maintext">
     <div class="row">
-        <div class="col-xs-8">
+        <div class="col-xs-8" id="home_articles">
             @foreach ($articles as $article)
             <section class="artsection">
-                    <div class="col-xs-10">
+                <div class="col-xs-10">
                     <div class="row dnav">
                         <a href="{{URL::to('/article').'/'.$article->id}}" class="article_title">
                             <span class="tnav">{{$article->title}}</span>
@@ -157,6 +165,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 {{ HTML::script('js/jquery.js') }}
 {{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
+{{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
 {{ HTML::script('js/jquery.validate.js') }}
 {{ HTML::script('js/jquery.form.js') }}
 {{ HTML::script('js/header.js') }}

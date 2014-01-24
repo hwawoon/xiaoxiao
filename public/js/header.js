@@ -77,9 +77,48 @@ $(function () {
             dataType:'json',
             success:function(data)
             {
-                $("#uploadModal").modal('hide');
-                window.location.reload();
-                alert(data.message);
+                if(data.state)
+                {
+                    $("#uploadModal").modal('hide');
+                    window.location.href = data.url;
+                }
+                else
+                {
+                    var alertmsg = "";
+                    if(data.type == 'function')
+                    {
+                        alertmsg = data.message;
+                    }
+                    else if(data.type == 'validation')
+                    {
+                        var lomsg = JSON.parse(data.message);
+                        alertmsg += lomsg.uploadImage.join('<br>');
+                        alertmsg += '<br>';
+                    }
+
+                    var n = noty({
+                        text        : alertmsg,
+                        type        : "error",
+                        dismissQueue: false,
+                        killer: true,
+                        layout      : 'topCenter',
+                        theme       : 'defaultTheme',
+                        timeout: 2000
+                    });
+                }
+
+            },
+            error:function(data)
+            {
+                var n = noty({
+                    text        : "请重试！",
+                    type        : "warning",
+                    dismissQueue: false,
+                    killer: true,
+                    layout      : 'topCenter',
+                    theme       : 'defaultTheme',
+                    timeout: 2000
+                });
             }
         });
     });
@@ -89,13 +128,29 @@ function validateUpload(formData, jqForm, options)
 {
     if (!jqForm[0].title.value)
     {
-        alert('请输入标题！');
+        var n = noty({
+            text        : "请输入标题！",
+            type        : "alert",
+            dismissQueue: false,
+            killer: true,
+            layout      : 'topCenter',
+            theme       : 'defaultTheme',
+            timeout: 2000
+        });
         return false;
     }
 
     if (!jqForm[0].uploadImage.value)
     {
-        alert('请选择上传文件！');
+        var n = noty({
+            text        : "请选择上传文件！",
+            type        : "alert",
+            dismissQueue: false,
+            killer: true,
+            layout      : 'topCenter',
+            theme       : 'defaultTheme',
+            timeout: 2000
+        });
         return false;
     }
 

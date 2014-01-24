@@ -1,0 +1,113 @@
+.col-xs-8 section {
+    padding-top: 10px;
+    padding-bottom: 20px;
+}
+
+.atitle {
+    font-size: 27px;
+    padding: 0px;
+    word-wrap:break-word;
+    overflow:hidden;
+}
+
+div.points {
+    padding: 2px 0px;
+}
+
+div.acomment {
+    padding: 5px 0px 5px 0px;
+}
+
+div.sharediv {
+    display: inline;
+    float: left;
+}
+
+div.apoint {
+    display: inline;
+    float: right;
+}
+
+.atags {
+    padding-top: 40px;
+    padding-left: 100px;
+    padding-right: 50px;
+}
+
+.atags .pager {
+    text-align: center;
+}
+
+.horizontal-vote {
+    overflow: hidden;
+    float: right;
+    list-style-type: none;
+}
+
+.horizontal-vote span {
+    float: left;
+    margin-left: 4px;
+}
+
+.horizontal-vote a {
+    display: block;
+    width: 42px;
+    height: 35px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    text-indent: -999px;
+    border-radius: 3px;
+}
+
+.horizontal-vote a.up {
+    background: #fff url(../img/sticky-vote.png) no-repeat;
+}
+
+.horizontal-vote a.down {
+    background: #fff url(../img/sticky-vote.png) no-repeat 0 -32px;
+}
+
+.horizontal-vote a.up_c {
+    background: #fff url(../img/sticky-vote.png) no-repeat scroll -42px 0px;
+}
+
+.horizontal-vote a.down_c {
+    background: #fff url(../img/sticky-vote.png) no-repeat -42px -32px;
+}
+
+#commentArea {
+    padding-top: 10px;
+}
+
+.userreplydiv {
+    padding-top: 5px;
+}
+
+#articlereplies .row {
+    padding: 10px 0px;
+}
+
+.row div.myreplay {
+    float: left;
+    width: 90%;
+}
+
+.row div.myreplybtn {
+    float: left;
+    width: 100%;
+    padding: 5px 0px;
+    text-align: right;
+    display: block;
+}
+
+.row div.useravatar {
+    float: left;
+    padding: 0px 10px 0 0;
+    width: 10%;
+    text-align: center;
+}
+
+.row div.userreply {
+    float: left;
+    width: 90%;
+}

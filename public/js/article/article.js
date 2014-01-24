@@ -48,6 +48,11 @@ function validateComment(formData, jqForm, options)
 
 function articlePointUp(id)
 {
+    if($(".up").hasClass('up_c'))
+    {
+        return false;
+    }
+
     $.ajax({
         url: ROOT_PATH + "/article/articlePointUp",
         type: "GET",
@@ -56,8 +61,10 @@ function articlePointUp(id)
         success: function (data) {
             if(data.state == 1)
             {
-                var val = $("#article_up").html();
-                $("#article_up").html(parseInt(val) + 1);
+                var val = $("#article_points").html();
+                $("#article_points").html(parseInt(val) + 1);
+                $(".up").addClass('up_c');
+                $(".down").removeClass('down_c');
             }
             else
             {
@@ -72,6 +79,11 @@ function articlePointUp(id)
 
 function articlePointDown(id)
 {
+    if($(".down").hasClass('down_c'))
+    {
+        return false;
+    }
+
     $.ajax({
         url: ROOT_PATH + "/article/articlePointDown",
         type: "GET",
@@ -80,8 +92,10 @@ function articlePointDown(id)
         success: function (data) {
             if(data.state == 1)
             {
-                var val = $("#article_down").html();
-                $("#article_down").html(parseInt(val) + 1);
+                var val = $("#article_points").html();
+                $("#article_points").html(parseInt(val) - 1);
+                $(".up").removeClass('up_c');
+                $(".down").addClass('down_c');
             }
             else
             {
