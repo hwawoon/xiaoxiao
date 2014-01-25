@@ -13,12 +13,26 @@
 }
 
 .item {
-    width: 458px;
-    margin: 20px 10px 10px 10px;
+    width: 300px;
+    margin: 0px 10px 10px 5px;
     float: left;
     background-color: #ffffff;
     border: solid 1px #B4BBCD;
     min-height: 50px;
     text-align: center;
     word-wrap: break-word;
+    border-radius: 10px;
+}
+
+.item .title {
+    padding: 10px;
+    font-weight: bold;
+    background-color: #DD2266;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.item .title a {
+    color: #FFFFFF;
+    text-decoration: none;
 }

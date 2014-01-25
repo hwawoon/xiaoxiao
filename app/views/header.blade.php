@@ -38,6 +38,15 @@
             <ul class="nav navbar-nav navbar-right">
                 @if (Auth::check())
                 <li class="dropdown">
+                    <a href="#" id="message_list" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon-bell messageicon"></i> <span class="badge">
+                            {{Session::get('message_count')}}
+                        </span>
+                    </a>
+                    <ul class="dropdown-menu" id="message_box">
+                    </ul>
+                </li>
+                <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" width="20px" />
                         {{Auth::user()->name}}<b class="caret"></b>

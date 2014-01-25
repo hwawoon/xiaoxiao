@@ -82,6 +82,12 @@ class CommentController extends BaseController {
 		//
 	}
 
+    /**
+     * add comments
+     * @param $userid
+     * @param $articleid
+     * @return mixed
+     */
     public function addComment($userid,$articleid)
     {
         $loComment = new Comment();
@@ -90,6 +96,15 @@ class CommentController extends BaseController {
         $loComment->articleid = $articleid;
         $loComment->userid = $userid;
         $loComment->save();
+
+        //add message for article author
+        $loMessage = new Message();
+
+        $loMessage->from_user = $userid;
+        $loMessage->to_user = Input::get('articleAuthor');
+        $loMessage->articleid = $articleid;
+        $loMessage->isnew = 1;
+        $loMessage->save();
 
         DB::table('articles')->where('id', $articleid)->increment('comments',1);
 

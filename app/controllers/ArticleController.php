@@ -95,8 +95,8 @@ class ArticleController extends BaseController
         $loAllComments = DB::table('comments')
                             ->join('users', 'users.id', '=', 'comments.userid')
                             ->where('comments.articleid',$article->id)
-                            ->orderBy('comments.created_at', 'desc')
-                            ->select('comments.content','users.name','users.avatar','comments.created_at')
+                            ->orderBy('comments.id', 'desc')
+                            ->select('comments.id','comments.haschild','comments.content','users.name','users.avatar','comments.created_at')
                             ->get();
 
         return View::make('/article/article')->with('article',$article)

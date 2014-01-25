@@ -36,16 +36,17 @@
         @foreach($articles as $article)
         <div class="item">
             <div>
-                <p>
+                <div class="title">
                     <a href="{{URL::to('/article').'/'.$article->id}}">
-                        {{$article->title}} 发表于{{$article->created_at}}
+                        {{$article->title}}<br>
+                        {{$article->created_at}}
                     </a>
-                </p>
-                <p>
-                <a href="{{URL::to('/article').'/'.$article->id}}">
-                    <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->thumbnailpath}}" style="width: 250px;height: 120px;">
-                </a>
-                </p>
+                </div>
+                <div>
+                    <a href="{{URL::to('/article').'/'.$article->id}}">
+                        <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->savepath}}" />
+                    </a>
+                </div>
             </div>
         </div>
         @endforeach

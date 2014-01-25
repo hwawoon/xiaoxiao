@@ -122,6 +122,10 @@ $(function () {
             }
         });
     });
+
+    $('#message_list').bind('click',function(){
+        $('#message_box').append("123123123");
+    });
 });
 
 function validateUpload(formData, jqForm, options)

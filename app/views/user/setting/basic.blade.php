@@ -19,61 +19,57 @@
     <![endif]-->
 </head>
 <body>
-<!-- Wrap all page content here -->
-<div id="wrap">
-    @include('header');
-    <!-- Begin page content -->
-    <div class="container">
-        @if(Session::get('status'))
-        <div class="row" style="padding: 10px 20px 0px 20px; text-align: center;">
-            <div class="alert alert-success">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{Session::get('message')}}
-            </div>
-        </div>
-        @elseif(Session::get('status') === false)
-        <div class="row" style="padding: 10px 20px 0px 20px; text-align: center;">
-            <div class="alert alert-danger">
-                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
-                {{Session::get('message')}}
-            </div>
-        </div>
-        @endif
-        <div class="row">
-            <div class="col-xs-6 col-sm-3" id="sidebar" role="navigation" style="margin-top: 30px;">
-                <div class="list-group">
-                    <a href="{{URL::to('/user/setting')}}" class="list-group-item active">基本信息</a>
-                    <a href="{{URL::to('/user/setting/icon')}}" class="list-group-item ">头像设置</a>
-                    <a href="{{URL::to('/user/setting/security')}}" class="list-group-item">账号安全</a>
-                </div>
-            </div>
-            <!--/span-->
-            <div class="col-xs-9">
-                <div class="page-header">
-                    <h3>基本信息</h3>
-                </div>
-                <div>
-                    <form role="form" id="basicForm" action="{{URL::to('/user/saveUserBasicInfo')}}" style="line-height: 40px;" method="post">
-                        <div class="form-group">
-                            <label for="inputName">尊称</label>
-                            <input type="text" class="form-control" name="username" id="username" value="{{Auth::user()->name}}" placeholder="尊称">
-                            <span class="help-block">建议使用实名、或您常用的昵称注册</span>
-                        </div>
-                        <div class="form-group">
-                            <label for="inputEmail1">一句话介绍</label>
-                            <textarea class="form-control" rows="3" name="introduction" id="introduction" placeholder="让人们认识你">{{Auth::user()->introduction}}</textarea>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary btn">保存</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            <!--/span-->
+@include('header');
+
+<!-- Begin page content -->
+<div class="container">
+    @if(Session::get('status'))
+    <div class="row" style="padding: 10px 20px 0px 20px; text-align: center;">
+        <div class="alert alert-success">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{Session::get('message')}}
         </div>
     </div>
-</div>
-</div>
+    @elseif(Session::get('status') === false)
+    <div class="row" style="padding: 10px 20px 0px 20px; text-align: center;">
+        <div class="alert alert-danger">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            {{Session::get('message')}}
+        </div>
+    </div>
+    @endif
+    <div class="row">
+        <div class="col-xs-6 col-sm-3" id="sidebar" role="navigation" style="margin-top: 30px;">
+            <div class="list-group">
+                <a href="{{URL::to('/user/setting')}}" class="list-group-item active">基本信息</a>
+                <a href="{{URL::to('/user/setting/icon')}}" class="list-group-item ">头像设置</a>
+                <a href="{{URL::to('/user/setting/security')}}" class="list-group-item">账号安全</a>
+            </div>
+        </div>
+        <!--/span-->
+        <div class="col-xs-9">
+            <div class="page-header">
+                <h3>基本信息</h3>
+            </div>
+            <div>
+                <form role="form" id="basicForm" action="{{URL::to('/user/saveUserBasicInfo')}}" style="line-height: 40px;" method="post">
+                    <div class="form-group">
+                        <label for="inputName">尊称</label>
+                        <input type="text" class="form-control" name="username" id="username" value="{{Auth::user()->name}}" placeholder="尊称">
+                        <span class="help-block">建议使用实名、或您常用的昵称注册</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputEmail1">一句话介绍</label>
+                        <textarea class="form-control" rows="3" name="introduction" id="introduction" placeholder="让人们认识你">{{Auth::user()->introduction}}</textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary btn">保存</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--/span-->
+    </div>
 </div>
 @include("footer")
 <!-- Bootstrap core JavaScript

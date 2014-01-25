@@ -19,11 +19,13 @@ body {
 
 #footer {
     width: 350px;
-    background-color: #dddddd;
+    background-color: #cccccc;
     color: #000000;
     position: fixed;
     bottom: 0;
     right: 100px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
 }
 
 #footer .container {
@@ -109,7 +111,7 @@ div label.error {
 /* Redeclare since we override the float above */
 .navbar-nav.navbar-right {
     float: right;
-    padding-left: 25px;
+    padding-left: 15px;
 }
 
 /* Undo custom dropdowns */
@@ -185,4 +187,8 @@ div label.error {
 
 .searchbar {
     padding-right: 50px;
+}
+
+.messageicon {
+    top: 3px;
 }

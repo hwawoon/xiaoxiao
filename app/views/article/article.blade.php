@@ -79,12 +79,13 @@
             @if (Auth::check())
             <div class="row userreplydiv">
                 <form class="form-horizontal" id="articleCommentForm" role="form" method="post" action="{{URL::to('/')}}/comment/addComment/{{Auth::user()->getId()}}/{{$article->id}}">
+                    <input type="hidden" name="articleAuthor" id="articleAuthor" value="{{Auth::user()->id}}" />
                     <div class="useravatar">
                         <img
                             src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" class="img-responsive img-thumbnail" style="width: 50px;"/>
                     </div>
                     <div class="myreplay">
-                        <textarea class="form-control" name="myComment" id="myComment" rows="3" placeholder="平平仄仄"></textarea>
+                        <textarea class="form-control" name="myComment" id="myComment" rows="3" placeholder="最多100字"></textarea>
                     </div>
                     <div class="myreplybtn">
                             <button type="button" id="articleCommentBtn" class="btn btn-default btn-sm">发送</button>
@@ -100,7 +101,7 @@
                             class="img-responsive img-thumbnail" style="width: 50px;"/>
                     </div>
                     <div class="myreplay">
-                        <textarea class="form-control" name="myComment" id="myComment" rows="3" placeholder="平平仄仄"></textarea>
+                        <textarea class="form-control" name="myComment" id="myComment" rows="3" placeholder="最多100字"></textarea>
                     </div>
                     <div class="myreplybtn">
                         <a href="#login" id="login" class="btn btn-default btn-sm" data-toggle="modal" data-target="#loginModal">登录</a>
@@ -112,7 +113,7 @@
                 @foreach ($comments as $cmt)
                 <div class="row">
                     <div class="useravatar">
-                        <img src="{{URL::to('/')}}/{{$cmt->avatar}}" class="img-responsive img-thumbnail" style="width: 50px;"/>
+                        <img src="{{URL::to('/')}}/{{$cmt->avatar}}" class="img-responsive img-thumbnail" />
                     </div>
                     <div class="userreply">
                         <div style="padding: 0px 0px 1px 0px;">
@@ -176,6 +177,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 {{ HTML::script('js/jquery.js') }}
 {{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
+{{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
 {{ HTML::script('js/jquery.validate.js') }}
 {{ HTML::script('js/jquery.form.js') }}
 {{ HTML::script('js/header.js') }}

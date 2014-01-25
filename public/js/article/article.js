@@ -28,7 +28,15 @@ $(function(){
                 }
                 else
                 {
-                    alert("评论失败，请稍后再试！");
+                    var n = noty({
+                        text        : "评论失败，请稍后再试！",
+                        type        : "error",
+                        dismissQueue: false,
+                        killer: true,
+                        layout      : 'topCenter',
+                        theme       : 'defaultTheme',
+                        timeout: 2000
+                    });
                 }
             }
         });
@@ -39,7 +47,28 @@ function validateComment(formData, jqForm, options)
 {
     if (!jqForm[0].myComment.value)
     {
-        alert('请输入评论内容！');
+        var n = noty({
+            text        : "请输入评论内容！",
+            type        : "information",
+            dismissQueue: false,
+            killer: true,
+            layout      : 'topCenter',
+            theme       : 'defaultTheme',
+            timeout: 2000
+        });
+        return false;
+    }
+    else if(jqForm[0].myComment.value.length > 100)
+    {
+        var n = noty({
+            text        : "评论内容不能超过100字！",
+            type        : "information",
+            dismissQueue: false,
+            killer: true,
+            layout      : 'topCenter',
+            theme       : 'defaultTheme',
+            timeout: 2000
+        });
         return false;
     }
 
