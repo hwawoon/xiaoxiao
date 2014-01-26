@@ -79,7 +79,7 @@
             @if (Auth::check())
             <div class="row userreplydiv">
                 <form class="form-horizontal" id="articleCommentForm" role="form" method="post" action="{{URL::to('/')}}/comment/addComment/{{Auth::user()->getId()}}/{{$article->id}}">
-                    <input type="hidden" name="articleAuthor" id="articleAuthor" value="{{Auth::user()->id}}" />
+                    <input type="hidden" name="articleAuthor" id="articleAuthor" value="{{$article->userid}}" />
                     <div class="useravatar">
                         <img
                             src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" class="img-responsive img-thumbnail" style="width: 50px;"/>

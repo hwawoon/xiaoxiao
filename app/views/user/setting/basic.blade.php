@@ -55,8 +55,8 @@
                 <form role="form" id="basicForm" action="{{URL::to('/user/saveUserBasicInfo')}}" style="line-height: 40px;" method="post">
                     <div class="form-group">
                         <label for="inputName">尊称</label>
-                        <input type="text" class="form-control" name="username" id="username" value="{{Auth::user()->name}}" placeholder="尊称">
-                        <span class="help-block">建议使用实名、或您常用的昵称注册</span>
+                        <input type="text" class="form-control" name="username" id="username" value="{{Auth::user()->name}}" placeholder="尊称" disabled />
+<!--                        <span class="help-block">建议使用实名、或您常用的昵称注册</span>-->
                     </div>
                     <div class="form-group">
                         <label for="inputEmail1">一句话介绍</label>

@@ -13,6 +13,11 @@
 
 Route::get('/',  'HomeController@showHome');
 
+Route::get('user/register', function()
+{
+    return View::make('register/register');
+});
+
 Route::get('/latest',  'HomeController@showLatest');
 
 Route::group(array('before' => 'csrf'), function()
@@ -112,4 +117,7 @@ Route::group(array('before' => 'auth'), function()
     Route::post('user/uploadSourceImage', 'UserController@uploadSourceImage');
 
     Route::post('user/saveUserIcon', 'UserController@saveUserIcon');
+
+    Route::get('msg/getMessage', 'MessageController@getMessage');
+
 });

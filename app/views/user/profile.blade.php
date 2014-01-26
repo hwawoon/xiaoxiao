@@ -37,6 +37,7 @@
         <div class="item">
             <div>
                 <div class="title">
+                    <button type="button" onclick="delArticle({{$article->id}});void(0);" class="close" title="删除">&times;</button>
                     <a href="{{URL::to('/article').'/'.$article->id}}">
                         {{$article->title}}<br>
                         {{$article->created_at}}
@@ -58,6 +59,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 {{ HTML::script('js/jquery.js') }}
 {{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
+{{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
 {{ HTML::script('js/jquery.validate.js') }}
 {{ HTML::script('js/jquery.form.js') }}
 {{ HTML::script('js/header.js') }}

@@ -39,11 +39,16 @@
                 @if (Auth::check())
                 <li class="dropdown">
                     <a href="#" id="message_list" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="glyphicon glyphicon-bell messageicon"></i> <span class="badge">
+                        <i class="glyphicon glyphicon-bell messageicon"></i> <span class="badge" id="message_count">
                             {{Session::get('message_count')}}
                         </span>
                     </a>
                     <ul class="dropdown-menu" id="message_box">
+                        <li class="msg_loading" >
+                            {{HTML::image('img/loading.gif')}}
+                        </li>
+                        <li class="divider"></li>
+                        <li style="text-align: center;"><a href="#">进入消息中心</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">

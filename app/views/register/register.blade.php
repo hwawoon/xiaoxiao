@@ -49,18 +49,21 @@
                     <label for="name" class="col-sm-2 control-label">尊称</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="name" name="name" placeholder="名字">
+                        <span class="help-block">建议使用您常用的昵称注册，注册后不允许修改</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="email" class="col-sm-2 control-label">邮箱</label>
                     <div class="col-sm-10">
                         <input type="email" class="form-control" id="email" name="email" placeholder="邮箱">
+                        <span class="help-block">建议使用您常用的邮箱注册</span>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="password" class="col-sm-2 control-label">密码</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" id="password" name="password" placeholder="密码">
+                        <span class="help-block">密码不能小于6个字符</span>
                     </div>
                 </div>
                 <div class="form-group">

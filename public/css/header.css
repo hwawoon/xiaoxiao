@@ -5,7 +5,7 @@
  * with disabling the responsiveness.
  */
 
-html,body {
+html, body {
     font-family: Helvetica, Tahoma, Arial, "Microsoft YaHei", "微软雅黑", SimSun, "宋体", STXihei, "华文细黑", Heiti, "黑体", sans-serif;
     /* The html and body elements cannot have any padding or margin. */
 }
@@ -15,6 +15,10 @@ body {
     padding-top: 40px;
     padding-bottom: 30px;
     min-width: 970px;
+}
+
+.msg_loading {
+    text-align: center;
 }
 
 #footer {
@@ -34,19 +38,19 @@ body {
 
 .feedback {
     position: fixed;
-    top:50%;
+    top: 50%;
     right: 0;
 }
 
 .goto-top {
     display: none;
-    position:fixed;
+    position: fixed;
     width: 50px;
     height: 50px;
-    background:url(../img/gotop.gif) no-repeat ;
-    bottom:20px;
-    right:20px;
-    z-index:9999;
+    background: url(../img/gotop.gif) no-repeat;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
 }
 
 div label.error {
@@ -88,6 +92,7 @@ div label.error {
 .navbar-toggle {
     display: none;
 }
+
 .navbar-collapse {
     border-top: 0;
 }
@@ -101,9 +106,11 @@ div label.error {
     float: left;
     margin: 0;
 }
+
 .navbar-nav > li {
     float: left;
 }
+
 .navbar-nav > li > a {
     padding: 15px;
 }
@@ -126,9 +133,11 @@ div label.error {
     -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
 }
+
 .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #333;
 }
+
 .navbar .navbar-nav .open .dropdown-menu > li > a:hover,
 .navbar .navbar-nav .open .dropdown-menu > li > a:focus,
 .navbar .navbar-nav .open .dropdown-menu > .active > a,
@@ -137,6 +146,7 @@ div label.error {
     color: #fff !important;
     background-color: #428bca !important;
 }
+
 .navbar .navbar-nav .open .dropdown-menu > .disabled > a,
 .navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover,
 .navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
@@ -146,14 +156,16 @@ div label.error {
 
 /* search */
 .input-group-btn > .btn {
-    border-left-width:0;left:-2px;
+    border-left-width: 0;
+    left: -2px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
 }
+
 .input-group .form-control:focus {
-    box-shadow:none;
-    -webkit-box-shadow:none;
-    border-color:#cccccc;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    border-color: #cccccc;
 }
 
 #loginModal .modal-dialog {
@@ -191,4 +203,18 @@ div label.error {
 
 .messageicon {
     top: 3px;
+}
+
+#message_box {
+}
+
+#message_box .msg_name {
+    padding: 0px 10px 0px 0px;
+    color: #2C47B1;
+}
+
+#message_box .msg_title {
+    padding: 0px 0px 0px 10px;
+    width: 450px;
+    white-space: pre-wrap;
 }

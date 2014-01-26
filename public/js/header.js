@@ -124,7 +124,42 @@ $(function () {
     });
 
     $('#message_list').bind('click',function(){
-        $('#message_box').append("123123123");
+        $loCount = $('#message_count').html();
+
+        if($loCount == 0)
+        {
+            $(".msg_loading").html("无");
+            return false;
+        }
+
+        $.ajax({
+            url: ROOT_PATH + "/msg/getMessage",
+            type: "get",
+            dataType : 'json',
+            success: function (data) {
+                var loHtml = '';
+                $.each(data,function(i,child){
+                    loHtml += "<li class='message-preview'>" +
+                        "<a href='"+ROOT_PATH+"/article/"+child.articleid+"'>" +
+                        "<span class='msg_name'>"+child.from_username+"</span>回复了" +
+                        "<span class='msg_title'>《"+child.title+"》</span>" +
+                        "</a></li>";
+                });
+                $('.msg_loading').after(loHtml);
+                $(".msg_loading").remove();
+            },
+            error: function (data) {
+                var n = noty({
+                    text        : "消息加载失败！",
+                    type        : "alert",
+                    dismissQueue: false,
+                    killer: true,
+                    layout      : 'topCenter',
+                    theme       : 'defaultTheme',
+                    timeout: 2000
+                });
+            }
+        });
     });
 });
 

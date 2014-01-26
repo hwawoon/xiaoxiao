@@ -25,6 +25,16 @@ $(function(){
                         '<span style="color: #269abc;">' + data.name +
                         ' 发表于 '+data.created_at+'</span></div><div>' + data.content +
                         '</div></div> </div>');
+
+                    var n = noty({
+                        text        : "评论 + 1",
+                        type        : "information",
+                        dismissQueue: false,
+                        killer: true,
+                        layout      : 'center',
+                        theme       : 'defaultTheme',
+                        timeout: 300
+                    });
                 }
                 else
                 {

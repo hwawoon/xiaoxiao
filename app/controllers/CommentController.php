@@ -100,8 +100,9 @@ class CommentController extends BaseController {
         //add message for article author
         $loMessage = new Message();
 
-        $loMessage->from_user = $userid;
-        $loMessage->to_user = Input::get('articleAuthor');
+        $loMessage->from_username = Auth::user()->name;
+        $loMessage->from_userid = $userid;
+        $loMessage->to_userid = Input::get('articleAuthor');
         $loMessage->articleid = $articleid;
         $loMessage->isnew = 1;
         $loMessage->save();
