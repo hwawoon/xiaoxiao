@@ -25,6 +25,12 @@
 @include('header');
 <!-- Begin page content -->
 <div class="container">
+    @if(Session::get('delmessage'))
+    <div class="alert alert-info alert-dismissable" style="text-align: center;">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+        {{Session::get('delmessage')}}
+    </div>
+    @endif
     <div class="jumbotron">
         <p>
             <img src="{{URL::to('/')}}/{{Auth::user()->avatar}}" class="img-responsive img-thumbnail" style="width: 100px;"/>
@@ -37,11 +43,14 @@
         <div class="item">
             <div>
                 <div class="title">
-                    <button type="button" onclick="delArticle({{$article->id}});void(0);" class="close" title="删除">&times;</button>
-                    <a href="{{URL::to('/article').'/'.$article->id}}">
-                        {{$article->title}}<br>
-                        {{$article->created_at}}
-                    </a>
+                    <form name="delform{{$article->id}}" id="delform{{$article->id}}" action="{{action('ArticleController@deleteArticle')}}" method="post">
+                        <input type="hidden" name="articleid" value="{{$article->id}}" />
+                        <button type="button" onclick="delArticle({{$article->id}});void(0);" class="close" title="删除">&times;</button>
+                        <a href="{{URL::to('/article').'/'.$article->id}}">
+                            {{$article->title}}<br>
+                            {{$article->created_at}}
+                        </a>
+                    </form>
                 </div>
                 <div>
                     <a href="{{URL::to('/article').'/'.$article->id}}">

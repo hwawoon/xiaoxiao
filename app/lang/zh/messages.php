@@ -11,5 +11,6 @@ return array(
     'signIn_failure' => '用户名或密码错误！',
     "upload_success" => '图片上传成功！',
     'upload_failure' => '图片上传失败，请稍后再试！',
-    'file_no_exist' => '上传图片不存在！'
+    'file_no_exist' => '上传图片不存在！',
+    'deleted_article' => '图片删除成功！'
 );

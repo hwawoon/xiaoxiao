@@ -134,4 +134,11 @@ class ArticleController extends BaseController
         return Response::json(array("state" => 1),200);
     }
 
+    public function deleteArticle()
+    {
+        $id = Input::get('articleid');
+        DB::table('articles')->where('id', $id )->delete();
+
+        return Redirect::to('user/profile')->with('delmessage',Lang::get('messages.deleted_article'));
+    }
 }

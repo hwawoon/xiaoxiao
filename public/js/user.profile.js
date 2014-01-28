@@ -9,24 +9,22 @@ $(function () {
 function delArticle(id)
 {
     noty({
-        text: '亲，确认要删除吗？<br>删除后相关的评论都会被删除',
-        layout: 'topCenter',
+        text: '<span class="dcfm">亲，确认要删除吗？<br>删除后相关的评论都会被删除哦</span>',
+        layout: 'center',
         buttons: [
             {
                 addClass: 'btn btn-primary',
                 text: '确定',
                 onClick: function($noty) {
-                    $noty.close();
-                    noty({text: '你点击了确定按钮', type: 'success'});
-            }
+                    document.getElementById("delform"+id).submit();
+                }
             },
             {
                 addClass: 'btn btn-danger',
                 text: '取消',
                 onClick: function($noty) {
-                $noty.close();
-                noty({text: '你点击了取消按钮', type: 'error'});
-            }
+                    $noty.close();
+                }
             }
         ]
     });

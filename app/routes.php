@@ -120,4 +120,6 @@ Route::group(array('before' => 'auth'), function()
 
     Route::get('msg/getMessage', 'MessageController@getMessage');
 
+    Route::post('article/deleteArticle', 'ArticleController@deleteArticle');
+
 });
