@@ -39,7 +39,7 @@
     </div>
     @endif
     <div class="row">
-        <div class="col-xs-6 col-sm-3" id="sidebar" role="navigation" style="margin-top: 30px;">
+        <div class="col-xs-3" id="sidebar" role="navigation" style="margin-top: 30px;">
             <div class="list-group">
                 <a href="{{URL::to('/user/setting')}}" class="list-group-item active">基本信息</a>
                 <a href="{{URL::to('/user/setting/icon')}}" class="list-group-item ">头像设置</a>

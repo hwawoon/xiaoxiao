@@ -115,11 +115,6 @@ class UserController extends BaseController
         }
     }
 
-    public function uploadIcon()
-    {
-        return "success";
-    }
-
     public function getUserProfile()
     {
         $loginUser = Auth::user();
@@ -127,9 +122,13 @@ class UserController extends BaseController
         $articles = DB::table('articles')->where('userid',$loginUser->id)->get();
 
         return View::make('user.profile')->with("pagetitle","个人主页")
-                                         ->with("articles",$articles);
+                                            ->with("articles",$articles);
     }
 
+    /**
+     * update user basic info
+     * @return mixed
+     */
     public function saveUserBasicInfo()
     {
         $updateUserId = Auth::user()->id;
@@ -149,6 +148,10 @@ class UserController extends BaseController
         }
     }
 
+    /**
+     * upload user temp image
+     * @return mixed
+     */
     public function uploadSourceImage()
     {
         if (Input::hasFile('userSelectIcon'))
@@ -161,7 +164,11 @@ class UserController extends BaseController
 
             if($validator->fails())
             {
-                return Response::json(array("message" => $validator->messages()),400);
+                return Response::json(array(
+                    "state" => 0,
+                    "type" => 'validation',
+                    "message" => $validator->messages()->toJson()
+                ),200);
             }
 
             $imgFile = Input::file('userSelectIcon');
@@ -169,77 +176,119 @@ class UserController extends BaseController
             $extension = $imgFile->getClientOriginalExtension();
             $destinationPath = public_path();
             $filename = Str::random(32) . '.' . $extension;
-            $upload_success = $imgFile->move($destinationPath.'/temp/', $filename);
+
+            $upload_success = Img::resizeImage($imgFile, 300, 280, $destinationPath.'/temp/'.$filename);
 
             if($upload_success)
             {
-                return Response::json(array("uploadimg" => $filename));
+                return Response::json(array(
+                                        "state" => 1,
+                                        "uploadimg" => $filename
+                ));
             }
+            else
+            {
+                return Response::json(array(
+                    "state" => 0,
+                    'type' => 'function',
+                    'message' => Lang::get('messages.file_no_exist')
+                ));
+            }
+        }
+        else
+        {
+            //if file not exist
+            return Response::json(array(
+                "state" => 0,
+                'type' => 'function',
+                'message' => Lang::get('messages.file_no_exist')
+            ));
         }
     }
 
     public function saveUserIcon()
     {
-
         if (Input::get('cropImgPath'))
         {
-            $source_path = "temp/" . Input::get('cropImgPath');
-            $source_info   = getimagesize($source_path);
-            $source_width  = $source_info[0];
-            $source_height = $source_info[1];
-            $source_mime   = $source_info['mime'];
-
-            $x = Input::get('x');
-            $y = Input::get('y');
-            $w = Input::get('w');
-            $h = Input::get('h');
-
-            // 载入原图
-
-            switch ($source_mime)
+            try
             {
-                case 'image/gif':
-                    $source_image = imagecreatefromgif($source_path);
-                    break;
+                //image source path
+                $source_path = "temp/" . Input::get('cropImgPath');
+                $source_info   = getimagesize($source_path);
+                $source_width  = $source_info[0];
+                $source_height = $source_info[1];
+                $source_mime   = $source_info['mime'];
 
-                case 'image/jpeg':
-                    $source_image = imagecreatefromjpeg($source_path);
-                    break;
+                $x = Input::get('x');
+                $y = Input::get('y');
+                $cropped_width = Input::get('w');
+                $cropped_height = Input::get('h');
 
-                case 'image/png':
-                    $source_image = imagecreatefrompng($source_path);
-                    break;
+                // 载入原图
+                switch ($source_mime)
+                {
+                    case 'image/gif':
+                        $source_image = imagecreatefromgif($source_path);
+                        break;
 
-                default:
-                    return false;
-                    break;
+                    case 'image/jpeg':
+                        $source_image = imagecreatefromjpeg($source_path);
+                        break;
+
+                    case 'image/png':
+                        $source_image = imagecreatefrompng($source_path);
+                        break;
+
+                    default:
+                        return false;
+                        break;
+                }
+
+                $target_width = 128;
+                $target_height = 128;
+
+                $thumbImg = imagecreatetruecolor($target_width, $target_height);
+
+                // copy image
+                imagecopyresampled($thumbImg,$source_image,0, 0, $x, $y, $target_width,$target_width,$cropped_width,$cropped_height);
+
+                // save image
+                $result = imagejpeg($thumbImg ,public_path() .'/avatar/' .Input::get('cropImgPath') );
+
+                //save user select path;
+                $updateUserId = Auth::user()->id;
+                $originalPath = Auth::user()->avatar;
+
+                $affectedRows = User::where('id', $updateUserId)
+                    ->update(array(
+                        'avatar' => 'avatar/' .Input::get('cropImgPath')
+                    ));
+
+                //delete user original image
+                if(is_readable($originalPath))
+                {
+                    @unlink($originalPath);
+                }
+
+                imagedestroy($thumbImg);
+                imagedestroy($source_image);
+
+                //delete temp image
+                if(is_readable($source_path))
+                {
+                    @unlink($source_path);
+                }
+
+                return Redirect::to('user/setting/icon')->with('message',Lang::get('messages.upload_avatar_success'));
             }
-
-            $width = 128;
-            $height = 128;
-
-            $thumbImg = imagecreatetruecolor($width, $height);
-            // 复制图片
-            imagecopyresampled($thumbImg, $source_image, 0, 0, 0, 0, $width, $height, $source_width,$source_height);
-
-            // 生成图片
-
-            $result = imagejpeg($thumbImg ,public_path() .'/avatar/' .Input::get('cropImgPath') );
-
-            $updateUserId = Auth::user()->id;
-
-            $affectedRows = User::where('id', $updateUserId)
-                ->update(array(
-                    'avatar' => 'avatar/' .Input::get('cropImgPath')
-                ));
-
-            imagedestroy($thumbImg);
-            imagedestroy($source_image);
-            return Response::json(array("message" => "头像上传成功！"));
+            catch(Exception $e)
+            {
+                return Redirect::to('user/setting/icon')->with('message',Lang::get('messages.avatar_system_error'));
+            }
         }
         else
         {
-            return Response::json(array("message" => "图片不存在！"));
+            return Redirect::to('user/setting/icon')->with('message',Lang::get('messages.file_no_exist'));
         }
     }
 

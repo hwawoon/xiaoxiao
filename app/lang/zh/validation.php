@@ -97,7 +97,8 @@ return array(
         "name" => "尊称",
         "email" => "邮箱",
         "password" => "密码",
-        "uploadImage" => "上传图片"
+        "uploadImage" => "上传图片",
+        "userSelectIcon" => '上传头像'
     )
 
 );

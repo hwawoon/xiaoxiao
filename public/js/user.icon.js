@@ -4,14 +4,22 @@ $(function(){
             beforeSubmit: function(){
                 if($('#userSelectIcon').val() == "")
                 {
-                    alert("请选择上传图片！");
+                    var n = noty({
+                        text        : "请选择上传图片！",
+                        type        : "warning",
+                        dismissQueue: false,
+                        killer: true,
+                        layout      : 'topCenter',
+                        theme       : 'defaultTheme',
+                        timeout: 2000
+                    });
                     return false;
                 }
             },
             dataType:'json',
             success:function(data)
             {
-                if(data.uploadimg != undefined)
+                if(data.state == 1)
                 {
                     if(jcrop_api != null)
                     {
@@ -37,6 +45,29 @@ $(function(){
                             // Store the API in the jcrop_api variable
                             jcrop_api = this;
                         });
+                }
+                else if(data.state == 0)
+                {
+                    var alertmsg = "";
+                    if(data.type == 'validation')
+                    {
+                        var loMessage = JSON.parse(data.message);
+                        alertmsg += loMessage.userSelectIcon.join('<br>');
+                    }
+                    else
+                    {
+                        alertmsg = data.message;
+                    }
+
+                    var n = noty({
+                        text        : alertmsg,
+                        type        : "error",
+                        dismissQueue: false,
+                        killer: true,
+                        layout      : 'topCenter',
+                        theme       : 'defaultTheme',
+                        timeout: 2000
+                    });
                 }
             }
         });
@@ -75,15 +106,6 @@ $(function(){
         }
     }
 
-    $("#avatar_submit").click(function(){
-        $("#saveAvatarForm").ajaxSubmit({
-            dataType:'json',
-            success:function(data)
-            {
-                alert(data.message);
-            }
-        });
-    });
 });
 
 function updateCoords(c)
@@ -96,7 +118,18 @@ function updateCoords(c)
 
 function checkCoords()
 {
-    if (parseInt($('#w').val())) return true;
-    alert('请选择图片上合适的区域');
+    if (parseInt($('#w').val()))
+    {
+        return true;
+    }
+    var n = noty({
+        text        : "请选择图片上合适的区域",
+        type        : "alert",
+        dismissQueue: false,
+        killer: true,
+        layout      : 'topCenter',
+        theme       : 'defaultTheme',
+        timeout: 2000
+    });
     return false;
 }

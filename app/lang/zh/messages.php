@@ -12,5 +12,7 @@ return array(
     "upload_success" => '图片上传成功！',
     'upload_failure' => '图片上传失败，请稍后再试！',
     'file_no_exist' => '上传图片不存在！',
-    'deleted_article' => '图片删除成功！'
+    'deleted_article' => '图片删除成功！',
+    'upload_avatar_success' => '头像修改成功！',
+    'avatar_system_error' => '头像图片上传错误，请反馈给管理员！'
 );

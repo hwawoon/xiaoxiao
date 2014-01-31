@@ -59,7 +59,7 @@ class ArticleController extends BaseController
                 return Response::json(array(
                     "state" => 0,
                     "type" => 'function',
-                    "message" => Lang::get('messages.upload_failure')
+                    "message" => Lang::get('messages.avatar_system_error')
                 ),200);
             }
         }
