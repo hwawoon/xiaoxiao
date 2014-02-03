@@ -96,6 +96,7 @@ Route::group(array('before' => 'auth'), function()
         return View::make('user.setting.icon');
     });
 
+    // forward to user update pwd page
     Route::get('user/setting/security', function()
     {
         return View::make('user.setting.security');
@@ -117,6 +118,9 @@ Route::group(array('before' => 'auth'), function()
     Route::post('user/uploadSourceImage', 'UserController@uploadSourceImage');
 
     Route::post('user/saveUserIcon', 'UserController@saveUserIcon');
+
+    //update user password
+    Route::post('user/updatePassword', 'UserController@updatePassword');
 
     Route::get('msg/getMessage', 'MessageController@getMessage');
 

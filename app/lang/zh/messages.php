@@ -14,5 +14,7 @@ return array(
     'file_no_exist' => '上传图片不存在！',
     'deleted_article' => '图片删除成功！',
     'upload_avatar_success' => '头像修改成功！',
-    'avatar_system_error' => '头像图片上传错误，请反馈给管理员！'
+    'avatar_system_error' => '头像图片上传错误，请反馈给管理员！',
+    'current_password_error' => '当前密码错误！',
+    'update_password_success' => '密码修改成功！'
 );

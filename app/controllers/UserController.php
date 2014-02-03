@@ -292,4 +292,46 @@ class UserController extends BaseController
         }
     }
 
+    public function updatePassword()
+    {
+        $validator = Validator::make(
+            array(
+                'old_password' => \Illuminate\Support\Facades\Input::get('old_password'),
+                'new_password' => \Illuminate\Support\Facades\Input::get('new_password'),
+                'new_password_confirmation' => \Illuminate\Support\Facades\Input::get('new_password_confirmation')
+            ),
+            array(
+                'old_password' => 'required|alpha_num|min:6',
+                'new_password' => 'required|alpha_num|min:6|confirmed',
+                'new_password_confirmation' => 'required|alpha_num|min:6'
+            )
+        );
+
+        if ($validator->fails())
+        {
+            $errors = $validator->messages();
+            if($errors->has())
+            {
+                $message = implode('<br>',$errors->all());
+            }
+            return Redirect::to('user/setting/security')->with('message',$message);
+        }
+        else
+        {
+            $curUser = Auth::user();
+            $currentPassword = $curUser->password;
+            if($currentPassword == Hash::make(Input::get('old_password')))
+            {
+                return Redirect::to('user/setting/security')->with('message', Lang::get('messages.current_password_error'));
+            }
+            else
+            {
+                $curUser->password = Hash::make(Input::get('new_password'));
+
+                $curUser->save();
+
+                return Redirect::to('user/setting/security')->with('message', Lang::get('messages.update_password_success'));
+            }
+        }
+    }
 }

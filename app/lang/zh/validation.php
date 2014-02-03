@@ -98,7 +98,8 @@ return array(
         "email" => "邮箱",
         "password" => "密码",
         "uploadImage" => "上传图片",
-        "userSelectIcon" => '上传头像'
+        "userSelectIcon" => '上传头像',
+        "new_password" => '新密码'
     )
 
 );

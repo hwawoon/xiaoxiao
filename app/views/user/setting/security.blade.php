@@ -24,6 +24,14 @@
     @include('header');
     <!-- Begin page content -->
     <div class="container">
+        @if(Session::get('message'))
+        <div class="row" style="padding: 10px 20px 0px 20px; text-align: center;">
+            <div class="alert alert-success">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                {{Session::get('message')}}
+            </div>
+        </div>
+        @endif
         <div class="row">
             <div class="col-xs-3" id="sidebar" role="navigation" style="margin-top: 30px;">
                 <div class="list-group">
@@ -38,31 +46,28 @@
                     <h3>账号安全</h3>
                 </div>
                 <div>
-                    <form class="form-horizontal" role="form">
+                    <form class="form-horizontal" id="passwordForm" method="post" action="{{action('UserController@updatePassword')}}">
                         <div class="form-group">
-                            <label for="inputEmail3" class="col-sm-2 control-label"></label>
+                            <label for="old_password" class="col-sm-2 control-label">当前密码</label>
                             <div class="col-sm-10">
-                                <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+                                <input type="password" class="form-control" name="old_password" id="old_password" placeholder="当前密码">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputPassword3" class="col-sm-2 control-label">Password</label>
+                            <label for="new_password" class="col-sm-2 control-label">新密码</label>
                             <div class="col-sm-10">
-                                <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                                <input type="password" class="form-control" name="new_password" id="new_password" placeholder="新密码">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="newPasswordConfirm" class="col-sm-2 control-label">确认密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" name="new_password_confirmation" id="new_password_confirmation" placeholder="确认密码">
                             </div>
                         </div>
                         <div class="form-group">
                             <div class="col-sm-offset-2 col-sm-10">
-                                <div class="checkbox">
-                                    <label>
-                                        <input type="checkbox"> Remember me
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <div class="col-sm-offset-2 col-sm-10">
-                                <button type="submit" class="btn btn-default">Sign in</button>
+                                <button type="submit" class="btn btn-danger">保存</button>
                             </div>
                         </div>
                     </form>
@@ -83,5 +88,6 @@
 {{ HTML::script('js/jquery.validate.js') }}
 {{ HTML::script('js/jquery.form.js') }}
 {{ HTML::script('js/header.js') }}
+{{ HTML::script('js/user.security.js') }}
 </body>
 </html>
