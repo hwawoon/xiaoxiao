@@ -21,6 +21,14 @@ body {
     text-align: center;
 }
 
+.header-logo {
+    background: url(../img/logo.png) no-repeat;
+    width: 45px;
+    text-indent: -999px;
+    margin-top: 5px;
+    padding-top: 10px;
+}
+
 #footer {
     width: 350px;
     background-color: #cccccc;

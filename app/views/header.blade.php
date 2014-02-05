@@ -8,8 +8,8 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{URL::to('/')}}">
-                搞毛啊
+            <a class="navbar-brand header-logo" href="{{URL::to('/')}}">
+                搞笑娃
             </a>
         </div>
         <div class="navbar-collapse collapse">
