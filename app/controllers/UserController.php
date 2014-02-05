@@ -103,7 +103,10 @@ class UserController extends BaseController
                 return Redirect::to('user/register')->withErrors($messages)->withInput();
             }
 
-            //TO DO send eamil to set user active
+            //send eamil to set user active
+            Mail::send('user.mail.welcome', array('username'=>Input::get('name')), function($message){
+                $message->to(Input::get('email'), Input::get('name'))->subject('欢迎欢迎，热烈欢迎！');
+            });
 
             Auth::login($user, true);
 

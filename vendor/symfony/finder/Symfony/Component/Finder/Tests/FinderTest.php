@@ -832,7 +832,7 @@ class FinderTest extends Iterator\RealIteratorTestCase
 
         $contains = array(
             'ftp://ftp.mozilla.org'.DIRECTORY_SEPARATOR.'README',
-            'ftp://ftp.mozilla.org'.DIRECTORY_SEPARATOR.'index.html',
+            'ftp://ftp.mozilla.org'.DIRECTORY_SEPARATOR.'index.blade.php',
             'ftp://ftp.mozilla.org'.DIRECTORY_SEPARATOR.'pub',
         );
 

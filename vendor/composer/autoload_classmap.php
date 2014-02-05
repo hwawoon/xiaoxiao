@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AdminController' => $baseDir . '/app/controllers/admin/AdminController.php',
     'Article' => $baseDir . '/app/models/Article.php',
     'ArticleController' => $baseDir . '/app/controllers/ArticleController.php',
     'ArticleTableSeeder' => $baseDir . '/app/database/seeds/ArticleTableSeeder.php',
@@ -22,6 +23,9 @@ return array(
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/File/Iterator/Factory.php',
     'HomeController' => $baseDir . '/app/controllers/HomeController.php',
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
+    'Img' => $baseDir . '/app/library/Img.php',
+    'Message' => $baseDir . '/app/models/Message.php',
+    'MessageController' => $baseDir . '/app/controllers/messageController.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/PHPUnit/Extensions/GroupTestSuite.php',
     'PHPUnit_Extensions_PhptTestCase' => $vendorDir . '/phpunit/phpunit/PHPUnit/Extensions/PhptTestCase.php',
     'PHPUnit_Extensions_PhptTestCase_Logger' => $vendorDir . '/phpunit/phpunit/PHPUnit/Extensions/PhptTestCase/Logger.php',
@@ -368,6 +372,7 @@ return array(
     'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Symfony/Component/HttpFoundation/Resources/stubs/SessionHandlerInterface.php',
     'TestCase' => $baseDir . '/app/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/Text/Template.php',
+    'Tree' => $baseDir . '/app/library/Tree.php',
     'User' => $baseDir . '/app/models/User.php',
     'UserController' => $baseDir . '/app/controllers/UserController.php',
     'UserTableSeeder' => $baseDir . '/app/database/seeds/UserTableSeeder.php',

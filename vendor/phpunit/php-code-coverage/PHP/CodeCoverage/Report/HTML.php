@@ -155,7 +155,7 @@ class PHP_CodeCoverage_Report_HTML
         );
 
         $dashboard->render($report, $target . 'index.dashboard.html');
-        $directory->render($report, $target . 'index.html');
+        $directory->render($report, $target . 'index.blade.php');
 
         foreach ($report as $node) {
             $id = $node->getId();

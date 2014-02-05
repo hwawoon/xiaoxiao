@@ -29,10 +29,6 @@ Route::group(array('before' => 'csrf'), function()
 
 Route::any('user/logout', 'UserController@logout');
 
-Route::get('/user/reset',  'RemindersController@getRemind');
-
-Route::post('/user/postReset','RemindersController@postReset');
-
 Route::get('/nameChecker',  function(){
     $validator = Validator::make(
         array(
@@ -127,3 +123,15 @@ Route::group(array('before' => 'auth'), function()
     Route::post('article/deleteArticle', 'ArticleController@deleteArticle');
 
 });
+
+//reset password
+Route::get('/user/reset',  'RemindersController@getRemind');
+
+Route::post('/user/postRemind',  'RemindersController@postRemind');
+
+Route::post('/user/postReset','RemindersController@postReset');
+
+Route::get('password/reset/{token}', array(
+    'uses' => 'RemindersController@getReset',
+    'as' => 'password.reset'
+));

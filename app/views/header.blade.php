@@ -59,6 +59,9 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{URL::to('/user/profile')}}">个人主页</a></li>
                         <li><a href="{{URL::to('/user/setting')}}">设置</a></li>
+                        @if(Auth::user()->is_admin)
+                        <li><a href="{{URL::to('/admin')}}">进入管理中心</a></li>
+                        @endif
                         <li><div class="divider"></div> </li>
                         <li><a href="{{URL::to('/user/logout')}}" id="alogout">退出</a></li>
                     </ul>
@@ -186,7 +189,7 @@
 </div>
 
 <div class="feedback">
-    <a href="mailto:hwawoon@163.com" class="btn btn-primary" style="border-radius: 0px;padding: 10px;"
+    <a href="mailto:kimhwawoon@gmail.com" class="btn btn-primary" style="border-radius: 0px;padding: 10px;"
        role="button" title="我会认真处理每一个反馈">反<br>馈</a>
 </div>
 <a href="#" title="返回顶部" class="goto-top"></a>

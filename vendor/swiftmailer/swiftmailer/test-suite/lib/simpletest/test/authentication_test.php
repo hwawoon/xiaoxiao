@@ -61,9 +61,9 @@ class TestOfRealm extends UnitTestCase {
                 new SimpleUrl('http://www.here.com/path/hello.html'));
         $realm->stretch(new SimpleUrl('http://www.here.com/path/goodbye.html'));
         $this->assertTrue($realm->isWithin(
-                new SimpleUrl('http://www.here.com/path/index.html')));
+                new SimpleUrl('http://www.here.com/path/index.blade.php')));
         $this->assertFalse($realm->isWithin(
-                new SimpleUrl('http://www.here.com/index.html')));
+                new SimpleUrl('http://www.here.com/index.blade.php')));
     }
     
     function testNewUrlMakesRealmTheCommonPath() {
@@ -72,15 +72,15 @@ class TestOfRealm extends UnitTestCase {
                 new SimpleUrl('http://www.here.com/path/here/hello.html'));
         $realm->stretch(new SimpleUrl('http://www.here.com/path/there/goodbye.html'));
         $this->assertTrue($realm->isWithin(
-                new SimpleUrl('http://www.here.com/path/here/index.html')));
+                new SimpleUrl('http://www.here.com/path/here/index.blade.php')));
         $this->assertTrue($realm->isWithin(
-                new SimpleUrl('http://www.here.com/path/there/index.html')));
+                new SimpleUrl('http://www.here.com/path/there/index.blade.php')));
         $this->assertTrue($realm->isWithin(
-                new SimpleUrl('http://www.here.com/path/index.html')));
+                new SimpleUrl('http://www.here.com/path/index.blade.php')));
         $this->assertFalse($realm->isWithin(
-                new SimpleUrl('http://www.here.com/index.html')));
+                new SimpleUrl('http://www.here.com/index.blade.php')));
         $this->assertFalse($realm->isWithin(
-                new SimpleUrl('http://www.here.com/paths/index.html')));
+                new SimpleUrl('http://www.here.com/paths/index.blade.php')));
         $this->assertFalse($realm->isWithin(
                 new SimpleUrl('http://www.here.com/pathindex.html')));
     }

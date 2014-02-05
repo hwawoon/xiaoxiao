@@ -18,7 +18,7 @@ class TestOfForm extends UnitTestCase {
     
     function testFormAttributes() {
         $tag = new SimpleFormTag(array('method' => 'GET', 'action' => 'here.php', 'id' => '33'));
-        $form = new SimpleForm($tag, $this->page('http://host/a/index.html'));
+        $form = new SimpleForm($tag, $this->page('http://host/a/index.blade.php'));
         $this->assertEqual($form->getMethod(), 'get');
         $this->assertIdentical($form->getId(), '33');
         $this->assertNull($form->getValue(new SimpleByName('a')));
@@ -35,18 +35,18 @@ class TestOfForm extends UnitTestCase {
     
     function testEmptyAction() {
         $tag = new SimpleFormTag(array('method' => 'GET', 'action' => '', 'id' => '33'));
-        $form = new SimpleForm($tag, $this->page('http://host/a/index.html'));
+        $form = new SimpleForm($tag, $this->page('http://host/a/index.blade.php'));
         $this->assertEqual(
                 $form->getAction(),
-                new SimpleUrl('http://host/a/index.html'));
+                new SimpleUrl('http://host/a/index.blade.php'));
     }
     
     function testMissingAction() {
         $tag = new SimpleFormTag(array('method' => 'GET'));
-        $form = new SimpleForm($tag, $this->page('http://host/a/index.html'));
+        $form = new SimpleForm($tag, $this->page('http://host/a/index.blade.php'));
         $this->assertEqual(
                 $form->getAction(),
-                new SimpleUrl('http://host/a/index.html'));
+                new SimpleUrl('http://host/a/index.blade.php'));
     }
     
     function testRootAction() {

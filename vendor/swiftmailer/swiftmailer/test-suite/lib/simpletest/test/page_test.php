@@ -538,7 +538,7 @@ class TestOfPageScraping extends UnitTestCase {
         $raw .= '</html>';
         $response = new MockSimpleHttpResponse();
         $response->setReturnValue('getContent', $raw);
-        $response->setReturnValue('getUrl', new SimpleUrl('http://www.here.com/a/index.html'));
+        $response->setReturnValue('getUrl', new SimpleUrl('http://www.here.com/a/index.blade.php'));
         $page = $this->parse($response);
         $this->assertIdentical(
                 $page->getUrls(),
