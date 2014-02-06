@@ -11,7 +11,7 @@
     <!-- Bootstrap core CSS -->
     {{ HTML::style('packages/bootstrap/css/bootstrap-1390898781649.css') }}
     <!-- Custom styles for this template -->
-    {{ HTML::style('css/header-1391627402231.css') }}
+    {{ HTML::style('css/header-1391708844091.css') }}
     {{ HTML::style('packages/jcrop/jquery.Jcrop-1390924906017.css') }}
     {{ HTML::style('css/user.icon-1390898781616.css') }}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -43,6 +43,7 @@
             <a href="{{URL::to('/user/setting')}}" class="list-group-item">基本信息</a>
             <a href="{{URL::to('/user/setting/icon')}}" class="list-group-item active">头像设置</a>
             <a href="{{URL::to('/user/setting/security')}}" class="list-group-item">账号安全</a>
+            <a href="{{URL::to('/user/setting/message')}}" class="list-group-item">消息中心</a>
         </div>
     </div>
     <!--/span-->

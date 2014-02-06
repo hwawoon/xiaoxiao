@@ -6,11 +6,11 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
-    <title>{{$pagetitle}}</title>
+    <title>搞笑娃 - 为生活添欢乐</title>
     <!-- Bootstrap core CSS -->
     {{ HTML::style('packages/bootstrap/css/bootstrap-1390898781649.css') }}
     <!-- Custom styles for this template -->
-    {{ HTML::style('css/header-1391627402231.css') }}
+    {{ HTML::style('css/header-1391708844091.css') }}
     {{ HTML::style('css/home-1390898781615.css') }}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

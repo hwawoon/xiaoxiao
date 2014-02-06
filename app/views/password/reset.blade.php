@@ -10,7 +10,7 @@
     <!-- Bootstrap core CSS -->
     {{ HTML::style('packages/bootstrap/css/bootstrap-1390898781649.css') }}
     <!-- Custom styles for this template -->
-    {{ HTML::style('css/header-1391627402231.css') }}
+    {{ HTML::style('css/header-1391708844091.css') }}
     {{ HTML::style('css/password.reset-1391625653815.css') }}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

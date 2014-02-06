@@ -18,6 +18,11 @@ Route::get('user/register', function()
     return View::make('register/register');
 });
 
+Route::get('/aboutMe', function()
+{
+    return View::make('about');
+});
+
 Route::get('/latest',  'HomeController@showLatest');
 
 Route::group(array('before' => 'csrf'), function()
@@ -97,6 +102,8 @@ Route::group(array('before' => 'auth'), function()
     {
         return View::make('user.setting.security');
     });
+
+    Route::get('user/setting/message','MessageController@getAllMessage');
 
     Route::post('article/uploadImage',  'ArticleController@uploadImageArticle');
     Route::post('article/forwardImage',  'ArticleController@forwardImageArticle');

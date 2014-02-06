@@ -34,8 +34,7 @@ class HomeController extends BaseController {
 
         $rarticles = $this->getRecommendArticle();
 
-        return View::make('/home')->with('pagetitle',"热门")
-                                   ->with('getmore',"article/getMoreHot")
+        return View::make('/home')->with('getmore',"article/getMoreHot")
                                    ->with('articles',$articles)
                                    ->with('articlenum',$getnum)
                                    ->with('rarticles',$rarticles);
@@ -63,11 +62,10 @@ class HomeController extends BaseController {
 
         $rarticles = $this->getRecommendArticle();
 
-        return View::make('/home')->with('pagetitle',"新鲜")
-                                   ->with('getmore',"article/getMoreLatest")
-                                   ->with('articles',$articles)
-                                   ->with('articlenum',$getnum)
-                                   ->with('rarticles',$rarticles);
+        return View::make('/home')->with('getmore',"article/getMoreLatest")
+                                    ->with('articles',$articles)
+                                    ->with('articlenum',$getnum)
+                                    ->with('rarticles',$rarticles);
     }
 
     public function getMoreLatestArticle()
@@ -101,9 +99,9 @@ class HomeController extends BaseController {
 
 
         return View::make('/search')->with('pagetitle',"搜索 ".$searchTerm )
-                                    ->with('getmore',"")
-                                    ->with('articles',$articles)
-                                    ->with('articlenum',0)
-                                    ->with('rarticles',$rarticles);
+                                      ->with('getmore',"")
+                                      ->with('articles',$articles)
+                                      ->with('articlenum',0)
+                                      ->with('rarticles',$rarticles);
     }
 }

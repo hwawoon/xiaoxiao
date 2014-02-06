@@ -1,5 +1,5 @@
 <div id="footer">
     <div class="container">
-        Designed by kimhwawoon @2014
+        搞笑娃@为生活添欢乐！<a href="{{URL::to('/aboutMe')}}">关于我</a>
     </div>
 </div>
