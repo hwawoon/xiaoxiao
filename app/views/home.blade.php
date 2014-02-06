@@ -8,10 +8,10 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
     <title>{{$pagetitle}}</title>
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('packages/bootstrap/css/bootstrap.css') }}
+    {{ HTML::style('packages/bootstrap/css/bootstrap-1390898781649.css') }}
     <!-- Custom styles for this template -->
-    {{ HTML::style('css/header.css') }}
-    {{ HTML::style('css/home.css') }}
+    {{ HTML::style('css/header-1391627402231.css') }}
+    {{ HTML::style('css/home-1390898781615.css') }}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -164,12 +164,12 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 {{ HTML::script('js/jquery.js') }}
-{{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
+{{ HTML::script('packages/bootstrap/js/bootstrap-1390898781657.js') }}
 {{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
-{{ HTML::script('js/jquery.validate.js') }}
-{{ HTML::script('js/jquery.form.js') }}
-{{ HTML::script('js/header.js') }}
-{{ HTML::script('js/home.js') }}
-{{ HTML::script('js/ishare.js') }}
+{{ HTML::script('js/jquery.validate-1390898781640.js') }}
+{{ HTML::script('js/jquery.form-1390898781635.js') }}
+{{ HTML::script('js/header-1390898781631.js') }}
+{{ HTML::script('js/home-1390898781632.js') }}
+{{ HTML::script('js/ishare-1390898781634.js') }}
 </body>
 </html>
