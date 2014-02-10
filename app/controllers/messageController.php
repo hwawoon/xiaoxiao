@@ -31,9 +31,9 @@ class MessageController extends BaseController
         $messages = db::table('messages')->join('articles', 'articleid', '=', 'articles.id')
             ->where('messages.to_userid',$userid)
             ->orderBy('messages.created_at', 'desc')
-            ->select('messages.from_username','messages.articleid','articles.title','messages.from_username','messages.created_at')
+            ->select('messages.from_username','messages.articleid','articles.title','messages.from_username','messages.created_at','messages.isnew')
             ->groupBy('messages.articleid','messages.from_userid')
-            ->get();
+            ->paginate(10);
 
         return View::make('user.setting.message')->with('messages',$messages);
     }

@@ -9,7 +9,7 @@
 class Article extends Eloquent
 {
     public static $upload_rules = array(
-        'title'=>'required',
+        'title'=>'required|max:200',
         'uploadImage' => 'required|mimes:jpeg,gif,png|max:3000'
     );
 

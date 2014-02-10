@@ -7,7 +7,9 @@
     ga('create', 'UA-47830296-1', 'gaoxiaowa.com');
     ga('send', 'pageview');
 </script>
-
+<script type="text/javascript">
+    var ROOT_PATH = "{{URL::to('/')}}";
+</script>
 <!-- Fixed navbar -->
 <div class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container">
@@ -24,9 +26,16 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
-                <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
-
+                @if(isset($pageinfo) && $pageinfo == 'latest')
+                    <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
+                    <li class="sitenav active"><a href="{{URL::to('/latest')}}">新鲜</a></li>
+                @elseif(isset($pageinfo) && $pageinfo == 'home')
+                    <li class="sitenav active"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
+                    <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
+                @else
+                    <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
+                    <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
+                @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -58,7 +67,7 @@
                             {{HTML::image('img/loading.gif')}}
                         </li>
                         <li class="divider"></li>
-                        <li style="text-align: center;"><a href="#">进入消息中心</a></li>
+                        <li style="text-align: center;"><a href="{{URL::to('/user/setting/message')}}">查看更多消息</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
@@ -69,9 +78,6 @@
                     <ul class="dropdown-menu">
                         <li><a href="{{URL::to('/user/profile')}}">个人主页</a></li>
                         <li><a href="{{URL::to('/user/setting')}}">设置</a></li>
-                        @if(Auth::user()->is_admin)
-                        <li><a href="{{URL::to('/admin')}}">进入管理中心</a></li>
-                        @endif
                         <li><div class="divider"></div> </li>
                         <li><a href="{{URL::to('/user/logout')}}" id="alogout">退出</a></li>
                     </ul>
@@ -174,7 +180,7 @@
 <div class="modal fade" id="forwardModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{URL::to('/article/forwardImage')}}" method="post">
+            <form id="forwardImageForm" action="{{URL::to('/article/forwardImage')}}" method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h3 class="modal-title">分享搞笑图片</h3>
@@ -183,14 +189,14 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="forwardUrl">地址</label>
-                        <input type="text" class="form-control" id="forwardUrl" placeholder="http://">
+                        <input type="text" class="form-control" name="forwardUrl" id="forwardUrl" placeholder="http://">
                     </div>
                     <div class="form-group">
                         <label>标题</label>
                         <textarea class="form-control" rows="2" name="title" placeholder="标题..."></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-success">上传</button>
+                        <button type="button" id="forwardImageBtn" class="btn btn-success">上传</button>
                     </div>
                 </div>
             </form>
@@ -199,7 +205,6 @@
 </div>
 
 <div class="feedback">
-    <a href="mailto:kimhwawoon@gmail.com" class="btn btn-primary" style="border-radius: 0px;padding: 10px;"
-       role="button" title="我会认真处理每一个反馈">反<br>馈</a>
+    <a href="mailto:kimhwawoon@gmail.com" class="btn btn-primary" style="border-radius: 0px;padding: 10px;" role="button" title="我会认真处理每一个反馈">反<br>馈</a>
 </div>
 <a href="#" title="返回顶部" class="goto-top"></a>

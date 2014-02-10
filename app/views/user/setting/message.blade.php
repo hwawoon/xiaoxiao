@@ -9,9 +9,9 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
     <title>消息中心</title>
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('packages/bootstrap/css/bootstrap-1390898781649.css') }}
+    {{ HTML::style('packages/bootstrap/css/bootstrap-1391792299980.css') }}
     <!-- Custom styles for this template -->
-    {{ HTML::style('css/header-1391708844091.css') }}
+    {{ HTML::style('css/header-1391790726872.css') }}
 
     {{ HTML::style('css/user.message.css') }}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -41,16 +41,22 @@
                     <h3>消息中心</h3>
                 </div>
                 <div>
+                    @if(count($messages) == 0)
+                        暂时没有任何消息！
+                    @endif
                     @foreach($messages as $message)
-                        <div>
-                            {{$message->from_username}} 回复了 <a href="{{URL::to('/')}}/article/{{$message->articleid}}">
+                        <div style="padding: 10px 5px;">
+<!--                            @if($message->isnew)-->
+<!--                                [新]-->
+<!--                            @endif-->
+                            {{date('Y年m月d日',strtotime($message->created_at))}}
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            {{$message->from_username}} 在 <a href="{{URL::to('/')}}/article/{{$message->articleid}}">
                                 {{$message->title}}
-                            </a>
-                        </div>
-                        <div>
-
+                            </a>回复了你
                         </div>
                     @endforeach
+                    {{ $messages->links() }}
                 </div>
             </div>
             <!--/span-->
@@ -67,6 +73,6 @@
 {{ HTML::script('packages/bootstrap/js/bootstrap-1390898781657.js') }}
 {{ HTML::script('js/jquery.validate-1390898781640.js') }}
 {{ HTML::script('js/jquery.form-1390898781635.js') }}
-{{ HTML::script('js/header-1390898781631.js') }}
+{{ HTML::script('js/header-1391790244642.js') }}
 </body>
 </html>

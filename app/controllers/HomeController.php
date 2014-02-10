@@ -34,7 +34,8 @@ class HomeController extends BaseController {
 
         $rarticles = $this->getRecommendArticle();
 
-        return View::make('/home')->with('getmore',"article/getMoreHot")
+        return View::make('/home')->with('pageinfo','home')
+                                   ->with('getmore',"article/getMoreHot")
                                    ->with('articles',$articles)
                                    ->with('articlenum',$getnum)
                                    ->with('rarticles',$rarticles);
@@ -55,14 +56,15 @@ class HomeController extends BaseController {
      */
     public function showLatest()
     {
-        $getnum = 5;
+        $getnum = 10;
 
         $articles = DB::table('articles')->orderBy('created_at', 'desc')
             ->skip(0)->take($getnum)->get();
 
         $rarticles = $this->getRecommendArticle();
 
-        return View::make('/home')->with('getmore',"article/getMoreLatest")
+        return View::make('/home')->with('pageinfo','latest')
+                                    ->with('getmore',"article/getMoreLatest")
                                     ->with('articles',$articles)
                                     ->with('articlenum',$getnum)
                                     ->with('rarticles',$rarticles);

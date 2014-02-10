@@ -53,7 +53,7 @@ class ArticleController extends BaseController
                     "state" => 1,
                     "url" => $url
                 ),200);
-        }
+            }
             else
             {
                 return Response::json(array(
@@ -69,6 +69,82 @@ class ArticleController extends BaseController
                 "state" => 0,
                 "type" => 'function',
                 "message" => Lang::get('messages.file_no_exist')
+            ),200);
+        }
+    }
+
+    //upload other site image
+    public function forwardImageArticle()
+    {
+        $inputValues = array(
+            'forwardUrl' => Input::get('forwardUrl'),
+            'title' => Input::get('title')
+        );
+
+        $validator = Validator::make(Input::all(), array(
+            'forwardUrl' => 'required|url',
+            'title' => 'required|max:200'
+        ));
+
+        if($validator->fails())
+        {
+            return Response::json(array(
+                "state" => 0,
+                "type" => 'validation',
+                "message" => $validator->messages()->toJson()
+            ),200);
+        }
+
+        //validate url suffix
+        $urlSuffix = strtoupper(substr(strrchr($inputValues['forwardUrl'], '.'), 1));
+        if($urlSuffix == 'JPG' || $urlSuffix == 'GIF' || $urlSuffix == 'PNG')
+        {
+            $data = file_get_contents($inputValues['forwardUrl']);
+
+            // New file
+            $destinationPath = public_path() . '/upload/';
+            $filename = Str::random(32) . '.' . $urlSuffix;
+            // Write the contents back to a new file
+            $putSize = file_put_contents($destinationPath.$filename, $data);
+
+            //裁剪图片
+            $thumbnailResult = Img::imagecropper($destinationPath.$filename,300,120,public_path().'/thumbnail/'.$filename);
+
+            if( $putSize && $thumbnailResult )
+            {
+                $article = new Article();
+
+                $article->title = $inputValues['title'];
+                $article->savepath = 'upload/' . $filename;
+                $article->thumbnailpath = 'thumbnail/' . $filename;
+                $article->userid = Auth::user()->getId();
+
+                $article->save();
+
+                $insertedId = $article->id;
+
+                $url = route('getArticle', [$insertedId]);
+
+                return Response::json(array(
+                    "state" => 1,
+                    "url" => $url
+                ),200);
+            }
+            else
+            {
+                return Response::json(array(
+                    "state" => 0,
+                    "type" => 'function',
+                    "message" => Lang::get('messages.avatar_system_error')
+                ),200);
+            }
+        }
+        else
+        {
+            return Response::json(array(
+                "state" => 0,
+                "type" => 'function',
+                "message" => Lang::get('messages.uplaod_format_error')
             ),200);
         }
     }
@@ -97,7 +173,7 @@ class ArticleController extends BaseController
                             ->where('comments.articleid',$article->id)
                             ->orderBy('comments.id', 'desc')
                             ->select('comments.id','comments.haschild','comments.content','users.name','users.avatar','comments.created_at')
-                            ->get();
+                            ->paginate(10);
 
         return View::make('/article/article')->with('article',$article)
                                               ->with('comments',$loAllComments)

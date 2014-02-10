@@ -16,5 +16,6 @@ return array(
     'upload_avatar_success' => '头像修改成功！',
     'avatar_system_error' => '头像图片上传错误，请反馈给管理员！',
     'current_password_error' => '当前密码错误！',
-    'update_password_success' => '密码修改成功！'
+    'update_password_success' => '密码修改成功！',
+    'uplaod_format_error' => '图片格式不正确'
 );

@@ -26,7 +26,7 @@ return array(
 	|
 	*/
 
-	'url' => 'http://localhost/xiaoxiao',
+	'url' => 'http://www.gaoxiaowa.com',
 
 	/*
 	|--------------------------------------------------------------------------

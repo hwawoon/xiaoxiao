@@ -21,6 +21,10 @@ body {
     text-align: center;
 }
 
+.navbar-header {
+    padding-left: 15px;
+}
+
 .header-logo {
     background: url(../img/logo.png) no-repeat;
     width: 45px;
@@ -215,12 +219,11 @@ div label.error {
 }
 
 #message_box .msg_name {
-    padding: 0px 10px 0px 0px;
     color: #2C47B1;
 }
 
 #message_box .msg_title {
-    padding: 0px 0px 0px 10px;
+    color: #003399;
     width: 450px;
     white-space: pre-wrap;
 }

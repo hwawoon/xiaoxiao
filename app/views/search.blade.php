@@ -8,9 +8,9 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
     <title>{{$pagetitle}}</title>
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('packages/bootstrap/css/bootstrap-1390898781649.css') }}
+    {{ HTML::style('packages/bootstrap/css/bootstrap-1391792299980.css') }}
     <!-- Custom styles for this template -->
-    {{ HTML::style('css/header-1391708844091.css') }}
+    {{ HTML::style('css/header-1391790726872.css') }}
     {{ HTML::style('css/home-1390898781615.css') }}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -19,7 +19,6 @@
     <![endif]-->
 </head>
 <script type="text/javascript">
-    var ROOT_PATH = "{{URL::to('/')}}";
     var XIAO =
     {
         "loadingArticle" : 0,
@@ -168,7 +167,7 @@
 {{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
 {{ HTML::script('js/jquery.validate-1390898781640.js') }}
 {{ HTML::script('js/jquery.form-1390898781635.js') }}
-{{ HTML::script('js/header-1390898781631.js') }}
+{{ HTML::script('js/header-1391790244642.js') }}
 {{ HTML::script('js/home-1390898781632.js') }}
 {{ HTML::script('js/ishare-1390898781634.js') }}
 </body>
