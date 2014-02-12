@@ -12,7 +12,7 @@
     {{ HTML::style('packages/bootstrap/css/bootstrap-1391792299980.css') }}
     <!-- Custom styles for this template -->
     {{ HTML::style('css/header-1391790726872.css') }}
-    {{ HTML::style('css/user.register-1391621541843.css') }}
+    {{ HTML::style('css/user.register.css') }}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -23,57 +23,30 @@
 @include('header');
 <!-- Begin page content -->
 <div class="container register">
-    <div class="">
-        <h1>注&nbsp;&nbsp;册</h1>
+    @if($errors->has())
+    @foreach ($errors->all() as $error)
+    <div class="form-group" style="margin-top: 0px;">
+        <div class="alert alert-danger" style="text-align: center; padding: 10px 10px;">
+            <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+            {{ $error }}
+        </div>
     </div>
+    @endforeach
+    @endif
     <div class="row">
-        <form class="form-horizontal" role="form" id="registerform" action="{{URL::to('/user/doRegister')}}" method="post">
-            @if($errors->has())
-                @foreach ($errors->all() as $error)
-                <div class="form-group" style="margin-top: 0px;">
-                    <div class="alert alert-danger" style="text-align: center; padding: 10px 10px;">
-                        <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
-                            {{ $error }}
-                    </div>
-                </div>
-                @endforeach
-            @endif
+        <form role="form" id="registerform" action="{{URL::to('/user/doRegister')}}" method="post">
             <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
-            <div class="form-group">
-                <label for="name" class="col-sm-2 control-label">尊称</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="name" name="name" placeholder="名字">
-                    <span class="help-block">建议使用您常用的昵称注册，注册后不允许修改</span>
-                </div>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" id="name" name="name" placeholder="名字">
             </div>
-            <div class="form-group">
-                <label for="email" class="col-sm-2 control-label">邮箱</label>
-                <div class="col-sm-10">
-                    <input type="email" class="form-control" id="email" name="email" placeholder="邮箱">
-                    <span class="help-block">建议使用您常用的邮箱注册</span>
-                </div>
+            <div class="col-xs-4">
+                <input type="email" class="form-control" id="email" name="email" placeholder="邮箱">
             </div>
-            <div class="form-group">
-                <label for="password" class="col-sm-2 control-label">密码</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="password" name="password" placeholder="密码">
-                    <span class="help-block">密码不能小于6个字符</span>
-                </div>
+            <div class="col-xs-3">
+                <input type="text" class="form-control" id="password" name="password" placeholder="密码">
             </div>
-            <div class="form-group">
-                <label for="password_confirmation" class="col-sm-2 control-label">确认密码</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="password_confirmation" name="password_confirmation" placeholder="确认密码">
-                </div>
-            </div>
-            <div class="form-group" style="">
-                <label for="" class="col-sm-2 control-label"></label>
-                <div class="col-sm-10">
-                    点击注册即表明你同意我们的<a href="#">服务条款</a>且你已阅读过我们的<a href="#">数据使用政策</a>，包括我们的<a href="#">Cookie使用</a>。
-                </div>
-            </div>
-            <div class="form-group submitDiv">
-                    <button type="submit" >注册</button>
+            <div class="col-xs-1">
+                <button class="btn btn-primary" type="submit" >注册</button>
             </div>
         </form>
     </div>
@@ -87,6 +60,6 @@
 {{ HTML::script('js/jquery.validate-1390898781640.js') }}
 {{ HTML::script('js/jquery.form-1390898781635.js') }}
 {{ HTML::script('js/header-1391790244642.js') }}
-{{ HTML::script('js/user.register-1390898781641.js') }}
+{{ HTML::script('js/user.register.js') }}
 </body>
 </html>

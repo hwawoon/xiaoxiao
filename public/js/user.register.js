@@ -30,13 +30,10 @@ $(function () {
                 }
             },
             password: {
-                required: true,
-                minlength: 6
+                required: true
             },
             password_confirmation: {
-                required: true,
-                minlength: 6,
-                equalTo: "#password"
+                required: true
             }
         },
         messages: {
@@ -50,13 +47,7 @@ $(function () {
                 remote: '亲，该邮箱已经被占了！'
             },
             password: {
-                required: "请输入密码",
-                minlength: jQuery.format("密码不能小于{0}个字 符")
-            },
-            password_confirmation: {
-                required: "请输入确认密码",
-                minlength: "确认密码不能小于6个字符",
-                equalTo: "两次输入密码不一致"
+                required: "请输入密码"
             }
         }
     });
