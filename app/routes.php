@@ -13,9 +13,9 @@
 
 Route::get('/',  'HomeController@showHome');
 
-Route::get('user/register', function()
+Route::get('/register', function()
 {
-    return View::make('register/register');
+    return View::make('register');
 });
 
 Route::get('/aboutMe', function()
@@ -29,7 +29,7 @@ Route::group(array('before' => 'csrf'), function()
 {
     Route::post('user/doLogin', 'UserController@doLogin');
 
-    Route::post('user/doRegister', 'UserController@doRegister');
+    Route::post('/register', 'UserController@doRegister');
 });
 
 Route::any('user/logout', 'UserController@logout');

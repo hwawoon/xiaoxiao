@@ -55,7 +55,7 @@ return array(
 	"not_in"           => "The selected :attribute is invalid.",
 	"numeric"          => "The :attribute must be a number.",
 	"regex"            => "The :attribute format is invalid.",
-	"required"         => ":attribute是必填项！",
+	"required"         => "请填写:attribute",
 	"required_if"      => "The :attribute field is required when :other is :value.",
 	"required_with"    => "The :attribute field is required when :values is present.",
 	"required_without" => "The :attribute field is required when :values is not present.",
@@ -94,7 +94,7 @@ return array(
 	*/
 
 	'attributes' => array(
-        "name" => "尊称",
+        "name" => "昵称",
         "email" => "邮箱",
         "password" => "密码",
         "uploadImage" => "上传图片",

@@ -8,7 +8,6 @@
 
 class UserController extends BaseController
 {
-
     /**
      * user sign in
      * do not send error message
@@ -79,42 +78,55 @@ class UserController extends BaseController
         $postValues = array(
             "name" => Input::get("name"),
             "email" => Input::get("email"),
-            "password" => Input::get("password"),
-            "password_confirmation" => Input::get("password_confirmation")
+            "password" => Input::get("password")
         );
 
-        $validator = Validator::make($postValues, User::$reg_rules);
+        $reg_rules = array(
+            'name'=>'required|unique:users',
+            'email'=>'required|email|unique:users',
+            'password'=>'required|alpha_num'
+        );
+
+        //$messages = $validator->messages();
+        $validator = Validator::make($postValues, $reg_rules);
 
         if ($validator->passes())
         {
+            //get register user ip
             $registerIp = Request::getClientIp();
 
             $user = User::create(array(
                 'name' => $postValues['name'],
                 'email' => $postValues['email'],
                 'password' => Hash::make($postValues['password']),
-                'created_ip' => ip2long($registerIp)
+                'created_ip' => ip2long($registerIp),
+                'last_login' => time(),
+                'last_ip' => ip2long($registerIp)
             ));
 
             if(empty($user))
             {
                 $messages = $validator->errors();
                 $messages->add('reg_message', Lang::get('messages.reg_failure'));
-                return Redirect::to('user/register')->withErrors($messages)->withInput();
+                return Redirect::to('/register')->withErrors($messages)->withInput();
             }
 
-            //send eamil to set user active
-            Mail::send('user.mail.welcome', array('username'=>Input::get('name')), function($message){
-                $message->to(Input::get('email'), Input::get('name'))->subject('欢迎欢迎，热烈欢迎！');
-            });
+            //register not send email
+//            Queue::push('SendEmail@register', array('user'=>$user));
 
+//            Mail::queue('user.mail.welcome', array('username'=>Input::get("name")), function($message)
+//            {
+//                $message->to(Input::get("email"), Input::get("name"))->subject('欢迎欢迎，热烈欢迎！');
+//            });
+
+            //login register user
             Auth::login($user, true);
 
             return Redirect::to('/');
         }
         else
         {
-            return Redirect::to('user/register')->withErrors($validator);
+            return Redirect::to('/register')->withErrors($validator);
         }
     }
 

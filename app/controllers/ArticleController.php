@@ -172,7 +172,7 @@ class ArticleController extends BaseController
                             ->join('users', 'users.id', '=', 'comments.userid')
                             ->where('comments.articleid',$article->id)
                             ->orderBy('comments.id', 'desc')
-                            ->select('comments.id','comments.haschild','comments.content','users.name','users.avatar','comments.created_at')
+                            ->select('comments.id','comments.content','users.name','users.avatar','comments.created_at')
                             ->paginate(10);
 
         return View::make('/article/article')->with('article',$article)

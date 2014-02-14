@@ -4,13 +4,6 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class User extends Eloquent implements UserInterface, RemindableInterface {
-    public static $reg_rules = array(
-        'name'=>'required|unique:users',
-        'email'=>'required|email|unique:users',
-        'password'=>'required|alpha_num|min:6|confirmed',
-        'password_confirmation'=>'required|alpha_num|min:6'
-    );
-
 	/**
 	 * The database table used by the model.
 	 *
@@ -18,7 +11,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	protected $table = 'users';
 
-    protected $fillable = array('name', 'email', 'password');
+    protected $fillable = array(
+        'name',
+        'email',
+        'password',
+        'created_ip',
+        'last_login',
+        'last_ip'
+    );
 
 	/**
 	 * The attributes excluded from the model's JSON form.

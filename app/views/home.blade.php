@@ -1,34 +1,12 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
-    <title>搞笑娃 - 为生活添欢乐</title>
-    <!-- Bootstrap core CSS -->
-    {{ HTML::style('packages/bootstrap/css/bootstrap-1391792299980.css') }}
-    <!-- Custom styles for this template -->
-    {{ HTML::style('css/header-1391790726872.css') }}
-    {{ HTML::style('css/home-1390898781615.css') }}
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-</head>
-<script type="text/javascript">
-    var XIAO =
-    {
-        "loadingArticle" : 0,
-        "getMoreUrl" : "{{$getmore}}",
-        "loadedCount" : "{{$articlenum}}"
-    };
-</script>
-<body>
-@include('header')
+@extends('layouts.main')
 
+@section('title', '搞笑娃 - 为生活添欢乐')
+
+@section('styles')
+{{ HTML::style('css/home-1390898781615.css') }}
+@stop
+
+@section('content')
 <textarea id="section_template" style="display: none;">
     <section class="artsection">
         <div class="col-xs-10">
@@ -157,18 +135,17 @@
     </div>
 </div> <!-- /container -->
 <div class="containerbottom"></div>
+@stop
 
-@include('footer')
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-{{ HTML::script('js/jquery.js') }}
-{{ HTML::script('packages/bootstrap/js/bootstrap-1390898781657.js') }}
-{{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
-{{ HTML::script('js/jquery.validate-1390898781640.js') }}
-{{ HTML::script('js/jquery.form-1390898781635.js') }}
-{{ HTML::script('js/header.js') }}
+@section('scripts')
+<script type="text/javascript">
+    var XIAO =
+    {
+        "loadingArticle" : 0,
+        "getMoreUrl" : "{{$getmore}}",
+        "loadedCount" : "{{$articlenum}}"
+    };
+</script>
 {{ HTML::script('js/home-1390898781632.js') }}
 {{ HTML::script('js/ishare-1390898781634.js') }}
-</body>
-</html>
+@stop

@@ -84,7 +84,7 @@
                 </li>
                 @else
                 <li><a href="#login" id="login" class="" data-toggle="modal" data-target="#loginModal">登录</a></li>
-                <li><a href="{{URL::to('/user/register')}}" id="register">注册</a></li>
+                <li><a href="{{URL::to('/register')}}" id="register">注册</a></li>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right searchbar">

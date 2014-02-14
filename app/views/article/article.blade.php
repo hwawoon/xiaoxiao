@@ -11,7 +11,7 @@
     {{ HTML::style('packages/bootstrap/css/bootstrap-1391792299980.css') }}
     <!-- Custom styles for this template -->
     {{ HTML::style('css/header-1391790726872.css') }}
-    {{ HTML::style('css/article-1390898781613.css') }}
+    {{ HTML::style('css/article.css') }}
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -114,15 +114,19 @@
                     </div>
                     <div class="userreply">
                         <div style="padding: 0px 0px 1px 0px;">
-                           <span style="color: #269abc;">{{$cmt->name}} 发表于 {{$cmt->created_at}}</span>
+                           <span style="color: #269abc;">{{$cmt->name}}</span>
                         </div>
                         <div>
                             {{$cmt->content}}
                         </div>
+                        <div class="cmtreplybar">
+                            {{$cmt->created_at}}
+                            <a id="rpy">回复</a>
+                            <a id="cmtup">顶</a><span id="cmtupcount"></span>
+                        </div>
                     </div>
                 </div>
                 @endforeach
-
                 {{$comments->links()}}
             </div>
         </section>
@@ -180,7 +184,7 @@
 {{ HTML::script('js/jquery.validate-1390898781640.js') }}
 {{ HTML::script('js/jquery.form-1390898781635.js') }}
 {{ HTML::script('js/header-1391790244642.js') }}
-{{ HTML::script('js/article/article-1390898781630.js') }}
+{{ HTML::script('js/article/article.js') }}
 {{ HTML::script('js/ishare-1390898781634.js') }}
 </body>
 </html>
