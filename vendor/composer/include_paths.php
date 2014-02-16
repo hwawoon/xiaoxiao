@@ -12,7 +12,7 @@ return array(
     $vendorDir . '/phpunit/php-file-iterator',
     $vendorDir . '/phpunit/php-text-template',
     $vendorDir . '/phpunit/phpunit-mock-objects',
-    $vendorDir . '/phpunit/php-code-coverage',
     $vendorDir . '/phpunit/phpunit',
     $vendorDir . '/symfony/yaml',
+    $vendorDir . '/phpunit/php-code-coverage',
 );

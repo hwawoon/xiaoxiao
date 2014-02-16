@@ -8,7 +8,7 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
     <title>@yield('title')</title>
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('packages/bootstrap/css/bootstrap-1391792299980.css') }}
+    {{ HTML::style('packages/bootstrap/css/bootstrap.css') }}
     <!-- Custom styles for this template -->
     {{ HTML::style('css/app.css') }}
     @yield('styles')
@@ -45,14 +45,14 @@
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
                 @if(isset($pageinfo) && $pageinfo == 'latest')
-                    <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
-                    <li class="sitenav active"><a href="{{URL::to('/latest')}}">新鲜</a></li>
+                <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
+                <li class="sitenav active"><a href="{{URL::to('/latest')}}">新鲜</a></li>
                 @elseif(isset($pageinfo) && $pageinfo == 'home')
-                    <li class="sitenav active"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
-                    <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
+                <li class="sitenav active"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
+                <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
                 @else
-                    <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
-                    <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
+                <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
+                <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
                 @endif
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -101,7 +101,34 @@
                     </ul>
                 </li>
                 @else
-                <li><a href="#login" id="login" class="" data-toggle="modal" data-target="#loginModal">登录</a></li>
+                <li class="loginbar">
+                    <a href="#" data-toggle="dropdown">登录<span class="caret"></span></a>
+                    <div id="loginPanel" class="dropdown-menu">
+                        <form class="form-horizontal" role="form" id="loginForm" method="post" action="{{URL::to('/user/doLogin')}}">
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                                <input type="text" id="inputLoginEmail" name="inputLoginEmail" class="form-control inputlog" placeholder="邮箱">
+                            </div>
+                            <div class="input-group">
+                                <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                <input type="password" class="form-control inputlog" id="inputLoginPassword" name="inputLoginPassword" placeholder="密码">
+                            </div>
+                            <div class="input-group loginrmb">
+                                <div style="float: left;">
+                                    <input type="checkbox" name="rememberme" id="rememberme" value="1" checked />
+                                    <label for="rememberme">下次自动登录</label>
+                                </div>
+                                <div style="float: right !important;">
+                                    <a href="{{URL::to('/user/reset')}}">忘记密码</a>
+                                </div>
+                            </div>
+                            <div class="input-group">
+                                <button type="submit" class="btn btn-primary" id="btnLogin">登录</button>
+                            </div>
+                            <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
+                        </form>
+                    </div>
+                </li>
                 <li><a href="{{URL::to('/register')}}" id="register">注册</a></li>
                 @endif
             </ul>
@@ -118,52 +145,6 @@
                 </li>
             </ul>
         </div><!--/.nav-collapse -->
-    </div>
-</div>
-
-<!-- login Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                <h3 class="modal-title">
-                    登录
-                </h3>
-            </div>
-
-            <div class="modal-body">
-                <div class="alert alert-danger" id="loginAlert" style="display:none; text-align: center;">
-                    <strong></strong>
-                </div>
-                <div class="clearfix"></div>
-                <div class="row">
-                    <form class="form-horizontal" role="form" id="loginForm" method="post" action="{{URL::to('/user/doLogin')}}">
-                        <input type="hidden" name="_token" id="_token" value="<?php echo csrf_token(); ?>">
-                        <div class="input-group inputfirst">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input type="text" id="inputLoginEmail" name="inputLoginEmail" class="form-control inputlog" placeholder="邮箱">
-                        </div>
-                        <div class="input-group inputtwo">
-                            <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input type="password" class="form-control inputlog" id="inputLoginPassword" name="inputLoginPassword" placeholder="密码">
-                        </div>
-                        <div class="input-group" style="width: 408px;padding: 5px;">
-                            <div style="float: left;">
-                                <input type="checkbox" name="rememberme" id="rememberme" value="1" checked /> 下次自动登录
-                            </div>
-                            <div style="float: right !important;">
-                                <a href="{{URL::to('/user/reset')}}">忘记密码</a>
-                            </div>
-                        </div>
-                        <div class="input-group" style="padding: 15px 0px;">
-                            <button type="submit" class="btn btn-primary" id="btnLogin">登录</button>
-                            <a href="{{URL::to('/user/register')}}"> 还没有账号？立即注册！</a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

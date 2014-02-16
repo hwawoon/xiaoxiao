@@ -5,8 +5,7 @@
 	"license": "MIT",
 	"require": {
 		"laravel/framework": "4.1.*",
-        "phpunit/phpunit": "3.7.*",
-        "twitter/bootstrap": "*"
+        "phpunit/phpunit": "3.7.*"
 	},
 	"autoload": {
 		"classmap": [

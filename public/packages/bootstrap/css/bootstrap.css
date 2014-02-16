@@ -4734,7 +4734,6 @@ textarea.input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .active > a:focus {
     color: #FF0000;
     font-weight: 600;
-    border-bottom: 2px solid #FF0000;
 }
 
 .navbar-default .navbar-nav > .disabled > a,
@@ -5926,7 +5925,7 @@ a.list-group-item.active:focus .list-group-item-text {
 }
 
 button.close {
-    padding: 0;
+    padding: 5px;
     cursor: pointer;
     background: transparent;
     border: 0;
@@ -5946,7 +5945,6 @@ button.close {
     z-index: 1040;
     display: none;
     overflow: auto;
-    http://localhost:81/xiaoxiao/public/
 }
 
 .modal.fade .modal-dialog {
@@ -6193,7 +6191,7 @@ button.close {
     position: absolute;
     top: 0;
     left: 0;
-    z-index: 1010;
+    z-index: 1050;
     display: none;
     max-width: 276px;
     padding: 1px;

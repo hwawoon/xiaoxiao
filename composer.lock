@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "d76c705d096d9ef3b3b8de3ead495579",
+    "hash": "a2a8d8bcbc8d33dc680e7133c762e4c6",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -230,12 +230,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "5a8ab7847be8fd48bf84c727e2173d47fd8d742e"
+                "reference": "2ad9eb54166e4121ebf76ea4d08bfa46e801fb2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/5a8ab7847be8fd48bf84c727e2173d47fd8d742e",
-                "reference": "5a8ab7847be8fd48bf84c727e2173d47fd8d742e",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/2ad9eb54166e4121ebf76ea4d08bfa46e801fb2e",
+                "reference": "2ad9eb54166e4121ebf76ea4d08bfa46e801fb2e",
                 "shasum": ""
             },
             "require": {
@@ -339,7 +339,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2014-02-13 00:46:16"
+            "time": "2014-02-14 03:03:37"
         },
         {
             "name": "monolog/monolog",
@@ -456,32 +456,32 @@
         },
         {
             "name": "nikic/php-parser",
-            "version": "dev-master",
+            "version": "0.9.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "1c8481bff64299b6fb2a246b7f778b184394fe73"
+                "reference": "118f28344daf154e47e73e79779a60bc7430a40f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/1c8481bff64299b6fb2a246b7f778b184394fe73",
-                "reference": "1c8481bff64299b6fb2a246b7f778b184394fe73",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/118f28344daf154e47e73e79779a60bc7430a40f",
+                "reference": "118f28344daf154e47e73e79779a60bc7430a40f",
                 "shasum": ""
             },
             "require": {
                 "ext-tokenizer": "*",
-                "php": ">=5.3"
+                "php": ">=5.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "0.9-dev"
                 }
             },
             "autoload": {
-                "files": [
-                    "lib/bootstrap.php"
-                ]
+                "psr-0": {
+                    "PHPParser": "lib/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -497,7 +497,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2014-02-12 19:23:12"
+            "time": "2014-02-12 19:19:48"
         },
         {
             "name": "patchwork/utf8",
@@ -556,12 +556,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpseclib/phpseclib.git",
-                "reference": "a7106a737ee937281878bbe53c181fb5aefc1f8d"
+                "reference": "b03100601bbe739d5a0aa63c72e25b56c0132f3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/a7106a737ee937281878bbe53c181fb5aefc1f8d",
-                "reference": "a7106a737ee937281878bbe53c181fb5aefc1f8d",
+                "url": "https://api.github.com/repos/phpseclib/phpseclib/zipball/b03100601bbe739d5a0aa63c72e25b56c0132f3a",
+                "reference": "b03100601bbe739d5a0aa63c72e25b56c0132f3a",
                 "shasum": ""
             },
             "require": {
@@ -642,7 +642,7 @@
                 "x.509",
                 "x509"
             ],
-            "time": "2014-02-11 00:00:44"
+            "time": "2014-02-13 22:34:10"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -650,12 +650,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "34d4ff4aa8ee0de5fcc99b5d8f14107e5deb6092"
+                "reference": "cbb4e7cf04ef180ddef5c275d06f2f5ca1022fbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/34d4ff4aa8ee0de5fcc99b5d8f14107e5deb6092",
-                "reference": "34d4ff4aa8ee0de5fcc99b5d8f14107e5deb6092",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/cbb4e7cf04ef180ddef5c275d06f2f5ca1022fbf",
+                "reference": "cbb4e7cf04ef180ddef5c275d06f2f5ca1022fbf",
                 "shasum": ""
             },
             "require": {
@@ -703,7 +703,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2014-02-12 16:38:11"
+            "time": "2014-02-14 05:47:30"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -1982,48 +1982,6 @@
             "description": "Symfony Yaml Component",
             "homepage": "http://symfony.com",
             "time": "2014-01-07 13:29:57"
-        },
-        {
-            "name": "twitter/bootstrap",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "d8cfcad7c71a2b65325b36718c218fee4221e663"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/d8cfcad7c71a2b65325b36718c218fee4221e663",
-                "reference": "d8cfcad7c71a2b65325b36718c218fee4221e663",
-                "shasum": ""
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jacob Thornton",
-                    "email": "jacobthornton@gmail.com"
-                },
-                {
-                    "name": "Mark Otto",
-                    "email": "markdotto@gmail.com"
-                }
-            ],
-            "description": "Sleek, intuitive, and powerful mobile first front-end framework for faster and easier web development.",
-            "homepage": "http://getbootstrap.com",
-            "keywords": [
-                "bootstrap",
-                "css"
-            ],
-            "time": "2014-02-13 06:53:47"
         }
     ],
     "packages-dev": [

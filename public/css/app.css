@@ -178,31 +178,6 @@ div label.error {
     border-color: #cccccc;
 }
 
-#loginModal .modal-dialog {
-    width: 480px;
-}
-
-#loginModal .modal-body {
-    padding: 0 50px;
-}
-
-#loginForm .logininput {
-    padding-top: 25px;
-}
-
-#loginForm .inputfirst {
-    padding-top: 15px;
-}
-
-#loginForm .inputtwo {
-    padding-top: 25px;
-}
-
-#loginAlert {
-    padding: 0px;
-    margin: 10px 10px 0px 10px;
-}
-
 #searchform .input-group {
     width: 200px;
 }
@@ -226,4 +201,30 @@ div label.error {
     color: #003399;
     width: 450px;
     white-space: pre-wrap;
+}
+
+/* login panel */
+#loginPanel {
+    width: 270px;
+    padding: 15px;
+}
+
+#loginPanel .input-group {
+    padding: 10px 0px;
+}
+
+#loginForm .loginrmb {
+    width: 230px;
+    padding: 0px;
+}
+
+#loginForm #btnLogin {
+    width: 235px;
+}
+
+/* end login panel */
+
+.regd {
+    float: right;
+    padding-top: 5px;
 }
