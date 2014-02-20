@@ -16,14 +16,15 @@ class CreateArticlesTable extends Migration {
 		{
             $table->increments('id');
             $table->string('title');
-            $table->string('savepath');
-            $table->string('thumbnailpath');
+            $table->string('imgpath');
+            $table->string('thumbpath');
+            $table->integer('user_id');
             $table->integer('comments');
-            $table->integer('up');
-            $table->integer('down');
-            $table->integer('userid');
+            $table->integer('points');
             $table->timestamps();
+            $table->softDeletes();
 		});
+
 	}
 
 	/**
@@ -33,7 +34,7 @@ class CreateArticlesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('articles');
+        Schema::dropIfExists('articles');
 	}
 
 }

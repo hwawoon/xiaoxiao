@@ -29,10 +29,19 @@ class HomeController extends BaseController {
 	{
         $getnum = 5;
 
-        $articles = DB::table('articles')->orderBy('up', 'desc')
-                                         ->skip(0)->take($getnum)->get();
+        $articles = Article::orderBy('points', 'desc')
+                           ->skip(0)->take($getnum)->get();
 
-        $rarticles = $this->getRecommendArticle();
+        // if(Auth::check())
+        // {
+        //     $votes = Article::with(array('votes' => function($query)
+        //     {
+        //         $query->where('user_id', '=', Auth::user()->id);
+        //     }))->get();
+        // }
+
+        $rarticles = Article::orderBy('comments', 'desc')
+                            ->skip(0)->take(10)->get();
 
         return View::make('/home')->with('pageinfo','home')
                                    ->with('getmore',"article/getMoreHot")
@@ -77,17 +86,6 @@ class HomeController extends BaseController {
         $articles = DB::table('articles')->orderBy('created_at', 'desc')->skip($articleOffset)->take(10)->get();
 
         return Response::json($articles , 200 );
-    }
-
-    /**
-     * 获取推荐列表，一获取20个
-     * @return mixed
-     */
-    public function getRecommendArticle()
-    {
-        $articles = DB::table('articles')->orderBy('comments', 'desc')->skip(0)->take(10)->get();
-
-        return $articles;
     }
 
     public function searchArticle()

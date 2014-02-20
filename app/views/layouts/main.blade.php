@@ -17,15 +17,6 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
     <![endif]-->
-    <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-        ga('create', 'UA-47830296-1', 'gaoxiaowa.com');
-        ga('send', 'pageview');
-    </script>
 </head>
 <body>
 <!-- Fixed navbar -->
@@ -66,7 +57,7 @@
                                 <li><a  data-toggle="modal" data-target="#forwardModal">转发图片</a></li>
                             </ul>
                             @else
-                            <a class="btn btn-danger" data-toggle="modal" data-target="#loginModal">上传</a>
+                            <a class="btn btn-danger" href="javascript:openLoginModal();void(0);">上传</a>
                             @endif
                         </div>
                     </form>
@@ -102,7 +93,7 @@
                 </li>
                 @else
                 <li class="loginbar">
-                    <a href="#" data-toggle="dropdown">登录<span class="caret"></span></a>
+                    <a href="#" data-toggle="dropdown" id="loginShowBtn">登录<span class="caret"></span></a>
                     <div id="loginPanel" class="dropdown-menu">
                         <form class="form-horizontal" role="form" id="loginForm" method="post" action="{{URL::to('/user/doLogin')}}">
                             <div class="input-group">
@@ -152,7 +143,7 @@
 <div class="modal fade" id="uploadModal" tabindex="-1">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{URL::to('/article/uploadImage')}}" method="post" id="uploadImageForm" enctype="multipart/form-data">
+            <form action="{{URL::to('/uploadImage')}}" method="post" id="uploadImageForm" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                     <h3 class="modal-title">分享搞笑图片</h3>
@@ -207,16 +198,25 @@
     <a href="mailto:kimhwawoon@gmail.com" class="btn btn-primary" style="border-radius: 0px;padding: 10px;" role="button" title="我会认真处理每一个反馈">反<br>馈</a>
 </div>
 <a href="#" title="返回顶部" class="goto-top"></a>
-
-@yield('content')
-
-<div id="footer">
-    <div class="container">
-        搞笑娃@为生活添欢乐！<a href="{{URL::to('/aboutMe')}}">关于我</a>
-    </div>
+<div class="container mainarea">
+    @yield('content')
 </div>
+<!--<div id="footer">-->
+<!--    <div class="container">-->
+<!--        <a href="{{URL::to('/aboutMe')}}">关于我</a>-->
+<!--    </div>-->
+<!--</div>-->
 </body>
 </html>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-47830296-1', 'gaoxiaowa.com');
+    ga('send', 'pageview');
+</script>
 <script type="text/javascript">
     var ROOT_PATH = "{{URL::to('/')}}";
 </script>

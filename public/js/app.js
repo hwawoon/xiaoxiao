@@ -24,7 +24,7 @@ $(function () {
         (scrollTopNum > 400) ? returnTop.fadeIn("fast") : returnTop.fadeOut("fast");
     });
 
-    $('.dropdown-menu *').click(function(e) {
+    $('#loginPanel *').click(function(e) {
         e.stopPropagation();
     });
 
@@ -138,20 +138,8 @@ $(function () {
                 }
                 else
                 {
-                    var alertmsg = "";
-                    if(data.type == 'function')
-                    {
-                        alertmsg = data.message;
-                    }
-                    else if(data.type == 'validation')
-                    {
-                        var lomsg = JSON.parse(data.message);
-                        alertmsg += lomsg.uploadImage.join('<br>');
-                        alertmsg += '<br>';
-                    }
-
                     var n = noty({
-                        text        : alertmsg,
+                        text        : data.message,
                         type        : "error",
                         dismissQueue: false,
                         killer: true,
@@ -190,20 +178,8 @@ $(function () {
                 }
                 else
                 {
-                    var alertmsg = "";
-                    if(data.type == 'function')
-                    {
-                        alertmsg = data.message;
-                    }
-                    else if(data.type == 'validation')
-                    {
-                        var lomsg = JSON.parse(data.message);
-                        alertmsg += lomsg.uploadImage.join('<br>');
-                        alertmsg += '<br>';
-                    }
-
                     var n = noty({
-                        text        : alertmsg,
+                        text        : data.message,
                         type        : "error",
                         dismissQueue: false,
                         killer: true,
@@ -275,24 +251,30 @@ $(function () {
 
 function validateUpload(formData, jqForm, options)
 {
+    var state = 1;
+    var message = '';
     if (!jqForm[0].title.value)
     {
-        var n = noty({
-            text        : "请输入标题！",
-            type        : "alert",
-            dismissQueue: false,
-            killer: true,
-            layout      : 'topCenter',
-            theme       : 'defaultTheme',
-            timeout: 2000
-        });
-        return false;
+        state = 0;
+        message = '请输入标题！';
+    }
+
+    if (!jqForm[0].title.value.length > 200)
+    {
+        state = 0;
+        message = '标题不能超过100字！';
     }
 
     if (!jqForm[0].uploadImage.value)
     {
+        state = 0;
+        message = '请选择上传文件！';
+    }
+
+    if(!state)
+    {
         var n = noty({
-            text        : "请选择上传文件！",
+            text        : message,
             type        : "alert",
             dismissQueue: false,
             killer: true,
@@ -308,38 +290,36 @@ function validateUpload(formData, jqForm, options)
 
 function validateForward(formData, jqForm, options)
 {
+    var state = 1;
+    var message = '';
     if (!jqForm[0].title.value)
     {
-        var n = noty({
-            text        : "请输入标题！",
-            type        : "alert",
-            dismissQueue: false,
-            killer: true,
-            layout      : 'topCenter',
-            theme       : 'defaultTheme',
-            timeout: 2000
-        });
-        return false;
+        state = 0;
+        message = '请输入标题！';
+    }
+
+    if (!jqForm[0].title.value.length > 200)
+    {
+        state = 0;
+        message = '标题不能超过100字！';
     }
 
     if (!jqForm[0].forwardUrl.value)
     {
-        var n = noty({
-            text        : "请输入地址！",
-            type        : "alert",
-            dismissQueue: false,
-            killer: true,
-            layout      : 'topCenter',
-            theme       : 'defaultTheme',
-            timeout: 2000
-        });
-        return false;
+        state = 0;
+        message = '请输入地址！';
     }
 
     if(!isUrl(jqForm[0].forwardUrl.value))
     {
+        state = 0;
+        message = '请输入正确的地址！';
+    }
+
+    if(!state)
+    {
         var n = noty({
-            text        : "请输入正确的地址！",
+            text        : message,
             type        : "alert",
             dismissQueue: false,
             killer: true,
@@ -355,11 +335,112 @@ function validateForward(formData, jqForm, options)
 
 function openLoginModal()
 {
-    $("#loginModal").modal();
+    //open login form
+    $('#loginShowBtn').trigger('click');
 }
 
 //validate url
 function isUrl(s) {
     var regexp = /(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/
     return regexp.test(s);
+}
+
+/**
+ * Created by mini on 14-1-13.
+ */
+function sinaweibo(titile, url, picpath)
+{
+    var _url = encodeURIComponent(url);
+    var _assname = encodeURI("");//你注册的帐号，不是昵称
+    var _appkey = encodeURI("123123123");//你从腾讯获得的appkey
+    var _pic = encodeURI(picpath);//（例如：var _pic='图片url1|图片url2|图片url3....）
+    var _t = "搞笑哇！ " + titile;//标题和描述信息
+    if (_t.length > 120)
+    {
+        _t = _t.substr(0, 117) + '...';
+    }
+    _t = encodeURI(_t);
+
+    var _u = 'http://v.t.sina.com.cn/share/share.php?url=' + _url + '&appkey=' + _appkey + '&pic=' + _pic + '&assname=' + _assname + '&title=' + _t;
+    window.open(_u, '', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');
+}
+
+function postToWb(titile, url, picpath)
+{
+    var _url = encodeURIComponent(url);
+    var _assname = encodeURI("");//你注册的帐号，不是昵称
+    var _appkey = encodeURI("123123123");//你从腾讯获得的appkey
+    var _pic = encodeURI(picpath);//（例如：var _pic='图片url1|图片url2|图片url3....）
+    var _t = "搞笑哇！ " + titile;//标题和描述信息
+    if (_t.length > 120)
+    {
+        _t = _t.substr(0, 117) + '...';
+    }
+    _t = encodeURI(_t);
+
+    var _u = 'http://share.v.t.qq.com/index.php?c=share&a=index&url=' + _url + '&appkey=' + _appkey + '&pic=' + _pic + '&assname=' + _assname + '&title=' + _t;
+    window.open(_u, '', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');
+}
+
+
+function articlePointUp(target,id)
+{
+    if($("#up"+id).hasClass('up_c'))
+    {
+        return false;
+    }
+
+    $.ajax({
+        url: ROOT_PATH + "/article/articlePointUp",
+        type: "GET",
+        data: {"id":id},
+        dataType: "json",
+        success: function (data) {
+            if(data.state == 1)
+            {
+                var val = $("#rpoints"+id).html();
+                $("#rpoints"+id).html(parseInt(val) + 1);
+                $("#up"+id).addClass('up_c');
+                $("#down"+id).removeClass('down_c');
+            }
+            else
+            {
+                alert("评分失败，请反馈给管理员！");
+            }
+        },
+        error: function (data) {
+            alert("评分失败，请反馈给管理员！");
+        }
+    });
+}
+
+function articlePointDown(target,id)
+{
+    if($("#down"+id).hasClass('down_c'))
+    {
+        return false;
+    }
+
+    $.ajax({
+        url: ROOT_PATH + "/article/articlePointDown",
+        type: "GET",
+        data: {"id":id},
+        dataType: "json",
+        success: function (data) {
+            if(data.state == 1)
+            {
+                var val = $("#rpoints"+id).html();
+                $("#rpoints"+id).html(parseInt(val) - 1);
+                $("#down"+id).addClass('down_c');
+                $("#up"+id).removeClass('up_c');
+            }
+            else
+            {
+                alert("评分失败，请反馈给管理员！");
+            }
+        },
+        error: function (data) {
+            alert("评分失败，请反馈给管理员！");
+        }
+    });
 }

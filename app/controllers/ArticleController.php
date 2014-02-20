@@ -8,6 +8,10 @@
 
 class ArticleController extends BaseController
 {
+    /**
+     * user upload new image
+     * @return mixed
+     */
     public function uploadImageArticle()
     {
         if (Input::hasFile('uploadImage'))
@@ -21,8 +25,7 @@ class ArticleController extends BaseController
             {
                 return Response::json(array(
                     "state" => 0,
-                    "type" => 'validation',
-                    "message" => $validator->messages()->toJson()
+                    "message" => implode('<br>',$validator->messages())
                 ),200);
             }
 
@@ -37,11 +40,10 @@ class ArticleController extends BaseController
             if( $upload_success && $thumbnailResult )
             {
                 $article = new Article();
-
                 $article->title = $fileTitle;
-                $article->savepath = 'upload/' . $filename;
-                $article->thumbnailpath = 'thumbnail/' . $filename;
-                $article->userid = Auth::user()->getId();
+                $article->imgpath = 'upload/' . $filename;
+                $article->thumbpath = 'thumbnail/' . $filename;
+                $article->user_id = Auth::user()->getId();
 
                 $article->save();
 
@@ -58,7 +60,6 @@ class ArticleController extends BaseController
             {
                 return Response::json(array(
                     "state" => 0,
-                    "type" => 'function',
                     "message" => Lang::get('messages.avatar_system_error')
                 ),200);
             }
@@ -67,7 +68,6 @@ class ArticleController extends BaseController
         {
             return Response::json(array(
                 "state" => 0,
-                "type" => 'function',
                 "message" => Lang::get('messages.file_no_exist')
             ),200);
         }
@@ -90,8 +90,7 @@ class ArticleController extends BaseController
         {
             return Response::json(array(
                 "state" => 0,
-                "type" => 'validation',
-                "message" => $validator->messages()->toJson()
+                "message" => implode('<br>',$validator->messages())
             ),200);
         }
 
@@ -107,18 +106,16 @@ class ArticleController extends BaseController
             // Write the contents back to a new file
             $putSize = file_put_contents($destinationPath.$filename, $data);
 
-            //裁剪图片
-            $thumbnailResult = Img::imagecropper($destinationPath.$filename,300,120,public_path().'/thumbnail/'.$filename);
-
-            if( $putSize && $thumbnailResult )
+            if( $putSize )
             {
+                //裁剪图片
+                $thumbnailResult = Img::imagecropper($destinationPath.$filename,300,120,public_path().'/thumbnail/'.$filename);
+
                 $article = new Article();
-
                 $article->title = $inputValues['title'];
-                $article->savepath = 'upload/' . $filename;
-                $article->thumbnailpath = 'thumbnail/' . $filename;
-                $article->userid = Auth::user()->getId();
-
+                $article->imgpath = 'upload/' . $filename;
+                $article->thumbpath = 'thumbnail/' . $filename;
+                $article->user_id = Auth::user()->getId();
                 $article->save();
 
                 $insertedId = $article->id;
@@ -134,8 +131,7 @@ class ArticleController extends BaseController
             {
                 return Response::json(array(
                     "state" => 0,
-                    "type" => 'function',
-                    "message" => Lang::get('messages.avatar_system_error')
+                    "message" => Lang::get('messages.upload_failure')
                 ),200);
             }
         }
@@ -143,43 +139,32 @@ class ArticleController extends BaseController
         {
             return Response::json(array(
                 "state" => 0,
-                "type" => 'function',
                 "message" => Lang::get('messages.uplaod_format_error')
             ),200);
         }
     }
 
-    public function getRecommendArticle()
-    {
-        $articles = DB::table('articles')->orderBy('comments', 'desc')->skip(0)->take(5)->get();
-
-        return $articles;
-    }
-
     public function getArticle($id)
     {
-        $article = DB::table('articles')->where('id', $id)->first();
+        $article = Article::find($id);
 
-        $pre_article = DB::table('articles')->where('id',"<", $id)->first();
-        $next_article = DB::table('articles')->where('id',">", $id)->first();
+        $pre_article = Article::where('id',"<", $id)->first();
+        $next_article = Article::where('id',">", $id)->first();
 
         $previous = !empty($pre_article);
         $next = !empty($next_article);
 
-        $rarticles = $this->getRecommendArticle();
+        $rarticles = Article::orderBy('comments', 'desc')->skip(0)->take(5)->get();
 
-        $loAllComments = DB::table('comments')
-                            ->join('users', 'users.id', '=', 'comments.userid')
-                            ->where('comments.articleid',$article->id)
-                            ->orderBy('comments.id', 'desc')
-                            ->select('comments.id','comments.content','users.name','users.avatar','comments.created_at')
-                            ->paginate(10);
+        $loAllComments = Article::find($id)->comments;
 
-        return View::make('/article/article')->with('article',$article)
-                                              ->with('comments',$loAllComments)
-                                              ->with('previous',$previous)
-                                              ->with('next',$next)
-                                              ->with('rarticles',$rarticles);
+        $loAllComments = array();
+
+        return View::make('/article')->with('article',$article)
+                                      ->with('comments',$loAllComments)
+                                      ->with('previous',$previous)
+                                      ->with('next',$next)
+                                      ->with('rarticles',$rarticles);
     }
 
     public function previousArticle($id)
@@ -194,20 +179,6 @@ class ArticleController extends BaseController
         $article = DB::table('articles')->where('id',">", $id)->first();
 
         return $this->getArticle($article->id);
-    }
-
-    public function articlePointUp()
-    {
-        $id = Input::get("id");
-        DB::table('articles')->where('id', $id)->increment('up',1);
-        return Response::json(array("state" => 1),200);
-    }
-
-    public function articlePointDown()
-    {
-        $id = Input::get("id");
-        DB::table('articles')->where('id', $id)->increment('down',1);
-        return Response::json(array("state" => 1),200);
     }
 
     public function deleteArticle()

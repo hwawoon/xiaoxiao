@@ -47,14 +47,14 @@
             </div>
             <div class="row">
                 <a href="{{URL::to('/article').'/'}}$id$">
-                    <img class="" src="{{URL::to('/')}}/$savepath$" style="width: 100%;">
+                    <img class="" src="{{URL::to('/')}}/$imgpath$" style="width: 100%;">
                 </a>
             </div>
             <div class="row artshare">
-                <a href="javascript:void(0)" onclick="sinaweibo('$title$','{{URL::to('/article').'/'}}$id$','{{URL::to('/').'/'}}$savepath$');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
+                <a href="javascript:void(0)" onclick="sinaweibo('$title$','{{URL::to('/article').'/'}}$id$','{{URL::to('/').'/'}}$imgpath$');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
                     分享到新浪微博
                 </a>
-                <a href="javascript:void(0)" onclick="postToWb('$title$','{{URL::to('/article').'/'}}$id$','{{URL::to('/').'/'}}$savepath$');return false;" class="btn btn-primary"  title="分享到腾讯微博" target="_blank" >
+                <a href="javascript:void(0)" onclick="postToWb('$title$','{{URL::to('/article').'/'}}$id$','{{URL::to('/').'/'}}$imgpath$');return false;" class="btn btn-primary"  title="分享到腾讯微博" target="_blank" >
                     分享到腾讯微博
                 </a>
             </div>
@@ -97,14 +97,14 @@
                     </div>
                     <div class="row">
                         <a href="{{URL::to('/article').'/'.$article->id}}">
-                            <img class="" src="{{URL::to('/')}}/{{$article->savepath}}" style="width: 100%;">
+                            <img class="" src="{{URL::to('/')}}/{{$article->imgpath}}" style="width: 100%;">
                         </a>
                     </div>
                     <div class="row artshare">
-                        <a href="javascript:void(0)" onclick="sinaweibo('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->savepath}}');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
+                        <a href="javascript:void(0)" onclick="sinaweibo('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
                             分享到新浪微博
                         </a>
-                        <a href="javascript:void(0)" onclick="postToWb('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->savepath}}');return false;" class="btn btn-primary"  title="分享到腾讯微博" target="_blank" >
+                        <a href="javascript:void(0)" onclick="postToWb('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-primary"  title="分享到腾讯微博" target="_blank" >
                             分享到腾讯微博
                         </a>
                     </div>
@@ -146,7 +146,7 @@
                     </div>
                     <div class="row">
                         <a href="{{URL::to('/article').'/'.$article->id}}">
-                            <img class="" src="{{URL::to('/')}}/{{$article->thumbnailpath}}" >
+                            <img class="" src="{{URL::to('/')}}/{{$article->thumbpath}}" >
                         </a>
                     </div>
                 </section>

@@ -74,7 +74,7 @@ Route::any('article/getMoreLatest', 'HomeController@getMoreLatestArticle');
 
 Route::any('user/uploadIcon', 'UserController@uploadIcon');
 
-Route::get("article/{id}", array(
+Route::get("art/{id}", array(
     "as"=>"getArticle",
     "uses"=>"ArticleController@getArticle"
 ))->where('id', '[0-9]+');
@@ -105,14 +105,15 @@ Route::group(array('before' => 'auth'), function()
 
     Route::get('user/setting/message','MessageController@getAllMessage');
 
-    Route::post('article/uploadImage',  'ArticleController@uploadImageArticle');
+    Route::post('uploadImage',  'ArticleController@uploadImageArticle');
     Route::post('article/forwardImage',  'ArticleController@forwardImageArticle');
 
     Route::post('comment/addComment/{userid}/{articleid}', 'CommentController@addComment')
         ->where(array('userid' => '[0-9]+', 'articleid' => '[0-9]+'));
 
-    Route::get('article/articlePointUp',  'ArticleController@articlePointUp');
-    Route::get('article/articlePointDown',  'ArticleController@articlePointDown');
+    Route::get('vote/like',  'VoteController@articleLike');
+    Route::get('vote/unlike',  'VoteController@articleUnlike');
+    Route::get('vote/dislike',  'VoteController@articleDislike');
 
     Route::get('user/profile', 'UserController@getUserProfile');
 

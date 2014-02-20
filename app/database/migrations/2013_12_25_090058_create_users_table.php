@@ -15,10 +15,16 @@ class CreateUsersTable extends Migration {
         {
             $table->increments('id');
             $table->string('email')->unique();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->string('password');
-            $table->string('avatar')->default("avatar/default.jpg");
+            $table->string('avatar')->default("img/logo.png");
+            $table->string('introduction');
+            $table->integer('created_ip');
+            $table->integer('last_login');
+            $table->integer('last_ip');
+            $table->smallInteger('is_actived');
             $table->timestamps();
+            $table->softDeletes();
         });
 	}
 

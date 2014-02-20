@@ -51,7 +51,7 @@
                 </div>
                 <div>
                     <a href="{{URL::to('/article').'/'.$article->id}}">
-                        <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->savepath}}" />
+                        <img class="img-responsive img-thumbnail" src="{{URL::to('/')}}/{{$article->imgpath}}" />
                     </a>
                 </div>
             </div>

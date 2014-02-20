@@ -13,5 +13,25 @@ class Article extends Eloquent
         'uploadImage' => 'required|mimes:jpeg,gif,png|max:3000'
     );
 
-    protected $fillable = array('title', 'savepath', 'thumbnailpath', 'userid');
+    protected $fillable = array('title', 'imgpath', 'thumbpath', 'userid');
+
+    /**
+     * one article has many comments
+     * @return mixed
+     */
+    public function comments()
+    {
+        return $this->hasMany('Comment');
+    }
+
+    public function votes()
+    {
+        return $this->hasMany('Vote');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo('User');
+    }
+
 }

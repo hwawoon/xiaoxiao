@@ -2,19 +2,15 @@ body {
     background: radial-gradient(circle, #94D2F8, #3A92C8) repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
 
-.register {
-    
-}
-
-.register .row {
+.container .row {
 	margin: 20px 60px 0 60px;
 }
 
-.register .firstrow {
+.container .firstrow {
 	margin-top: 50px;
 }
 
-.register .reghead {
+.container .reghead {
 	margin-top : 120px; 
 	margin-left: -30px;
 }

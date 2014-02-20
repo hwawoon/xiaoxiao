@@ -31,6 +31,70 @@ $(function (){
                 }
             }
     });
+
+    $('.artup').click(function(){
+        var loObj = $(this);
+        var artid = loObj.attr('art');
+        //uped
+        if(loObj.hasClass('up_c'))
+        {
+            var val = $("#rpoints"+artid).html();
+            $("#rpoints"+artid).html(parseInt(val) - 1);
+            $("#up"+artid).removeClass('up_c');
+            $("#down"+artid).removeClass('down_c');
+            $.getJSON(ROOT_PATH + "/vote/unlike",{"id":artid},function(data){
+            });
+        }
+        //not
+        else
+        {
+            var val = $("#rpoints"+artid).html();
+            if($("#down"+artid).hasClass('down_c'))
+            {
+                $("#rpoints"+artid).html(parseInt(val) + 2);
+            }
+            else
+            {
+                $("#rpoints"+artid).html(parseInt(val) + 1);
+            }
+            $("#up"+artid).addClass('up_c');
+            $("#down"+artid).removeClass('down_c');
+            $.getJSON(ROOT_PATH + "/vote/like",{"id":artid},function(data){
+            });
+        }
+    });
+
+    $('.artdown').click(function(){
+        var loObj = $(this);
+        var artid = loObj.attr('art');
+        //uped
+        if(loObj.hasClass('down_c'))
+        {
+            var val = $("#rpoints"+artid).html();
+            $("#rpoints"+artid).html(parseInt(val) + 1);
+            $("#up"+artid).removeClass('up_c');
+            $("#down"+artid).removeClass('down_c');
+            $.getJSON(ROOT_PATH + "/vote/unlike",{"id":artid},function(data){
+            });
+        }
+        //not
+        else
+        {
+            var val = $("#rpoints"+artid).html();
+            if($("#up"+artid).hasClass('up_c'))
+            {
+                $("#rpoints"+artid).html(parseInt(val) - 2);
+            }
+            else
+            {
+                $("#rpoints"+artid).html(parseInt(val) - 1);
+            }
+            $("#up"+artid).removeClass('up_c');
+            $("#down"+artid).addClass('down_c');
+            $.getJSON(ROOT_PATH + "/vote/dislike",{"id":artid},function(data){
+            });
+        }
+    });
 });
 
 String.prototype.template = function(obj)
@@ -48,66 +112,4 @@ function getLoadingPage(data)
     var insertTempl = $('#section_template').val();
     insertTempl = insertTempl.template(data);
     return insertTempl;
-}
-
-function articlePointUp(target,id)
-{
-    if($("#up"+id).hasClass('up_c'))
-    {
-        return false;
-    }
-
-    $.ajax({
-        url: ROOT_PATH + "/article/articlePointUp",
-        type: "GET",
-        data: {"id":id},
-        dataType: "json",
-        success: function (data) {
-            if(data.state == 1)
-            {
-                var val = $("#rpoints"+id).html();
-                $("#rpoints"+id).html(parseInt(val) + 1);
-                $("#up"+id).addClass('up_c');
-                $("#down"+id).removeClass('down_c');
-            }
-            else
-            {
-                alert("评分失败，请反馈给管理员！");
-            }
-        },
-        error: function (data) {
-            alert("评分失败，请反馈给管理员！");
-        }
-    });
-}
-
-function articlePointDown(target,id)
-{
-    if($("#down"+id).hasClass('down_c'))
-    {
-        return false;
-    }
-
-    $.ajax({
-        url: ROOT_PATH + "/article/articlePointDown",
-        type: "GET",
-        data: {"id":id},
-        dataType: "json",
-        success: function (data) {
-            if(data.state == 1)
-            {
-                var val = $("#rpoints"+id).html();
-                $("#rpoints"+id).html(parseInt(val) - 1);
-                $("#down"+id).addClass('down_c');
-                $("#up"+id).removeClass('up_c');
-            }
-            else
-            {
-                alert("评分失败，请反馈给管理员！");
-            }
-        },
-        error: function (data) {
-            alert("评分失败，请反馈给管理员！");
-        }
-    });
 }
