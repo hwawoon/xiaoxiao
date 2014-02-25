@@ -1,5 +1,3 @@
-"use strict";
-
 $(function (){
     //滚动加载
     $(window).scroll(function () {
@@ -10,23 +8,14 @@ $(function (){
                 {
                     XIAO.loadingArticle = 1;
                     var loArtcleNumber = XIAO.loadedCount;
-                    $.ajax({
-                        type: 'POST',
-                        url: XIAO.getMoreUrl,
-                        data: {'articleOffset':loArtcleNumber},
-                        success: function(datas){
-                            if(datas.length != 0)
-                            {
-                                XIAO.loadedCount = parseInt(loArtcleNumber) + datas.length;
-                                $.each(datas, function (i, data)
-                                {
-                                    var loInsertHtml = getLoadingPage(data);
-                                    $("#home_articles").append(loInsertHtml);
-                                });
-                            }
-                            XIAO.loadingArticle = 0;
-                        },
-                        dataType: 'json'
+                    $.getJSON(XIAO.getMoreUrl,{'articleOffset':loArtcleNumber},function(dts){
+                        if(dts.length != 0)
+                        {
+                            XIAO.loadedCount = parseInt(loArtcleNumber) + dts.length;
+                            var loInsertHtml = _.template($("#articleTpl").html(), {'datas':dts});
+                            $("#home_articles").append(loInsertHtml);
+                        }
+                        XIAO.loadingArticle = 0;
                     });
                 }
             }
@@ -96,20 +85,3 @@ $(function (){
         }
     });
 });
-
-String.prototype.template = function(obj)
-{
-    return this.replace(/\$\w+\$/gi, function(matchs)
-    {
-        var returns = obj[matchs.replace(/\$/g, "")];
-        return (returns + "") == "undefined"? "": returns;
-    });
-}
-
-function getLoadingPage(data)
-{
-    data.points = data.up - data.down;
-    var insertTempl = $('#section_template').val();
-    insertTempl = insertTempl.template(data);
-    return insertTempl;
-}

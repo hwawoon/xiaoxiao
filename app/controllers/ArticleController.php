@@ -8,6 +8,31 @@
 
 class ArticleController extends BaseController
 {
+    public function getArticle($id)
+    {
+        $article = Article::find($id);
+
+        $pre_article = Article::where('id',"<", $id)->first();
+        $next_article = Article::where('id',">", $id)->first();
+
+        $rarticles = Article::orderBy('comments', 'desc')->skip(0)->take(5)->get();
+
+        $vote = null;
+
+        if(Auth::check())
+        {
+            $vote = $article->votes()
+                ->where('user_id','=',Auth::user()->id)
+                ->first();
+        }
+
+        return View::make('/article')->with('article',$article)
+                                      ->with('previous',$pre_article)
+                                      ->with('next',$next_article)
+                                      ->with('vote',$vote)
+                                      ->with('rarticles',$rarticles);
+    }
+
     /**
      * user upload new image
      * @return mixed
@@ -144,44 +169,13 @@ class ArticleController extends BaseController
         }
     }
 
-    public function getArticle($id)
-    {
-        $article = Article::find($id);
-
-        $pre_article = Article::where('id',"<", $id)->first();
-        $next_article = Article::where('id',">", $id)->first();
-
-        $previous = !empty($pre_article);
-        $next = !empty($next_article);
-
-        $rarticles = Article::orderBy('comments', 'desc')->skip(0)->take(5)->get();
-
-        $loAllComments = Article::find($id)->comments;
-
-        $loAllComments = array();
-
-        return View::make('/article')->with('article',$article)
-                                      ->with('comments',$loAllComments)
-                                      ->with('previous',$previous)
-                                      ->with('next',$next)
-                                      ->with('rarticles',$rarticles);
-    }
-
-    public function previousArticle($id)
-    {
-        $article = DB::table('articles')->where('id',"<", $id)->first();
-
-        return $this->getArticle($article->id);
-    }
-
-    public function nextArticle($id)
-    {
-        $article = DB::table('articles')->where('id',">", $id)->first();
-
-        return $this->getArticle($article->id);
-    }
-
-    public function deleteArticle()
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return Response
+     */
+    public function destroy()
     {
         $id = Input::get('articleid');
         DB::table('articles')->where('id', $id )->delete();

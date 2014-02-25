@@ -88,33 +88,78 @@ class CommentController extends BaseController {
      * @param $articleid
      * @return mixed
      */
-    public function addComment($userid,$articleid)
+    public function addComment()
     {
-        $loComment = new Comment();
+    	$datas = array(
+    		'article_id' => Input::get('articleId'),
+    		'article_author' => Input::get('articleAuthor'),
+    		'comment_id' => Input::get('comment_id'),
+    		'content' => Input::get('myComment'),
+		);
 
-        $loComment->content = Input::get('myComment');
-        $loComment->articleid = $articleid;
-        $loComment->userid = $userid;
+    	//validateForm
+    	$validator = Validator::make($datas,
+		array(
+			'article_id' => 'required|numeric',
+    		'article_author' => 'required|numeric',
+    		'comment_id' => 'required|numeric',
+    		'content' => 'required|max:200',
+		));
+
+        if($validator->fails())
+        {
+            return Response::json(array('state' => 0),200);
+        }
+
+    	$article = Article::find($datas['article_id']);
+
+        $loComment = new Comment();
+        $loComment->content = $datas['content'];
+        $loComment->article()->associate($article);
+        $loComment->comment_id = $datas['comment_id'];
+        $loComment->receiver = $datas['article_author'];
+        $loComment->user()->associate(Auth::user());
         $loComment->save();
 
-        //add message for article author
-        $loMessage = new Message();
+        $article->increment('comments',1);
 
-        $loMessage->from_username = Auth::user()->name;
-        $loMessage->from_userid = $userid;
-        $loMessage->to_userid = Input::get('articleAuthor');
-        $loMessage->articleid = $articleid;
-        $loMessage->isnew = 1;
-        $loMessage->save();
-
-        DB::table('articles')->where('id', $articleid)->increment('comments',1);
-
-        $inssertComment = DB::table('comments')
-                            ->join('users', 'users.id', '=', 'comments.userid')
-                            ->where('comments.id',$loComment->id)
-                            ->select('comments.content','users.name','users.avatar','comments.created_at')
-                            ->get();
-
-        return Response::json($inssertComment,200);
+        return Response::json($loComment,200);
     }
+
+    public function getIndexByArt()
+	{
+		$articleid = Input::get('article_id');
+
+		$comments = Article::find($articleid)->comments()
+						   ->orderBy('id', 'asc')
+					       ->get();
+
+		$result = array();
+
+		foreach ($comments as $cmt)
+		{
+			$cmt->user;
+		}
+
+		return Response::json($comments, 200);
+	}
+
+	public function upComment()
+	{
+		$validator = Validator::make(array(
+			'id' => Input::get('comment_id')
+		),
+		array(
+			'id' => 'required|numeric'
+		));
+
+        if(!$validator->fails())
+        {
+            $comemntId = Input::get('comment_id');
+
+			$comments = Comment::find($comemntId)->increment('up',1);
+        }
+
+		return Response::json(array('up'=>'1'), 200);
+	}
 }

@@ -26,35 +26,68 @@ class HomeController extends BaseController {
      * @return mixed
      */
     public function showHome()
-	{
-        $getnum = 5;
+	  {
+        $getnum = 10;
 
-        $articles = Article::orderBy('points', 'desc')
-                           ->skip(0)->take($getnum)->get();
-
-        // if(Auth::check())
-        // {
-        //     $votes = Article::with(array('votes' => function($query)
-        //     {
-        //         $query->where('user_id', '=', Auth::user()->id);
-        //     }))->get();
-        // }
+        if(Auth::check())
+        {
+            $articles = DB::table('articles')
+                ->leftJoin('votes', function($join)
+                {
+                    $join->on('articles.id', '=', 'votes.article_id')
+                        ->where('votes.user_id', '=', Auth::user()->id);
+                })
+                ->orderBy('articles.points', 'desc')
+                ->skip(0)
+                ->take($getnum)
+                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                ->get();
+        }
+        else
+        {
+            $articles = Article::orderBy('points', 'desc')
+                ->skip(0)
+                ->take($getnum)
+                ->get();
+        }
 
         $rarticles = Article::orderBy('comments', 'desc')
-                            ->skip(0)->take(10)->get();
+                            ->skip(0)
+                            ->take(10)
+                            ->get();
 
         return View::make('/home')->with('pageinfo','home')
-                                   ->with('getmore',"article/getMoreHot")
-                                   ->with('articles',$articles)
-                                   ->with('articlenum',$getnum)
-                                   ->with('rarticles',$rarticles);
+                                  ->with('getmore',"getMoreHot")
+                                  ->with('articles',$articles)
+                                  ->with('articlenum',$getnum)
+                                  ->with('rarticles',$rarticles);
     }
 
     public function getMoreHotArticle()
     {
         $articleOffset = Input::get('articleOffset');
 
-        $articles = DB::table('articles')->orderBy('up', 'desc')->skip($articleOffset)->take(10)->get();
+        if(Auth::check())
+        {
+            $articles = DB::table('articles')
+                          ->leftJoin('votes', function($join)
+                          {
+                              $join->on('articles.id', '=', 'votes.article_id')
+                                   ->where('votes.user_id', '=', Auth::user()->id);
+                          })
+                          ->orderBy('articles.points', 'desc')
+                          ->skip($articleOffset)
+                          ->take(10)
+                          ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                          ->get();
+        }
+        else
+        {
+            $articles = Article::orderBy('points', 'desc')
+                               ->skip($articleOffset)
+                               ->take(10)
+                               ->get();
+        }
 
         return Response::json($articles , 200 );
     }
@@ -67,41 +100,107 @@ class HomeController extends BaseController {
     {
         $getnum = 10;
 
-        $articles = DB::table('articles')->orderBy('created_at', 'desc')
-            ->skip(0)->take($getnum)->get();
+        if(Auth::check())
+        {
+            $articles = DB::table('articles')
+                ->leftJoin('votes', function($join)
+                {
+                    $join->on('articles.id', '=', 'votes.article_id')
+                        ->where('votes.user_id', '=', Auth::user()->id);
+                })
+                ->orderBy('articles.created_at', 'desc')
+                ->skip(0)
+                ->take($getnum)
+                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                ->get();
+        }
+        else
+        {
+            $articles = Article::orderBy('created_at', 'desc')
+                ->skip(0)
+                ->take($getnum)
+                ->get();
+        }
 
-        $rarticles = $this->getRecommendArticle();
+        $rarticles = Article::orderBy('comments', 'desc')
+                            ->skip(0)
+                            ->take(10)
+                            ->get();
 
         return View::make('/home')->with('pageinfo','latest')
-                                    ->with('getmore',"article/getMoreLatest")
-                                    ->with('articles',$articles)
-                                    ->with('articlenum',$getnum)
-                                    ->with('rarticles',$rarticles);
+                                  ->with('getmore',"getMoreLatest")
+                                  ->with('articles',$articles)
+                                  ->with('articlenum',$getnum)
+                                  ->with('rarticles',$rarticles);
     }
 
     public function getMoreLatestArticle()
     {
         $articleOffset = Input::get('articleOffset');
 
-        $articles = DB::table('articles')->orderBy('created_at', 'desc')->skip($articleOffset)->take(10)->get();
+        if(Auth::check())
+        {
+            $articles = DB::table('articles')
+                          ->leftJoin('votes', function($join)
+                          {
+                              $join->on('articles.id', '=', 'votes.article_id')
+                                   ->where('votes.user_id', '=', Auth::user()->id);
+                          })
+                          ->orderBy('articles.created_at', 'desc')
+                          ->skip($articleOffset)
+                          ->take(10)
+                          ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                          ->get();
+        }
+        else
+        {
+            $articles = Article::orderBy('created_at', 'desc')
+                               ->skip($articleOffset)
+                               ->take(10)
+                               ->get();
+        }
 
         return Response::json($articles , 200 );
     }
 
     public function searchArticle()
     {
-        $rarticles = $this->getRecommendArticle();
 
         $searchTerm = Input::get('srch-term');
-        $articles = DB::table('articles')->where('title', 'like' , "%$searchTerm%" )
-                                         ->orderBy('comments', 'desc')->get();
 
+        if(Auth::check())
+        {
+            $articles = DB::table('articles')
+                          ->leftJoin('votes', function($join)
+                          {
+                              $join->on('articles.id', '=', 'votes.article_id')
+                                   ->where('votes.user_id', '=', Auth::user()->id);
+                          })
+                          ->where('title', 'like' , "%$searchTerm%" )
+                          ->orderBy('articles.points', 'desc')
+                          ->skip(0)
+                          ->take(10)
+                          ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                          ->get();
+        }
+        else
+        {
+            $articles = Article::where('title', 'like' , "%$searchTerm%" )
+                               ->orderBy('points', 'desc')
+                               ->skip(0)
+                               ->take(10)
+                               ->get();
+        }
 
+        $rarticles = Article::orderBy('comments', 'desc')
+                            ->skip(0)
+                            ->take(10)
+                            ->get();
 
-        return View::make('/search')->with('pagetitle',"搜索 ".$searchTerm )
-                                      ->with('getmore',"")
-                                      ->with('articles',$articles)
-                                      ->with('articlenum',0)
-                                      ->with('rarticles',$rarticles);
+        return View::make('/home')->with('pageinfo', "搜索 ".$searchTerm )
+                                  ->with('getmore', '')
+                                  ->with('articles',$articles)
+                                  ->with('articlenum', 0)
+                                  ->with('rarticles',$rarticles);
     }
 }

@@ -12,4 +12,9 @@ class Comment extends Eloquent
     {
         return $this->belongsTo('Article');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('User');
+    }
 }

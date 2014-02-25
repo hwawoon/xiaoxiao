@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration {
             $table->string('avatar')->default("img/logo.png");
             $table->string('introduction');
             $table->integer('created_ip');
+            $table->smallInteger('is_admin');
             $table->integer('last_login');
             $table->integer('last_ip');
             $table->smallInteger('is_actived');

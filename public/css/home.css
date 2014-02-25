@@ -29,7 +29,6 @@ a.article_title:hover {
 .artshare {
     padding-top: 5px;
     padding-bottom: 45px;
-    border-bottom: 1px solid #eeeeee;
 }
 
 .dnav {
@@ -93,6 +92,10 @@ span.tnav {
     background: #fff url(../img/sticky-vote.png) no-repeat -42px -32px;
 }
 
+div.rrecommend {
+    padding-left: 20px;
+}
+
 .rrecommend section {
     padding: 10px 45px 10px 10px;
 }
@@ -108,7 +111,7 @@ div.recomdhead span {
 }
 
 .tags .tagtitle {
-    padding: 5px;
+    padding: 5px 0;
 }
 
 .tagtitle a {
@@ -116,7 +119,9 @@ div.recomdhead span {
     color: #000000;
 }
 
-.tagtitle span {
-    word-wrap:break-word;
-    overflow:hidden;
+.tagtitle a span {
+    display: block;
+    width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
 }

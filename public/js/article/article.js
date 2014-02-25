@@ -2,55 +2,38 @@
  * Created by kimi on 14-1-8.
  */
 $(function(){
-    $("#articleCommentBtn").bind("click",function(){
-        $("#articleCommentForm").ajaxSubmit({
-            beforeSubmit: validateComment,
-            dataType:'json',
-            success:function(data)
-            {
-                if(null != data && data.length != 0 )
-                {
-                    data = data[0];
-                    document.getElementById("articleCommentForm").reset();
-                    //下面添加新评论
-                    var loCount = $("#commentCount").html();
-                    $("#commentCount").html(parseInt(loCount) + 1);
-                    $("#articlereplies").prepend('<div class="row">' +
-                        '<div class="useravatar">' +
-                        '<img src="' + ROOT_PATH +
-                        '/'+data.avatar+'" class="img-responsive img-thumbnail" style="width: 50px;"/>' +
-                        '</div>' +
-                        '<div class="userreply">' +
-                        '<div style="padding-bottom: 1px;">' +
-                        '<span style="color: #269abc;">' + data.name +
-                        ' 发表于 '+data.created_at+'</span></div><div>' + data.content +
-                        '</div></div> </div>');
+    //功能菜单置顶
+    $(window).scroll(function(){
+        if ($(this).scrollTop() > 130) {
+            $('.sharetoolbar').addClass('barfixed');
+        }
+        else
+        {
+            $('.sharetoolbar').removeClass('barfixed');
+        }
+     });
 
-                    var n = noty({
-                        text        : "评论 + 1",
-                        type        : "information",
-                        dismissQueue: false,
-                        killer: true,
-                        layout      : 'center',
-                        theme       : 'defaultTheme',
-                        timeout: 300
-                    });
-                }
-                else
-                {
-                    var n = noty({
-                        text        : "评论失败，请稍后再试！",
-                        type        : "error",
-                        dismissQueue: false,
-                        killer: true,
-                        layout      : 'topCenter',
-                        theme       : 'defaultTheme',
-                        timeout: 2000
-                    });
-                }
-            }
-        });
+    //评论区
+    $('.userreplydiv').html(_.template($("#replyTpl").html(),  {'data':{'comment_id': 0, 'formid': 'commentorgin', 'classname': '' }}));
+
+    //get comment list
+    $.getJSON(ROOT_PATH+'/comment/all',
+    {'article_id': $('#cur_article_id').val()},
+    function(datas){
+      $('#cmtloading').remove();
+       $.each(datas,function(i,data){
+           var loInsertHtml = _.template($("#commentTpl").html(), {'item':data});
+           if(data.comment_id == 0)
+           {
+               $("#articlereplies").append(loInsertHtml);
+           }
+           else
+           {
+               $('#cmt_'+data.comment_id).append(loInsertHtml);
+           }
+       });
     });
+
 });
 
 function validateComment(formData, jqForm, options)
@@ -85,64 +68,129 @@ function validateComment(formData, jqForm, options)
     return true;
 }
 
-function articlePointUp(id)
+function cmtup(cmt,cmtid)
 {
-    if($(".up").hasClass('up_c'))
-    {
-        return false;
-    }
+    $.post(ROOT_PATH+'/comment/up',
+        {'comment_id': cmtid},
+        function(data){
+            var curcount = $(cmt).find('#cmtup').html();
+            $(cmt).find('#cmtup').html(parseInt(curcount)+1);
+    });
+}
 
-    $.ajax({
-        url: ROOT_PATH + "/article/articlePointUp",
-        type: "GET",
-        data: {"id":id},
-        dataType: "json",
-        success: function (data) {
-            if(data.state == 1)
+function addReplyArea(cmtid)
+{
+    var loInsertHtml = _.template($("#replyTpl").html(), {'data':{'comment_id': cmtid, 'formid': "commentReplyForm", 'classname': 'replyform' }});
+    $('.replyForm').remove();
+    $('#cmt_'+cmtid).append(loInsertHtml);
+}
+
+function cmtreply(formid)
+{
+    $("#"+formid).ajaxSubmit({
+        beforeSubmit: validateComment,
+        dataType:'json',
+        success:function(data)
+        {
+            if(data.state == 0)
             {
-                var val = $("#article_points").html();
-                $("#article_points").html(parseInt(val) + 1);
-                $(".up").addClass('up_c');
-                $(".down").removeClass('down_c');
+                var n = noty({
+                            text        : "评论添加失败！",
+                            type        : "information",
+                            dismissQueue: false,
+                            killer: true,
+                            layout      : 'topCenter',
+                            theme       : 'defaultTheme',
+                            timeout: 2000
+                        });
             }
             else
             {
-                alert("评分失败，请反馈给管理员！");
+                var n = noty({
+                    text        : "评论 + 1",
+                    type        : "information",
+                    dismissQueue: false,
+                    killer: true,
+                    layout      : 'topCenter',
+                    theme       : 'defaultTheme',
+                    timeout: 2000
+                });
+
+               $(".replyform").remove();
+               var loInsertHtml = _.template($("#commentTpl").html(), {'item':data});
+               if(data.comment_id == 0)
+               {
+                   $("#articlereplies").append(loInsertHtml);
+               }
+               else
+               {
+                   $('#cmt_'+data.comment_id).append(loInsertHtml);
+               }
             }
-        },
-        error: function (data) {
-            alert("评分失败，请反馈给管理员！");
         }
     });
 }
 
-function articlePointDown(id)
+function articlePointUp(artid)
 {
-    if($(".down").hasClass('down_c'))
+    var loObj = $('#up');
+    //uped
+    if(loObj.hasClass('up_c'))
     {
-        return false;
+        var val = $("#article_points").html();
+        $("#article_points").html(parseInt(val) - 1);
+        $("#up").removeClass('up_c');
+        $("#down").removeClass('down_c');
+        $.getJSON(ROOT_PATH + "/vote/unlike",{"id":artid},function(data){
+        });
     }
-
-    $.ajax({
-        url: ROOT_PATH + "/article/articlePointDown",
-        type: "GET",
-        data: {"id":id},
-        dataType: "json",
-        success: function (data) {
-            if(data.state == 1)
-            {
-                var val = $("#article_points").html();
-                $("#article_points").html(parseInt(val) - 1);
-                $(".up").removeClass('up_c');
-                $(".down").addClass('down_c');
-            }
-            else
-            {
-                alert("评分失败，请反馈给管理员！");
-            }
-        },
-        error: function (data) {
-            alert("评分失败，请反馈给管理员！");
+    //not
+    else
+    {
+        var val = $("#article_points").html();
+        if($("#down").hasClass('down_c'))
+        {
+            $("#article_points").html(parseInt(val) + 2);
         }
-    });
+        else
+        {
+            $("#article_points").html(parseInt(val) + 1);
+        }
+        $("#up").addClass('up_c');
+        $("#down").removeClass('down_c');
+        $.getJSON(ROOT_PATH + "/vote/like",{"id":artid},function(data){
+        });
+    }
+}
+
+function articlePointDown(artid)
+{
+    var loObj = $('#down');
+    //uped
+    if(loObj.hasClass('down_c'))
+    {
+        var val = $("#article_points").html();
+        $("#article_points").html(parseInt(val) + 1);
+        $("#up").removeClass('up_c');
+        $("#down").removeClass('down_c');
+        $.getJSON(ROOT_PATH + "/vote/unlike",{"id":artid},function(data){
+        });
+    }
+    //not
+    else
+    {
+        var val = $("#article_points").html();
+        if($("#up").hasClass('up_c'))
+        {
+            $("#article_points").html(parseInt(val) - 2);
+        }
+        else
+        {
+            $("#article_points").html(parseInt(val) - 1);
+        }
+        $("#up").removeClass('up_c');
+        $("#down").addClass('down_c');
+        $.getJSON(ROOT_PATH + "/vote/dislike",{"id":artid},function(data){
+        });
+    }
 }

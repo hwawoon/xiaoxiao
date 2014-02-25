@@ -1,52 +1,30 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
-    <title>{{$pagetitle}}</title>
-    <!-- Bootstrap core CSS -->
-    {{ HTML::style('packages/bootstrap/css/bootstrap-1391792299980.css') }}
-    <!-- Custom styles for this template -->
-    {{ HTML::style('css/header-1391790726872.css') }}
-    {{ HTML::style('css/home-1390898781615.css') }}
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-</head>
-<script type="text/javascript">
-    var XIAO =
-    {
-        "loadingArticle" : 0,
-        "getMoreUrl" : "{{$getmore}}",
-        "loadedCount" : "{{$articlenum}}"
-    };
-</script>
-<body>
-@include('header')
+@extends('layouts.main')
 
+@section('title', '搞笑娃 - 为生活添欢乐')
+
+@section('styles')
+{{ HTML::style('css/home.css') }}
+@stop
+
+@section('content')
 <textarea id="section_template" style="display: none;">
     <section class="artsection">
         <div class="col-xs-10">
             <div class="row dnav">
-                <a href="{{URL::to('/article').'/'}}$id$" class="article_title">
+                <a href="{{URL::to('/art').'/'}}$id$" class="article_title">
                     <span class="tnav">$title$</span>
                 </a>
             </div>
             <div class="row nav-point">
-                <a href="{{URL::to('/article').'/'}}$id$" class="artileparam btn btn-default btn-xs">
+                <a href="{{URL::to('/art').'/'}}$id$" class="artileparam btn btn-default btn-xs">
                     <span id="rpoints$id$">$points$</span>分
                 </a>
-                <a href="{{URL::to('/article').'/'}}$id$" class="artileparam btn btn-default btn-xs">
+                <a href="{{URL::to('/art').'/'}}$id$" class="artileparam btn btn-default btn-xs">
                     $comments$评论
                 </a>
             </div>
             <div class="row">
-                <a href="{{URL::to('/article').'/'}}$id$">
+                <a href="{{URL::to('/art').'/'}}$id$">
                     <img class="" src="{{URL::to('/')}}/$imgpath$" style="width: 100%;">
                 </a>
             </div>
@@ -76,99 +54,108 @@
 </textarea>
 <!-- Wrap all page content here -->
 
-<div class="container" id="maintext">
-    <div class="row">
-        <div class="col-xs-8" id="home_articles">
-            @foreach ($articles as $article)
-            <section class="artsection">
-                <div class="col-xs-10">
-                    <div class="row dnav">
-                        <a href="{{URL::to('/article').'/'.$article->id}}" class="article_title">
-                            <span class="tnav">{{$article->title}}</span>
-                        </a>
-                    </div>
-                    <div class="row nav-point">
-                        <a href="{{URL::to('/article').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
-                            <span id="rpoints{{$article->id}}">{{$article->up - $article->down}}</span>分
-                        </a>
-                        <a href="{{URL::to('/article').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
-                            {{$article->comments}}评论
-                        </a>
-                    </div>
-                    <div class="row">
-                        <a href="{{URL::to('/article').'/'.$article->id}}">
-                            <img class="" src="{{URL::to('/')}}/{{$article->imgpath}}" style="width: 100%;">
-                        </a>
-                    </div>
-                    <div class="row artshare">
-                        <a href="javascript:void(0)" onclick="sinaweibo('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
-                            分享到新浪微博
-                        </a>
-                        <a href="javascript:void(0)" onclick="postToWb('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-primary"  title="分享到腾讯微博" target="_blank" >
-                            分享到腾讯微博
-                        </a>
-                    </div>
+<div class="row">
+    <div class="col-xs-8" id="home_articles">
+        @foreach ($articles as $article)
+        <section class="artsection">
+            <div class="col-xs-10">
+                <div class="row dnav">
+                    <a href="{{URL::to('/art').'/'.$article->id}}" class="article_title">
+                        <span class="tnav">{{$article->title}}</span>
+                    </a>
                 </div>
-                <div class="col-xs-2">
-                    <div class="row">
-                        <ul class="vertical-vote">
-                            @if (Auth::check())
-                            <li><a class="up" id="up{{$article->id}}" href="javascript:articlePointUp(this,{{$article->id}});void(0);" title="赞">赞</a></li>
-                            <li><a class="down" id="down{{$article->id}}" href="javascript:articlePointDown(this,{{$article->id}});void(0);" title="踩">踩</a></li>
+                <div class="row nav-point">
+                    <a href="{{URL::to('/art').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
+                        <span id="rpoints{{$article->id}}">{{$article->points}}</span>分
+                    </a>
+                    <a href="{{URL::to('/art').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
+                        {{$article->comments}}评论
+                    </a>
+                </div>
+                <div class="row">
+                    <a href="{{URL::to('/art').'/'.$article->id}}">
+                        <img class="" src="{{URL::to('/')}}/{{$article->imgpath}}" style="width: 100%;">
+                    </a>
+                </div>
+                <div class="row artshare">
+                    <a href="javascript:void(0)" onclick="sinaweibo('{{$article->title}}','{{URL::to('/art') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
+                        分享到新浪微博
+                    </a>
+                    <a href="javascript:void(0)" onclick="postToWb('{{$article->title}}','{{URL::to('/art') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-primary"  title="分享到腾讯微博" target="_blank" >
+                        分享到腾讯微博
+                    </a>
+                </div>
+            </div>
+            <div class="col-xs-2">
+                <div class="row">
+                    <ul class="vertical-vote">
+                        @if (Auth::check())
+                            <?php
+                                $vote = $article->votes()->where('user_id', '=', Auth::user()->id)->first();
+                            ?>
+                            @if(!empty($vote))
+                                @if($vote->state == 1)
+                                <li><a class="up up_c artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
+                                <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                                @else
+                                <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
+                                <li><a class="down down_c artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                                @endif
                             @else
-                            <li><a class="up" href="javascript:openLoginModal();" title="赞">赞</a></li>
-                            <li><a class="down" href="javascript:openLoginModal();" title="踩">踩</a></li>
+                                <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
+                                <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
                             @endif
-                        </ul>
-                    </div>
+                        @else
+                        <li><a class="up" href="javascript:openLoginModal();" title="赞">赞</a></li>
+                        <li><a class="down" href="javascript:openLoginModal();" title="踩">踩</a></li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+        </section>
+        @endforeach
+    </div>
+    <div class="col-xs-4 rrecommend">
+        @if(!empty($rarticles))
+        <div class="row recomdhead">
+            <span class="label label-warning">推荐一下</span>
+        </div>
+        <div class="row tags">
+            @foreach ($rarticles as $article)
+            <section>
+                <div class="row tagtitle">
+                    <a href="{{URL::to('/art').'/'.$article->id}}" >
+                        <span>
+                        @if(strlen($article->title) > 51)
+                            {{substr($article->title, 0, 51)}}...
+                        @else
+                            {{$article->title}}
+                        @endif
+                        </span>
+                    </a>
+                </div>
+                <div class="row">
+                    <a href="{{URL::to('/art').'/'.$article->id}}">
+                        <img class="" src="{{URL::to('/')}}/{{$article->thumbpath}}" >
+                    </a>
                 </div>
             </section>
             @endforeach
         </div>
-        <div class="col-xs-4 rrecommend">
-            @if(!empty($rarticles))
-            <div class="row recomdhead">
-                <span>推荐一下</span>
-            </div>
-            <div class="row tags">
-                @foreach ($rarticles as $article)
-                <section>
-                    <div class="row tagtitle">
-                        <a href="{{URL::to('/article').'/'.$article->id}}" >
-                            <span>
-                            @if(strlen($article->title) > 51)
-                                {{substr($article->title, 0, 51)}}...
-                            @else
-                                {{$article->title}}
-                            @endif
-                            </span>
-                        </a>
-                    </div>
-                    <div class="row">
-                        <a href="{{URL::to('/article').'/'.$article->id}}">
-                            <img class="" src="{{URL::to('/')}}/{{$article->thumbpath}}" >
-                        </a>
-                    </div>
-                </section>
-                @endforeach
-            </div>
-            @endif
-        </div>
+        @endif
     </div>
-</div> <!-- /container -->
+</div>
 <div class="containerbottom"></div>
+@stop
 
-@include('footer')
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-{{ HTML::script('js/jquery.js') }}
-{{ HTML::script('packages/bootstrap/js/bootstrap-1390898781657.js') }}
-{{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
-{{ HTML::script('js/jquery.validate-1390898781640.js') }}
-{{ HTML::script('js/jquery.form-1390898781635.js') }}
-{{ HTML::script('js/header-1391790244642.js') }}
-{{ HTML::script('js/home-1390898781632.js') }}
-{{ HTML::script('js/ishare-1390898781634.js') }}
-</body>
-</html>
+@section('scripts')
+<script type="text/javascript">
+    var XIAO =
+    {
+        "loadingArticle" : 0,
+        "getMoreUrl" : "{{$getmore}}",
+        "loadedCount" : "{{$articlenum}}"
+    };
+</script>
+{{ HTML::script('js/home.js') }}
+@stop

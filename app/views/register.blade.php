@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.notfix')
 
 @section('title', '注册 - 为生活添欢乐')
 

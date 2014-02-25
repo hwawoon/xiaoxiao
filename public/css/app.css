@@ -12,9 +12,11 @@ html, body {
 
 /* Account for fixed navbar */
 body {
-    padding-top: 40px;
-    padding-bottom: 30px;
     min-width: 970px;
+}
+
+.mainarea {
+    padding-top: 40px;
 }
 
 .msg_loading {
@@ -31,19 +33,6 @@ body {
     text-indent: -999px;
     margin-top: 5px;
     padding-top: 10px;
-}
-
-#footer {
-    width: 300px;
-    background-color: #FFFFFF;
-    color: #000000;
-    position: fixed;
-    bottom: 0;
-    right: 175px;
-}
-
-#footer .container {
-    line-height: 25px;
 }
 
 .feedback {

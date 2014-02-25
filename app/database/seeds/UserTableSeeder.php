@@ -10,7 +10,8 @@ class UserTableSeeder extends Seeder
             array(
                 'email' => 'kimhwawoon@gmail.com',
                 'name' => 'kimhwawoon',
-                'password' => \Illuminate\Support\Facades\Hash::make('gaoxiaowa')
+                'password' => \Illuminate\Support\Facades\Hash::make('gaoxiaowa'),
+                'is_admin' => 1
             )
         );
 

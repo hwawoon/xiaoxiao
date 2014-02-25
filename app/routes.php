@@ -68,9 +68,11 @@ Route::get('/emailChecker',  function(){
     return Response::json(true,200);
 });
 
-Route::any('article/getMoreHot', 'HomeController@getMoreHotArticle');
+Route::any('getMoreHot', 'HomeController@getMoreHotArticle');
 
-Route::any('article/getMoreLatest', 'HomeController@getMoreLatestArticle');
+Route::any('getMoreLatest', 'HomeController@getMoreLatestArticle');
+
+Route::get('comment/all', 'CommentController@getIndexByArt');
 
 Route::any('user/uploadIcon', 'UserController@uploadIcon');
 
@@ -78,9 +80,6 @@ Route::get("art/{id}", array(
     "as"=>"getArticle",
     "uses"=>"ArticleController@getArticle"
 ))->where('id', '[0-9]+');
-
-Route::get('article/previous/{id}', 'ArticleController@previousArticle')->where('id', '[0-9]+');
-Route::get('article/next/{id}', 'ArticleController@nextArticle')->where('id', '[0-9]+');
 
 Route::get('article/search','HomeController@searchArticle');
 
@@ -108,8 +107,10 @@ Route::group(array('before' => 'auth'), function()
     Route::post('uploadImage',  'ArticleController@uploadImageArticle');
     Route::post('article/forwardImage',  'ArticleController@forwardImageArticle');
 
-    Route::post('comment/addComment/{userid}/{articleid}', 'CommentController@addComment')
-        ->where(array('userid' => '[0-9]+', 'articleid' => '[0-9]+'));
+    //add comment
+    Route::post('comment/add', 'CommentController@addComment');
+
+    Route::post('comment/up', 'CommentController@upComment');
 
     Route::get('vote/like',  'VoteController@articleLike');
     Route::get('vote/unlike',  'VoteController@articleUnlike');

@@ -1,13 +1,34 @@
-.col-xs-8 section {
-    padding-top: 10px;
-    padding-bottom: 20px;
-}
-
 .atitle {
     font-size: 27px;
     padding: 0px;
     word-wrap:break-word;
     overflow:hidden;
+}
+
+.artcontent {
+    margin-top: -50px;
+}
+
+.sharetoolbar {
+    background-color: #ffffff;
+}
+
+.barfixed {
+    position:fixed; 
+    padding-top: 3px;
+    padding-right: 5px;
+    top: 0;
+    height: 50px;
+    z-index: 1050;
+    width: 945px;
+}
+
+.col-xs-7 {
+    width: 64%;
+}
+
+.col-xs-5 {
+    width: 36%;
 }
 
 div.points {
@@ -29,13 +50,14 @@ div.apoint {
 }
 
 .atags {
-    padding-top: 40px;
-    padding-left: 100px;
+    padding-top: 25px;
+    padding-left: 60px;
     padding-right: 50px;
 }
 
-.atags .pager {
+div.pagerline {
     text-align: center;
+    padding: 5px 0px 5px 40px;
 }
 
 .horizontal-vote {
@@ -73,6 +95,13 @@ div.apoint {
 
 .horizontal-vote a.down_c {
     background: #fff url(../img/sticky-vote.png) no-repeat -42px -32px;
+}
+
+span.rcmdtitle {
+    display: block;
+    width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
 }
 
 #commentArea {
@@ -114,4 +143,38 @@ div.apoint {
 
 div.cmtreplybar a {
     padding: 0 5px;
+}
+
+.media,.media-body {
+  overflow: hidden;
+  zoom: 1;
+}
+
+.media,.media .media {
+  margin-top: 15px;
+}
+
+.media:first-child {
+  margin-top: 0;
+}
+
+.media-object {
+  display: block;
+}
+
+.media-heading {
+  margin: 0 0 5px;
+}
+
+.media > .pull-left {
+  margin-right: 10px;
+}
+
+.media > .pull-right {
+  margin-left: 10px;
+}
+
+.media-list {
+  padding-left: 0;
+  list-style: none;
 }
