@@ -10,31 +10,46 @@ class MessageController extends BaseController
 {
     public function getMessage()
     {
-        $userid = Auth::user()->getId();
+        $user = Auth::user();
 
-        $messages = db::table('messages')->join('articles', 'articleid', '=', 'articles.id')
-                            ->where('messages.to_userid',$userid)
-                            ->where('messages.isnew',1)
-                            ->orderBy('messages.created_at', 'desc')
-                            ->select('messages.from_username','messages.articleid','articles.title','messages.from_username','messages.created_at')
-                            ->groupBy('messages.articleid','messages.from_userid')
-                            ->take(5)
-                            ->get();
+        $messages = $user->messages()
+                        ->where('read_flag', '=', '0')
+                        ->orderBy('created_at','desc')
+                        ->skip(0)
+                        ->take(5)->get();
+
+        foreach ($messages as $msg)
+        {
+            $msg->article;
+            $msg->sender;
+        }
 
         return Response::json($messages,200);
     }
 
     public function getAllMessage()
     {
-        $userid = Auth::user()->getId();
+        $user = Auth::user();
 
-        $messages = db::table('messages')->join('articles', 'articleid', '=', 'articles.id')
-            ->where('messages.to_userid',$userid)
-            ->orderBy('messages.created_at', 'desc')
-            ->select('messages.from_username','messages.articleid','articles.title','messages.from_username','messages.created_at','messages.isnew')
-            ->groupBy('messages.articleid','messages.from_userid')
-            ->paginate(10);
+        $messages = $user->messages()
+                        ->where('read_flag', '=', '0')
+                        ->orderBy('created_at','desc')
+                        ->paginate(10);
 
-        return View::make('user.setting.message')->with('messages',$messages);
+        $rarticles = Article::orderBy('comments', 'desc')
+                            ->skip(0)
+                            ->take(10)
+                            ->get();
+
+        return View::make('user.message')->with('messages',$messages)
+                                            ->with('rarticles',$rarticles);
+    }
+
+    public function ingnoreMessages()
+    {
+        $affectedRows = Message::where('receiver_id', '=', Auth::user()->id)
+                               ->update(array('read_flag' => 1));
+
+        return Redirect::to('user/message');
     }
 }

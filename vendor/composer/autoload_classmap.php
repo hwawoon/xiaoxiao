@@ -13,6 +13,7 @@ return array(
     'CommentController' => $baseDir . '/app/controllers/CommentController.php',
     'CreateArticlesTable' => $baseDir . '/app/database/migrations/2013_12_30_061021_create_articles_table.php',
     'CreateCommentsTable' => $baseDir . '/app/database/migrations/2014_01_06_102130_create_comments_table.php',
+    'CreateFailedJobsTable' => $baseDir . '/app/database/migrations/2014_03_02_233742_create_failed_jobs_table.php',
     'CreateMessagesTable' => $baseDir . '/app/database/migrations/2014_02_28_130827_create_messages_table.php',
     'CreatePasswordRemindersTable' => $baseDir . '/app/database/migrations/2013_12_26_014721_create_password_reminders_table.php',
     'CreateSessionTable' => $baseDir . '/app/database/migrations/2014_02_11_173842_create_session_table.php',
