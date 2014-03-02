@@ -31,8 +31,7 @@ class HomeController extends BaseController {
 
         if(Auth::check())
         {
-            $articles = DB::table('articles')
-                ->leftJoin('votes', function($join)
+            $articles = Article::leftJoin('votes', function($join)
                 {
                     $join->on('articles.id', '=', 'votes.article_id')
                         ->where('votes.user_id', '=', Auth::user()->id);
@@ -69,8 +68,7 @@ class HomeController extends BaseController {
 
         if(Auth::check())
         {
-            $articles = DB::table('articles')
-                          ->leftJoin('votes', function($join)
+            $articles = Article::leftJoin('votes', function($join)
                           {
                               $join->on('articles.id', '=', 'votes.article_id')
                                    ->where('votes.user_id', '=', Auth::user()->id);
@@ -102,17 +100,16 @@ class HomeController extends BaseController {
 
         if(Auth::check())
         {
-            $articles = DB::table('articles')
-                ->leftJoin('votes', function($join)
-                {
-                    $join->on('articles.id', '=', 'votes.article_id')
-                        ->where('votes.user_id', '=', Auth::user()->id);
-                })
-                ->orderBy('articles.created_at', 'desc')
-                ->skip(0)
-                ->take($getnum)
-                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
-                ->get();
+            $articles = Article::leftJoin('votes', function($join)
+                                {
+                                    $join->on('articles.id', '=', 'votes.article_id')
+                                        ->where('votes.user_id', '=', Auth::user()->id);
+                                })
+                                ->orderBy('articles.created_at', 'desc')
+                                ->skip(0)
+                                ->take($getnum)
+                                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                                ->get();
         }
         else
         {
@@ -140,8 +137,7 @@ class HomeController extends BaseController {
 
         if(Auth::check())
         {
-            $articles = DB::table('articles')
-                          ->leftJoin('votes', function($join)
+            $articles = Article::leftJoin('votes', function($join)
                           {
                               $join->on('articles.id', '=', 'votes.article_id')
                                    ->where('votes.user_id', '=', Auth::user()->id);
@@ -170,8 +166,7 @@ class HomeController extends BaseController {
 
         if(Auth::check())
         {
-            $articles = DB::table('articles')
-                          ->leftJoin('votes', function($join)
+            $articles = Article::leftJoin('votes', function($join)
                           {
                               $join->on('articles.id', '=', 'votes.article_id')
                                    ->where('votes.user_id', '=', Auth::user()->id);
