@@ -134,6 +134,7 @@ $(function () {
                 if(data.state)
                 {
                     $("#uploadModal").modal('hide');
+                    $("#uploadImageForm")[0].reset();
                     window.location.href = data.url;
                 }
                 else
@@ -153,7 +154,7 @@ $(function () {
             error:function(data)
             {
                 var n = noty({
-                    text        : "请重试！",
+                    text        : "文件大小不能大于3Mb！",
                     type        : "warning",
                     dismissQueue: false,
                     killer: true,
@@ -216,18 +217,19 @@ $(function () {
         else
         {
             $.ajax({
-                url: ROOT_PATH + "/msg/getMessage",
+                url: ROOT_PATH + "/message/notify",
                 type: "get",
                 dataType : 'json',
                 success: function (data) {
                     var loHtml = '';
-                    $.each(data,function(i,child){
+                    $.each(data,function(i,child)
+                    {
                         loHtml +=
                             "<li class='message-preview'>" +
-                                "<a href='"+ROOT_PATH+"/article/"+child.articleid+"'>" +
-                                "<span class='msg_name'>"+child.from_username+"</span>在" +
-                                "<span class='msg_title'>"+child.title+"</span> 中回复了你 " +
-                                "</a></li>";
+                            "<a href='"+ROOT_PATH+"/art/"+child.article_id+"'>" +
+                            "<span class='msg_name'>"+child.sender.name+"</span>在" +
+                            "<span class='msg_title'>"+child.article.title+"</span> 中回复了你 " +
+                            "</a></li>";
                     });
 
                     $('.msg_loading').after(loHtml);

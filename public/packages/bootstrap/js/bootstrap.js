@@ -968,7 +968,6 @@ if (typeof jQuery === "undefined") { throw new Error("Bootstrap requires jQuery"
     }
 
     Modal.prototype.hideModal = function () {
-        debugger
         var that = this
         this.$element.hide()
         this.backdrop(function () {

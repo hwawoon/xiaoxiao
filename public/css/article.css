@@ -112,6 +112,10 @@ span.rcmdtitle {
     padding-top: 5px;
 }
 
+#articlereplies {
+    margin-bottom: 50px;
+}
+
 #articlereplies .row {
     padding: 10px 0px;
 }
@@ -143,38 +147,4 @@ span.rcmdtitle {
 
 div.cmtreplybar a {
     padding: 0 5px;
-}
-
-.media,.media-body {
-  overflow: hidden;
-  zoom: 1;
-}
-
-.media,.media .media {
-  margin-top: 15px;
-}
-
-.media:first-child {
-  margin-top: 0;
-}
-
-.media-object {
-  display: block;
-}
-
-.media-heading {
-  margin: 0 0 5px;
-}
-
-.media > .pull-left {
-  margin-right: 10px;
-}
-
-.media > .pull-right {
-  margin-left: 10px;
-}
-
-.media-list {
-  padding-left: 0;
-  list-style: none;
 }

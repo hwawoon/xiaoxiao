@@ -132,10 +132,10 @@ class UserController extends BaseController
     {
         $loginUser = Auth::user();
 
-        $articles = DB::table('articles')->where('userid',$loginUser->id)->get();
+        $articles = $loginUser->articles()->get();
 
-        return View::make('user.profile')->with("pagetitle","个人主页")
-                                            ->with("articles",$articles);
+
+        return View::make('user.profile')->with("articles",$articles);
     }
 
     /**
@@ -144,20 +144,17 @@ class UserController extends BaseController
      */
     public function saveUserBasicInfo()
     {
-        $updateUserId = Auth::user()->id;
+        $user = Auth::user();
+        $user->introduction = Input::get('introduction');
+        $result = $user->save();
 
-        $affectedRows = User::where('id', $updateUserId)
-                              ->update(array(
-                                            'name' => Input::get('username'),
-                                            'introduction' => Input::get('introduction')
-                                        ));
-        if($affectedRows > 0)
+        if($result)
         {
-            return Redirect::to('user/setting')->with('status', true)->with('message',"个人信息保存成功！");
+            return Redirect::back()->with('message',Lang::get('messages.save_success'));
         }
         else
         {
-            return Redirect::to('user/setting')->with('status', false)->with('message',"个人信息保存失败！");
+            return Redirect::back()->with('message',Lang::get('messages.save_fail'));
         }
     }
 
@@ -269,16 +266,15 @@ class UserController extends BaseController
                 $result = imagejpeg($thumbImg ,public_path() .'/avatar/' .Input::get('cropImgPath') );
 
                 //save user select path;
-                $updateUserId = Auth::user()->id;
-                $originalPath = Auth::user()->avatar;
+                $user = Auth::user();
+                $updateUserId = $user->id;
+                $originalPath = $user->avatar;
 
-                $affectedRows = User::where('id', $updateUserId)
-                    ->update(array(
-                        'avatar' => 'avatar/' .Input::get('cropImgPath')
-                    ));
+                $user->avatar =  'avatar/' .Input::get('cropImgPath');
+                $user->save();
 
                 //delete user original image
-                if(is_readable($originalPath))
+                if(is_readable($originalPath) && $originalPath != 'img/avatar.jpg')
                 {
                     @unlink($originalPath);
                 }
@@ -292,16 +288,16 @@ class UserController extends BaseController
                     @unlink($source_path);
                 }
 
-                return Redirect::to('user/setting/icon')->with('message',Lang::get('messages.upload_avatar_success'));
+                return Redirect::back()->with('message',Lang::get('messages.upload_avatar_success'));
             }
             catch(Exception $e)
             {
-                return Redirect::to('user/setting/icon')->with('message',Lang::get('messages.avatar_system_error'));
+                return Redirect::back()->with('message',Lang::get('messages.avatar_system_error'));
             }
         }
         else
         {
-            return Redirect::to('user/setting/icon')->with('message',Lang::get('messages.file_no_exist'));
+            return Redirect::back()->with('message',Lang::get('messages.file_no_exist'));
         }
     }
 
@@ -314,9 +310,9 @@ class UserController extends BaseController
                 'new_password_confirmation' => \Illuminate\Support\Facades\Input::get('new_password_confirmation')
             ),
             array(
-                'old_password' => 'required|alpha_num|min:6',
-                'new_password' => 'required|alpha_num|min:6|confirmed',
-                'new_password_confirmation' => 'required|alpha_num|min:6'
+                'old_password' => 'required|alpha_num',
+                'new_password' => 'required|alpha_num|confirmed',
+                'new_password_confirmation' => 'required|alpha_num'
             )
         );
 
@@ -327,23 +323,22 @@ class UserController extends BaseController
             {
                 $message = implode('<br>',$errors->all());
             }
-            return Redirect::to('user/setting/security')->with('message',$message);
+            return Redirect::back()->with('message',$message);
         }
         else
         {
             $curUser = Auth::user();
             $currentPassword = $curUser->password;
-            if($currentPassword == Hash::make(Input::get('old_password')))
+            if($currentPassword != Hash::make(Input::get('old_password')))
             {
-                return Redirect::to('user/setting/security')->with('message', Lang::get('messages.current_password_error'));
+                return Redirect::back()->with('message', Lang::get('messages.current_password_error'));
             }
             else
             {
                 $curUser->password = Hash::make(Input::get('new_password'));
-
                 $curUser->save();
 
-                return Redirect::to('user/setting/security')->with('message', Lang::get('messages.update_password_success'));
+                return Redirect::back()->with('message', Lang::get('messages.update_password_success'));
             }
         }
     }

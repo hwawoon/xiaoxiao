@@ -15,6 +15,7 @@ class Article extends Eloquent
 
     protected $fillable = array('title', 'imgpath', 'thumbpath', 'userid');
 
+    protected $softDelete = true;
     /**
      * one article has many comments
      * @return mixed

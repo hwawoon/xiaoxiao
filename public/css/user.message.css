@@ -1,3 +1,23 @@
-.messagerow {
-    padding: 10px 5px;
+.page-title {
+    border-bottom: 1px solid #eeeeee;
+    margin-right: 20px;
+}
+
+.page-title button {
+    float: right;
+}
+
+.message-row {
+	width:600px;
+	overflow:hidden;
+	margin-left: 0px;
+	padding: 10px 0;
+}
+
+span.daterow {
+    color: #cccccc;
+}
+
+span.newflag {
+    color: #ff0000;
 }

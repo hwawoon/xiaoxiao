@@ -102,8 +102,6 @@ Route::group(array('before' => 'auth'), function()
         return View::make('user.setting.security');
     });
 
-    Route::get('user/setting/message','MessageController@getAllMessage');
-
     Route::post('uploadImage',  'ArticleController@uploadImageArticle');
     Route::post('article/forwardImage',  'ArticleController@forwardImageArticle');
 
@@ -118,18 +116,22 @@ Route::group(array('before' => 'auth'), function()
 
     Route::get('user/profile', 'UserController@getUserProfile');
 
-    Route::post('user/saveUserBasicInfo', 'UserController@saveUserBasicInfo');
+    Route::post('user/basic/save', 'UserController@saveUserBasicInfo');
 
-    Route::post('user/uploadSourceImage', 'UserController@uploadSourceImage');
+    Route::post('user/avatar/upload', 'UserController@uploadSourceImage');
 
-    Route::post('user/saveUserIcon', 'UserController@saveUserIcon');
-
+    Route::post('user/avatar/save', 'UserController@saveUserIcon');
     //update user password
-    Route::post('user/updatePassword', 'UserController@updatePassword');
+    Route::post('user/password/update', 'UserController@updatePassword');
 
-    Route::get('msg/getMessage', 'MessageController@getMessage');
+    Route::post('art/delete', 'ArticleController@destroy');
 
-    Route::post('article/deleteArticle', 'ArticleController@deleteArticle');
+    //message controller
+    Route::get('user/message','MessageController@getAllMessage');
+
+    Route::get('msg/ignore','MessageController@ingnoreMessages');
+
+    Route::get('message/notify', 'MessageController@getMessage');
 
 });
 
@@ -144,3 +146,12 @@ Route::get('password/reset/{token}', array(
     'uses' => 'RemindersController@getReset',
     'as' => 'password.reset'
 ));
+
+Route::group(array('prefix' => 'admin', 'before' => 'auth.admin'), function()
+{
+    Route::get('/', 'AdminController@index');
+
+    Route::get('/users', 'AdminController@getUserList');
+
+    Route::get('/articles', 'AdminController@getArticleList');
+});

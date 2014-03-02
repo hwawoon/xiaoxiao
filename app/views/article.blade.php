@@ -1,4 +1,4 @@
-@extends('layouts.notfix')
+@extends('layouts.main')
 
 @section('title')
 {{$article->title}}
@@ -6,6 +6,10 @@
 
 @section('styles')
 {{ HTML::style('css/article.css') }}
+@stop
+
+@section('header_type')
+navbar-static-top
 @stop
 
 @section('content')
@@ -34,6 +38,7 @@
                 </div>
                 <div class="apoint horizontal-vote">
                     @if (Auth::check())
+                        @if(!empty($vote))
                             @if($vote->state == 1)
                                 <span><a class="up up_c" id="up" href="javascript:void(0);"  onclick="articlePointUp({{$article->id}});void(0);">赞</a></span>
                                 <span><a class="down" id="down" href="javascript:void(0);" onclick="articlePointDown({{$article->id}});void(0);">踩</a></span>
@@ -42,6 +47,10 @@
                                 <span><a class="down down_c" id="down" href="javascript:void(0);" onclick="articlePointDown({{$article->id}});void(0);">踩</a></span>
                             @endif
                         @else
+                            <span><a class="up" id="up" href="javascript:void(0);"  onclick="articlePointUp({{$article->id}});void(0);">赞</a></span>
+                            <span><a class="down" id="down" href="javascript:void(0);" onclick="articlePointDown({{$article->id}});void(0);">踩</a></span>
+                        @endif
+                    @else
                     <span><a class="up" href="javascript:openLoginModal();">赞</a></span>
                     <span><a class="down" href="javascript:openLoginModal();">踩</a></span>
                     @endif
@@ -125,7 +134,7 @@
 <script id="commentTpl" type="text/template">
     <div class="media">
         <a class="pull-left" href="#">
-          <img src="{{URL::to('/')}}/<%=item.user.avatar%>" class="img-responsive img-thumbnail media-object" />
+          <img src="{{URL::to('/')}}/<%=item.user.avatar%>" class="img-responsive img-thumbnail media-object" width="64px;" />
         </a>
         <div class="media-body" id="cmt_<%=item.id%>">
           <h4 class="media-heading"><%=item.user.name%></h4>
@@ -163,9 +172,9 @@
     <input type="hidden" name="comment_id" value="<%=data.comment_id%>" />
     <div class="useravatar">
         @if(Auth::check())
-        <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" class="img-responsive img-thumbnail" style="width: 50px;"/>
+        <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" class="img-responsive img-thumbnail" style="width: 64px;"/>
         @else
-        <img src="{{URL::to('/')}}/img/logo.png" class="img-responsive img-thumbnail" style="width: 50px;"/>
+        <img src="{{URL::to('/')}}/img/avatar.jpg" class="img-responsive img-thumbnail" style="width: 64px;"/>
         @endif
     </div>
     <div class="myreplay">

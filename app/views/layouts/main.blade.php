@@ -20,7 +20,7 @@
 </head>
 <body>
 <!-- Fixed navbar -->
-<div class="navbar navbar-default navbar-fixed-top" role="navigation">
+<div class="navbar navbar-default @yield('header_type')" role="navigation">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -69,7 +69,7 @@
                 <li class="dropdown">
                     <a href="#" id="message_list" class="dropdown-toggle" data-toggle="dropdown">
                         <i class="glyphicon glyphicon-bell messageicon"></i> <span class="badge" id="message_count">
-                            {{Session::get('message_count')}}
+                            {{Auth::user()->messages}}
                         </span>
                     </a>
                     <ul class="dropdown-menu" id="message_box">
@@ -77,19 +77,19 @@
                             {{HTML::image('img/loading.gif')}}
                         </li>
                         <li class="divider"></li>
-                        <li style="text-align: center;"><a href="{{URL::to('/user/setting/message')}}">查看更多消息</a></li>
+                        <li style="text-align: center;"><a href="{{URL::to('/user/message')}}">查看更多消息</a></li>
                     </ul>
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" width="20px" />
-                        {{Auth::user()->name}}<b class="caret"></b>
+                         我 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{URL::to('/user/profile')}}">个人主页</a></li>
                         <li><a href="{{URL::to('/user/setting')}}">设置</a></li>
                         @if(Auth::user()->is_admin)
-                        <li><a href="{{URL::to('/user/setting')}}">管理后台</a></li>
+                        <li><a href="{{URL::to('/admin')}}">管理后台</a></li>
                         @endif
                         <li><div class="divider"></div> </li>
                         <li><a href="{{URL::to('/user/logout')}}" id="alogout">退出</a></li>

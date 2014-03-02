@@ -6,6 +6,10 @@
 {{ HTML::style('css/home.css') }}
 @stop
 
+@section('header_type')
+navbar-fixed-top
+@stop
+
 @section('content')
 <div class="row">
     <div class="col-xs-8" id="home_articles">
@@ -144,11 +148,11 @@
                         <li><a class="down" href="javascript:openLoginModal();" title="踩">踩</a></li>
                     <% }else { %>
                         <% if(item.state == 1) {%>
-                            <li><a class="up up_c artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
-                            <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                            <li><a class="up up_c artup" id="up<%=item.id%>" art="<%=item.id%>" href="javascript:void(0);" title="赞">赞</a></li>
+                            <li><a class="down artdown" id="down<%=item.id%>" art="<%=item.id%>" href="javascript:void(0);" title="踩">踩</a></li>
                         <% }else { %>
-                            <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
-                            <li><a class="down down_c artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                            <li><a class="up artup" id="up<%=item.id%>" art="<%=item.id%>" href="javascript:void(0);" title="赞">赞</a></li>
+                            <li><a class="down down_c artdown" id="down<%=item.id%>" art="<%=item.id%>" href="javascript:void(0);" title="踩">踩</a></li>
                         <% } %>
                     <% } %>    
                     </ul>

@@ -91,37 +91,3 @@ span.tnav {
 .vertical-vote a.down_c {
     background: #fff url(../img/sticky-vote.png) no-repeat -42px -32px;
 }
-
-div.rrecommend {
-    padding-left: 20px;
-}
-
-.rrecommend section {
-    padding: 10px 45px 10px 10px;
-}
-
-div.recomdhead {
-    padding-top: 10px;
-}
-
-div.recomdhead span {
-    font-size: 15px;
-    word-wrap:break-word;
-    overflow:hidden;
-}
-
-.tags .tagtitle {
-    padding: 5px 0;
-}
-
-.tagtitle a {
-    text-decoration: none;
-    color: #000000;
-}
-
-.tagtitle a span {
-    display: block;
-    width: 300px;
-    overflow: hidden;
-    white-space: nowrap;
-}

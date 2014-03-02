@@ -4,6 +4,7 @@ $(function () {
             itemSelector: '.item'
         });
     });
+
 });
 
 function delArticle(id)

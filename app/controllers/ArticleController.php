@@ -50,7 +50,7 @@ class ArticleController extends BaseController
             {
                 return Response::json(array(
                     "state" => 0,
-                    "message" => implode('<br>',$validator->messages())
+                    "message" => $validator->messages()->first()
                 ),200);
             }
 
@@ -177,9 +177,18 @@ class ArticleController extends BaseController
      */
     public function destroy()
     {
-        $id = Input::get('articleid');
-        DB::table('articles')->where('id', $id )->delete();
+        $article = Article::find(Input::get('articleid'));
 
-        return Redirect::to('user/profile')->with('delmessage',Lang::get('messages.deleted_article'));
+        if(Auth::user()->id == $article->user->id)
+        {
+            $article->delete();
+            $affectedRows = Message::where('article_id', '=', Input::get('articleid'))
+                                   ->delete();
+            return Redirect::back()->with('message',Lang::get('messages.auth_error'));
+        }
+        else
+        {
+            return Redirect::back()->with('message',Lang::get('messages.deleted_article'));
+        }
     }
 }

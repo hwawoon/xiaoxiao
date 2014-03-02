@@ -6,6 +6,10 @@
 {{ HTML::style('css/home.css') }}
 @stop
 
+@section('header_type')
+navbar-fixed-top
+@stop
+
 @section('content')
 <textarea id="section_template" style="display: none;">
     <section class="artsection">

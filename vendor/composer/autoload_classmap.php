@@ -13,6 +13,7 @@ return array(
     'CommentController' => $baseDir . '/app/controllers/CommentController.php',
     'CreateArticlesTable' => $baseDir . '/app/database/migrations/2013_12_30_061021_create_articles_table.php',
     'CreateCommentsTable' => $baseDir . '/app/database/migrations/2014_01_06_102130_create_comments_table.php',
+    'CreateMessagesTable' => $baseDir . '/app/database/migrations/2014_02_28_130827_create_messages_table.php',
     'CreatePasswordRemindersTable' => $baseDir . '/app/database/migrations/2013_12_26_014721_create_password_reminders_table.php',
     'CreateSessionTable' => $baseDir . '/app/database/migrations/2014_02_11_173842_create_session_table.php',
     'CreateUsersTable' => $baseDir . '/app/database/migrations/2013_12_25_090058_create_users_table.php',
@@ -25,7 +26,7 @@ return array(
     'IlluminateQueueClosure' => $vendorDir . '/laravel/framework/src/Illuminate/Queue/IlluminateQueueClosure.php',
     'Img' => $baseDir . '/app/library/Img.php',
     'Message' => $baseDir . '/app/models/Message.php',
-    'MessageController' => $baseDir . '/app/controllers/messageController.php',
+    'MessageController' => $baseDir . '/app/controllers/MessageController.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/PHPUnit/Extensions/GroupTestSuite.php',
     'PHPUnit_Extensions_PhptTestCase' => $vendorDir . '/phpunit/phpunit/PHPUnit/Extensions/PhptTestCase.php',
     'PHPUnit_Extensions_PhptTestCase_Logger' => $vendorDir . '/phpunit/phpunit/PHPUnit/Extensions/PhptTestCase/Logger.php',
@@ -379,4 +380,5 @@ return array(
     'UserTableSeeder' => $baseDir . '/app/database/seeds/UserTableSeeder.php',
     'Vote' => $baseDir . '/app/models/Vote.php',
     'VoteController' => $baseDir . '/app/controllers/VoteController.php',
+    'adminController' => $baseDir . '/app/controllers/AdminController.php',
 );

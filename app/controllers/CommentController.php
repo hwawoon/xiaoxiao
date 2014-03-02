@@ -123,6 +123,34 @@ class CommentController extends BaseController {
 
         $article->increment('comments',1);
 
+        //send message to Author
+        if($datas['article_author'] != Auth::user()->id)
+        {
+	        $loMessage = new Message();
+	        $loMessage->article()->associate($article);
+	        $loMessage->sender()->associate(Auth::user());
+	        $loMessage->receiver_id = $datas['article_author'];
+	        $loMessage->save();
+
+	        User::find($datas['article_author'])->increment('messages',1);
+	    }
+        //if comment reply send message to parent comment author
+        if(!empty($datas['comment_id']))
+        {
+        	$prtCmtUser = Comment::find($datas['comment_id'])->user()->first();
+        	if($prtCmtUser->id != Auth::user()->id)
+        	{
+        		$cMessage = new Message();
+	        	$cMessage->article()->associate($article);
+		        $cMessage->sender()->associate(Auth::user());
+		        $cMessage->receiver()->associate($prtCmtUser);
+		        $cMessage->comment()->associate($loComment);
+		        $cMessage->save();
+
+		        $prtCmtUser->increment('messages',1);
+        	}
+        }
+
         return Response::json($loComment,200);
     }
 

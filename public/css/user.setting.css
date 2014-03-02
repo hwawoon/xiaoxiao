@@ -1,3 +1,22 @@
+h3 {
+    font-weight: 700;
+}
+
+#sidebar {
+    margin-top: 15px;
+}
+
+.settingfrm {
+    line-height: 40px;
+}
+
+/* icon tab */
+.croparea {
+    padding: 30px 0px;
+    margin: 0 5px;
+    background-color: #eeeeee;
+}
+
 /* Apply these styles only when #preview-pane has
    been placed within the Jcrop widget */
 .jcrop-holder #preview-pane {
@@ -26,4 +45,9 @@
     width: 128px;
     height: 128px;
     overflow: hidden;
+}
+
+.jcrop-preview {
+    width: 128px;
+    height: 128px;
 }

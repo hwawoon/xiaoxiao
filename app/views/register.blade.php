@@ -1,9 +1,13 @@
-@extends('layouts.notfix')
+@extends('layouts.main')
 
 @section('title', '注册 - 为生活添欢乐')
 
 @section('styles')
 {{ HTML::style('css/user.register.css') }}
+@stop
+
+@section('header_type')
+navbar-static-top
 @stop
 
 @section('content')

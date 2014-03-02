@@ -6,6 +6,9 @@
  */
 
 return array(
+    'auth_error' => '权限非法',
+    'save_success' => '保存成功！',
+    'save_fail' => '保存失败！',
     'reg_success' => '欢迎注册搞笑娃，一起分享你的趣闻图片吧！',
     'reg_failure' => '非常对不起，系统错误导致注册失败，我们会尽快解决！',
     'signIn_failure' => '用户名或密码错误！',
