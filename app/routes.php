@@ -13,17 +13,47 @@
 
 Route::get('/',  'HomeController@showHome');
 
-Route::get('/register', function()
-{
-    return View::make('register');
-});
+Route::any('moreHot', 'HomeController@moreHot');
+
+Route::get('/latest',  'HomeController@showLatest');
+
+Route::any('moreLatest', 'HomeController@moreLatest');
+
+Route::get('/gif',  'HomeController@showGif');
+
+Route::any('moreGif', 'HomeController@moreGif');
+
+Route::get('/cute',  'HomeController@showCute');
+
+Route::any('moreCute', 'HomeController@moreCute');
+
+Route::get('/jiong',  'HomeController@showJiong');
+
+Route::any('moreJiong', 'HomeController@moreJiong');
+
+Route::get('/beauty',  'HomeController@showBeauty');
+
+Route::any('moreBeauty', 'HomeController@moreBeauty');
+
+Route::get('/tucao',  'HomeController@showTucao');
+
+Route::any('moreTucao', 'HomeController@moreTucao');
+
+Route::get('/other', 'HomeController@showOther');
+
+Route::any('moreOther', 'HomeController@moreOther');
 
 Route::get('/aboutMe', function()
 {
     return View::make('about');
 });
 
-Route::get('/latest',  'HomeController@showLatest');
+Route::get('/register', function()
+{
+    return View::make('register');
+});
+
+
 
 Route::group(array('before' => 'csrf'), function()
 {

@@ -10,10 +10,11 @@ class Article extends Eloquent
 {
     public static $upload_rules = array(
         'title'=>'required|max:200',
-        'uploadImage' => 'required|mimes:jpeg,gif,png|max:3000'
+        'uploadImage' => 'required|mimes:jpeg,gif,png|max:3000',
+        'uplaodType'=>'required|integer'
     );
 
-    protected $fillable = array('title', 'imgpath', 'thumbpath', 'userid');
+    protected $fillable = array('title', 'imgpath', 'thumbpath', 'user_id', 'type', 'gif');
 
     protected $softDelete = true;
     /**
@@ -35,4 +36,120 @@ class Article extends Eloquent
         return $this->belongsTo('User');
     }
 
+    public function getRecommend()
+    {
+        $rarticles = Article::orderBy('comments', 'desc')
+                            ->skip(0)
+                            ->take(10)
+                            ->get();
+
+        return $rarticles;
+    }
+
+    public function getHot($offset,$rownum)
+    {
+        if(Auth::check())
+        {
+            $articles = Article::leftJoin('votes', function($join)
+            {
+                $join->on('articles.id', '=', 'votes.article_id')
+                    ->where('votes.user_id', '=', Auth::user()->id);
+            })
+                ->orderBy('articles.points', 'desc')
+                ->skip($offset)
+                ->take($rownum)
+                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                ->get();
+        }
+        else
+        {
+            $articles = Article::orderBy('points', 'desc')
+                ->skip($offset)
+                ->take($rownum)
+                ->get();
+        }
+
+        return $articles;
+    }
+
+    public function getLatest($offset,$rownum)
+    {
+        if(Auth::check())
+        {
+            $articles = Article::leftJoin('votes', function($join)
+            {
+                $join->on('articles.id', '=', 'votes.article_id')
+                    ->where('votes.user_id', '=', Auth::user()->id);
+            })
+                ->orderBy('articles.created_at', 'desc')
+                ->skip($offset)
+                ->take($rownum)
+                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                ->get();
+        }
+        else
+        {
+            $articles = Article::orderBy('created_at', 'desc')
+                ->skip($offset)
+                ->take($rownum)
+                ->get();
+        }
+
+        return $articles;
+    }
+
+    public function getGif($offset,$rownum)
+    {
+        if(Auth::check())
+        {
+            $articles = Article::where('articles.gif','=',1)
+                ->leftJoin('votes', function($join){
+                    $join->on('articles.id', '=', 'votes.article_id')
+                        ->where('votes.user_id', '=', Auth::user()->id);
+                })
+                ->orderBy('articles.created_at', 'desc')
+                ->skip($offset)
+                ->take($rownum)
+                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                ->get();
+        }
+        else
+        {
+            $articles = Article::where('gif','=',1)
+                ->orderBy('created_at', 'desc')
+                ->skip($offset)
+                ->take($rownum)
+                ->get();
+        }
+
+        return $articles;
+    }
+
+    public function getArticleByType($offset,$rownum,$type)
+    {
+        if(Auth::check())
+        {
+            $articles = Article
+                ::leftJoin('votes', function($join){
+                    $join->on('articles.id', '=', 'votes.article_id')
+                        ->where('votes.user_id', '=', Auth::user()->id);
+                })
+                ->where('articles.type','=',$type)
+                ->orderBy('articles.created_at', 'desc')
+                ->skip($offset)
+                ->take($rownum)
+                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                ->get();
+        }
+        else
+        {
+            $articles = Article::where('type','=',$type)
+                ->orderBy('created_at', 'desc')
+                ->skip($offset)
+                ->take($rownum)
+                ->get();
+        }
+
+        return $articles;
+    }
 }

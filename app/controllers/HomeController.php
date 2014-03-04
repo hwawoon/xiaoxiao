@@ -6,86 +6,34 @@
  * Date: 13-12-25
  */
 
-class HomeController extends BaseController {
-
-	/*
-	|--------------------------------------------------------------------------
-	| Default Home Controller
-	|--------------------------------------------------------------------------
-	|
-	| You may wish to use controllers instead of, or in addition to, Closure
-	| based routes. That's great! Here is an example controller method to
-	| get you started. To route to this controller, just add the route:
-	|
-	|	Route::get('/', 'HomeController@showWelcome');
-	|
-	*/
-
-    /**
+class HomeController extends BaseController
+{
+     /**
      * 获取热门
      * @return mixed
      */
     public function showHome()
-	  {
+	{
         $getnum = 10;
 
-        if(Auth::check())
-        {
-            $articles = Article::leftJoin('votes', function($join)
-                {
-                    $join->on('articles.id', '=', 'votes.article_id')
-                        ->where('votes.user_id', '=', Auth::user()->id);
-                })
-                ->orderBy('articles.points', 'desc')
-                ->skip(0)
-                ->take($getnum)
-                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
-                ->get();
-        }
-        else
-        {
-            $articles = Article::orderBy('points', 'desc')
-                ->skip(0)
-                ->take($getnum)
-                ->get();
-        }
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getHot(0,$getnum);
 
-        $rarticles = Article::orderBy('comments', 'desc')
-                            ->skip(0)
-                            ->take(10)
-                            ->get();
+        $rarticles = $lobjArticle->getRecommend();
 
         return View::make('/home')->with('pageinfo','home')
-                                  ->with('getmore',"getMoreHot")
-                                  ->with('articles',$articles)
-                                  ->with('articlenum',$getnum)
-                                  ->with('rarticles',$rarticles);
+                                    ->with('getmore',"moreHot")
+                                    ->with('articles',$articles)
+                                    ->with('articlenum',$getnum)
+                                    ->with('rarticles',$rarticles);
     }
 
-    public function getMoreHotArticle()
+    public function moreHot()
     {
         $articleOffset = Input::get('articleOffset');
 
-        if(Auth::check())
-        {
-            $articles = Article::leftJoin('votes', function($join)
-                          {
-                              $join->on('articles.id', '=', 'votes.article_id')
-                                   ->where('votes.user_id', '=', Auth::user()->id);
-                          })
-                          ->orderBy('articles.points', 'desc')
-                          ->skip($articleOffset)
-                          ->take(10)
-                          ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
-                          ->get();
-        }
-        else
-        {
-            $articles = Article::orderBy('points', 'desc')
-                               ->skip($articleOffset)
-                               ->take(10)
-                               ->get();
-        }
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getHot($articleOffset,10);
 
         return Response::json($articles , 200 );
     }
@@ -98,63 +46,180 @@ class HomeController extends BaseController {
     {
         $getnum = 10;
 
-        if(Auth::check())
-        {
-            $articles = Article::leftJoin('votes', function($join)
-                                {
-                                    $join->on('articles.id', '=', 'votes.article_id')
-                                        ->where('votes.user_id', '=', Auth::user()->id);
-                                })
-                                ->orderBy('articles.created_at', 'desc')
-                                ->skip(0)
-                                ->take($getnum)
-                                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
-                                ->get();
-        }
-        else
-        {
-            $articles = Article::orderBy('created_at', 'desc')
-                ->skip(0)
-                ->take($getnum)
-                ->get();
-        }
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getLatest(0,$getnum);
 
-        $rarticles = Article::orderBy('comments', 'desc')
-                            ->skip(0)
-                            ->take(10)
-                            ->get();
+        $rarticles = $lobjArticle->getRecommend();
 
         return View::make('/home')->with('pageinfo','latest')
-                                  ->with('getmore',"getMoreLatest")
+                                  ->with('getmore',"moreLatest")
                                   ->with('articles',$articles)
                                   ->with('articlenum',$getnum)
                                   ->with('rarticles',$rarticles);
     }
 
-    public function getMoreLatestArticle()
+    public function moreLatest()
     {
         $articleOffset = Input::get('articleOffset');
 
-        if(Auth::check())
-        {
-            $articles = Article::leftJoin('votes', function($join)
-                          {
-                              $join->on('articles.id', '=', 'votes.article_id')
-                                   ->where('votes.user_id', '=', Auth::user()->id);
-                          })
-                          ->orderBy('articles.created_at', 'desc')
-                          ->skip($articleOffset)
-                          ->take(10)
-                          ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
-                          ->get();
-        }
-        else
-        {
-            $articles = Article::orderBy('created_at', 'desc')
-                               ->skip($articleOffset)
-                               ->take(10)
-                               ->get();
-        }
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getLatest($articleOffset,10);
+
+        return Response::json($articles , 200 );
+    }
+
+    public function showGif()
+    {
+        $getnum = 10;
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getGif(0,$getnum);
+
+        $rarticles = $lobjArticle->getRecommend();
+
+        return View::make('/home')->with('pageinfo','gif')
+                                    ->with('getmore',"moreGif")
+                                    ->with('articles',$articles)
+                                    ->with('articlenum',$getnum)
+                                    ->with('rarticles',$rarticles);
+    }
+
+    public function moreGif()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getGif($articleOffset,10);
+
+        return Response::json($articles , 200 );
+    }
+
+    public function showCute()
+    {
+        $getnum = 10;
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType(0,$getnum,1);
+
+        $rarticles = $lobjArticle->getRecommend();
+
+        return View::make('/home')->with('pageinfo','cute')
+                                ->with('getmore',"moreCute")
+                                ->with('articles',$articles)
+                                ->with('articlenum',$getnum)
+                                ->with('rarticles',$rarticles);
+    }
+
+    public function moreCute()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType($articleOffset,10,1);
+
+        return Response::json($articles , 200 );
+    }
+
+    public function showJiong()
+    {
+        $getnum = 10;
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType(0,$getnum,2);
+
+        $rarticles = $lobjArticle->getRecommend();
+
+        return View::make('/home')->with('pageinfo','jiong')
+            ->with('getmore',"moreJiong")
+            ->with('articles',$articles)
+            ->with('articlenum',$getnum)
+            ->with('rarticles',$rarticles);
+    }
+
+    public function moreJiong()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType($articleOffset,10,2);
+
+        return Response::json($articles , 200 );
+    }
+
+    public function showBeauty()
+    {
+        $getnum = 10;
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType(0,$getnum,3);
+
+        $rarticles = $lobjArticle->getRecommend();
+
+        return View::make('/home')->with('pageinfo','beauty')
+            ->with('getmore',"moreBeauty")
+            ->with('articles',$articles)
+            ->with('articlenum',$getnum)
+            ->with('rarticles',$rarticles);
+    }
+
+    public function moreBeauty()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType($articleOffset,10,3);
+
+        return Response::json($articles , 200 );
+    }
+
+    public function showTucao()
+    {
+        $getnum = 10;
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType(0,$getnum,4);
+
+        $rarticles = $lobjArticle->getRecommend();
+
+        return View::make('/home')->with('pageinfo','tucao')
+            ->with('getmore',"moreTucao")
+            ->with('articles',$articles)
+            ->with('articlenum',$getnum)
+            ->with('rarticles',$rarticles);
+    }
+
+    public function moreTucao()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType($articleOffset,10,4);
+
+        return Response::json($articles , 200 );
+    }
+
+    public function showOther()
+    {
+        $getnum = 10;
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType(0,$getnum,0);
+
+        $rarticles = $lobjArticle->getRecommend();
+
+        return View::make('/home')->with('pageinfo','other')
+                                    ->with('getmore',"moreOther")
+                                    ->with('articles',$articles)
+                                    ->with('articlenum',$getnum)
+                                    ->with('rarticles',$rarticles);
+    }
+
+    public function moreOther()
+    {
+        $articleOffset = Input::get('articleOffset');
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType($articleOffset,10,0);
 
         return Response::json($articles , 200 );
     }

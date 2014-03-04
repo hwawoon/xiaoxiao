@@ -45,6 +45,17 @@
                 <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
                 <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
                 @endif
+                <li class="sitenav"><a href="{{URL::to('/gif')}}">动图</a></li>
+                <li class="dropdown">
+                    <a href="#" id="morelist" role="button" class="dropdown-toggle" data-toggle="dropdown">更多<b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="morelist">
+                        <li><a tabindex="-1" href="{{URL::to('/cute')}}">可爱</a></li>
+                        <li><a tabindex="-1" href="{{URL::to('/jiong')}}">囧图</a></li>
+                        <li><a tabindex="-1" href="{{URL::to('/beauty')}}">美女</a></li>
+                        <li><a tabindex="-1" href="{{URL::to('/tucao')}}">吐槽</a></li>
+                        <li><a tabindex="-1" href="{{URL::to('/other')}}">其他</a></li>
+                    </ul>
+                </li>
                 <li class="sitenav"><a href="{{URL::to('/aboutMe')}}">关于</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
@@ -162,7 +173,17 @@
                         <textarea class="form-control" rows="2" id="title" name="title" placeholder="标题..."></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="button" id="uploadImageBtn" class="btn btn-success">上传</button>
+                        <label>分类</label>
+                        <select class="form-control" name="uplaodType" id="uplaodType">
+                            <option value="0">默认分类</option>
+                            <option value="1">可爱</option>
+                            <option value="2">囧图</option>
+                            <option value="3">美女</option>
+                            <option value="4">吐槽</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="padding-top: 15px;">
+                        <button type="button" id="uploadImageBtn" class="btn btn-success" style="padding: 6px 25px;">上传</button>
                     </div>
                 </div>
             </form>
@@ -190,7 +211,17 @@
                         <textarea class="form-control" rows="2" name="title" placeholder="标题..."></textarea>
                     </div>
                     <div class="form-group">
-                        <button type="button" id="forwardImageBtn" class="btn btn-success">上传</button>
+                        <label>分类</label>
+                        <select class="form-control" name="forwardType" id="forwardType">
+                            <option value="0">默认分类</option>
+                            <option value="1">可爱</option>
+                            <option value="2">囧图</option>
+                            <option value="3">美女</option>
+                            <option value="4">吐槽</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="padding-top: 15px;">
+                        <button type="button" id="forwardImageBtn" class="btn btn-success" style="padding: 6px 25px;">上传</button>
                     </div>
                 </div>
             </form>
@@ -224,7 +255,7 @@
 <!-- Placed at the end of the document so the pages load faster -->
 {{ HTML::script('js/jquery.js') }}
 {{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
-{{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
+{{ HTML::script('packages/noty/packaged/jquery.noty.packaged.js')}}
 {{ HTML::script('js/jquery.validate-1390898781640.js')}}
 {{ HTML::script('js/jquery.form.js') }}
 {{ HTML::script('js/app.js') }}

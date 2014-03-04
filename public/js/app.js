@@ -175,6 +175,7 @@ $(function () {
                 if(data.state)
                 {
                     $("#forwardModal").modal('hide');
+                    $("#forwardImageForm")[0].reset();
                     window.location.href = data.url;
                 }
                 else

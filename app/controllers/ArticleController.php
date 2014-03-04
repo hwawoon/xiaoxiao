@@ -68,7 +68,12 @@ class ArticleController extends BaseController
                 $article->title = $fileTitle;
                 $article->imgpath = 'upload/' . $filename;
                 $article->thumbpath = 'thumbnail/' . $filename;
+                $article->type = Input::get('uplaodType');
                 $article->user_id = Auth::user()->getId();
+                if(strtolower($extension) == 'gif')
+                {
+                    $article->gif = 1;
+                }
 
                 $article->save();
 
@@ -108,7 +113,8 @@ class ArticleController extends BaseController
 
         $validator = Validator::make(Input::all(), array(
             'forwardUrl' => 'required|url',
-            'title' => 'required|max:200'
+            'title' => 'required|max:200',
+            'forwardType' => 'required|integer'
         ));
 
         if($validator->fails())
@@ -141,6 +147,11 @@ class ArticleController extends BaseController
                 $article->imgpath = 'upload/' . $filename;
                 $article->thumbpath = 'thumbnail/' . $filename;
                 $article->user_id = Auth::user()->getId();
+                $article->type = Input::get('forwardType');
+                if($urlSuffix == 'GIF')
+                {
+                    $article->gif = 1;
+                }
                 $article->save();
 
                 $insertedId = $article->id;
