@@ -102,11 +102,11 @@ class Article extends Eloquent
     {
         if(Auth::check())
         {
-            $articles = Article::where('articles.gif','=',1)
-                ->leftJoin('votes', function($join){
+            $articles = Article::leftJoin('votes', function($join){
                     $join->on('articles.id', '=', 'votes.article_id')
                         ->where('votes.user_id', '=', Auth::user()->id);
                 })
+            ->where('articles.gif','=',1)
                 ->orderBy('articles.created_at', 'desc')
                 ->skip($offset)
                 ->take($rownum)
@@ -129,8 +129,7 @@ class Article extends Eloquent
     {
         if(Auth::check())
         {
-            $articles = Article
-                ::leftJoin('votes', function($join){
+            $articles = Article::leftJoin('votes', function($join){
                     $join->on('articles.id', '=', 'votes.article_id')
                         ->where('votes.user_id', '=', Auth::user()->id);
                 })
