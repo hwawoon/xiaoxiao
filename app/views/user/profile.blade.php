@@ -51,6 +51,6 @@ navbar-fixed-top
 @stop
 
 @section('scripts')
-{{ HTML::script('js/jquery.masonry.min.js')}}
+{{ HTML::script('packages/jquery.masonry.min.js')}}
 {{ HTML::script('js/user.profile.js') }}
 @stop
