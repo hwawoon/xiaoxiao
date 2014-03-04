@@ -248,7 +248,7 @@
 {{ HTML::script('packages/jquery.js') }}
 {{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
 {{ HTML::script('packages/noty/packaged/jquery.noty.packaged.js')}}
-{{ HTML::script('packages/jquery.validate-1390898781640.js')}}
+{{ HTML::script('packages/jquery.validate.js')}}
 {{ HTML::script('packages/jquery.form.js') }}
 {{ HTML::script('js/app.js') }}
 @yield('scripts')

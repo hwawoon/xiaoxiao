@@ -3,7 +3,7 @@
 @section('title', '头像设置 - 为生活添欢乐')
 
 @section('styles')
-{{ HTML::style('packages/jcrop/jquery.Jcrop-1390924906017.css') }}
+{{ HTML::style('packages/jcrop/jquery.Jcrop.css') }}
 {{ HTML::style('css/user.setting.css') }}
 @stop
 
@@ -62,7 +62,7 @@ navbar-fixed-top
 @stop
 
 @section('scripts')
-{{ HTML::script('packages/jcrop/jquery.Jcrop-1390898781659.js') }}
+{{ HTML::script('packages/jcrop/jquery.Jcrop.js') }}
 {{ HTML::script('js/user.icon.js') }}
 @if(Session::get('message'))
 <script type="text/javascript">

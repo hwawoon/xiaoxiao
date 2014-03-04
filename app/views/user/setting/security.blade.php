@@ -47,7 +47,7 @@ navbar-fixed-top
 @stop
 
 @section('scripts')
-{{ HTML::script('js/user.security-1391442139359.js') }}
+{{ HTML::script('js/user.security.js') }}
 @if(Session::get('message'))
 <script type="text/javascript">
     noty({
