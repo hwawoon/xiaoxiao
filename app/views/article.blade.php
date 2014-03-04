@@ -189,5 +189,5 @@ navbar-static-top
     </div>
 </form>
 </script>
-{{ HTML::script('js/article/article.js') }}
+{{ HTML::script('js/article.js') }}
 @stop
