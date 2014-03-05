@@ -130,7 +130,7 @@ navbar-static-top
 @stop
 
 @section('scripts')
-{{ HTML::script('packages/underscore.js') }}
+{{ HTML::script('packages/underscore.min.js') }}
 <script id="commentTpl" type="text/template">
     <div class="media">
         <a class="pull-left" href="#">
