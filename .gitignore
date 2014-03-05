@@ -1,5 +1,5 @@
 Thumbs.db
-/.idea/
+/.idea/*
 public/avatar/*
 public/thumbnail/*
 public/upload/*
