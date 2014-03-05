@@ -124,7 +124,7 @@ navbar-fixed-top
     };
 </script>
 {{ HTML::script('packages/underscore.min.js') }}
-{{ HTML::script('js/home-1393578883826.js') }}
+{{ HTML::script('js/home-1394021928221.js') }}
 <script id="articleTpl" type="text/template">
     <%_.each(datas, function(item) {%>
         <section class="artsection">
