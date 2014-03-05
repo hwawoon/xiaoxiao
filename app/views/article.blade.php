@@ -1,11 +1,11 @@
 @extends('layouts.main')
 
 @section('title')
-{{$article->title}}
+{{$article->title}} - 为生活添欢乐
 @stop
 
 @section('styles')
-{{ HTML::style('css/article.css') }}
+{{ HTML::style('css/article-1393746409021.css') }}
 @stop
 
 @section('header_type')
@@ -189,5 +189,5 @@ navbar-static-top
     </div>
 </form>
 </script>
-{{ HTML::script('js/article.js') }}
+{{ HTML::script('js/article-1394037767015.js') }}
 @stop

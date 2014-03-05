@@ -3,7 +3,7 @@
 @section('title', '消息中心 - 为生活添欢乐')
 
 @section('styles')
-{{ HTML::style('css/user.message.css') }}
+{{ HTML::style('css/user.message-1393607473253.css') }}
 @stop
 
 @section('header_type')

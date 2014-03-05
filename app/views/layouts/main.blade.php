@@ -8,9 +8,9 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
     <title>@yield('title')</title>
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('packages/bootstrap/css/bootstrap.css') }}
+    {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
     <!-- Custom styles for this template -->
-    {{ HTML::style('css/app.css') }}
+    {{ HTML::style('css/app-1394037629990.css') }}
     @yield('styles')
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -57,7 +57,6 @@
                         <li><a tabindex="-1" href="{{URL::to('/other')}}">其他</a></li>
                     </ul>
                 </li>
-                <li class="sitenav"><a href="{{URL::to('/aboutMe')}}">关于</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="dropdown">
@@ -237,6 +236,13 @@
 <div class="container mainarea">
     @yield('content')
 </div>
+<div id="footer">
+    <div>
+        <span class="label label-primary">© 2014 搞笑娃</span>
+        <span class="label label-warning">京ICP备14008219号</span>
+        <a href="{{URL::to('/aboutMe')}}"><span class="label label-success">关于我</span></a>
+    </div>
+</div>
 </body>
 </html>
 <script type="text/javascript">
@@ -246,9 +252,9 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 {{ HTML::script('packages/jquery.js') }}
-{{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
-{{ HTML::script('packages/noty/packaged/jquery.noty.packaged.js')}}
-{{ HTML::script('packages/jquery.validate.js')}}
-{{ HTML::script('packages/jquery.form.js') }}
-{{ HTML::script('js/app.js') }}
+{{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
+{{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
+{{ HTML::script('packages/jquery.validate.min.js')}}
+{{ HTML::script('packages/jquery.form.min.js') }}
+{{ HTML::script('js/app-1394021715843.js') }}
 @yield('scripts')

@@ -116,6 +116,7 @@ function cmtreply(formid)
                     timeout: 2000
                 });
 
+                $("#"+formid)[0].reset();
                $(".replyform").remove();
                var loInsertHtml = _.template($("#commentTpl").html(), {'item':data});
                if(data.comment_id == 0)

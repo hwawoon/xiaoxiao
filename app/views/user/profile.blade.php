@@ -3,7 +3,7 @@
 @section('title', '个人主页 - 为生活添欢乐')
 
 @section('styles')
-{{ HTML::style('css/user.profile.css') }}
+{{ HTML::style('css/user.profile-1393437264775.css') }}
 @stop
 
 @section('header_type')
@@ -52,5 +52,5 @@ navbar-fixed-top
 
 @section('scripts')
 {{ HTML::script('packages/jquery.masonry.min.js')}}
-{{ HTML::script('js/user.profile.js') }}
+{{ HTML::script('js/user.profile-1393411178101.js') }}
 @stop

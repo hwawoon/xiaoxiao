@@ -3,7 +3,7 @@
 @section('title', '密码修改 - 为生活添欢乐')
 
 @section('styles')
-{{HTML::style('css/user.setting.css')}}
+{{HTML::style('css/user.setting-1393436536639.css')}}
 @stop
 
 @section('header_type')
@@ -47,7 +47,7 @@ navbar-fixed-top
 @stop
 
 @section('scripts')
-{{ HTML::script('js/user.security.js') }}
+{{ HTML::script('js/user.security-1393435577198.js') }}
 @if(Session::get('message'))
 <script type="text/javascript">
     noty({

@@ -3,8 +3,8 @@
 @section('title', '头像设置 - 为生活添欢乐')
 
 @section('styles')
-{{ HTML::style('packages/jcrop/jquery.Jcrop.css') }}
-{{ HTML::style('css/user.setting.css') }}
+{{ HTML::style('packages/jcrop/jquery.Jcrop.min.css') }}
+{{ HTML::style('css/user.setting-1393436536639.css') }}
 @stop
 
 @section('header_type')
@@ -62,8 +62,8 @@ navbar-fixed-top
 @stop
 
 @section('scripts')
-{{ HTML::script('packages/jcrop/jquery.Jcrop.js') }}
-{{ HTML::script('js/user.icon.js') }}
+{{ HTML::script('packages/jcrop/jquery.Jcrop.min.js') }}
+{{ HTML::script('js/user.icon-1391186980000.js') }}
 @if(Session::get('message'))
 <script type="text/javascript">
     noty({

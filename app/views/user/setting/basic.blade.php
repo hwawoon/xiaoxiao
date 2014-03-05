@@ -3,7 +3,7 @@
 @section('title', '基本信息 - 为生活添欢乐')
 
 @section('styles')
-{{HTML::style('css/user.setting.css')}}
+{{HTML::style('css/user.setting-1393436536639.css')}}
 @stop
 
 @section('header_type')

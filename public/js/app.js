@@ -357,7 +357,7 @@ function sinaweibo(titile, url, picpath)
     var _assname = encodeURI("");//你注册的帐号，不是昵称
     var _appkey = encodeURI("123123123");//你从腾讯获得的appkey
     var _pic = encodeURI(picpath);//（例如：var _pic='图片url1|图片url2|图片url3....）
-    var _t = "搞笑哇！ " + titile;//标题和描述信息
+    var _t = "搞笑娃-为生活添欢乐 " + titile;//标题和描述信息
     if (_t.length > 120)
     {
         _t = _t.substr(0, 117) + '...';
@@ -374,7 +374,7 @@ function postToWb(titile, url, picpath)
     var _assname = encodeURI("");//你注册的帐号，不是昵称
     var _appkey = encodeURI("123123123");//你从腾讯获得的appkey
     var _pic = encodeURI(picpath);//（例如：var _pic='图片url1|图片url2|图片url3....）
-    var _t = "搞笑哇！ " + titile;//标题和描述信息
+    var _t = "搞笑娃-为生活添欢乐 " + titile;//标题和描述信息
     if (_t.length > 120)
     {
         _t = _t.substr(0, 117) + '...';

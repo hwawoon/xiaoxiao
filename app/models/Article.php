@@ -14,6 +14,10 @@ class Article extends Eloquent
         'uplaodType'=>'required|integer'
     );
 
+    public static $uploadpath = 'upload/';
+    public static $thumbpath = 'thumbnail/';
+    public static $screenshotpath = 'screenshot/';
+
     protected $fillable = array('title', 'imgpath', 'thumbpath', 'user_id', 'type', 'gif');
 
     protected $softDelete = true;
@@ -58,7 +62,7 @@ class Article extends Eloquent
                 ->orderBy('articles.points', 'desc')
                 ->skip($offset)
                 ->take($rownum)
-                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
                 ->get();
         }
         else
@@ -84,7 +88,7 @@ class Article extends Eloquent
                 ->orderBy('articles.created_at', 'desc')
                 ->skip($offset)
                 ->take($rownum)
-                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
                 ->get();
         }
         else
@@ -110,7 +114,7 @@ class Article extends Eloquent
                 ->orderBy('articles.created_at', 'desc')
                 ->skip($offset)
                 ->take($rownum)
-                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
                 ->get();
         }
         else
@@ -137,7 +141,7 @@ class Article extends Eloquent
                 ->orderBy('articles.created_at', 'desc')
                 ->skip($offset)
                 ->take($rownum)
-                ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
                 ->get();
         }
         else

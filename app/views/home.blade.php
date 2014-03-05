@@ -3,7 +3,7 @@
 @section('title', '搞笑娃 - 为生活添欢乐')
 
 @section('styles')
-{{ HTML::style('css/home.css') }}
+{{ HTML::style('css/home-1393578883826.css') }}
 @stop
 
 @section('header_type')
@@ -30,9 +30,25 @@ navbar-fixed-top
                     </a>
                 </div>
                 <div class="row">
+                    @if($article->gif)
+                    <div class="gif-container">
+                        <div class="img-static">
+                            <a href="javascript:void(0);">
+                                <img class="" src="{{URL::to('/')}}/{{$article->screenshot}}" style="width: 100%;">
+                                <span class="play">GIF</span>
+                            </a>
+                        </div>
+                        <div class="img-animated" style="display: none;">
+                            <a href="javascript:void(0);">
+                                <img class="" src="{{URL::to('/')}}/{{$article->imgpath}}" style="width: 100%;">
+                            </a>
+                        </div>
+                    </div>
+                    @else
                     <a href="{{URL::to('/art').'/'.$article->id}}">
                         <img class="" src="{{URL::to('/')}}/{{$article->imgpath}}" style="width: 100%;">
                     </a>
+                    @endif
                 </div>
                 <div class="row artshare">
                     <a href="javascript:void(0)" onclick="sinaweibo('{{$article->title}}','{{URL::to('/art') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
@@ -107,8 +123,8 @@ navbar-fixed-top
         "loadedCount" : "{{$articlenum}}"
     };
 </script>
-{{ HTML::script('packages/underscore.js') }}
-{{ HTML::script('js/home.js') }}
+{{ HTML::script('packages/underscore.min.js') }}
+{{ HTML::script('js/home-1393578883826.js') }}
 <script id="articleTpl" type="text/template">
     <%_.each(datas, function(item) {%>
         <section class="artsection">

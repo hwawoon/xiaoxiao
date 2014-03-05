@@ -3,7 +3,7 @@
 @section('title', '注册 - 为生活添欢乐')
 
 @section('styles')
-{{ HTML::style('css/user.register.css') }}
+{{ HTML::style('css/user.register-1392803883897.css') }}
 @stop
 
 @section('header_type')
@@ -51,7 +51,7 @@ navbar-static-top
 @stop
 
 @section('scripts')
-{{ HTML::script('js/user.register.js') }}
+{{ HTML::script('js/user.register-1392288940000.js') }}
 @if($errors->has())
 <script type="text/javascript">
     @foreach ($errors->all() as $error)

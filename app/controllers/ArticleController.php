@@ -55,26 +55,34 @@ class ArticleController extends BaseController
             }
 
             $extension = $imgFile->getClientOriginalExtension();
-            $destinationPath = public_path();
+            $destinationPath = public_path().'/';
             $filename = Str::random(32) . '.' . $extension;
-            $upload_success = $imgFile->move($destinationPath.'/upload', $filename);
+            $uploadSaveDir = $destinationPath.Article::$uploadpath. $filename;
+            $upload_success = $imgFile->move($destinationPath.Article::$uploadpath, $filename);
 
             //裁剪图片
-            $thumbnailResult = Img::imagecropper($destinationPath.'/upload/'.$filename,300,120,$destinationPath.'/thumbnail/'.$filename);
+            $thumbnailResult = Img::imagecropper($uploadSaveDir,300,120,$destinationPath.Article::$thumbpath.$filename);
+
+            $article = new Article();
+            if(exif_imagetype($uploadSaveDir) == IMAGETYPE_GIF )
+            {
+                //get image info
+                $source_info   = getimagesize($uploadSaveDir);
+                $source_width  = $source_info[0];
+                $source_height = $source_info[1];
+                //截图
+                $screenshotResult = Img::resizeImage($uploadSaveDir, $source_width, $source_height, $destinationPath.Article::$screenshotpath.$filename);
+                $article->screenshot = Article::$screenshotpath.$filename;
+                $article->gif = 1;
+            }
 
             if( $upload_success && $thumbnailResult )
             {
-                $article = new Article();
                 $article->title = $fileTitle;
-                $article->imgpath = 'upload/' . $filename;
-                $article->thumbpath = 'thumbnail/' . $filename;
+                $article->imgpath = Article::$uploadpath . $filename;
+                $article->thumbpath = Article::$thumbpath . $filename;
                 $article->type = Input::get('uplaodType');
                 $article->user_id = Auth::user()->getId();
-                if(strtolower($extension) == 'gif')
-                {
-                    $article->gif = 1;
-                }
-
                 $article->save();
 
                 $insertedId = $article->id;
@@ -132,26 +140,37 @@ class ArticleController extends BaseController
             $data = file_get_contents($inputValues['forwardUrl']);
 
             // New file
-            $destinationPath = public_path() . '/upload/';
+            $destinationPath = public_path() . '/';
             $filename = Str::random(32) . '.' . $urlSuffix;
             // Write the contents back to a new file
-            $putSize = file_put_contents($destinationPath.$filename, $data);
+            $uploadSaveDir = $destinationPath.Article::$uploadpath.$filename;
+            $putSize = file_put_contents($uploadSaveDir, $data);
 
             if( $putSize )
             {
                 //裁剪图片
-                $thumbnailResult = Img::imagecropper($destinationPath.$filename,300,120,public_path().'/thumbnail/'.$filename);
+                $thumbnailResult = Img::imagecropper($uploadSaveDir,300,120,$destinationPath.Article::$thumbpath.$filename);
 
                 $article = new Article();
-                $article->title = $inputValues['title'];
-                $article->imgpath = 'upload/' . $filename;
-                $article->thumbpath = 'thumbnail/' . $filename;
-                $article->user_id = Auth::user()->getId();
-                $article->type = Input::get('forwardType');
-                if($urlSuffix == 'GIF')
+
+                if(exif_imagetype($uploadSaveDir) == IMAGETYPE_GIF )
                 {
+                    //get image info
+                    $source_info   = getimagesize($uploadSaveDir);
+                    $source_width  = $source_info[0];
+                    $source_height = $source_info[1];
+                    //截图
+                    $screenshotResult = Img::resizeImage($uploadSaveDir, $source_width, $source_height, $destinationPath.Article::$screenshotpath.$filename);
+                    $article->screenshot = Article::$screenshotpath.$filename;
+
                     $article->gif = 1;
                 }
+
+                $article->title = $inputValues['title'];
+                $article->imgpath = Article::$uploadpath . $filename;
+                $article->thumbpath = Article::$thumbpath . $filename;
+                $article->user_id = Auth::user()->getId();
+                $article->type = Input::get('forwardType');
                 $article->save();
 
                 $insertedId = $article->id;
@@ -182,7 +201,6 @@ class ArticleController extends BaseController
 
     /**
      * Remove the specified resource from storage.
-     *
      * @param  int  $id
      * @return Response
      */

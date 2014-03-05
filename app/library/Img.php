@@ -146,7 +146,7 @@ class Img
         $target_image  = imagecreatetruecolor($target_width, $target_height);
 
         //set back color
-        $clr = imagecolorallocate($target_image, 255, 255, 255);
+        $clr = imagecolorallocate($target_image, 0, 0, 0);
         imagefilledrectangle($target_image, 0, 0, $target_width, $target_height, $clr);
 
         // zoom

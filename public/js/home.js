@@ -84,4 +84,17 @@ $(function (){
             });
         }
     });
+
+    $('.gif-container').click(function(){
+        if($('.img-animated',this).is(":hidden"))
+        {
+            $('.img-animated',this).show();
+            $('.img-static',this).hide();
+        }
+        else
+        {
+            $('.img-animated',this).hide();
+            $('.img-static',this).show();
+        }
+    });
 });
