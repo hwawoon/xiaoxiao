@@ -129,6 +129,7 @@ $(function () {
         $("#uploadImageForm").ajaxSubmit({
             beforeSubmit: validateUpload,
             dataType:'json',
+            beforeSend: loadingMessage("正在努力上传中..."),
             success:function(data)
             {
                 if(data.state)
@@ -154,7 +155,7 @@ $(function () {
             error:function(data)
             {
                 var n = noty({
-                    text        : "文件大小不能大于3Mb！",
+                    text        : "请重新上传！",
                     type        : "warning",
                     dismissQueue: false,
                     killer: true,
@@ -170,6 +171,7 @@ $(function () {
         $("#forwardImageForm").ajaxSubmit({
             beforeSubmit: validateForward,
             dataType:'json',
+            beforeSend: loadingMessage("正在努力上传中..."),
             success:function(data)
             {
                 if(data.state)
@@ -383,4 +385,16 @@ function postToWb(titile, url, picpath)
 
     var _u = 'http://share.v.t.qq.com/index.php?c=share&a=index&url=' + _url + '&appkey=' + _appkey + '&pic=' + _pic + '&assname=' + _assname + '&title=' + _t;
     window.open(_u, '', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');
+}
+
+function loadingMessage($text)
+{
+    noty({
+        text        : $text,
+        type        : "warning",
+        dismissQueue: false,
+        killer: true,
+        layout      : 'topCenter',
+        theme       : 'defaultTheme'
+    });
 }

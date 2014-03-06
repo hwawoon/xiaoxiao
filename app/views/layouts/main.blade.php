@@ -256,5 +256,5 @@
 {{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
 {{ HTML::script('packages/jquery.validate.min.js')}}
 {{ HTML::script('packages/jquery.form.min.js') }}
-{{ HTML::script('js/app-1394021715843.js') }}
+{{ HTML::script('js/app-1394096251742.js') }}
 @yield('scripts')
