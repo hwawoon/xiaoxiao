@@ -4,6 +4,10 @@
 {{$article->title}} - 为生活添欢乐
 @stop
 
+@section('keywords', '搞笑娃,{{$article->title}}')
+
+@section('description', '搞笑娃,{{$article->title}}')
+
 @section('styles')
 {{ HTML::style('css/article-1393746409021.css') }}
 @stop

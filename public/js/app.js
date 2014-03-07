@@ -129,6 +129,7 @@ $(function () {
         $("#uploadImageForm").ajaxSubmit({
             beforeSubmit: validateUpload,
             dataType:'json',
+            beforeSend: loadingMessage("正在努力上传中..."),
             success:function(data)
             {
                 if(data.state)
@@ -154,7 +155,7 @@ $(function () {
             error:function(data)
             {
                 var n = noty({
-                    text        : "文件大小不能大于3Mb！",
+                    text        : "请重新上传！",
                     type        : "warning",
                     dismissQueue: false,
                     killer: true,
@@ -170,6 +171,7 @@ $(function () {
         $("#forwardImageForm").ajaxSubmit({
             beforeSubmit: validateForward,
             dataType:'json',
+            beforeSend: loadingMessage("正在努力上传中..."),
             success:function(data)
             {
                 if(data.state)
@@ -357,7 +359,7 @@ function sinaweibo(titile, url, picpath)
     var _assname = encodeURI("");//你注册的帐号，不是昵称
     var _appkey = encodeURI("123123123");//你从腾讯获得的appkey
     var _pic = encodeURI(picpath);//（例如：var _pic='图片url1|图片url2|图片url3....）
-    var _t = "搞笑娃-为生活添欢乐 " + titile;//标题和描述信息
+    var _t =  titile +" 来自《搞笑娃-为生活添欢乐》";//标题和描述信息
     if (_t.length > 120)
     {
         _t = _t.substr(0, 117) + '...';
@@ -374,7 +376,7 @@ function postToWb(titile, url, picpath)
     var _assname = encodeURI("");//你注册的帐号，不是昵称
     var _appkey = encodeURI("123123123");//你从腾讯获得的appkey
     var _pic = encodeURI(picpath);//（例如：var _pic='图片url1|图片url2|图片url3....）
-    var _t = "搞笑娃-为生活添欢乐 " + titile;//标题和描述信息
+    var _t = titile +" 来自《搞笑娃-为生活添欢乐》";//标题和描述信息
     if (_t.length > 120)
     {
         _t = _t.substr(0, 117) + '...';
@@ -383,4 +385,16 @@ function postToWb(titile, url, picpath)
 
     var _u = 'http://share.v.t.qq.com/index.php?c=share&a=index&url=' + _url + '&appkey=' + _appkey + '&pic=' + _pic + '&assname=' + _assname + '&title=' + _t;
     window.open(_u, '', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');
+}
+
+function loadingMessage($text)
+{
+    noty({
+        text        : $text,
+        type        : "warning",
+        dismissQueue: false,
+        killer: true,
+        layout      : 'topCenter',
+        theme       : 'defaultTheme'
+    });
 }

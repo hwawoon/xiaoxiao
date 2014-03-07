@@ -1,3 +1,9 @@
 Thumbs.db
 /.idea/*
-app/config/
+app/config/*
+app/storage/*
+public/screenshot/*.*
+public/thumbnail/*.*
+public/upload/*.*
+public/temp/*.*
+public/avatar/*.*
