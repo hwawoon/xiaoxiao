@@ -279,17 +279,47 @@ div.recomdhead span {
     border: 5px solid #fff;
 }
 
-#footer {
-    position: fixed;
-    bottom: 0;
-    right: 170px;
-    width: 301px;
-    padding: 0px 4px 4px;
-    background-color: #f5f5f5;
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+#hfooter {
+    margin-left: -20px;
+    background-color: #fff;
+    border: 1px solid #e1e8ed;
+    padding: 10px;
+    width: 300px;
+    border-radius: 5px;
+}
+
+/* index footer start */
+#hfooter ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+    display: table;
+}
+
+#hfooter .footer-item {
+    float: left;
+    border-radius: 0.25em;
+    color: #FFFFFF;
+    display: inline;
+    font-size: 12px;
+    margin: 5px 0;
+    margin-right: 5px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.2em 0.6em 0.3em;
     text-align: center;
-    font-size: 16px;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+#hfooter .footer-item a {
+    text-decoration: none;
+}
+/* index footer end */
+
+/* common footer start */
+#cfooter {
+    text-align: center;
+    height: 150px;
+    padding-top: 50px;
 }

@@ -45,10 +45,17 @@ class MessageController extends BaseController
                                             ->with('rarticles',$rarticles);
     }
 
+    /**
+     * ignore user all message
+     * @return mixed
+     */
     public function ingnoreMessages()
     {
         $affectedRows = Message::where('receiver_id', '=', Auth::user()->id)
                                ->update(array('read_flag' => 1));
+
+        Auth::user()->messages = 0;
+        Auth::user()->save();
 
         return Redirect::to('user/message');
     }

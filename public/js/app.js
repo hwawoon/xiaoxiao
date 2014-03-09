@@ -384,3 +384,33 @@ function postToWb(titile, url, picpath)
     var _u = 'http://share.v.t.qq.com/index.php?c=share&a=index&url=' + _url + '&appkey=' + _appkey + '&pic=' + _pic + '&assname=' + _assname + '&title=' + _t;
     window.open(_u, '', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');
 }
+
+
+$.fn.smartFloat = function() {
+    var position = function(element) {
+        var top = element.position().top;
+        $(window).scroll(function() {
+            var scrolls = $(this).scrollTop();
+            if (scrolls > top) {
+                if (window.XMLHttpRequest) {
+                    element.css({
+                        position: "fixed",
+                        top: '60px'
+                    });
+                } else {
+                    element.css({
+                        top: scrolls
+                    });
+                }
+            }else {
+                element.css({
+                    position: "absolute",
+                    top: top
+                });
+            }
+        });
+    };
+    return $(this).each(function() {
+        position($(this));
+    });
+};

@@ -127,6 +127,9 @@ navbar-static-top
         </div>
     </div>
 </div>
+<div class="col-xs-12">
+    @include('includes/cfooter')
+</div>
 @stop
 
 @section('scripts')

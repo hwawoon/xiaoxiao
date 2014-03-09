@@ -86,7 +86,6 @@ navbar-fixed-top
         @endforeach
     </div>
     <div class="col-xs-4 rrecommend">
-        @if(!empty($rarticles))
         <div class="row recomdhead">
             <span class="label label-warning">推荐一下</span>
         </div>
@@ -108,7 +107,7 @@ navbar-fixed-top
             </section>
             @endforeach
         </div>
-        @endif
+        @include('includes/hfooter')
     </div>
 </div>
 <div class="containerbottom"></div>
@@ -124,7 +123,7 @@ navbar-fixed-top
     };
 </script>
 {{ HTML::script('packages/underscore.min.js') }}
-{{ HTML::script('js/home-1394021928221.js') }}
+{{ HTML::script('js/home-1394354121514.js') }}
 <script id="articleTpl" type="text/template">
     <%_.each(datas, function(item) {%>
         <section class="artsection">

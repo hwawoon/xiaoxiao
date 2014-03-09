@@ -10,7 +10,7 @@
     <!-- Bootstrap core CSS -->
     {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
     <!-- Custom styles for this template -->
-    {{ HTML::style('css/app-1394037629990.css') }}
+    {{ HTML::style('css/app-1394394871211.css') }}
     @yield('styles')
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -161,7 +161,7 @@
             <form action="{{URL::to('/uploadImage')}}" method="post" id="uploadImageForm" enctype="multipart/form-data">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title">分享搞笑图片</h3>
+                    <h3 class="modal-title">分享有趣图片</h3>
                     上传有趣的图片，也可以从其他地方转载, 图片格式：GIF/JPG/PNG (最大: 3MB)
                 </div>
                 <div class="modal-body">
@@ -198,7 +198,7 @@
             <form id="forwardImageForm" action="{{URL::to('/article/forwardImage')}}" method="post">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h3 class="modal-title">分享搞笑图片</h3>
+                    <h3 class="modal-title">分享图片有趣</h3>
                     上传有趣的图片，也可以从其他地方转载, 图片格式：GIF/JPG/PNG (最大: 3MB)
                 </div>
                 <div class="modal-body">
@@ -236,13 +236,6 @@
 <div class="container mainarea">
     @yield('content')
 </div>
-<div id="footer">
-    <div>
-        <span class="label label-primary">© 2014 搞笑娃</span>
-        <span class="label label-warning">京ICP备14008219号</span>
-        <a href="{{URL::to('/aboutMe')}}"><span class="label label-success">关于我</span></a>
-    </div>
-</div>
 </body>
 </html>
 <script type="text/javascript">
@@ -256,5 +249,5 @@
 {{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
 {{ HTML::script('packages/jquery.validate.min.js')}}
 {{ HTML::script('packages/jquery.form.min.js') }}
-{{ HTML::script('js/app-1394021715843.js') }}
+{{ HTML::script('js/app-1394353632903.js') }}
 @yield('scripts')

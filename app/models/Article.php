@@ -50,6 +50,12 @@ class Article extends Eloquent
         return $rarticles;
     }
 
+    /**
+     * get articles using clicks
+     * @param $offset
+     * @param $rownum
+     * @return mixed
+     */
     public function getHot($offset,$rownum)
     {
         if(Auth::check())
@@ -59,7 +65,7 @@ class Article extends Eloquent
                 $join->on('articles.id', '=', 'votes.article_id')
                     ->where('votes.user_id', '=', Auth::user()->id);
             })
-                ->orderBy('articles.points', 'desc')
+                ->orderBy('articles.clicks', 'desc')
                 ->skip($offset)
                 ->take($rownum)
                 ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')

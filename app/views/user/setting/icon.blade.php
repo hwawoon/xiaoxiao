@@ -59,6 +59,9 @@ navbar-fixed-top
     </div>
     <!--/span-->
 </div>
+<div class="row">
+    @include('includes/cfooter')
+</div>
 @stop
 
 @section('scripts')

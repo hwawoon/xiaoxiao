@@ -3,7 +3,7 @@
 @section('title', '个人主页 - 为生活添欢乐')
 
 @section('styles')
-{{ HTML::style('css/user.profile-1393437264775.css') }}
+{{ HTML::style('css/user.profile.css') }}
 @stop
 
 @section('header_type')
@@ -13,7 +13,7 @@ navbar-fixed-top
 @section('content')
 <div class="jumbotron">
     <p>
-        <img src="{{URL::to('/')}}/{{Auth::user()->avatar}}" class="img-circle" style="width: 100px;"/>
+            <img src="{{URL::to('/')}}/{{Auth::user()->avatar}}" class="img-circle" style="width: 100px;"/>
     </p>
     <p>{{Auth::user()->name}}</p>
     <p class="lead">{{Auth::user()->introduction}}</p>
@@ -47,6 +47,9 @@ navbar-fixed-top
         </div>
     </div>
     @endforeach
+</div>
+<div class="row">
+    @include('includes/cfooter')
 </div>
 @stop
 

@@ -15,6 +15,8 @@ class ArticleController extends BaseController
         $pre_article = Article::where('id',"<", $id)->first();
         $next_article = Article::where('id',">", $id)->first();
 
+        $article->increment('clicks');
+
         $rarticles = Article::orderBy('comments', 'desc')->skip(0)->take(5)->get();
 
         $vote = null;

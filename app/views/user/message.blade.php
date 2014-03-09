@@ -15,7 +15,7 @@ navbar-fixed-top
     <form action="{{action('MessageController@ingnoreMessages')}}">
     <div class="row page-title">
         <h3>消息中心
-            <button class="btn btn-default btn-sm" id="ignoreBtn" type="submit">忽略所有消息</button>
+            <button class="btn btn-primary btn-sm" id="ignoreBtn" type="submit">忽略所有消息</button>
         </h3>
     </div>
     </form>
@@ -70,6 +70,9 @@ navbar-fixed-top
         @endforeach
     </div>
     @endif
+</div>
+<div class="col-xs-12">
+    @include('includes/cfooter')
 </div>
 @stop
 

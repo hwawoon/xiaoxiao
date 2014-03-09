@@ -98,3 +98,7 @@ $(function (){
         }
     });
 });
+
+window.onload = function(){
+    $('.sidebar-footer').smartFloat();
+};

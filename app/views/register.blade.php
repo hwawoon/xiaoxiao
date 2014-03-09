@@ -3,7 +3,7 @@
 @section('title', '注册 - 为生活添欢乐')
 
 @section('styles')
-{{ HTML::style('css/user.register-1392803883897.css') }}
+{{ HTML::style('css/user.register-1394395338340.css') }}
 @stop
 
 @section('header_type')
@@ -47,6 +47,9 @@ navbar-static-top
             <button class="btn btn-primary" type="submit" >注册</button>
         </div>
     </form>
+</div>
+<div class="row">
+    @include('includes/cfooter')
 </div>
 @stop
 
