@@ -395,8 +395,7 @@ function loadingMessage($text)
         layout      : 'topCenter',
         theme       : 'defaultTheme'
     });
-}}
-
+}
 
 $.fn.smartFloat = function() {
     var position = function(element) {

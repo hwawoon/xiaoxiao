@@ -10,7 +10,7 @@
     <!-- Bootstrap core CSS -->
     {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
     <!-- Custom styles for this template -->
-    {{ HTML::style('css/app-1394037629990.css') }}
+    {{ HTML::style('css/app-1394399766955.css') }}
     @yield('styles')
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -256,5 +256,5 @@
 {{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
 {{ HTML::script('packages/jquery.validate.min.js')}}
 {{ HTML::script('packages/jquery.form.min.js') }}
-{{ HTML::script('js/app-1394021715843.js') }}
+{{ HTML::script('js/app-1394400024451.js') }}
 @yield('scripts')
