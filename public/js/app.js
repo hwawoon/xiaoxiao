@@ -385,6 +385,18 @@ function postToWb(titile, url, picpath)
     window.open(_u, '', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');
 }
 
+function loadingMessage($text)
+{
+    noty({
+        text        : $text,
+        type        : "warning",
+        dismissQueue: false,
+        killer: true,
+        layout      : 'topCenter',
+        theme       : 'defaultTheme'
+    });
+}}
+
 
 $.fn.smartFloat = function() {
     var position = function(element) {

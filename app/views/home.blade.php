@@ -2,6 +2,10 @@
 
 @section('title', '搞笑娃 - 为生活添欢乐')
 
+@section('keywords', '搞笑娃,为生活添欢乐')
+
+@section('description', '搞笑娃,为生活添欢乐')
+
 @section('styles')
 {{ HTML::style('css/home-1393578883826.css') }}
 @stop

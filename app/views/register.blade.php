@@ -2,6 +2,10 @@
 
 @section('title', '注册 - 为生活添欢乐')
 
+@section('keywords', '搞笑娃,为生活添欢乐,注册')
+
+@section('description', '搞笑娃,为生活添欢乐,注册')
+
 @section('styles')
 {{ HTML::style('css/user.register-1394395338340.css') }}
 @stop
