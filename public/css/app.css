@@ -4,7 +4,6 @@
  * Customizations just for the template; these are not necessary for anything
  * with disabling the responsiveness.
  */
-
 html, body {
     font-family: Helvetica, Tahoma, Arial, "Microsoft YaHei", "微软雅黑", SimSun, "宋体", STXihei, "华文细黑", Heiti, "黑体", sans-serif;
     /* The html and body elements cannot have any padding or margin. */
@@ -17,6 +16,7 @@ body {
 
 .mainarea {
     padding-top: 40px;
+    margin-top: 20px;
 }
 
 .msg_loading {
@@ -47,9 +47,16 @@ body {
     width: 50px;
     height: 50px;
     background: url(../img/gotop.gif) no-repeat;
-    bottom: 20px;
+    bottom: 30px;
     right: 20px;
     z-index: 9999;
+}
+
+.btn-feedback {
+    border-radius: 0px;
+    padding: 10px;
+    color: #FFFFFF;
+    background-color: #dddddd;
 }
 
 /* Non-responsive overrides
@@ -147,11 +154,6 @@ body {
     background-color: transparent !important;
 }
 
-/* main area */
-.mainarea {
-    margin-top: 20px;
-}
-
 /* search */
 .input-group-btn > .btn {
     border-left-width: 0;
@@ -212,11 +214,6 @@ body {
 }
 
 /* end login panel */
-
-.regd {
-    float: right;
-    padding-top: 5px;
-}
 
 /* recommend start */
 div.rrecommend {
@@ -376,6 +373,7 @@ span.tnav {
     padding-bottom: 5px;
 }
 
+/* vote start */
 .vertical-vote {
     padding-left: 10px;
     padding-top: 10px;
@@ -416,4 +414,6 @@ span.tnav {
 .vertical-vote a.down_c {
     background: #fff url(../img/sticky-vote.png) no-repeat -42px -32px;
 }
-/* home css start */
+/* vote end */
+
+/* home css end */

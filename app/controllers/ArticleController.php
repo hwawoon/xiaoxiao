@@ -91,7 +91,7 @@ class ArticleController extends BaseController
 
                 $url = route('getArticle', [$insertedId]);
 
-                Cache::tags('latest')->flush();
+                Cache::tags('home')->flush();
 
                 return Response::json(array(
                     "state" => 1,
@@ -181,7 +181,7 @@ class ArticleController extends BaseController
 
                 $url = route('getArticle', [$insertedId]);
 
-                Cache::tags('latest')->flush();
+                Cache::tags('home')->flush();
 
                 return Response::json(array(
                     "state" => 1,

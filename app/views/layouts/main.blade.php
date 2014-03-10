@@ -230,12 +230,14 @@
 </div>
 
 <div class="feedback">
-    <a href="mailto:kimhwawoon@gmail.com" class="btn btn-primary" style="border-radius: 0px;padding: 10px;" role="button" title="我会认真处理每一个反馈">反<br>馈</a>
+    <a href="mailto:kimhwawoon@gmail.com" class="btn btn-feedback" role="button" title="我会认真处理每一个反馈">反<br>馈</a>
 </div>
 <a href="#" title="返回顶部" class="goto-top"></a>
+
 <div class="container mainarea">
     @yield('content')
 </div>
+
 </body>
 </html>
 <script type="text/javascript">
