@@ -43,73 +43,61 @@ $(function () {
     });
 
     $('#loginForm').validate(
+    {
+        showErrors : function(errorMap, errorList)
         {
-            showErrors : function(errorMap, errorList)
-            {
-                $.each(this.successList, function(index, value) {
-                    return $(value).popover("destroy");//in there, I changed 'hide' to 'destroy'
+            $.each(this.successList, function(index, value) {
+                return $(value).popover("destroy");//in there, I changed 'hide' to 'destroy'
+            });
+            return $.each(errorList, function(index, value) {
+                var _popover;
+                _popover = $(value.element).popover({
+                    trigger : "manual",
+                    container : "body",//please change it in your page
+                    content : value.message,
+                    placement : 'right'
                 });
-                return $.each(errorList, function(index, value) {
-                    var _popover;
-                    _popover = $(value.element).popover({
-                        trigger : "manual",
-                        container : "body",//please change it in your page
-                        content : value.message,
-                        placement : 'right'
-                    });
-                    return $(value.element).popover("show");
-                });
+                return $(value.element).popover("show");
+            });
+        },
+        rules: {
+            inputLoginEmail: {
+                required: true,
+                email: true
             },
-            rules: {
-                inputLoginEmail: {
-                    required: true,
-                    email: true
+            inputLoginPassword: {
+                required: true
+            }
+        },
+        messages: {
+            inputLoginEmail: {
+                required: "请输入邮箱！",
+                email: "请输入正确的邮箱！"
+            },
+            inputLoginPassword: {
+                required: "请输入密码"
+            }
+        },
+        submitHandler: function (form) {
+            var username = $("#inputLoginEmail").val();
+            var pwd = $("#inputLoginPassword").val();
+            var rememberme = $(":input[name=rememberme][checked]").val();
+            var _token = $("#_token").val();
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                data: {"email":username,
+                    "password":pwd,
+                    "rememberme" : rememberme ,
+                    '_token' : _token
                 },
-                inputLoginPassword: {
-                    required: true
-                }
-            },
-            messages: {
-                inputLoginEmail: {
-                    required: "请输入邮箱！",
-                    email: "请输入正确的邮箱！"
-                },
-                inputLoginPassword: {
-                    required: "请输入密码"
-                }
-            },
-            submitHandler: function (form) {
-                var username = $("#inputLoginEmail").val();
-                var pwd = $("#inputLoginPassword").val();
-                var rememberme = $(":input[name=rememberme][checked]").val();
-                var _token = $("#_token").val();
-                $.ajax({
-                    url: form.action,
-                    type: form.method,
-                    data: {"email":username,
-                        "password":pwd,
-                        "rememberme" : rememberme ,
-                        '_token' : _token
-                    },
-                    success: function (data) {
-                        if(data.state == 1)
-                        {
-                            window.location.reload();
-                        }
-                        else
-                        {
-                            var n = noty({
-                                text        : "用户名或密码错误",
-                                type        : "error",
-                                dismissQueue: false,
-                                killer: true,
-                                layout      : 'topCenter',
-                                theme       : 'defaultTheme',
-                                timeout: 2000
-                            });
-                        }
-                    },
-                    error: function (data) {
+                success: function (data) {
+                    if(data.state == 1)
+                    {
+                        window.location.reload();
+                    }
+                    else
+                    {
                         var n = noty({
                             text        : "用户名或密码错误",
                             type        : "error",
@@ -120,10 +108,22 @@ $(function () {
                             timeout: 2000
                         });
                     }
-                });
-                return false;
-            }
-        });
+                },
+                error: function (data) {
+                    var n = noty({
+                        text        : "用户名或密码错误",
+                        type        : "error",
+                        dismissQueue: false,
+                        killer: true,
+                        layout      : 'topCenter',
+                        theme       : 'defaultTheme',
+                        timeout: 2000
+                    });
+                }
+            });
+            return false;
+        }
+    });
 
     $("#uploadImageBtn").bind("click",function(){
         $("#uploadImageForm").ajaxSubmit({

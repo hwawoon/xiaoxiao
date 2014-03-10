@@ -151,6 +151,9 @@ class CommentController extends BaseController {
         	}
         }
 
+        //forget cache
+        Cache::forget('comment-' . $datas['article_id']);
+
         return Response::json($loComment,200);
     }
 
@@ -159,15 +162,16 @@ class CommentController extends BaseController {
 		$articleid = Input::get('article_id');
 
 		$comments = Article::find($articleid)->comments()
-						   ->orderBy('id', 'asc')
-					       ->get();
+                                               ->orderBy('id', 'asc')
+                                               ->get();
 
-		$result = array();
 
 		foreach ($comments as $cmt)
 		{
 			$cmt->user;
 		}
+
+        Cache::tags('comments')->put('comment-' . $articleid, $comments, 24 * 60);
 
 		return Response::json($comments, 200);
 	}

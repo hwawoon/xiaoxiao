@@ -94,24 +94,9 @@ navbar-fixed-top
             <span class="label label-warning">推荐一下</span>
         </div>
         <div class="row tags">
-            @foreach ($rarticles as $article)
-            <section>
-                <div class="row tagtitle">
-                    <a href="{{URL::to('/art').'/'.$article->id}}" >
-                        <span>
-                            {{$article->title}}
-                        </span>
-                    </a>
-                </div>
-                <div class="row">
-                    <a href="{{URL::to('/art').'/'.$article->id}}">
-                        <img class="" src="{{URL::to('/')}}/{{$article->thumbpath}}" >
-                    </a>
-                </div>
-            </section>
-            @endforeach
+            @include('includes.sidebar')
         </div>
-        @include('includes/hfooter')
+        @include('includes.hfooter')
     </div>
 </div>
 <div class="containerbottom"></div>

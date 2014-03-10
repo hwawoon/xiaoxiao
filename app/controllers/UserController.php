@@ -134,6 +134,8 @@ class UserController extends BaseController
 
         $articles = $loginUser->articles()->get();
 
+        $lobjArticle = new Article();
+        $rarticles = $lobjArticle->getRecommend();
 
         return View::make('user.profile')->with("articles",$articles);
     }

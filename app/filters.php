@@ -92,3 +92,13 @@ Route::filter('csrf', function()
 		throw new Illuminate\Session\TokenMismatchException;
 	}
 });
+
+View::composer('includes.sidebar', function($view)
+{
+    $rarticles = Article::orderBy('comments', 'desc')
+                        ->skip(0)
+                        ->take(10)
+                        ->remember(24*60)
+                        ->get();
+    $view->with('rarticles', $rarticles);
+});

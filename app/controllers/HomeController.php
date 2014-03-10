@@ -19,13 +19,10 @@ class HomeController extends BaseController
         $lobjArticle = new Article();
         $articles = $lobjArticle->getHot(0,$getnum);
 
-        $rarticles = $lobjArticle->getRecommend();
-
         return View::make('/home')->with('pageinfo','home')
                                     ->with('getmore',"moreHot")
                                     ->with('articles',$articles)
-                                    ->with('articlenum',$getnum)
-                                    ->with('rarticles',$rarticles);
+                                    ->with('articlenum',$getnum);
     }
 
     public function moreHot()
@@ -49,13 +46,10 @@ class HomeController extends BaseController
         $lobjArticle = new Article();
         $articles = $lobjArticle->getLatest(0,$getnum);
 
-        $rarticles = $lobjArticle->getRecommend();
-
         return View::make('/home')->with('pageinfo','latest')
                                   ->with('getmore',"moreLatest")
                                   ->with('articles',$articles)
-                                  ->with('articlenum',$getnum)
-                                  ->with('rarticles',$rarticles);
+                                  ->with('articlenum',$getnum);
     }
 
     public function moreLatest()
@@ -75,13 +69,10 @@ class HomeController extends BaseController
         $lobjArticle = new Article();
         $articles = $lobjArticle->getGif(0,$getnum);
 
-        $rarticles = $lobjArticle->getRecommend();
-
         return View::make('/home')->with('pageinfo','gif')
                                     ->with('getmore',"moreGif")
                                     ->with('articles',$articles)
-                                    ->with('articlenum',$getnum)
-                                    ->with('rarticles',$rarticles);
+                                    ->with('articlenum',$getnum);
     }
 
     public function moreGif()
@@ -101,13 +92,10 @@ class HomeController extends BaseController
         $lobjArticle = new Article();
         $articles = $lobjArticle->getArticleByType(0,$getnum,1);
 
-        $rarticles = $lobjArticle->getRecommend();
-
         return View::make('/home')->with('pageinfo','cute')
                                 ->with('getmore',"moreCute")
                                 ->with('articles',$articles)
-                                ->with('articlenum',$getnum)
-                                ->with('rarticles',$rarticles);
+                                ->with('articlenum',$getnum);
     }
 
     public function moreCute()
@@ -127,13 +115,10 @@ class HomeController extends BaseController
         $lobjArticle = new Article();
         $articles = $lobjArticle->getArticleByType(0,$getnum,2);
 
-        $rarticles = $lobjArticle->getRecommend();
-
         return View::make('/home')->with('pageinfo','jiong')
-            ->with('getmore',"moreJiong")
-            ->with('articles',$articles)
-            ->with('articlenum',$getnum)
-            ->with('rarticles',$rarticles);
+                                    ->with('getmore',"moreJiong")
+                                    ->with('articles',$articles)
+                                    ->with('articlenum',$getnum);
     }
 
     public function moreJiong()
@@ -153,13 +138,10 @@ class HomeController extends BaseController
         $lobjArticle = new Article();
         $articles = $lobjArticle->getArticleByType(0,$getnum,3);
 
-        $rarticles = $lobjArticle->getRecommend();
-
         return View::make('/home')->with('pageinfo','beauty')
-            ->with('getmore',"moreBeauty")
-            ->with('articles',$articles)
-            ->with('articlenum',$getnum)
-            ->with('rarticles',$rarticles);
+                                    ->with('getmore',"moreBeauty")
+                                    ->with('articles',$articles)
+                                    ->with('articlenum',$getnum);
     }
 
     public function moreBeauty()
@@ -179,13 +161,10 @@ class HomeController extends BaseController
         $lobjArticle = new Article();
         $articles = $lobjArticle->getArticleByType(0,$getnum,4);
 
-        $rarticles = $lobjArticle->getRecommend();
-
         return View::make('/home')->with('pageinfo','tucao')
-            ->with('getmore',"moreTucao")
-            ->with('articles',$articles)
-            ->with('articlenum',$getnum)
-            ->with('rarticles',$rarticles);
+                                    ->with('getmore',"moreTucao")
+                                    ->with('articles',$articles)
+                                    ->with('articlenum',$getnum);
     }
 
     public function moreTucao()
@@ -205,13 +184,10 @@ class HomeController extends BaseController
         $lobjArticle = new Article();
         $articles = $lobjArticle->getArticleByType(0,$getnum,0);
 
-        $rarticles = $lobjArticle->getRecommend();
-
         return View::make('/home')->with('pageinfo','other')
                                     ->with('getmore',"moreOther")
                                     ->with('articles',$articles)
-                                    ->with('articlenum',$getnum)
-                                    ->with('rarticles',$rarticles);
+                                    ->with('articlenum',$getnum);
     }
 
     public function moreOther()
@@ -226,7 +202,6 @@ class HomeController extends BaseController
 
     public function searchArticle()
     {
-
         $searchTerm = Input::get('srch-term');
 
         if(Auth::check())
