@@ -1,10 +1,10 @@
 .profile-header
 {
     text-align: center;
-    padding: 25px 0px;
-    margin-top: -10px;
+    padding: 35px 0 25px 0;
     background-color: #000000;
     color: #FFFFFF;
+    margin-top: 50px;
 }
 
 .profile-header .img-user-avatar {
@@ -13,11 +13,12 @@
 
 .profile-navbar {
     border-radius: 0;
+    margin-bottom: -45px;
 }
 
 .profile-nav > li > a {
     padding: 15px 10px;
-    margin: 0 50px;
+    margin: 0 50px 0 0;
     border-bottom: 3px solid transparent;
 }
 
