@@ -400,7 +400,7 @@ span.tnav {
 }
 
 .vertical-vote a.up {
-    background: url("../img/sticky-vote.png") no-repeat scroll 0% 0% transparent;
+    background: url(../img/sticky-vote.png) no-repeat scroll 0% 0% transparent;
 }
 
 .vertical-vote a.up_c {
@@ -408,11 +408,16 @@ span.tnav {
 }
 
 .vertical-vote a.down {
-    background: url("../img/sticky-vote.png") no-repeat scroll 0px -32px transparent;
+    background: url(../img/sticky-vote.png) no-repeat scroll 0px -32px transparent;
 }
 
 .vertical-vote a.down_c {
     background: #fff url(../img/sticky-vote.png) no-repeat -42px -32px;
+}
+
+.vertical-vote a.del {
+    height: 42px;
+    background: #fff url(../img/delbtn.png) no-repeat 0px 0px;
 }
 /* vote end */
 

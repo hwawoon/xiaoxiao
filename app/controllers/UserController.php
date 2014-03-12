@@ -128,13 +128,15 @@ class UserController extends BaseController
         }
     }
 
-    public function getUserProfile()
+    public function getUserProfile($name)
     {
-        $loginUser = Auth::user();
 
-        $articles = $loginUser->articles()->get();
+        $user = User::where('name','=',$name)->first();
 
-        return View::make('user.profile')->with("articles",$articles);
+        $articles = $user->articles()->paginate(4);
+
+        return View::make('user.profile')->with("articles",$articles)
+                                         ->with("user",$user);
     }
 
     /**

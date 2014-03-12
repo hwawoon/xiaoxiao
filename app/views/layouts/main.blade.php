@@ -97,7 +97,7 @@
                          我 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{URL::to('/user/profile')}}">个人主页</a></li>
+                        <li><a href="{{action('UserController@getUserProfile',array('name'=>Auth::user()->name))}}">个人主页</a></li>
                         <li><a href="{{URL::to('/user/setting')}}">设置</a></li>
                         @if(Auth::user()->is_admin)
                         <li><a href="{{URL::to('/admin')}}">管理后台</a></li>

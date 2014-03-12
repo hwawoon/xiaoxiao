@@ -48,21 +48,24 @@
         <div class="row">
             <ul class="vertical-vote">
                 @if (Auth::check())
-                @if(!empty($article->state))
-                @if($article->state == 1)
-                <li><a class="up up_c artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
-                <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                    @if(!empty($article->state))
+                        @if($article->state == 1)
+                            <li><a class="up up_c artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
+                            <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                        @else
+                            <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
+                            <li><a class="down down_c artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                        @endif
+                    @else
+                        <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
+                        <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                    @endif
                 @else
-                <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
-                <li><a class="down down_c artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                    <li><a class="up" href="javascript:openLoginModal();" title="赞">赞</a></li>
+                    <li><a class="down" href="javascript:openLoginModal();" title="踩">踩</a></li>
                 @endif
-                @else
-                <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
-                <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
-                @endif
-                @else
-                <li><a class="up" href="javascript:openLoginModal();" title="赞">赞</a></li>
-                <li><a class="down" href="javascript:openLoginModal();" title="踩">踩</a></li>
+                @if(isset($del_display))
+                    <li><a class="del" art="{{$article->id}}" href="javascript:void(0);">删除</a></li>
                 @endif
             </ul>
         </div>

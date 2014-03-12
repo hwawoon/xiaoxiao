@@ -144,8 +144,6 @@ Route::group(array('before' => 'auth'), function()
     Route::get('vote/unlike',  'VoteController@articleUnlike');
     Route::get('vote/dislike',  'VoteController@articleDislike');
 
-    Route::get('user/profile', 'UserController@getUserProfile');
-
     Route::post('user/basic/save', 'UserController@saveUserBasicInfo');
 
     Route::post('user/avatar/upload', 'UserController@uploadSourceImage');
@@ -164,6 +162,9 @@ Route::group(array('before' => 'auth'), function()
     Route::get('message/notify', 'MessageController@getMessage');
 
 });
+
+//everybody can see anyone profile
+Route::get('user/profile/{name}', 'UserController@getUserProfile');
 
 //reset password
 Route::get('/user/reset',  'RemindersController@getRemind');

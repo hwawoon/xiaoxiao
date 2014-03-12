@@ -13,10 +13,10 @@ navbar-fixed-top
 @section('profile-header')
 <div class="profile-header">
     <p>
-        <img src="{{URL::to('/')}}/{{Auth::user()->avatar}}" class="img-user-avatar" style="width: 120px;"/>
+        <img src="{{URL::to('/')}}/{{$user->avatar}}" class="img-user-avatar" style="width: 120px;"/>
     </p>
-    <p style="font-weight: bold;">{{Auth::user()->name}}</p>
-    <p class="lead">{{Auth::user()->introduction}}</p>
+    <p style="font-weight: bold;">{{$user->name}}</p>
+    <p class="lead">{{$user->introduction}}</p>
 </div>
 <nav class="navbar navbar-default profile-navbar" role="navigation">
     <div class="container">
@@ -30,9 +30,14 @@ navbar-fixed-top
 @stop
 
 @section('content')
-<div class="row">
+<div class="row" style="margin-bottom: 40px;">
     <div class="col-xs-8">
-        @include('includes.article-section')
+        @if(Auth::check() && Auth::user()->id = $user->id)
+            @include('includes.article-section',array('del_display'=>'true'))
+        @else
+            @include('includes.article-section')
+        @endif
+        {{$articles->links()}}
     </div>
     <div class="col-xs-4 rrecommend">
         <div class="row recomdhead">
