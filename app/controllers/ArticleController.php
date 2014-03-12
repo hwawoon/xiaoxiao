@@ -219,11 +219,11 @@ class ArticleController extends BaseController
             $article->delete();
             $affectedRows = Message::where('article_id', '=', Input::get('articleid'))
                                    ->delete();
-            return Redirect::back()->with('message',Lang::get('messages.auth_error'));
+            return Redirect::back()->with('message',Lang::get('messages.deleted_article'));
         }
         else
         {
-            return Redirect::back()->with('message',Lang::get('messages.deleted_article'));
+            return Redirect::back()->with('message',Lang::get('messages.auth_error'));
         }
     }
 }

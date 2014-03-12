@@ -419,6 +419,10 @@ span.tnav {
     height: 42px;
     background: #fff url(../img/delbtn.png) no-repeat 0px 0px;
 }
+
+.vertical-vote a.tocomment {
+    background: url(../img/other-buttons.png) no-repeat scroll 0px -32px transparent;
+}
 /* vote end */
 
 /* home css end */

@@ -54,4 +54,19 @@ navbar-fixed-top
 @section('scripts')
 {{ HTML::script('packages/jquery.masonry.min.js')}}
 {{ HTML::script('js/user.profile.js') }}
+
+@if(Session::get('message'))
+<script type="text/javascript">
+    noty({
+        text        : "{{Session::get('message')}}",
+        type        : "alert",
+        dismissQueue: true,
+        killer: true,
+        layout      : 'topCenter',
+        theme       : 'defaultTheme',
+        timeout: 2000
+    });
+</script>
+@endif
+
 @stop

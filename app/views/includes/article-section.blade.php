@@ -64,11 +64,18 @@
                     <li><a class="up" href="javascript:openLoginModal();" title="赞">赞</a></li>
                     <li><a class="down" href="javascript:openLoginModal();" title="踩">踩</a></li>
                 @endif
+                    <li><a class="tocomment" art="{{$article->id}}" href="{{action('ArticleController@getArticle',array('id'=>$article->id))}}">评论</a></li>
                 @if(isset($del_display))
-                    <li><a class="del" art="{{$article->id}}" href="javascript:void(0);">删除</a></li>
+                    <li>
+                        <form name="delform{{$article->id}}" id="delform{{$article->id}}" action="{{action('ArticleController@destroy')}}" method="post">
+                            <input type="hidden" name="articleid" value="{{$article->id}}" />
+                        </form>
+                        <a class="del" art="{{$article->id}}" href="javascript:delArticle({{$article->id}});void(0);" title="删除？">删除</a>
+                    </li>
                 @endif
             </ul>
         </div>
     </div>
+    
 </section>
 @endforeach
