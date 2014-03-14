@@ -133,9 +133,54 @@ class UserController extends BaseController
 
         $user = User::where('name','=',$name)->first();
 
-        $articles = $user->articles()->paginate(4);
+        $articles = Article::where('articles.user_id','=',$user->id)
+                    ->leftJoin('votes', function($join)
+                    {
+                        $join->on('articles.id', '=', 'votes.article_id')
+                             ->where('votes.user_id', '=', Auth::user()->id);
+                    })
+                    ->orderBy('articles.created_at', 'desc')
+                    ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
+                    ->cacheTags('article')->remember(60)
+                    ->paginate(4);
 
         return View::make('user.profile')->with("articles",$articles)
+                                         ->with("user",$user);
+    }
+
+    public function getUserCommentArticle($name)
+    {
+        $user = User::where('name','=',$name)->first();
+
+        $articles = Article::where('articles.user_id','=',$user->id)
+                    ->join('comments', 'articles.id', '=', 'comments.article_id')
+                    ->leftJoin('votes', function($join)
+                    {
+                        $join->on('articles.id', '=', 'votes.article_id')
+                             ->where('votes.user_id', '=', Auth::user()->id);
+                    })
+                    ->orderBy('articles.created_at', 'desc')
+                    ->groupBy('comments.article_id')
+                    ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
+                    ->cacheTags('article')->remember(60)
+                    ->paginate(4);
+
+        return View::make('user.comment')->with("articles",$articles)
+                                         ->with("user",$user);
+    }
+
+    public function getUserVoteArticle($name)
+    {
+        $user = User::where('name','=',$name)->first();
+
+        $articles = Article::where('articles.user_id','=',$user->id)
+                    ->join('votes', 'articles.id', '=', 'votes.article_id')
+                    ->orderBy('articles.created_at', 'desc')
+                    ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
+                    ->cacheTags('article')->remember(60)
+                    ->paginate(4);
+
+        return View::make('user.vote')->with("articles",$articles)
                                          ->with("user",$user);
     }
 

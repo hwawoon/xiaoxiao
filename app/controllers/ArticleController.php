@@ -91,7 +91,7 @@ class ArticleController extends BaseController
 
                 $url = route('getArticle', [$insertedId]);
 
-                Cache::tags('home')->flush();
+                Cache::tags('article')->flush();
 
                 return Response::json(array(
                     "state" => 1,
@@ -181,7 +181,7 @@ class ArticleController extends BaseController
 
                 $url = route('getArticle', [$insertedId]);
 
-                Cache::tags('home')->flush();
+                Cache::tags('article')->flush();
 
                 return Response::json(array(
                     "state" => 1,
@@ -219,6 +219,7 @@ class ArticleController extends BaseController
             $article->delete();
             $affectedRows = Message::where('article_id', '=', Input::get('articleid'))
                                    ->delete();
+            Cache::tags('article')->flush();
             return Redirect::back()->with('message',Lang::get('messages.deleted_article'));
         }
         else

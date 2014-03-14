@@ -166,6 +166,10 @@ Route::group(array('before' => 'auth'), function()
 //everybody can see anyone profile
 Route::get('user/profile/{name}', 'UserController@getUserProfile');
 
+Route::get('user/comment/{name}', 'UserController@getUserCommentArticle');
+
+Route::get('user/vote/{name}', 'UserController@getUserVoteArticle');
+
 //reset password
 Route::get('/user/reset',  'RemindersController@getRemind');
 

@@ -44,6 +44,8 @@ class VoteController extends BaseController
 
         $article->increment('points',$increase);
 
+        Cache::tags('article')->flush();
+
         return Response::json(array(
         	'id' => $articleid,
         	'score' => $increase,
@@ -66,6 +68,8 @@ class VoteController extends BaseController
         $article->increment('points', -($vote->state) );
 
         $vote->delete();
+
+        Cache::tags('article')->flush();
 
         return Response::json(array(
             'id' => $articleid
@@ -109,6 +113,8 @@ class VoteController extends BaseController
         }
 
         $article->increment('points',$increase);
+
+        Cache::tags('article')->flush();
 
         return Response::json(array(
             'id' => $articleid,

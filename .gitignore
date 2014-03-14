@@ -2,6 +2,7 @@ Thumbs.db
 /.idea/*
 app/config/*
 app/storage/*
+app/storage/logs/*.*
 public/screenshot/*.*
 public/thumbnail/*.*
 public/upload/*.*

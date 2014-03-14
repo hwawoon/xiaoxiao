@@ -233,10 +233,14 @@
     <a href="mailto:kimhwawoon@gmail.com" class="btn btn-feedback" role="button" title="我会认真处理每一个反馈">反<br>馈</a>
 </div>
 <a href="#" title="返回顶部" class="goto-top"></a>
-@yield('profile-header')
+
+@yield('container-header')
+
 <div class="container mainarea">
     @yield('content')
 </div>
+
+@yield('container-bottom')
 
 </body>
 </html>

@@ -9,26 +9,19 @@
     margin-top: -50px;
 }
 
-.sharetoolbar {
+.linebar {
     background-color: #ffffff;
+    width: 100%;
 }
 
 .barfixed {
-    position:fixed; 
+    position:fixed;
     padding-top: 3px;
     padding-right: 5px;
     top: 0;
     height: 50px;
     z-index: 1050;
     width: 945px;
-}
-
-.col-xs-7 {
-    width: 64%;
-}
-
-.col-xs-5 {
-    width: 36%;
 }
 
 div.points {
@@ -51,7 +44,7 @@ div.apoint {
 
 .atags {
     padding-top: 25px;
-    padding-left: 60px;
+    padding-left: 40px;
     padding-right: 50px;
 }
 

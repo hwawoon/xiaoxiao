@@ -1,0 +1,231 @@
+[2014-03-14 13:12:53] local.ERROR: exception 'Predis\Connection\ConnectionException' with message '由于目标计算机积极拒绝，无法连接。 [tcp://127.0.0.1:6379]' in F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Connection\AbstractConnection.php:141
+Stack trace:
+#0 F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Connection\StreamConnection.php(96): Predis\Connection\AbstractConnection->onConnectionError('???????????????...', 10061)
+#1 F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Connection\StreamConnection.php(70): Predis\Connection\StreamConnection->tcpStreamInitializer(Object(Predis\Connection\ConnectionParameters))
+#2 F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Connection\AbstractConnection.php(96): Predis\Connection\StreamConnection->createResource()
+#3 F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Connection\StreamConnection.php(144): Predis\Connection\AbstractConnection->connect()
+#4 F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Connection\AbstractConnection.php(181): Predis\Connection\StreamConnection->connect()
+#5 F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Connection\StreamConnection.php(183): Predis\Connection\AbstractConnection->getResource()
+#6 F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Connection\StreamConnection.php(297): Predis\Connection\StreamConnection->writeBytes('*2??$3??GET??$2...')
+#7 F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Connection\AbstractConnection.php(120): Predis\Connection\StreamConnection->writeCommand(Object(Predis\Command\StringGet))
+#8 F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Client.php(246): Predis\Connection\AbstractConnection->executeCommand(Object(Predis\Command\StringGet))
+#9 F:\wamp\www\xiaoxiao\vendor\predis\predis\lib\Predis\Client.php(228): Predis\Client->executeCommand(Object(Predis\Command\StringGet))
+#10 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cache\RedisStore.php(51): Predis\Client->__call('get', Array)
+#11 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cache\RedisStore.php(51): Predis\Client->get('laravel:tag:hom...')
+#12 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cache\TagSet.php(50): Illuminate\Cache\RedisStore->get('tag:home:key')
+#13 [internal function]: Illuminate\Cache\TagSet->tagId('home')
+#14 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cache\TagSet.php(60): array_map(Array, Array)
+#15 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cache\TagSet.php(70): Illuminate\Cache\TagSet->tagIds()
+#16 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cache\TaggedCache.php(206): Illuminate\Cache\TagSet->getNamespace()
+#17 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cache\TaggedCache.php(54): Illuminate\Cache\TaggedCache->taggedItemKey('0373cf9d70a4d1a...')
+#18 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cache\TaggedCache.php(42): Illuminate\Cache\TaggedCache->get('0373cf9d70a4d1a...')
+#19 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cache\TaggedCache.php(160): Illuminate\Cache\TaggedCache->has('0373cf9d70a4d1a...')
+#20 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1255): Illuminate\Cache\TaggedCache->remember('0373cf9d70a4d1a...', 60, Object(Closure))
+#21 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1199): Illuminate\Database\Query\Builder->getCached(Array)
+#22 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(444): Illuminate\Database\Query\Builder->get(Array)
+#23 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(135): Illuminate\Database\Eloquent\Builder->getModels(Array)
+#24 F:\wamp\www\xiaoxiao\app\models\Article.php(73): Illuminate\Database\Eloquent\Builder->get()
+#25 F:\wamp\www\xiaoxiao\app\controllers\HomeController.php(20): Article->getHot(0, 10)
+#26 [internal function]: HomeController->showHome()
+#27 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(194): call_user_func_array(Array, Array)
+#28 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('showHome', Array)
+#29 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(HomeController), Object(Illuminate\Routing\Route), 'showHome')
+#30 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(934): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'HomeController', 'showHome')
+#31 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#32 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Route.php(105): call_user_func_array(Object(Closure), Array)
+#33 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1000): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#34 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(968): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#35 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(738): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#36 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(708): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#37 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Http\FrameGuard.php(38): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#38 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Session\Middleware.php(72): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#39 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Queue.php(47): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#40 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Guard.php(51): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#41 F:\wamp\www\xiaoxiao\vendor\stack\builder\src\Stack\StackedHttpKernel.php(23): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#42 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(606): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#43 F:\wamp\www\xiaoxiao\public\index.php(49): Illuminate\Foundation\Application->run()
+#44 {main} [] []
+[2014-03-14 13:29:28] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'return' (T_RETURN)' in F:\wamp\www\xiaoxiao\app\controllers\UserController.php:140
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-03-14 13:29:36] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'return' (T_RETURN)' in F:\wamp\www\xiaoxiao\app\controllers\UserController.php:140
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-03-14 13:29:51] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'return' (T_RETURN)' in F:\wamp\www\xiaoxiao\app\controllers\UserController.php:140
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-03-14 13:31:01] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'return' (T_RETURN)' in F:\wamp\www\xiaoxiao\app\controllers\UserController.php:140
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-03-14 13:31:18] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'syntax error, unexpected 'return' (T_RETURN)' in F:\wamp\www\xiaoxiao\app\controllers\UserController.php:140
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-03-14 13:32:08] local.ERROR: exception 'Illuminate\Database\QueryException' with message 'SQLSTATE[42S02]: Base table or view not found: 1146 Table 'xiaoxiao.xx_vote' doesn't exist (SQL: select count(*) as aggregate from `xx_articles` inner join `xx_Vote` on `xx_articles`.`id` = `xx_Vote`.`article_id` where `xx_articles`.`deleted_at` is null and `xx_Vote`.`user_id` = 1)' in F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Connection.php:539
+Stack trace:
+#0 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Connection.php(283): Illuminate\Database\Connection->run('select count(*)...', Array, Object(Closure))
+#1 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1224): Illuminate\Database\Connection->select('select count(*)...', Array)
+#2 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1214): Illuminate\Database\Query\Builder->runSelect()
+#3 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1201): Illuminate\Database\Query\Builder->getFresh(Array)
+#4 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1587): Illuminate\Database\Query\Builder->get(Array)
+#5 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1529): Illuminate\Database\Query\Builder->aggregate('count', Array)
+#6 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1499): Illuminate\Database\Query\Builder->count()
+#7 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(260): Illuminate\Database\Query\Builder->getPaginationCount()
+#8 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(231): Illuminate\Database\Eloquent\Builder->ungroupedPaginate(Object(Illuminate\Pagination\Environment), 4, Array)
+#9 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Relations\BelongsToMany.php(174): Illuminate\Database\Eloquent\Builder->paginate(4, Array)
+#10 F:\wamp\www\xiaoxiao\app\controllers\UserController.php(136): Illuminate\Database\Eloquent\Relations\BelongsToMany->paginate(4)
+#11 [internal function]: UserController->getUserProfile('hwawoon')
+#12 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(194): call_user_func_array(Array, Array)
+#13 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('getUserProfile', Array)
+#14 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(UserController), Object(Illuminate\Routing\Route), 'getUserProfile')
+#15 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(934): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'UserController', 'getUserProfile')
+#16 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}('hwawoon')
+#17 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Route.php(105): call_user_func_array(Object(Closure), Array)
+#18 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1000): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#19 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(968): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#20 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(738): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#21 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(708): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#22 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Http\FrameGuard.php(38): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#23 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Session\Middleware.php(72): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#24 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Queue.php(47): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#25 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Guard.php(51): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#26 F:\wamp\www\xiaoxiao\vendor\stack\builder\src\Stack\StackedHttpKernel.php(23): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#27 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(606): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#28 F:\wamp\www\xiaoxiao\public\index.php(49): Illuminate\Foundation\Application->run()
+#29 {main} [] []
+[2014-03-14 13:48:39] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Access to undeclared static property: Article::$articles' in F:\wamp\www\xiaoxiao\app\models\Article.php:70
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-03-14 13:48:48] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Access to undeclared static property: Article::$articles' in F:\wamp\www\xiaoxiao\app\models\Article.php:70
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-03-14 13:49:36] local.ERROR: exception 'BadMethodCallException' with message 'Call to undefined method Illuminate\Database\Query\Builder::toJSON()' in F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php:1891
+Stack trace:
+#0 [internal function]: Illuminate\Database\Query\Builder->__call('toJSON', Array)
+#1 [internal function]: Illuminate\Database\Query\Builder->toJSON()
+#2 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(912): call_user_func_array(Array, Array)
+#3 [internal function]: Illuminate\Database\Eloquent\Builder->__call('toJSON', Array)
+#4 [internal function]: Illuminate\Database\Eloquent\Builder->toJSON()
+#5 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Relations\Relation.php(281): call_user_func_array(Array, Array)
+#6 F:\wamp\www\xiaoxiao\app\models\Article.php(70): Illuminate\Database\Eloquent\Relations\Relation->__call('toJSON', Array)
+#7 F:\wamp\www\xiaoxiao\app\models\Article.php(70): Illuminate\Database\Eloquent\Relations\BelongsToMany->toJSON()
+#8 F:\wamp\www\xiaoxiao\app\controllers\HomeController.php(20): Article->getHot(0, 10)
+#9 [internal function]: HomeController->showHome()
+#10 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(194): call_user_func_array(Array, Array)
+#11 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('showHome', Array)
+#12 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(HomeController), Object(Illuminate\Routing\Route), 'showHome')
+#13 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(934): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'HomeController', 'showHome')
+#14 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}()
+#15 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Route.php(105): call_user_func_array(Object(Closure), Array)
+#16 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1000): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#17 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(968): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#18 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(738): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#19 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(708): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#20 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Http\FrameGuard.php(38): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#21 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Session\Middleware.php(72): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#22 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Queue.php(47): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#23 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Guard.php(51): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#24 F:\wamp\www\xiaoxiao\vendor\stack\builder\src\Stack\StackedHttpKernel.php(23): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#25 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(606): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#26 F:\wamp\www\xiaoxiao\public\index.php(49): Illuminate\Foundation\Application->run()
+#27 {main} [] []
+[2014-03-14 14:07:34] local.ERROR: exception 'ErrorException' with message 'Undefined variable: offset' in F:\wamp\www\xiaoxiao\app\controllers\UserController.php:143
+Stack trace:
+#0 F:\wamp\www\xiaoxiao\app\controllers\UserController.php(143): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'F:\wamp\www\xia...', 143, Array)
+#1 [internal function]: UserController->getUserProfile('hwawoon')
+#2 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(194): call_user_func_array(Array, Array)
+#3 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('getUserProfile', Array)
+#4 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(UserController), Object(Illuminate\Routing\Route), 'getUserProfile')
+#5 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(934): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'UserController', 'getUserProfile')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}('hwawoon')
+#7 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Route.php(105): call_user_func_array(Object(Closure), Array)
+#8 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1000): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(968): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(738): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(708): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Http\FrameGuard.php(38): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Session\Middleware.php(72): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Queue.php(47): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Guard.php(51): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 F:\wamp\www\xiaoxiao\vendor\stack\builder\src\Stack\StackedHttpKernel.php(23): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(606): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 F:\wamp\www\xiaoxiao\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-03-14 14:08:23] local.ERROR: exception 'Illuminate\Database\QueryException' with message 'SQLSTATE[23000]: Integrity constraint violation: 1052 Column 'user_id' in where clause is ambiguous (SQL: select count(*) as aggregate from `xx_articles` left join `xx_votes` on `xx_articles`.`id` = `xx_votes`.`article_id` and `xx_votes`.`user_id` = 1 where `xx_articles`.`deleted_at` is null and `user_id` = 1)' in F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Connection.php:539
+Stack trace:
+#0 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Connection.php(283): Illuminate\Database\Connection->run('select count(*)...', Array, Object(Closure))
+#1 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1224): Illuminate\Database\Connection->select('select count(*)...', Array)
+#2 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1214): Illuminate\Database\Query\Builder->runSelect()
+#3 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1313): Illuminate\Database\Query\Builder->getFresh(Array)
+#4 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cache\TaggedCache.php(162): Illuminate\Database\Query\Builder->Illuminate\Database\Query\{closure}()
+#5 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1255): Illuminate\Cache\TaggedCache->remember('f731874f1145896...', 60, Object(Closure))
+#6 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1199): Illuminate\Database\Query\Builder->getCached(Array)
+#7 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1587): Illuminate\Database\Query\Builder->get(Array)
+#8 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1529): Illuminate\Database\Query\Builder->aggregate('count', Array)
+#9 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Query\Builder.php(1499): Illuminate\Database\Query\Builder->count()
+#10 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(260): Illuminate\Database\Query\Builder->getPaginationCount()
+#11 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Database\Eloquent\Builder.php(231): Illuminate\Database\Eloquent\Builder->ungroupedPaginate(Object(Illuminate\Pagination\Environment), 4, Array)
+#12 F:\wamp\www\xiaoxiao\app\controllers\UserController.php(145): Illuminate\Database\Eloquent\Builder->paginate(4)
+#13 [internal function]: UserController->getUserProfile('hwawoon')
+#14 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(194): call_user_func_array(Array, Array)
+#15 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('getUserProfile', Array)
+#16 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(UserController), Object(Illuminate\Routing\Route), 'getUserProfile')
+#17 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(934): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'UserController', 'getUserProfile')
+#18 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}('hwawoon')
+#19 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Route.php(105): call_user_func_array(Object(Closure), Array)
+#20 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1000): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#21 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(968): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#22 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(738): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#23 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(708): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#24 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Http\FrameGuard.php(38): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#25 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Session\Middleware.php(72): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#26 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Queue.php(47): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#27 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Guard.php(51): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#28 F:\wamp\www\xiaoxiao\vendor\stack\builder\src\Stack\StackedHttpKernel.php(23): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#29 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(606): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#30 F:\wamp\www\xiaoxiao\public\index.php(49): Illuminate\Foundation\Application->run()
+#31 {main} [] []
+[2014-03-14 14:43:36] local.ERROR: exception 'ErrorException' with message 'Undefined variable: name' in F:\wamp\www\xiaoxiao\app\controllers\UserController.php:153
+Stack trace:
+#0 F:\wamp\www\xiaoxiao\app\controllers\UserController.php(153): Illuminate\Exception\Handler->handleError(8, 'Undefined varia...', 'F:\wamp\www\xia...', 153, Array)
+#1 [internal function]: UserController->getUserCommentArticle('hwawoon')
+#2 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Controller.php(194): call_user_func_array(Array, Array)
+#3 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(93): Illuminate\Routing\Controller->callAction('getUserCommentA...', Array)
+#4 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\ControllerDispatcher.php(62): Illuminate\Routing\ControllerDispatcher->call(Object(UserController), Object(Illuminate\Routing\Route), 'getUserCommentA...')
+#5 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(934): Illuminate\Routing\ControllerDispatcher->dispatch(Object(Illuminate\Routing\Route), Object(Illuminate\Http\Request), 'UserController', 'getUserCommentA...')
+#6 [internal function]: Illuminate\Routing\Router->Illuminate\Routing\{closure}('hwawoon')
+#7 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Route.php(105): call_user_func_array(Object(Closure), Array)
+#8 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(1000): Illuminate\Routing\Route->run(Object(Illuminate\Http\Request))
+#9 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Routing\Router.php(968): Illuminate\Routing\Router->dispatchToRoute(Object(Illuminate\Http\Request))
+#10 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(738): Illuminate\Routing\Router->dispatch(Object(Illuminate\Http\Request))
+#11 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(708): Illuminate\Foundation\Application->dispatch(Object(Illuminate\Http\Request))
+#12 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Http\FrameGuard.php(38): Illuminate\Foundation\Application->handle(Object(Illuminate\Http\Request), 1, true)
+#13 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Session\Middleware.php(72): Illuminate\Http\FrameGuard->handle(Object(Illuminate\Http\Request), 1, true)
+#14 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Queue.php(47): Illuminate\Session\Middleware->handle(Object(Illuminate\Http\Request), 1, true)
+#15 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Cookie\Guard.php(51): Illuminate\Cookie\Queue->handle(Object(Illuminate\Http\Request), 1, true)
+#16 F:\wamp\www\xiaoxiao\vendor\stack\builder\src\Stack\StackedHttpKernel.php(23): Illuminate\Cookie\Guard->handle(Object(Illuminate\Http\Request), 1, true)
+#17 F:\wamp\www\xiaoxiao\vendor\laravel\framework\src\Illuminate\Foundation\Application.php(606): Stack\StackedHttpKernel->handle(Object(Illuminate\Http\Request))
+#18 F:\wamp\www\xiaoxiao\public\index.php(49): Illuminate\Foundation\Application->run()
+#19 {main} [] []
+[2014-03-14 16:02:34] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function increment() on a non-object' in F:\wamp\www\xiaoxiao\app\controllers\ArticleController.php:18
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-03-14 16:02:43] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function increment() on a non-object' in F:\wamp\www\xiaoxiao\app\controllers\ArticleController.php:18
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-03-14 17:14:15] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function increment() on a non-object' in F:\wamp\www\xiaoxiao\app\controllers\ArticleController.php:18
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []
+[2014-03-14 17:14:18] local.ERROR: exception 'Symfony\Component\Debug\Exception\FatalErrorException' with message 'Call to a member function increment() on a non-object' in F:\wamp\www\xiaoxiao\app\controllers\ArticleController.php:18
+Stack trace:
+#0 [internal function]: Illuminate\Exception\Handler->handleShutdown()
+#1 {main} [] []

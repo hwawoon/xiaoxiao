@@ -18,13 +18,8 @@ navbar-fixed-top
     <div class="col-xs-8" id="home_articles">
         @include('includes.article-section')
     </div>
-    <div class="col-xs-4 rrecommend">
-        <div class="row recomdhead">
-            <span class="label label-warning">推荐一下</span>
-        </div>
-        <div class="row tags">
-            @include('includes.sidebar')
-        </div>
+    <div class="col-xs-4">
+        @include('includes.sidebar')
         @include('includes.hfooter')
     </div>
 </div>

@@ -21,9 +21,9 @@ navbar-fixed-top
 <nav class="navbar navbar-default profile-navbar" role="navigation">
     <div class="container">
         <ul class="nav navbar-nav profile-nav">
-            <li><a class="selected" href="{{action('UserController@getUserProfile',array('name'=>$user->name))}}">发布内容</a></li>
+            <li><a href="{{action('UserController@getUserProfile',array('name'=>$user->name))}}">发布内容</a></li>
             <li><a href="{{action('UserController@getUserCommentArticle',array('name'=>$user->name))}}">评论</a></li>
-            <li><a href="{{action('UserController@getUserVoteArticle',array('name'=>$user->name))}}">投票</a></li>
+            <li><a class="selected" href="{{action('UserController@getUserVoteArticle',array('name'=>$user->name))}}">投票</a></li>
         </ul>
     </div>
 </nav>

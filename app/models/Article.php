@@ -69,7 +69,7 @@ class Article extends Eloquent
                 ->skip($offset)
                 ->take($rownum)
                 ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
-                ->cacheTags(array('home'))->remember(60)
+                ->cacheTags(array('article'))->remember(60)
                 ->get();
         }
         else
@@ -77,7 +77,7 @@ class Article extends Eloquent
             $articles = Article::orderBy('points', 'desc')
                 ->skip($offset)
                 ->take($rownum)
-                ->cacheTags(array('home'))->remember(60)
+                ->cacheTags(array('article'))->remember(60)
                 ->get();
         }
 
@@ -107,7 +107,7 @@ class Article extends Eloquent
             $articles = Article::orderBy('created_at', 'desc')
                 ->skip($offset)
                 ->take($rownum)
-                ->cacheTags(array('home'))->remember(60)
+                ->cacheTags(array('article'))->remember(60)
                 ->get();
         }
 
@@ -127,7 +127,7 @@ class Article extends Eloquent
                 ->skip($offset)
                 ->take($rownum)
                 ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
-                ->cacheTags(array('home'))->remember(60)
+                ->cacheTags(array('article'))->remember(60)
                 ->get();
         }
         else
@@ -136,7 +136,7 @@ class Article extends Eloquent
                 ->orderBy('created_at', 'desc')
                 ->skip($offset)
                 ->take($rownum)
-                ->cacheTags(array('home'))->remember(60)
+                ->cacheTags(array('article'))->remember(60)
                 ->get();
         }
 
@@ -156,7 +156,7 @@ class Article extends Eloquent
                 ->skip($offset)
                 ->take($rownum)
                 ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
-                ->cacheTags(array('home'))->remember(60)
+                ->cacheTags(array('article'))->remember(60)
                 ->get();
         }
         else
@@ -165,7 +165,7 @@ class Article extends Eloquent
                 ->orderBy('created_at', 'desc')
                 ->skip($offset)
                 ->take($rownum)
-                ->cacheTags(array('home'))->remember(60)
+                ->cacheTags(array('article'))->remember(60)
                 ->get();
         }
 
