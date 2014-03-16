@@ -1,19 +1,15 @@
-<div class="rrecommend">
-    <div class="row recomdhead">
+<div class="arecommend">
+    <div class="rcmd-head">
         <span class="label label-warning">推荐一下</span>
     </div>
-    <div class="row tags">
+    <div class="rcmd-row">
         @foreach ($rarticles as $rart)
         <section>
-            <div class="row tagtitle">
+            <div class="rcmd-title">
                 <a href="{{URL::to('/art').'/'.$rart->id}}" >
-                                <span>
-                                    {{$rart->title}}
-                                </span>
-                </a>
-            </div>
-            <div class="row">
-                <a href="{{URL::to('/art').'/'.$rart->id}}">
+                    <span>
+                        {{$rart->title}}
+                    </span>
                     <img class="" src="{{URL::to('/')}}/{{$rart->thumbpath}}" >
                 </a>
             </div>

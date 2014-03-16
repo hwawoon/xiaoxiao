@@ -21,111 +21,103 @@ navbar-static-top
 @stop
 
 @section('content')
-<div class="artcontent">
-    <div class="linebar">
-        <div class="col-xs-8">
-            <div class="row atitle">
-                {{$article->title}}
-            </div>
-            <div class="row points">
-                <a href="#" class="artileparam btn btn-default btn-xs">
-                    <span id="article_points">{{$article->points}}</span>分
-                </a>
-                <a href="#commentArea" class="artileparam btn btn-default btn-xs">{{$article->comments}}评论</a>
-            </div>
-        </div>
+<div class="col-xs-8 article-display">
+    <div class="artnav linebar">
+        <a href="{{URL::to('/art').'/'.$article->id}}" class="art-title">
+            <span class="tnav">{{$article->title}}</span>
+        </a>
     </div>
-    <div class="sharetoolbar linebar">
-        <div class="col-xs-8">
-            <div class="row acomment">
-                <div class="sharediv">
-                    <a href="javascript:void(0)" onclick="sinaweibo('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
-                        分享到新浪微博
-                    </a>
-                    <a href="javascript:void(0)" onclick="postToWb('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-primary" title="分享到腾讯微博" target="_blank" >
-                        分享到腾讯微博
-                    </a>
-                </div>
-                <div class="apoint horizontal-vote">
-                    @if (Auth::check())
-                    @if(!empty($vote))
-                    @if($vote->state == 1)
-                    <span><a class="up up_c" id="up" href="javascript:void(0);"  onclick="articlePointUp({{$article->id}});void(0);">赞</a></span>
-                    <span><a class="down" id="down" href="javascript:void(0);" onclick="articlePointDown({{$article->id}});void(0);">踩</a></span>
-                    @else
-                    <span><a class="up" id="up" href="javascript:void(0);"  onclick="articlePointUp({{$article->id}});void(0);">赞</a></span>
-                    <span><a class="down down_c" id="down" href="javascript:void(0);" onclick="articlePointDown({{$article->id}});void(0);">踩</a></span>
-                    @endif
-                    @else
-                    <span><a class="up" id="up" href="javascript:void(0);"  onclick="articlePointUp({{$article->id}});void(0);">赞</a></span>
-                    <span><a class="down" id="down" href="javascript:void(0);" onclick="articlePointDown({{$article->id}});void(0);">踩</a></span>
-                    @endif
-                    @else
-                    <span><a class="up" href="javascript:openLoginModal();">赞</a></span>
-                    <span><a class="down" href="javascript:openLoginModal();">踩</a></span>
-                    @endif
-                </div>
+    <div class="nav-point linebar">
+        <a href="{{URL::to('/art').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
+            <span id="rpoints{{$article->id}}">{{$article->points}}</span>分
+        </a>
+        <a href="{{URL::to('/art').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
+            {{$article->comments}}评论
+        </a>
+    </div>
+    <div class="article-fn linebar">
+        <div class="apoint horizontal-vote">
+            @if (Auth::check())
+            @if(!empty($vote))
+            @if($vote->state == 1)
+            <span><a class="up up_c" id="up" href="javascript:void(0);"  onclick="articlePointUp({{$article->id}});void(0);">赞</a></span>
+            <span><a class="down" id="down" href="javascript:void(0);" onclick="articlePointDown({{$article->id}});void(0);">踩</a></span>
+            @else
+            <span><a class="up" id="up" href="javascript:void(0);"  onclick="articlePointUp({{$article->id}});void(0);">赞</a></span>
+            <span><a class="down down_c" id="down" href="javascript:void(0);" onclick="articlePointDown({{$article->id}});void(0);">踩</a></span>
+            @endif
+            @else
+            <span><a class="up" id="up" href="javascript:void(0);"  onclick="articlePointUp({{$article->id}});void(0);">赞</a></span>
+            <span><a class="down" id="down" href="javascript:void(0);" onclick="articlePointDown({{$article->id}});void(0);">踩</a></span>
+            @endif
+            @else
+            <span><a class="up" href="javascript:openLoginModal();">赞</a></span>
+            <span><a class="down" href="javascript:openLoginModal();">踩</a></span>
+            @endif
+        </div>
+        <div class="sharediv btn-group">
+            <a type="button" class="btn btn-danger" sinaweibo('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" title="分享到新浪微博" target="_blank">新浪微博</a>
+            <a type="button" class="btn btn-primary"  onclick="postToWb('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" title="分享到腾讯微博" target="_blank" >腾讯微博</a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    更多
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" style="min-width: 50px;">
+                    <li><a href="#">QQ空间</a></li>
+                    <li><a href="#">微信</a></li>
+                </ul>
             </div>
         </div>
-        <div class="col-xs-4">
-            <div class="row pagerline">
-                @if(!empty($previous))
+        <div class="pagerline btn-group">
+            @if(!empty($previous))
                 <a href="{{URL::to('/')}}/art/{{$previous->id}}" class="btn btn-primary">
-                    <i class="glyphicon glyphicon-arrow-left"></i>上一页
+                    上一页
                 </a>
-                @else
+            @else
                 <a href="#" class="btn btn-primary" disabled="disabled">
-                    <i class="glyphicon glyphicon-arrow-left"></i>上一页
+                    上一页
                 </a>
-                @endif
-                &nbsp;&nbsp;
-                @if(!empty($next))
+            @endif
+            @if(!empty($next))
                 <a href="{{URL::to('/')}}/art/{{$next->id}}" class="btn btn-success">
-                    下一页<i class="glyphicon glyphicon-arrow-right"></i>
+                    下一页
                 </a>
-                @else
+            @else
                 <a href="#" class="btn btn-success" disabled="disabled">
-                    下一页<i class="glyphicon glyphicon-arrow-right"></i>
+                    下一页
                 </a>
-                @endif
-            </div>
+            @endif
         </div>
     </div>
     <div class="linebar">
-        <div class="col-xs-8">
-            <section>
-                <div class="row">
-                    <a href="javascript:void(0)">
-                        <img class="" src="{{URL::to('/')}}/{{$article->imgpath}}" style="width: 100%;">
-                    </a>
-                </div>
-                <div class="row" id="commentArea">
-                    <div style="margin-bottom: 0px; margin-top: 0px; border-bottom: 1px solid #eeeeee;">
-                        <ul class="nav nav-tabs">
-                            <li class="active"><a href="#">全部评论(<span id="commentCount">{{$article->comments}}</span>)</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="row userreplydiv">
-                </div>
-                <div id="articlereplies" class="row">
-                    <input type="hidden" id="cur_article_id" value="{{$article->id}}" />
-                    <div id="cmtloading" style="height:100px;text-align:center;">
+        <a href="javascript:void(0)">
+            <img class="" src="{{URL::to('/')}}/{{$article->imgpath}}" style="width: 100%;">
+        </a>
+    </div>
+    <div class="linebar commentbar">
+        <div class="row" id="commentArea">
+            <div style="margin-bottom: 0px; margin-top: 0px; border-bottom: 1px solid #eeeeee;">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#">全部评论(<span id="commentCount">{{$article->comments}}</span>)</a></li>
+                </ul>
+            </div>
+        </div>
+            <div class="row userreplydiv">
+        </div>
+        <div id="articlereplies" class="row">
+            <input type="hidden" id="cur_article_id" value="{{$article->id}}" />
+            <div id="cmtloading" style="height:100px;text-align:center;">
                       <span id="searching_spinner_center">
                         {{HTML::image('/img/ajax-loader.gif')}}
                       </span>
-                    </div>
-                </div>
-            </section>
-        </div>
-
-        <div class="col-xs-4 atags">
-            @include('includes.sidebar')
+            </div>
         </div>
     </div>
 </div>
-<div class="col-xs-12">
-    @include('includes/cfooter')
+<div class="col-xs-4">
+    @include('includes.sidebar')
+    @include('includes.hfooter')
 </div>
 @stop
 

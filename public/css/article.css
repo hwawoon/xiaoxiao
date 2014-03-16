@@ -1,12 +1,5 @@
-.atitle {
-    font-size: 27px;
-    padding: 0px;
-    word-wrap:break-word;
-    overflow:hidden;
-}
-
-.artcontent {
-    margin-top: -50px;
+.article-display {
+    padding-right: 20px;
 }
 
 .linebar {
@@ -16,20 +9,20 @@
 
 .barfixed {
     position:fixed;
-    padding-top: 3px;
-    padding-right: 5px;
     top: 0;
-    height: 50px;
     z-index: 1050;
-    width: 945px;
+    width: 605px;
+    background-color: #FFFFFF;
 }
 
-div.points {
-    padding: 2px 0px;
+.article-fn {
+    display: table;
+    margin-bottom: 10px;
+    padding: 5px 0px;
 }
 
-div.acomment {
-    padding: 5px 0px 5px 0px;
+.article-fn a {
+    height: 35px;
 }
 
 div.sharediv {
@@ -37,68 +30,20 @@ div.sharediv {
     float: left;
 }
 
-div.apoint {
-    display: inline;
+div.votebar {
     float: right;
-}
-
-.atags {
-    padding-top: 25px;
-    padding-left: 40px;
-    padding-right: 50px;
+    margin-right: 10px;
 }
 
 div.pagerline {
-    text-align: center;
-    padding: 5px 0px 5px 40px;
-}
-
-.horizontal-vote {
-    overflow: hidden;
     float: right;
-    list-style-type: none;
 }
 
-.horizontal-vote span {
-    float: left;
-    margin-left: 4px;
-}
-
-.horizontal-vote a {
-    display: block;
-    width: 42px;
-    height: 35px;
-    border: 1px solid #ddd;
-    overflow: hidden;
-    text-indent: -999px;
-    border-radius: 3px;
-}
-
-.horizontal-vote a.up {
-    background: #fff url(../img/sticky-vote.png) no-repeat;
-}
-
-.horizontal-vote a.down {
-    background: #fff url(../img/sticky-vote.png) no-repeat 0 -32px;
-}
-
-.horizontal-vote a.up_c {
-    background: #fff url(../img/sticky-vote.png) no-repeat scroll -42px 0px;
-}
-
-.horizontal-vote a.down_c {
-    background: #fff url(../img/sticky-vote.png) no-repeat -42px -32px;
-}
-
-span.rcmdtitle {
-    display: block;
-    width: 300px;
-    overflow: hidden;
-    white-space: nowrap;
+div.commentbar {
+    margin-top: 40px;
 }
 
 #commentArea {
-    padding-top: 10px;
 }
 
 .userreplydiv {

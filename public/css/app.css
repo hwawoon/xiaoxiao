@@ -1,65 +1,20 @@
-/* alias:main css */
 /* Template-specific stuff
  *
  * Customizations just for the template; these are not necessary for anything
  * with disabling the responsiveness.
  */
+
+/* Account for fixed navbar */
 html, body {
     font-family: Helvetica, Tahoma, Arial, "Microsoft YaHei", "微软雅黑", SimSun, "宋体", STXihei, "华文细黑", Heiti, "黑体", sans-serif;
     /* The html and body elements cannot have any padding or margin. */
 }
 
-/* Account for fixed navbar */
 body {
     min-width: 970px;
+    padding-top: 70px;
+    padding-bottom: 30px;
 }
-
-.mainarea {
-    padding-top: 40px;
-    margin-top: 20px;
-    min-height: 747px !important;
-}
-
-.msg_loading {
-    text-align: center;
-}
-
-.navbar-header {
-    padding-left: 15px;
-}
-
-.header-logo {
-    background: url(../img/logo.png) no-repeat;
-    width: 45px;
-    text-indent: -999px;
-    margin-top: 5px;
-    padding-top: 10px;
-}
-
-.feedback {
-    position: fixed;
-    top: 60%;
-    right: 0;
-}
-
-.goto-top {
-    display: none;
-    position: fixed;
-    width: 50px;
-    height: 50px;
-    background: url(../img/gotop.gif) no-repeat;
-    bottom: 30px;
-    right: 20px;
-    z-index: 9999;
-}
-
-.btn-feedback {
-    border-radius: 0px;
-    padding: 10px;
-    color: #FFFFFF;
-    background-color: #dddddd;
-}
-
 /* Non-responsive overrides
  *
  * Utilitze the following CSS to disable the responsive-ness of the container,
@@ -68,13 +23,17 @@ body {
 
 /* Reset the container */
 .container {
-    max-width: none !important;
     width: 970px;
+    max-width: none !important;
 }
 
-.container .navbar-header,.container .navbar-collapse {
+.container .navbar-collapse {
     margin-right: 0;
     margin-left: 0;
+}
+
+.navbar-static-top {
+    margin-top: -70px;
 }
 
 /* Always float the navbar header */
@@ -93,7 +52,6 @@ body {
 .navbar-toggle {
     display: none;
 }
-
 .navbar-collapse {
     border-top: 0;
 }
@@ -107,11 +65,9 @@ body {
     float: left;
     margin: 0;
 }
-
 .navbar-nav > li {
     float: left;
 }
-
 .navbar-nav > li > a {
     padding: 15px;
 }
@@ -119,7 +75,6 @@ body {
 /* Redeclare since we override the float above */
 .navbar-nav.navbar-right {
     float: right;
-    padding-left: 15px;
 }
 
 /* Undo custom dropdowns */
@@ -127,18 +82,16 @@ body {
     position: absolute;
     float: left;
     background-color: #fff;
-    border: 1px solid #cccccc;
-    border: 1px solid rgba(0, 0, 0, 0.15);
+    border: 1px solid #ccc;
+    border: 1px solid rgba(0, 0, 0, .15);
     border-width: 0 1px 1px;
     border-radius: 0 0 4px 4px;
-    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+    -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
-
 .navbar-default .navbar-nav .open .dropdown-menu > li > a {
     color: #333;
 }
-
 .navbar .navbar-nav .open .dropdown-menu > li > a:hover,
 .navbar .navbar-nav .open .dropdown-menu > li > a:focus,
 .navbar .navbar-nav .open .dropdown-menu > .active > a,
@@ -147,7 +100,6 @@ body {
     color: #fff !important;
     background-color: #428bca !important;
 }
-
 .navbar .navbar-nav .open .dropdown-menu > .disabled > a,
 .navbar .navbar-nav .open .dropdown-menu > .disabled > a:hover,
 .navbar .navbar-nav .open .dropdown-menu > .disabled > a:focus {
@@ -155,18 +107,15 @@ body {
     background-color: transparent !important;
 }
 
-/* search */
-.input-group-btn > .btn {
-    border-left-width: 0;
-    left: -2px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+/******************My own css****************************************/
+.header-logo {
+    margin-top: 5px;
+    margin-right: 10px;
+    float: left;
 }
 
-.input-group .form-control:focus {
-    box-shadow: none;
-    -webkit-box-shadow: none;
-    border-color: #cccccc;
+.user-navbar {
+    height: 50px;
 }
 
 #searchform .input-group {
@@ -174,188 +123,71 @@ body {
 }
 
 .searchbar {
-    padding-right: 50px;
+    padding-right: 15px;
 }
 
-.messageicon {
-    top: 3px;
-}
-
-#message_box {
-    width: 250px;
-}
-
-#message_box .msg_name {
-    color: #2C47B1;
-}
-
-#message_box .msg_title {
-    color: #003399;
-    width: 550px;
-    white-space: pre-wrap;
-}
-
-/* login panel */
-#loginPanel {
-    margin-top: 2px;
-    padding: 15px;
-}
-
-#loginPanel .input-group {
-    padding: 10px 0px;
-}
-
-#loginForm .loginrmb {
-    width: 230px;
-    padding: 0px;
-}
-
-#loginForm #btnLogin {
-    width: 235px;
-}
-
-/* end login panel */
-
-/* recommend start */
-div.rrecommend {
-    padding-left: 20px;
-}
-
-.rrecommend section {
-    padding: 10px 45px 10px 10px;
-}
-
-div.recomdhead {
-    padding-top: 10px;
-    margin-left: -20px;
-    margin-bottom: 10px;
-}
-
-div.recomdhead span {
-    font-size: 15px;
-    word-wrap:break-word;
-    overflow:hidden;
-}
-
-.rrecommend .tags .tagtitle {
-    padding: 5px 0;
-}
-
-.rrecommend .tagtitle a {
-    text-decoration: none;
-    color: #000000;
-}
-
-.rrecommend .tagtitle a span {
-    display: block;
-    width: 300px;
-    overflow: hidden;
-    white-space: nowrap;
-}
-/* recommend end */
-
-.play {
-    position: absolute;
+.feedback {
+    position: fixed;
     top: 50%;
-    margin-top: -30px;
-    left: 50%;
-    margin-left: -30px;
-    height: 60px;
-    width: 60px;
-    text-align: center;
-    overflow: hidden;
-    background: #222;
-    line-height: 50px;
-    font-size: 20px;
-    text-transform: uppercase;
-    color: #fff;
-    font-weight: bold;
-    border-radius: 35px;
-    opacity: .9;
-    border: 5px solid #fff;
-}
-
-#hfooter {
-    margin-left: -20px;
-    background-color: #fff;
-    border: 1px solid #e1e8ed;
+    right: 0;
     padding: 10px;
-    width: 300px;
-    border-radius: 5px;
-}
-
-/* index footer start */
-#hfooter ul {
-    margin: 0;
-    list-style: none;
-    padding: 0;
-    display: table;
-}
-
-#hfooter .footer-item {
-    float: left;
-    border-radius: 0.25em;
-    color: #FFFFFF;
-    display: inline;
-    font-size: 12px;
-    margin: 5px 0;
-    margin-right: 5px;
     font-weight: bold;
-    line-height: 1;
-    padding: 0.2em 0.6em 0.3em;
-    text-align: center;
-    vertical-align: baseline;
-    white-space: nowrap;
+    z-index: 9999;
+    background-color: #dddddd;
 }
 
-#hfooter .footer-item a {
-    text-decoration: none;
-}
-/* index footer end */
-
-/* common footer start */
-#cfooter {
-    text-align: center;
-    height: 150px;
-    padding-top: 50px;
-}
-
-/* home css start */
-.artileparam {
-    color: #000000;
+.goto-top {
+    display: none;
+    position: fixed;
+    width: 50px;
+    height: 50px;
+    background: url(../img/gotop.gif) no-repeat;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
 }
 
-a {
-    color: rgb(0, 135, 247);
-    text-decoration: none;
+/* Demonstrate the grids */
+.col-xs-4, .col-xs-8, .col-xs-10, .col-xs-2 {
+    padding: 0;
+    /*background-color: #eee;*/
+    /*background-color: rgba(86,61,124,.15);*/
+    /*border: 1px solid rgba(86,61,124,.2);*/
 }
 
-a.article_title {
+.col-xs-4 {
+    padding-left: 10px;
+}
+
+/******************************* Article Css ***************************/
+div .artnav {
+    padding-bottom: 3px;
+}
+
+a.art-title {
     text-decoration:none;
     /*font-weight: bold;*/
     color: #000;
 }
 
-a.article_title:hover {
+a.art-title:hover {
     color: #4499EE;
     text-decoration:none;
 }
 
-.container .row .col-xs-2 {
-    padding-left: 30px;
-    padding-top: 5px;
+.artileparam {
+    color: #000000;
 }
 
 .artsection {
+    margin-bottom: 20px;
+    display: table;
+    border-bottom: 1px solid #eeeeee;
 }
 
 .artshare {
     padding-top: 5px;
-    padding-bottom: 45px;
-}
-
-.dnav {
-    padding: 3px;
+    padding-bottom: 25px;
 }
 
 span.tnav {
@@ -376,7 +208,7 @@ span.tnav {
 
 /* vote start */
 .vertical-vote {
-    padding-left: 10px;
+    padding-left: 30px;
     padding-top: 10px;
     width: 42px;
 }
@@ -424,6 +256,213 @@ span.tnav {
 .vertical-vote a.tocomment {
     background: url(../img/other-buttons.png) no-repeat scroll 0px -32px transparent;
 }
+
+.horizontal-vote {
+    overflow: hidden;
+    float: left;
+    margin-right: 5px;
+    list-style-type: none;
+}
+
+.horizontal-vote span {
+    float: left;
+    margin-right: 5px;
+}
+
+.horizontal-vote a {
+    display: block;
+    width: 42px;
+    height: 35px;
+    border: 1px solid #ddd;
+    overflow: hidden;
+    text-indent: -999px;
+    border-radius: 3px;
+}
+
+.horizontal-vote a.up {
+    background: #fff url(../img/sticky-vote.png) no-repeat;
+}
+
+.horizontal-vote a.down {
+    background: #fff url(../img/sticky-vote.png) no-repeat 0 -32px;
+}
+
+.horizontal-vote a.up_c {
+    background: #fff url(../img/sticky-vote.png) no-repeat scroll -42px 0px;
+}
+
+.horizontal-vote a.down_c {
+    background: #fff url(../img/sticky-vote.png) no-repeat -42px -32px;
+}
 /* vote end */
 
-/* home css end */
+/* recommend start */
+.arecommend section:first-child {
+    margin-top: 10px;
+}
+
+.arecommend .rcmd-head span {
+    font-size: 14px;
+}
+
+.arecommend section {
+    display: table;
+    margin-bottom: 10px;
+}
+
+.rcmd-head {
+
+}
+
+.rcmd-title {
+    word-wrap:break-word;
+    overflow:hidden;
+    padding: 5px 0;
+}
+
+.arecommend .rcmd-title a {
+    text-decoration: none;
+    color: #000000;
+}
+
+.arecommend .rcmd-title a span {
+    display: block;
+    width: 300px;
+    overflow: hidden;
+    white-space: nowrap;
+    font-weight: bold;
+}
+
+.arecommend a:hover {
+    color: #4499EE;
+    text-decoration:none;
+}
+/* recommend end */
+
+/* index footer start */
+#hfooter {
+    background-color: #fff;
+    border: 1px solid #e1e8ed;
+    width: 300px;
+    border-radius: 5px;
+}
+
+#hfooter .footer-title {
+     padding-top: 10px;
+     text-align: center;
+ }
+
+#hfooter .footer-tags {
+    padding-left: 35px;
+}
+
+#hfooter ul {
+    list-style: none;
+    padding: 0;
+    display: table;
+}
+
+#hfooter .footer-item {
+    float: left;
+    border-radius: 0.25em;
+    color: #FFFFFF;
+    display: inline;
+    font-size: 12px;
+    margin: 5px 0;
+    margin-right: 5px;
+    font-weight: bold;
+    line-height: 1;
+    padding: 0.2em 0.6em 0.3em;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+#hfooter .footer-item a {
+    text-decoration: none;
+}
+/* index footer end */
+
+/* common footer start */
+#cfooter {
+    text-align: center;
+    height: 150px;
+    padding-top: 50px;
+}
+
+/*************** Login Modal ******************/
+/* login panel */
+#loginPanel {
+    margin-top: 2px;
+    padding: 15px;
+}
+
+#loginPanel .input-group {
+    padding: 10px 0px;
+}
+
+#loginForm .loginrmb {
+    width: 230px;
+    padding: 0px;
+}
+
+#loginForm #btnLogin {
+    width: 235px;
+}
+
+/* end login panel */
+
+
+.messageicon {
+    top: 3px;
+}
+
+#message_box {
+    width: 250px;
+    text-align: center;
+}
+
+#message_box .msg_name {
+    color: #2C47B1;
+}
+
+#message_box .msg_title {
+    color: #003399;
+    width: 550px;
+    white-space: pre-wrap;
+}
+
+/**************** user profile header ******************/
+.profile-header
+{
+    text-align: center;
+    padding: 35px 0 25px 0;
+    background-color: #000000;
+    color: #FFFFFF;
+    margin-top: -20px;
+}
+
+.profile-header .img-user-avatar {
+    border-radius: 5px;
+}
+
+.profile-navbar {
+    border-radius: 0;
+    margin-bottom: -45px;
+}
+
+.profile-nav > li > a {
+    padding: 15px 10px;
+    margin: 0 50px 0 0;
+    border-bottom: 3px solid transparent;
+}
+
+.profile-nav > li > a:hover {
+    color: #FFFFFF;
+    border-bottom: 3px solid #000000;
+}
+
+.profile-nav > li > .selected {
+    color: #000;
+    font-weight: bold;
+    border-bottom: 3px solid #0087f7;
+}

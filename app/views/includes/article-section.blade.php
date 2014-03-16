@@ -1,8 +1,8 @@
 @foreach ($articles as $article)
-<section class="artsection">
+<div class="artsection">
     <div class="col-xs-10">
-        <div class="row dnav">
-            <a href="{{URL::to('/art').'/'.$article->id}}" class="article_title">
+        <div class="row artnav">
+            <a href="{{URL::to('/art').'/'.$article->id}}" class="art-title">
                 <span class="tnav">{{$article->title}}</span>
             </a>
         </div>
@@ -14,7 +14,7 @@
                 {{$article->comments}}评论
             </a>
         </div>
-        <div class="row">
+        <div>
             @if($article->gif)
             <div class="gif-container">
                 <div class="img-static">
@@ -37,15 +37,15 @@
         </div>
         <div class="row artshare">
             <a href="javascript:void(0)" onclick="sinaweibo('{{$article->title}}','{{URL::to('/art') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-danger" title="分享到新浪微博" target="_blank" >
-                分享到新浪微博
+                新浪微博
             </a>
             <a href="javascript:void(0)" onclick="postToWb('{{$article->title}}','{{URL::to('/art') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" class="btn btn-primary"  title="分享到腾讯微博" target="_blank" >
-                分享到腾讯微博
+                腾讯微博
             </a>
         </div>
     </div>
     <div class="col-xs-2">
-        <div class="row">
+        <div>
             <ul class="vertical-vote">
                 @if (Auth::check())
                     @if(!empty($article->state))
@@ -77,5 +77,5 @@
         </div>
     </div>
     
-</section>
+</div>
 @endforeach

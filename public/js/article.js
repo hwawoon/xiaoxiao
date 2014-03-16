@@ -4,12 +4,12 @@
 $(function(){
     //功能菜单置顶
     $(window).scroll(function(){
-        if ($(this).scrollTop() > 130) {
-            $('.sharetoolbar').addClass('barfixed');
+        if ($(this).scrollTop() > 145) {
+            $('.article-fn').addClass('barfixed');
         }
         else
         {
-            $('.sharetoolbar').removeClass('barfixed');
+            $('.article-fn').removeClass('barfixed');
         }
      });
 
@@ -20,7 +20,7 @@ $(function(){
     $.getJSON(ROOT_PATH+'/comment/all',
     {'article_id': $('#cur_article_id').val()},
     function(datas){
-      $('#cmtloading').remove();
+       $('#cmtloading').remove();
        $.each(datas,function(i,data){
            var loInsertHtml = _.template($("#commentTpl").html(), {'item':data});
            if(data.comment_id == 0)
@@ -118,6 +118,7 @@ function cmtreply(formid)
 
                 $("#"+formid)[0].reset();
                $(".replyform").remove();
+               data.up = 0;
                var loInsertHtml = _.template($("#commentTpl").html(), {'item':data});
                if(data.comment_id == 0)
                {

@@ -8,14 +8,13 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
     <title>@yield('title')</title>
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
+    {{ HTML::style('packages/bootstrap/css/bootstrap.css') }}
     <!-- Custom styles for this template -->
     {{ HTML::style('css/app.css') }}
     @yield('styles')
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     @include('includes.ga')
 </head>
@@ -23,15 +22,10 @@
 <!-- Fixed navbar -->
 <div class="navbar navbar-default @yield('header_type')" role="navigation">
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand header-logo" href="{{URL::to('/')}}">
-                搞笑娃
+        <div class="header-logo">
+            <a href="{{URL::to('/')}}" style="text-decoration: none;">
+                <img src="{{URL::to('/')}}/img/logo.png" />
+                <span style="margin-left: 5px;font-weight: bold;font-size: 16px;">搞笑娃</span>
             </a>
         </div>
         <div class="navbar-collapse collapse">
@@ -75,7 +69,7 @@
                     </form>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right user-navbar">
                 @if (Auth::check())
                 <li class="dropdown">
                     <a href="#" id="message_list" class="dropdown-toggle" data-toggle="dropdown">
@@ -94,7 +88,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="{{URL::to('/')}}/{{Auth::user()->getAvatar()}}" width="20px" />
-                         我 <b class="caret"></b>
+                        我 <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{{action('UserController@getUserProfile',array('name'=>Auth::user()->name))}}">个人主页</a></li>
@@ -153,7 +147,6 @@
         </div><!--/.nav-collapse -->
     </div>
 </div>
-
 <!-- feedback Modal -->
 <div class="modal fade" id="uploadModal" tabindex="-1">
     <div class="modal-dialog">
@@ -229,14 +222,12 @@
     </div>
 </div>
 
-<div class="feedback">
-    <a href="mailto:kimhwawoon@gmail.com" class="btn btn-feedback" role="button" title="我会认真处理每一个反馈">反<br>馈</a>
-</div>
+<a href="mailto:kimhwawoon@gmail.com" class="feedback" role="button" title="我会认真处理每一个反馈">反<br>馈</a>
 <a href="#" title="返回顶部" class="goto-top"></a>
 
 @yield('container-header')
 
-<div class="container mainarea">
+<div class="container">
     @yield('content')
 </div>
 
