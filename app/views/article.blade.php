@@ -56,18 +56,15 @@ navbar-static-top
             @endif
         </div>
         <div class="sharediv btn-group">
-            <a type="button" class="btn btn-danger" sinaweibo('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" title="分享到新浪微博" target="_blank">新浪微博</a>
-            <a type="button" class="btn btn-primary"  onclick="postToWb('{{$article->title}}','{{URL::to('/article') . '/' . $article->id }}','{{URL::to('/').'/'.$article->imgpath}}');return false;" title="分享到腾讯微博" target="_blank" >腾讯微博</a>
-            <div class="btn-group">
-                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-                    更多
-                    <span class="caret"></span>
-                </button>
-                <ul class="dropdown-menu" style="min-width: 50px;">
-                    <li><a href="#">QQ空间</a></li>
-                    <li><a href="#">微信</a></li>
-                </ul>
+            <div class="bdsharebuttonbox" style="margin-top: -5px;padding-bottom: 0px;margin-bottom: 0px;">
+                <a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone"></a>
+                <a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina"></a>
+                <a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq"></a>
+                <a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren"></a>
+                <a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin"></a>
+                <a href="#" class="bds_more" data-cmd="more"></a>
             </div>
+            <script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"1","bdSize":"32"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
         </div>
         <div class="pagerline btn-group">
             @if(!empty($previous))
