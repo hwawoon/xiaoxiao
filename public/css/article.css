@@ -17,7 +17,6 @@
 
 .article-fn {
     display: table;
-    margin-bottom: 10px;
     padding: 5px 0px;
 }
 
@@ -28,6 +27,14 @@
 div.sharediv {
     display: inline;
     float: left;
+}
+
+div.sharediv > div {
+    margin-top: 2px;
+}
+
+div.bd_weixin_popup_foot {
+    height: 60px;
 }
 
 div.votebar {

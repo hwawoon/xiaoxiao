@@ -185,9 +185,12 @@ a.art-title:hover {
     border-bottom: 1px solid #eeeeee;
 }
 
-.artshare {
-    padding-top: 5px;
+div.artshare {
     padding-bottom: 25px;
+}
+
+div.artshare span.bds_more {
+    height: 30px;
 }
 
 span.tnav {
