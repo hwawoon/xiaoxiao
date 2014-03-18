@@ -38,11 +38,11 @@
         <div class="row artshare">
             <!-- Baidu Button BEGIN -->
             <div id="bdshare" class="bdshare_t bds_tools_24 get-codes-bdshare" data="
-          {
-            'url':'{{URL::to('/art').'/'.$article->id}}',
-            'pic':'{{URL::to('/')}}/{{$article->imgpath}}',
-            'text':'{{$article->title}}  --来自《搞笑娃》'
-          }">
+            {
+              'url':'{{URL::to('/art').'/'.$article->id}}',
+              'pic':'{{URL::to('/')}}/{{$article->imgpath}}',
+              'text':'{{$article->title}}  --来自《搞笑娃》'
+            }">
                 <a class="bds_qzone"></a>
                 <a class="bds_tsina"></a>
                 <a class="bds_tqq"></a>

@@ -42,7 +42,7 @@ class MessageController extends BaseController
                             ->get();
 
         return View::make('user.message')->with('messages',$messages)
-                                            ->with('rarticles',$rarticles);
+                                          ->with('rarticles',$rarticles);
     }
 
     /**

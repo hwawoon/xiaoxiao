@@ -126,6 +126,8 @@ $(function () {
     });
 
     $("#uploadImageBtn").bind("click",function(){
+        var $btn = $(this);
+        $btn.button('loading');
         $("#uploadImageForm").ajaxSubmit({
             beforeSubmit: validateUpload,
             dataType:'json',
@@ -162,11 +164,16 @@ $(function () {
                     theme       : 'defaultTheme',
                     timeout: 2000
                 });
+            },
+            complete: function(){
+                $btn.button('reset');
             }
         });
     });
 
     $("#forwardImageBtn").bind("click",function(){
+        var btn = $(this);
+        btn.button('loading');
         $("#forwardImageForm").ajaxSubmit({
             beforeSubmit: validateForward,
             dataType:'json',
@@ -203,6 +210,9 @@ $(function () {
                     theme       : 'defaultTheme',
                     timeout: 2000
                 });
+            },
+            complete: function(){
+                btn.button('reset');
             }
         });
     });
@@ -383,18 +393,6 @@ function postToWb(titile, url, picpath)
 
     var _u = 'http://share.v.t.qq.com/index.php?c=share&a=index&url=' + _url + '&appkey=' + _appkey + '&pic=' + _pic + '&assname=' + _assname + '&title=' + _t;
     window.open(_u, '', 'width=700, height=680, top=0, left=0, toolbar=no, menubar=no, scrollbars=no, location=yes, resizable=no, status=no');
-}
-
-function loadingMessage($text)
-{
-    noty({
-        text        : $text,
-        type        : "warning",
-        dismissQueue: false,
-        killer: true,
-        layout      : 'topCenter',
-        theme       : 'defaultTheme'
-    });
 }
 
 $.fn.smartFloat = function() {

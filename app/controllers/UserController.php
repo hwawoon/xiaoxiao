@@ -145,7 +145,7 @@ class UserController extends BaseController
                     ->paginate(4);
 
         return View::make('user.profile')->with("articles",$articles)
-                                         ->with("user",$user);
+                                          ->with("user",$user);
     }
 
     public function getUserCommentArticle($name)

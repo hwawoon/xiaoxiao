@@ -3,7 +3,7 @@
 @section('title', '基本信息 - 为生活添欢乐')
 
 @section('styles')
-{{HTML::style('css/user.setting-1393436536639.css')}}
+{{HTML::style('css/user.setting.css')}}
 @stop
 
 @section('header_type')
@@ -42,7 +42,6 @@ navbar-fixed-top
 
 @section('container-bottom')
     @include('includes/cfooter')
-</div>
 @stop
 
 @section('scripts')

@@ -1,3 +1,7 @@
+.mainbody {
+    min-height:  680px;
+}
+
 h3 {
     font-weight: 700;
 }

@@ -176,7 +176,7 @@
                         </select>
                     </div>
                     <div class="form-group" style="padding-top: 15px;">
-                        <button type="button" id="uploadImageBtn" class="btn btn-success" style="padding: 6px 25px;">上传</button>
+                        <button type="button" id="uploadImageBtn" class="btn btn-success" data-loading-text="正在努力上传中..." style="padding: 6px 25px;">上传</button>
                     </div>
                 </div>
             </form>
@@ -214,7 +214,7 @@
                         </select>
                     </div>
                     <div class="form-group" style="padding-top: 15px;">
-                        <button type="button" id="forwardImageBtn" class="btn btn-success" style="padding: 6px 25px;">上传</button>
+                        <button type="button" id="forwardImageBtn" class="btn btn-success" data-loading-text="正在努力上传中..." style="padding: 6px 25px;">上传</button>
                     </div>
                 </div>
             </form>
@@ -227,7 +227,7 @@
 
 @yield('container-header')
 
-<div class="container">
+<div class="container mainbody">
     @yield('content')
 </div>
 
@@ -242,7 +242,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 {{ HTML::script('packages/jquery.js') }}
-{{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
+{{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
 {{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
 {{ HTML::script('packages/jquery.validate.min.js')}}
 {{ HTML::script('packages/jquery.form.min.js') }}

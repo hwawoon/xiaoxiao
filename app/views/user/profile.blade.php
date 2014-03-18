@@ -3,6 +3,7 @@
 @section('title', '个人主页 - 为生活添欢乐')
 
 @section('styles')
+{{ HTML::style('css/user.profile.css')}}
 @stop
 
 @section('header_type')
@@ -48,9 +49,7 @@ navbar-fixed-top
 @stop
 
 @section('scripts')
-{{ HTML::script('packages/jquery.masonry.min.js')}}
 {{ HTML::script('js/user.profile.js') }}
-
 @if(Session::get('message'))
 <script type="text/javascript">
     noty({

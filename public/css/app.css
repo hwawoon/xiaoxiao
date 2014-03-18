@@ -388,8 +388,7 @@ span.tnav {
 /* common footer start */
 #cfooter {
     text-align: center;
-    height: 150px;
-    padding-top: 50px;
+    height: 60px;
 }
 
 /*************** Login Modal ******************/
@@ -450,7 +449,6 @@ span.tnav {
 
 .profile-navbar {
     border-radius: 0;
-    margin-bottom: -45px;
 }
 
 .profile-nav > li > a {
