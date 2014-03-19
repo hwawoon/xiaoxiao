@@ -81,8 +81,6 @@ class Article extends Eloquent
                 ->get();
         }
 
-
-
         return $articles;
     }
 

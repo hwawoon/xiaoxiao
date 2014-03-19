@@ -29,7 +29,7 @@ navbar-static-top
     </div>
     <div class="nav-point linebar">
         <a href="{{URL::to('/art').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
-            <span id="rpoints{{$article->id}}">{{$article->points}}</span>分
+            <span id="rpoints">{{$article->points}}</span>分
         </a>
         <a href="{{URL::to('/art').'/'.$article->id}}" class="artileparam btn btn-default btn-xs">
             {{$article->comments}}评论
@@ -103,11 +103,10 @@ navbar-static-top
             <div class="row userreplydiv">
         </div>
         <div id="articlereplies" class="row">
+
             <input type="hidden" id="cur_article_id" value="{{$article->id}}" />
             <div id="cmtloading" style="height:100px;text-align:center;">
-                      <span id="searching_spinner_center">
-                        {{HTML::image('/img/ajax-loader.gif')}}
-                      </span>
+                {{HTML::image('/img/loading.gif')}}
             </div>
         </div>
     </div>

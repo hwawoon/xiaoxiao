@@ -2,6 +2,10 @@ body {
     background: radial-gradient(circle, #94D2F8, #3A92C8) repeat scroll 0 0 rgba(0, 0, 0, 0);
 }
 
+.mainbody {
+    min-height:  680px;
+}
+
 .container .row {
 	margin: 20px 60px 0 70px;
 }

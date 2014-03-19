@@ -28,16 +28,15 @@ navbar-fixed-top
 
 @section('scripts')
 <script type="text/javascript">
-    var XIAO =
-    {
-        "loadingArticle" : 0,
-        "getMoreUrl" : "{{$getmore}}",
-        "loadedCount" : "{{$articlenum}}"
-    };
+var XIAO =
+{
+    "stop": false,
+    "loadingArticle": 0,
+    "getMoreUrl": "{{$getmore}}",
+    "loadedCount": "{{$num}}"
+};
 </script>
-{{ HTML::script('packages/underscore.min.js') }}
-{{ HTML::script('js/home-1394354121514.js') }}
-@include('includes.js-article')
+{{ HTML::script('js/home.js') }}
 <script type="text/javascript" id="bdshare_js" data="type=tools" ></script>
 <script type="text/javascript" id="bdshell_js"></script>
 <script type="text/javascript">

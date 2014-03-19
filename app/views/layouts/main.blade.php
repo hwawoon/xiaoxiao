@@ -78,8 +78,10 @@
                         </span>
                     </a>
                     <ul class="dropdown-menu" id="message_box">
-                        <li class="msg_loading" >
-                            {{HTML::image('img/loading.gif')}}
+                        <li>
+                            <div id="messageContent">
+                                <div class="msg_loading">{{HTML::image('img/loading.gif')}}</div>
+                            </div>
                         </li>
                         <li class="divider"></li>
                         <li style="text-align: center;"><a href="{{URL::to('/user/message')}}">查看更多消息</a></li>

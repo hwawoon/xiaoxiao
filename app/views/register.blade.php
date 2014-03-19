@@ -7,7 +7,7 @@
 @section('description', '搞笑娃,为生活添欢乐,注册')
 
 @section('styles')
-{{ HTML::style('css/user.register-1394395338340.css') }}
+{{ HTML::style('css/user.register.css') }}
 @stop
 
 @section('header_type')
@@ -52,9 +52,10 @@ navbar-static-top
         </div>
     </form>
 </div>
-<div class="row">
+@stop
+
+@section('container-bottom')
     @include('includes/cfooter')
-</div>
 @stop
 
 @section('scripts')

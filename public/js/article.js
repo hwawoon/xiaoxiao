@@ -1,6 +1,7 @@
 /**
  * Created by kimi on 14-1-8.
  */
+
 $(function(){
     //功能菜单置顶
     $(window).scroll(function(){
@@ -139,8 +140,8 @@ function articlePointUp(artid)
     //uped
     if(loObj.hasClass('up_c'))
     {
-        var val = $("#article_points").html();
-        $("#article_points").html(parseInt(val) - 1);
+        var val = $("#rpoints").html();
+        $("#rpoints").html(parseInt(val) - 1);
         $("#up").removeClass('up_c');
         $("#down").removeClass('down_c');
         $.getJSON(ROOT_PATH + "/vote/unlike",{"id":artid},function(data){
@@ -149,14 +150,14 @@ function articlePointUp(artid)
     //not
     else
     {
-        var val = $("#article_points").html();
+        var val = $("#rpoints").html();
         if($("#down").hasClass('down_c'))
         {
-            $("#article_points").html(parseInt(val) + 2);
+            $("#rpoints").html(parseInt(val) + 2);
         }
         else
         {
-            $("#article_points").html(parseInt(val) + 1);
+            $("#rpoints").html(parseInt(val) + 1);
         }
         $("#up").addClass('up_c');
         $("#down").removeClass('down_c');
@@ -171,8 +172,8 @@ function articlePointDown(artid)
     //uped
     if(loObj.hasClass('down_c'))
     {
-        var val = $("#article_points").html();
-        $("#article_points").html(parseInt(val) + 1);
+        var val = $("#rpoints").html();
+        $("#rpoints").html(parseInt(val) + 1);
         $("#up").removeClass('up_c');
         $("#down").removeClass('down_c');
         $.getJSON(ROOT_PATH + "/vote/unlike",{"id":artid},function(data){
@@ -181,14 +182,14 @@ function articlePointDown(artid)
     //not
     else
     {
-        var val = $("#article_points").html();
+        var val = $("#rpoints").html();
         if($("#up").hasClass('up_c'))
         {
-            $("#article_points").html(parseInt(val) - 2);
+            $("#rpoints").html(parseInt(val) - 2);
         }
         else
         {
-            $("#article_points").html(parseInt(val) - 1);
+            $("#rpoints").html(parseInt(val) - 1);
         }
         $("#up").removeClass('up_c');
         $("#down").addClass('down_c');

@@ -8,31 +8,36 @@
 
 class HomeController extends BaseController
 {
+    private $pageRow = 10;
      /**
      * 获取热门
      * @return mixed
      */
     public function showHome()
 	{
-        $getnum = 10;
-
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getHot(0,$getnum);
+        $articles = $lobjArticle->getHot(0,$this->pageRow);
 
         return View::make('/home')->with('pageinfo','home')
-                                    ->with('getmore',"moreHot")
-                                    ->with('articles',$articles)
-                                    ->with('articlenum',$getnum);
+                                   ->with('getmore',"moreHot")
+                                   ->with('articles',$articles)
+                                   ->with('num',$this->pageRow);
     }
 
     public function moreHot()
     {
-        $articleOffset = Input::get('articleOffset');
+        $articleOffset = Input::get('offset');
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getHot($articleOffset,10);
+        $articles = $lobjArticle->getHot($articleOffset,$this->pageRow);
 
-        return Response::json($articles , 200 );
+        $loadPage = View::make('includes.article-section')->with('articles',$articles)->render();
+
+        return Response::json(array(
+            'rows'=> $loadPage,
+            'count'=> count($articles)
+        ) , 200 );
+
     }
 
     /**
@@ -41,163 +46,194 @@ class HomeController extends BaseController
      */
     public function showLatest()
     {
-        $getnum = 10;
-
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getLatest(0,$getnum);
+        $articles = $lobjArticle->getLatest(0,$this->pageRow);
 
         return View::make('/home')->with('pageinfo','latest')
                                   ->with('getmore',"moreLatest")
                                   ->with('articles',$articles)
-                                  ->with('articlenum',$getnum);
+                                  ->with('num',$this->pageRow);
     }
 
     public function moreLatest()
     {
-        $articleOffset = Input::get('articleOffset');
+        $articleOffset = Input::get('offset');
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getLatest($articleOffset,10);
+        $articles = $lobjArticle->getLatest($articleOffset,$this->pageRow);
 
-        return Response::json($articles , 200 );
+        $loadPage = View::make('includes.article-section')->with('articles',$articles)->render();
+
+        return Response::json(array(
+            'rows'=> $loadPage,
+            'count'=> count($articles)
+        ) , 200 );
     }
 
     public function showGif()
     {
-        $getnum = 10;
-
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getGif(0,$getnum);
+        $articles = $lobjArticle->getGif(0,$this->pageRow);
 
         return View::make('/home')->with('pageinfo','gif')
                                     ->with('getmore',"moreGif")
                                     ->with('articles',$articles)
-                                    ->with('articlenum',$getnum);
+                                    ->with('num',$this->pageRow);
     }
 
     public function moreGif()
     {
-        $articleOffset = Input::get('articleOffset');
+        $articleOffset = Input::get('offset');
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getGif($articleOffset,10);
+        $articles = $lobjArticle->getGif($articleOffset,$this->pageRow);
 
-        return Response::json($articles , 200 );
+        $loadPage = View::make('includes.article-section')->with('articles',$articles)->render();
+
+        return Response::json(array(
+            'rows'=> $loadPage,
+            'count'=> count($articles)
+        ) , 200 );
     }
 
     public function showCute()
     {
-        $getnum = 10;
+        $this->pageRow = 10;
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getArticleByType(0,$getnum,1);
+        $articles = $lobjArticle->getArticleByType(0,$this->pageRow,1);
 
         return View::make('/home')->with('pageinfo','cute')
                                 ->with('getmore',"moreCute")
                                 ->with('articles',$articles)
-                                ->with('articlenum',$getnum);
+                                ->with('num',$this->pageRow);
     }
 
     public function moreCute()
     {
-        $articleOffset = Input::get('articleOffset');
+        $articleOffset = Input::get('offset');
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getArticleByType($articleOffset,10,1);
+        $articles = $lobjArticle->getArticleByType($articleOffset,$this->pageRow,1,1);
 
-        return Response::json($articles , 200 );
+        $loadPage = View::make('includes.article-section')->with('articles',$articles)->render();
+
+        return Response::json(array(
+            'rows'=> $loadPage,
+            'count'=> count($articles)
+        ) , 200 );
     }
 
     public function showJiong()
     {
-        $getnum = 10;
+        $this->pageRow = 10;
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getArticleByType(0,$getnum,2);
+        $articles = $lobjArticle->getArticleByType(0,$this->pageRow,2);
 
         return View::make('/home')->with('pageinfo','jiong')
                                     ->with('getmore',"moreJiong")
                                     ->with('articles',$articles)
-                                    ->with('articlenum',$getnum);
+                                    ->with('num',$this->pageRow);
     }
 
     public function moreJiong()
     {
-        $articleOffset = Input::get('articleOffset');
+        $articleOffset = Input::get('offset');
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getArticleByType($articleOffset,10,2);
+        $articles = $lobjArticle->getArticleByType($articleOffset,$this->pageRow,2);
 
-        return Response::json($articles , 200 );
+        $loadPage = View::make('includes.article-section')->with('articles',$articles)->render();
+
+        return Response::json(array(
+            'rows'=> $loadPage,
+            'count'=> count($articles)
+        ) , 200 );
     }
 
     public function showBeauty()
     {
-        $getnum = 10;
+        $this->pageRow = 10;
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getArticleByType(0,$getnum,3);
+        $articles = $lobjArticle->getArticleByType(0,$this->pageRow,3);
 
         return View::make('/home')->with('pageinfo','beauty')
                                     ->with('getmore',"moreBeauty")
                                     ->with('articles',$articles)
-                                    ->with('articlenum',$getnum);
+                                    ->with('num',$this->pageRow);
     }
 
     public function moreBeauty()
     {
-        $articleOffset = Input::get('articleOffset');
+        $articleOffset = Input::get('offset');
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getArticleByType($articleOffset,10,3);
+        $articles = $lobjArticle->getArticleByType($articleOffset,$this->pageRow,3);
 
-        return Response::json($articles , 200 );
+        $loadPage = View::make('includes.article-section')->with('articles',$articles)->render();
+
+        return Response::json(array(
+            'rows'=> $loadPage,
+            'count'=> count($articles)
+        ) , 200 );
     }
 
     public function showTucao()
     {
-        $getnum = 10;
+        $this->pageRow = 10;
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getArticleByType(0,$getnum,4);
+        $articles = $lobjArticle->getArticleByType(0,$this->pageRow,4);
 
         return View::make('/home')->with('pageinfo','tucao')
                                     ->with('getmore',"moreTucao")
                                     ->with('articles',$articles)
-                                    ->with('articlenum',$getnum);
+                                    ->with('num',$this->pageRow);
     }
 
     public function moreTucao()
     {
-        $articleOffset = Input::get('articleOffset');
+        $articleOffset = Input::get('offset');
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getArticleByType($articleOffset,10,4);
+        $articles = $lobjArticle->getArticleByType($articleOffset,$this->pageRow,4);
 
-        return Response::json($articles , 200 );
+        $loadPage = View::make('includes.article-section')->with('articles',$articles)->render();
+
+        return Response::json(array(
+            'rows'=> $loadPage,
+            'count'=> count($articles)
+        ) , 200 );
     }
 
     public function showOther()
     {
-        $getnum = 10;
+        $this->pageRow = 10;
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getArticleByType(0,$getnum,0);
+        $articles = $lobjArticle->getArticleByType(0,$this->pageRow,0);
 
         return View::make('/home')->with('pageinfo','other')
                                     ->with('getmore',"moreOther")
                                     ->with('articles',$articles)
-                                    ->with('articlenum',$getnum);
+                                    ->with('num',$this->pageRow);
     }
 
     public function moreOther()
     {
-        $articleOffset = Input::get('articleOffset');
+        $articleOffset = Input::get('offset');
 
         $lobjArticle = new Article();
-        $articles = $lobjArticle->getArticleByType($articleOffset,10,0);
+        $articles = $lobjArticle->getArticleByType($articleOffset,$this->pageRow,0);
 
-        return Response::json($articles , 200 );
+        $loadPage = View::make('includes.article-section')->with('articles',$articles)->render();
+
+        return Response::json(array(
+            'rows'=> $loadPage,
+            'count'=> count($articles)
+        ) , 200 );
     }
 
     public function searchArticle()
@@ -207,16 +243,16 @@ class HomeController extends BaseController
         if(Auth::check())
         {
             $articles = Article::leftJoin('votes', function($join)
-                          {
-                              $join->on('articles.id', '=', 'votes.article_id')
-                                   ->where('votes.user_id', '=', Auth::user()->id);
-                          })
-                          ->where('title', 'like' , "%$searchTerm%" )
-                          ->orderBy('articles.points', 'desc')
-                          ->skip(0)
-                          ->take(10)
-                          ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
-                          ->get();
+                        {
+                            $join->on('articles.id', '=', 'votes.article_id')
+                                 ->where('votes.user_id', '=', Auth::user()->id);
+                        })
+                        ->where('title', 'like' , "%$searchTerm%" )
+                        ->orderBy('articles.points', 'desc')
+                        ->skip(0)
+                        ->take(10)
+                        ->select('articles.id','articles.title','articles.imgpath','articles.points','articles.comments','votes.state')
+                        ->get();
         }
         else
         {
@@ -227,15 +263,9 @@ class HomeController extends BaseController
                                ->get();
         }
 
-        $rarticles = Article::orderBy('comments', 'desc')
-                            ->skip(0)
-                            ->take(10)
-                            ->get();
-
         return View::make('/home')->with('pageinfo', "搜索 ".$searchTerm )
-                                  ->with('getmore', '')
-                                  ->with('articles',$articles)
-                                  ->with('articlenum', 0)
-                                  ->with('rarticles',$rarticles);
+                                   ->with('getmore', '')
+                                   ->with('articles',$articles)
+                                   ->with('num', 0);
     }
 }

@@ -223,7 +223,7 @@ $(function () {
 
         if($loCount == 0)
         {
-            $(".msg_loading").html("暂时没有消息");
+            $(".msg_loading").html('暂时没有消息O(∩_∩)O');
         }
         else
         {
@@ -232,19 +232,19 @@ $(function () {
                 type: "get",
                 dataType : 'json',
                 success: function (data) {
+                    $(".msg_loading").remove();
                     var loHtml = '';
                     $.each(data,function(i,child)
                     {
                         loHtml +=
-                            "<li class='message-preview'>" +
+                            "<div class='message-preview'>" +
                             "<a href='"+ROOT_PATH+"/art/"+child.article_id+"'>" +
                             "<span class='msg_name'>"+child.sender.name+"</span>在" +
                             "<span class='msg_title'>"+child.article.title+"</span> 中回复了你 " +
-                            "</a></li>";
+                            "</a></div>";
                     });
 
-                    $('.msg_loading').after(loHtml);
-                    $(".msg_loading").remove();
+                    $('#messageContent').html(loHtml);
                 },
                 error: function (data) {
                     var n = noty({
@@ -424,72 +424,73 @@ $.fn.smartFloat = function() {
     });
 };
 
+function upVote(current)
+{
+    var loObj = $(current);
+    var artid = loObj.attr('art');
+    //uped
+    if(loObj.hasClass('up_c'))
+    {
+        var val = $("#rpoints"+artid).html();
+        $("#rpoints"+artid).html(parseInt(val) - 1);
+        $("#up"+artid).removeClass('up_c');
+        $("#down"+artid).removeClass('down_c');
+        $.getJSON(ROOT_PATH + "/vote/unlike",{"id":artid},function(data){
+        });
+    }
+    //not
+    else
+    {
+        var val = $("#rpoints"+artid).html();
+        if($("#down"+artid).hasClass('down_c'))
+        {
+            $("#rpoints"+artid).html(parseInt(val) + 2);
+        }
+        else
+        {
+            $("#rpoints"+artid).html(parseInt(val) + 1);
+        }
+        $("#up"+artid).addClass('up_c');
+        $("#down"+artid).removeClass('down_c');
+        $.getJSON(ROOT_PATH + "/vote/like",{"id":artid},function(data){
+        });
+    }
+}
+
+function downVote(current)
+{
+    var loObj = $(current);
+    var artid = loObj.attr('art');
+    //uped
+    if(loObj.hasClass('down_c'))
+    {
+        var val = $("#rpoints"+artid).html();
+        $("#rpoints"+artid).html(parseInt(val) + 1);
+        $("#up"+artid).removeClass('up_c');
+        $("#down"+artid).removeClass('down_c');
+        $.getJSON(ROOT_PATH + "/vote/unlike",{"id":artid},function(data){
+        });
+    }
+    //not
+    else
+    {
+        var val = $("#rpoints"+artid).html();
+        if($("#up"+artid).hasClass('up_c'))
+        {
+            $("#rpoints"+artid).html(parseInt(val) - 2);
+        }
+        else
+        {
+            $("#rpoints"+artid).html(parseInt(val) - 1);
+        }
+        $("#up"+artid).removeClass('up_c');
+        $("#down"+artid).addClass('down_c');
+        $.getJSON(ROOT_PATH + "/vote/dislike",{"id":artid},function(data){
+        });
+    }
+}
 
 $(function (){
-    $('.artup').click(function(){
-        var loObj = $(this);
-        var artid = loObj.attr('art');
-        //uped
-        if(loObj.hasClass('up_c'))
-        {
-            var val = $("#rpoints"+artid).html();
-            $("#rpoints"+artid).html(parseInt(val) - 1);
-            $("#up"+artid).removeClass('up_c');
-            $("#down"+artid).removeClass('down_c');
-            $.getJSON(ROOT_PATH + "/vote/unlike",{"id":artid},function(data){
-            });
-        }
-        //not
-        else
-        {
-            var val = $("#rpoints"+artid).html();
-            if($("#down"+artid).hasClass('down_c'))
-            {
-                $("#rpoints"+artid).html(parseInt(val) + 2);
-            }
-            else
-            {
-                $("#rpoints"+artid).html(parseInt(val) + 1);
-            }
-            $("#up"+artid).addClass('up_c');
-            $("#down"+artid).removeClass('down_c');
-            $.getJSON(ROOT_PATH + "/vote/like",{"id":artid},function(data){
-            });
-        }
-    });
-
-    $('.artdown').click(function(){
-        var loObj = $(this);
-        var artid = loObj.attr('art');
-        //uped
-        if(loObj.hasClass('down_c'))
-        {
-            var val = $("#rpoints"+artid).html();
-            $("#rpoints"+artid).html(parseInt(val) + 1);
-            $("#up"+artid).removeClass('up_c');
-            $("#down"+artid).removeClass('down_c');
-            $.getJSON(ROOT_PATH + "/vote/unlike",{"id":artid},function(data){
-            });
-        }
-        //not
-        else
-        {
-            var val = $("#rpoints"+artid).html();
-            if($("#up"+artid).hasClass('up_c'))
-            {
-                $("#rpoints"+artid).html(parseInt(val) - 2);
-            }
-            else
-            {
-                $("#rpoints"+artid).html(parseInt(val) - 1);
-            }
-            $("#up"+artid).removeClass('up_c');
-            $("#down"+artid).addClass('down_c');
-            $.getJSON(ROOT_PATH + "/vote/dislike",{"id":artid},function(data){
-            });
-        }
-    });
-
     $('.gif-container').click(function(){
         if($('.img-animated',this).is(":hidden"))
         {

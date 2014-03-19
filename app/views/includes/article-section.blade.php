@@ -58,21 +58,21 @@
                 @if (Auth::check())
                     @if(!empty($article->state))
                         @if($article->state == 1)
-                            <li><a class="up up_c artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
-                            <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                            <li><a class="up up_c artup" id="up{{$article->id}}" art="{{$article->id}}" onclick="upVote(this);" href="javascript:void(0);" title="赞">赞</a></li>
+                            <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" onclick="downVote(this);" href="javascript:void(0);" title="踩">踩</a></li>
                         @else
-                            <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
-                            <li><a class="down down_c artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                            <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" onclick="upVote(this);" href="javascript:void(0);" title="赞">赞</a></li>
+                            <li><a class="down down_c artdown" id="down{{$article->id}}" art="{{$article->id}}" onclick="downVote(this);" href="javascript:void(0);" title="踩">踩</a></li>
                         @endif
                     @else
-                        <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="赞">赞</a></li>
-                        <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" href="javascript:void(0);" title="踩">踩</a></li>
+                        <li><a class="up artup" id="up{{$article->id}}" art="{{$article->id}}" onclick="upVote(this);" href="javascript:void(0);" title="赞">赞</a></li>
+                        <li><a class="down artdown" id="down{{$article->id}}" art="{{$article->id}}" onclick="downVote(this);" href="javascript:void(0);" title="踩">踩</a></li>
                     @endif
                 @else
                     <li><a class="up" href="javascript:openLoginModal();" title="赞">赞</a></li>
                     <li><a class="down" href="javascript:openLoginModal();" title="踩">踩</a></li>
                 @endif
-                    <li><a class="tocomment" art="{{$article->id}}" href="{{action('ArticleController@getArticle',array('id'=>$article->id))}}">评论</a></li>
+                    <li><a class="tocomment" art="{{$article->id}}" href="{{action('ArticleController@getArticle',array('id'=>$article->id))}}#commentArea">评论</a></li>
                 @if(isset($del_display))
                     <li>
                         <form name="delform{{$article->id}}" id="delform{{$article->id}}" action="{{action('ArticleController@destroy')}}" method="post">
@@ -84,6 +84,5 @@
             </ul>
         </div>
     </div>
-    
 </div>
 @endforeach
