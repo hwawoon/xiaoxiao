@@ -227,7 +227,7 @@ span.tnav {
 }
 
 .nav-point {
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 
 /* vote start */
@@ -444,8 +444,8 @@ span.tnav {
 }
 
 #message_box .msg_loading {
-    padding-top: 100px;
-    padding-left: 90px;
+    padding-top: 110px;
+    padding-left: 50px;
 }
 
 #message_box .message-preview a {
@@ -501,4 +501,61 @@ span.tnav {
     color: #000;
     font-weight: bold;
     border-bottom: 3px solid #0087f7;
+}
+
+/** First Design Pagination **/
+.pagination {
+    font-weight: bold;
+    font-size: 16px;
+    margin: 10px 0;
+    font-family: "helvetica neue", helvetica, arial, sans-serif;
+}
+
+.pagination a {
+    padding: 8px 14px 8px 16px;
+    margin-right: 5px;
+    border: 1px solid hsl(0, 0%, 15%);
+    /*border-radius: 5px;*/
+    background: -moz-linear-gradient(top, #e3e3e3, #b8b8b8);
+    background: -o-linear-gradient(top, #e3e3e3, #b8b8b8);
+    background: -webkit-linear-gradient(top, hsl(0, 0%, 89%), hsl(0, 0%, 72%));
+    background: linear-gradient(to bottom, hsl(0, 0%, 89%), hsl(0, 0%, 72%));
+    box-shadow: 0 0 6px hsla(0, 0%, 0%, 0.6), inset 0 1px hsla(0, 100%, 100%, 0.4);
+    color: hsl(0, 0%, 20%);
+    text-decoration: none;
+    text-shadow: 0 1px 1px hsla(0, 100%, 100%, 0.72);
+}
+
+.pagination .prev:before {
+    content: "« ";
+    font-weight: normal;
+}
+
+.pagination .next:after {
+    content: " »";
+    font-weight: normal;
+}
+
+.pagination a.active:hover {
+    cursor: default;
+}
+.pagination a.active {
+    background: -moz-linear-gradient(top, #00add8, #00708c);
+    background: -o-linear-gradient(top, #00add8, #00708c);
+    background: -webkit-linear-gradient(top, hsl(192, 100%, 42%), hsl(192, 100%, 27%));
+    background: linear-gradient(to bottom, hsl(192, 100%, 42%), hsl(192, 100%, 27%));
+    color: hsl(193, 100%, 7%);
+}
+
+.pagination a.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.pagination a:hover {
+    background: -moz-linear-gradient(top, #d80073, #a00056);
+    background: -o-linear-gradient(top, #d80073, #a00056);
+    background: -webkit-linear-gradient(top, hsl(328, 100%, 42%), hsl(328, 100%, 31%));
+    background: linear-gradient(to bottom, hsl(328, 100%, 42%), hsl(328, 100%, 31%));
+    color: hsl(328, 100%, 7%);
 }

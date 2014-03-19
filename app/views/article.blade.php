@@ -148,7 +148,11 @@ navbar-static-top
                 >
                 <span class="glyphicon glyphicon-edit"></span> 回复
                 </a>
-
+                @if(Auth::check())
+                    <% if(item.user.name == '{{Auth::user()->name}}'){ %>
+                        <a class="btn btn-default btn-xs" href="javascript:delComment('<%=item.id%>');void(0);">删除</a>
+                    <% } %>
+                @endif
             </p>
         </div>
     </div>

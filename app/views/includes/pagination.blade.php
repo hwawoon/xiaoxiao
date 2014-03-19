@@ -1,20 +1,28 @@
 @if ($paginator->getLastPage() > 1)
-<ul class="ui pagination menu">
-    <a href="{{ $paginator->getUrl(1) }}"
-       class="item{{ ($paginator->getCurrentPage() == 1) ? ' disabled' : '' }}">
-        <i class="icon left arrow"></i>上一页
-    </a>
-    @for ($i = 1; $i <= $paginator->getLastPage(); $i++)
-    <a href="{{ $paginator->getUrl($i) }}"
-       class="item{{ ($paginator->getCurrentPage() == $i) ? ' active' : '' }}">
-        第{{ $i }}页
-    </a>
-    @endfor
-    <a href="{{ $paginator->getUrl($paginator->getCurrentPage()+1) }}"
-       class="item{{ ($paginator->getCurrentPage() == $paginator->getLastPage()) ? ' disabled' : '' }}">
-        下一页<i class="icon right arrow"></i>
-    </a>
+<nav class="pagination" role="navigation">
+      @if($paginator->getCurrentPage() == 1)
+      <a class="prev disabled " href="javascript:void(0);" title="previous page">
+      上一页
+      </a>
+      @else
+      <a class="prev " href="{{ $paginator->getUrl($paginator->getCurrentPage()-1) }}" title="previous page">
+      上一页
+      </a>
+      @endif
+      @for ($i = 1; $i <= $paginator->getLastPage(); $i++)
+      <a href="{{ $paginator->getUrl($i) }}" {{ ($paginator->getCurrentPage() == $i) ? 'class=active' : '' }}>
+          {{ $i }}
+      </a>
+      @endfor
 
-
-</ul>
+      @if($paginator->getCurrentPage() == $paginator->getLastPage())
+      <a class="next disabled" href="javascript:void(0);" >
+          下一页
+      </a>
+      @else
+      <a class="next {{ ($paginator->getCurrentPage() == $paginator->getLastPage()) ? 'disabled' : '' }}" href="{{ $paginator->getUrl($paginator->getCurrentPage()+1) }}" >
+          下一页
+      </a>
+      @endif
+</nav>
 @endif

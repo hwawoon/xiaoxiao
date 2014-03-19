@@ -77,9 +77,14 @@ class CommentController extends BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroy()
 	{
-		//
+		$comment_id = Input::get('id');
+		Comment::find($comment_id)->delete();
+
+		return Response::json(array(
+        	'state'=> 1
+        ) , 200 );
 	}
 
     /**

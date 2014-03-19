@@ -140,6 +140,8 @@ Route::group(array('before' => 'auth'), function()
 
     Route::post('comment/up', 'CommentController@upComment');
 
+    Route::post('comment/delete', 'CommentController@destroy');
+
     Route::get('vote/like',  'VoteController@articleLike');
     Route::get('vote/unlike',  'VoteController@articleUnlike');
     Route::get('vote/dislike',  'VoteController@articleDislike');

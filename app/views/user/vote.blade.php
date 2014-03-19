@@ -3,6 +3,7 @@
 @section('title', '个人主页 - 为生活添欢乐')
 
 @section('styles')
+{{HTML::style('css/user.profile.cs')}}
 @stop
 
 @section('header_type')
