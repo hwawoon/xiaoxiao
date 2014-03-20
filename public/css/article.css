@@ -47,7 +47,7 @@ div.pagerline {
 }
 
 div.commentbar {
-    margin-top: 40px;
+    margin-top: 20px;
 }
 
 .userreplydiv {
@@ -95,4 +95,8 @@ div.comment-deletion {
     font-size: 14px;
     height: 64px;
     padding-top: 10px;
+}
+
+div.media {
+    border-bottom: 1px dotted #d9d9d9;
 }

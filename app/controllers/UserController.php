@@ -13,7 +13,7 @@ class UserController extends BaseController
      * do not send error message
      * all tip is "username or password is incorrect"
      */
-    public function doLogin()
+    public function login()
     {
         $validator = Validator::make(
             array(
@@ -44,6 +44,7 @@ class UserController extends BaseController
 
             if (Auth::attempt($credentials, $rememberme))
             {
+                Event::fire('user.login', array(Auth::user()));
                 return Response::json(array("state" => 1));
             }
             else

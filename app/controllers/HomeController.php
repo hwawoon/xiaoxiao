@@ -18,6 +18,12 @@ class HomeController extends BaseController
         $lobjArticle = new Article();
         $articles = $lobjArticle->getHot(0,$this->pageRow);
 
+        //if hot is null return latest
+        if($articles->isEmpty())
+        {
+            $articles = $lobjArticle->getLatest(0,$this->pageRow);
+        }
+
         return View::make('/home')->with('pageinfo','home')
                                    ->with('getmore',"moreHot")
                                    ->with('articles',$articles)

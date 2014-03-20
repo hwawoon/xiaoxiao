@@ -106,7 +106,7 @@
                 <li class="loginbar">
                     <a href="#" data-toggle="dropdown" id="loginShowBtn">登录<span class="caret"></span></a>
                     <div id="loginPanel" class="dropdown-menu">
-                        <form class="form-horizontal" role="form" id="loginForm" method="post" action="{{URL::to('/user/doLogin')}}">
+                        <form class="form-horizontal" role="form" id="loginForm" method="post" action="{{URL::to('/user/login')}}">
                             <div class="input-group">
                                 <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
                                 <input type="text" id="inputLoginEmail" name="inputLoginEmail" class="form-control inputlog" placeholder="邮箱">

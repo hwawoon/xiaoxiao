@@ -138,7 +138,7 @@ navbar-static-top
                     href='javascript:openLoginModal();'
                     @endif
                     >
-                    <span class="glyphicon glyphicon-thumbs-up"></span> 顶(<span id='cmtup'><%=item.up%></span>)
+                        <span class="glyphicon glyphicon-thumbs-up"></span> 顶(<span id='cmtup'><%=item.up%></span>)
                     </a>
                     <a class="btn btn-default btn-xs cmtupsty"
                     @if(Auth::check())

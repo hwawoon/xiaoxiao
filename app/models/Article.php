@@ -6,6 +6,8 @@
  * Time: 下午2:24
  */
 
+use Carbon\Carbon;
+
 class Article extends Eloquent
 {
     public static $upload_rules = array(
@@ -60,11 +62,13 @@ class Article extends Eloquent
     {
         if(Auth::check())
         {
+            $today = Carbon::today();
             $articles = Article::leftJoin('votes', function($join)
-            {
-                $join->on('articles.id', '=', 'votes.article_id')
-                    ->where('votes.user_id', '=', Auth::user()->id);
-            })
+                {
+                    $join->on('articles.id', '=', 'votes.article_id')
+                        ->where('votes.user_id', '=', Auth::user()->id);
+                })
+                ->where('articles.created_at', '>', $today)
                 ->orderBy('articles.clicks', 'desc')
                 ->skip($offset)
                 ->take($rownum)
@@ -120,7 +124,7 @@ class Article extends Eloquent
                     $join->on('articles.id', '=', 'votes.article_id')
                         ->where('votes.user_id', '=', Auth::user()->id);
                 })
-            ->where('articles.gif','=',1)
+                ->where('articles.gif','=',1)
                 ->orderBy('articles.created_at', 'desc')
                 ->skip($offset)
                 ->take($rownum)

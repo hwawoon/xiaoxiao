@@ -57,7 +57,7 @@ Route::get('/register', function()
 
 Route::group(array('before' => 'csrf'), function()
 {
-    Route::post('user/doLogin', 'UserController@doLogin');
+    Route::post('user/login', 'UserController@login');
 
     Route::post('/register', 'UserController@doRegister');
 });

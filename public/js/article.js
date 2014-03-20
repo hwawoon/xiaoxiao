@@ -76,6 +76,7 @@ function cmtup(cmt,cmtid)
         function(data){
             var curcount = $(cmt).find('#cmtup').html();
             $(cmt).find('#cmtup').html(parseInt(curcount)+1);
+            $(cmt).attr('disabled',true);
     });
 }
 
@@ -120,6 +121,7 @@ function cmtreply(formid)
                 $("#"+formid)[0].reset();
                $(".replyform").remove();
                data.up = 0;
+               data.deleted = 0;
                var loInsertHtml = _.template($("#commentTpl").html(), {'item':data});
                if(data.comment_id == 0)
                {
