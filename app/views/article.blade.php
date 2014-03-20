@@ -122,38 +122,42 @@ navbar-static-top
 <script id="commentTpl" type="text/template">
     <div class="media">
         <a class="pull-left" href="#">
-            <img src="{{URL::to('/')}}/<%=item.user.avatar%>" class="img-responsive img-thumbnail media-object" width="64px;" />
+            <img src="{{URL::to('/')}}/<%=item.user.avatar%>" class="img-responsive img-thumbnail media-object" width="56px;" />
         </a>
         <div class="media-body" id="cmt_<%=item.id%>">
-            <h4 class="media-heading"><%=item.user.name%></h4>
-            <p><%=item.content%></p>
-            <p>
-                <%=item.created_at%>
-                &nbsp;&nbsp;
-                <a class="btn btn-default btn-xs cmtupsty"
-                @if(Auth::check())
-                href="javascript:void(0);" onclick="cmtup(this,'<%=item.id%>');"
-                @else
-                href='javascript:openLoginModal();'
-                @endif
-                >
-                <span class="glyphicon glyphicon-thumbs-up"></span> 顶(<span id='cmtup'><%=item.up%></span>)
-                </a>
-                <a class="btn btn-default btn-xs cmtupsty"
-                @if(Auth::check())
-                href="javascript:addReplyArea('<%=item.id%>');"
-                @else
-                href='javascript:openLoginModal();'
-                @endif
-                >
-                <span class="glyphicon glyphicon-edit"></span> 回复
-                </a>
-                @if(Auth::check())
-                    <% if(item.user.name == '{{Auth::user()->name}}'){ %>
-                        <a class="btn btn-default btn-xs" href="javascript:delComment('<%=item.id%>');void(0);">删除</a>
-                    <% } %>
-                @endif
-            </p>
+            <% if(item.deleted == 0){ %>
+                <h4 class="media-heading"><%=item.user.name%></h4>
+                <p><%=item.content%></p>
+                <p>
+                    <%=item.created_at%>
+                    &nbsp;&nbsp;
+                    <a class="btn btn-default btn-xs cmtupsty"
+                    @if(Auth::check())
+                    href="javascript:void(0);" onclick="cmtup(this,'<%=item.id%>');"
+                    @else
+                    href='javascript:openLoginModal();'
+                    @endif
+                    >
+                    <span class="glyphicon glyphicon-thumbs-up"></span> 顶(<span id='cmtup'><%=item.up%></span>)
+                    </a>
+                    <a class="btn btn-default btn-xs cmtupsty"
+                    @if(Auth::check())
+                    href="javascript:addReplyArea('<%=item.id%>');"
+                    @else
+                    href='javascript:openLoginModal();'
+                    @endif
+                    >
+                    <span class="glyphicon glyphicon-edit"></span> 回复
+                    </a>
+                    @if(Auth::check())
+                        <% if(item.user.name == '{{Auth::user()->name}}'){ %>
+                            <a class="btn btn-default btn-xs" href="javascript:delComment('<%=item.id%>');void(0);">删除</a>
+                        <% } %>
+                    @endif
+                </p>
+            <% } else { %>
+                <div class="comment-deletion">评论已删除！</div>
+            <% } %>
         </div>
     </div>
 </script>

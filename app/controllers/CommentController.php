@@ -80,7 +80,11 @@ class CommentController extends BaseController {
 	public function destroy()
 	{
 		$comment_id = Input::get('id');
-		Comment::find($comment_id)->delete();
+		$comment = Comment::find($comment_id);
+        $comment->deleted = 1;
+        $comment->save();
+
+        Cache::forget('comment-' . $comment->article_id);
 
 		return Response::json(array(
         	'state'=> 1
@@ -167,9 +171,8 @@ class CommentController extends BaseController {
 		$articleid = Input::get('article_id');
 
 		$comments = Article::find($articleid)->comments()
-                                               ->orderBy('id', 'asc')
-                                               ->get();
-
+                                             ->orderBy('id', 'asc')
+                                             ->get();
 
 		foreach ($comments as $cmt)
 		{

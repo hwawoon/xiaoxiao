@@ -199,17 +199,19 @@ function articlePointDown(artid)
 }
 
 function delComment(cmtid) {
-    $.post(ROOT_PATH + "/comment/delete",{"id":cmtid},function(data){
-        if(data)
-        {
-            $('#cmt_'+cmtid+' > .media-heading').remove();
-            $('#cmt_'+cmtid+' > p:first').remove();
-            $('#cmt_'+cmtid+' > p:first').remove();
-            $('#cmt_'+cmtid).prepend('<div class="comment-deletion">评论已删除！</div>');
-        }
-        else
-        {
-            var n = noty({
+    if(confirm("你确定删除该评论吗？"))
+    {
+        $.post(ROOT_PATH + "/comment/delete",{"id":cmtid},function(data){
+            if(data)
+            {
+                $('#cmt_'+cmtid+' > .media-heading').remove();
+                $('#cmt_'+cmtid+' > p:first').remove();
+                $('#cmt_'+cmtid+' > p:first').remove();
+                $('#cmt_'+cmtid).prepend('<div class="comment-deletion">评论已删除！</div>');
+            }
+            else
+            {
+                var n = noty({
                     text        : "删除失败！",
                     type        : "warning",
                     dismissQueue: false,
@@ -218,6 +220,8 @@ function delComment(cmtid) {
                     theme       : 'defaultTheme',
                     timeout: 1000
                 });
-        }
-    });
+            }
+        });
+    }
+
 }
