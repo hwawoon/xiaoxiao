@@ -113,10 +113,10 @@ class UserController extends BaseController
             }
 
             //register not send email
-            Mail::queue('user.mail.welcome', array('username'=>Input::get("name")), function($message)
-            {
-                $message->to(Input::get("email"), Input::get("name"))->subject('感谢注册搞笑娃，请确认您的邮箱');
-            });
+            // Mail::queue('user.mail.welcome', array('username'=>Input::get("name")), function($message)
+            // {
+            //     $message->to(Input::get("email"), Input::get("name"))->subject('感谢注册搞笑娃，请确认您的邮箱');
+            // });
 
             //login register user
             Auth::login($user, true);
