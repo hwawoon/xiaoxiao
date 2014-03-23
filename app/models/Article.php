@@ -62,13 +62,13 @@ class Article extends Eloquent
     {
         if(Auth::check())
         {
-            $today = Carbon::today();
+            $yesterday = Carbon::yesterday();
             $articles = Article::leftJoin('votes', function($join)
                 {
                     $join->on('articles.id', '=', 'votes.article_id')
                         ->where('votes.user_id', '=', Auth::user()->id);
                 })
-                ->where('articles.created_at', '>', $today)
+                ->where('articles.created_at', '>', $yesterday)
                 ->orderBy('articles.clicks', 'desc')
                 ->skip($offset)
                 ->take($rownum)
