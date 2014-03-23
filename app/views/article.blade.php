@@ -13,7 +13,7 @@
 @stop
 
 @section('styles')
-{{ HTML::style('css/article.css') }}
+{{ HTML::style('css/article-1395584794320.css') }}
 @stop
 
 @section('header_type')
@@ -185,5 +185,5 @@ navbar-static-top
         </div>
     </form>
 </script>
-{{ HTML::script('js/article.js') }}
+{{ HTML::script('js/article-1395584794375.js') }}
 @stop

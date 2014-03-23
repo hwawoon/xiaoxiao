@@ -36,7 +36,7 @@ var XIAO =
     "loadedCount": "{{$num}}"
 };
 </script>
-{{ HTML::script('js/home.js') }}
+{{ HTML::script('js/home-1395584794377.js') }}
 <script type="text/javascript" id="bdshare_js" data="type=tools" ></script>
 <script type="text/javascript" id="bdshell_js"></script>
 <script type="text/javascript">

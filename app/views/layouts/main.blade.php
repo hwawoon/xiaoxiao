@@ -8,9 +8,9 @@
     <link rel="shortcut icon" href="{{URL::to('/')}}/favicon.ico">
     <title>@yield('title')</title>
     <!-- Bootstrap core CSS -->
-    {{ HTML::style('packages/bootstrap/css/bootstrap.css') }}
+    {{ HTML::style('packages/bootstrap/css/bootstrap.min.css') }}
     <!-- Custom styles for this template -->
-    {{ HTML::style('css/app.css') }}
+    {{ HTML::style('css/app-1395586515357.css') }}
     @yield('styles')
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -244,9 +244,9 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 {{ HTML::script('packages/jquery.js') }}
-{{ HTML::script('packages/bootstrap/js/bootstrap.js') }}
+{{ HTML::script('packages/bootstrap/js/bootstrap.min.js') }}
 {{ HTML::script('packages/noty/packaged/jquery.noty.packaged.min.js')}}
 {{ HTML::script('packages/jquery.validate.min.js')}}
 {{ HTML::script('packages/jquery.form.min.js') }}
-{{ HTML::script('js/app.js') }}
+{{ HTML::script('js/app.min.js') }}
 @yield('scripts')
