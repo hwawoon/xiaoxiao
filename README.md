@@ -1,9 +1,17 @@
-###Establish Laravel Framwork Website
-i like Laravel Framework,so i wanna do something using it.
+###Establish Laravel Framwork 4.1 Website
 
-it includes multiuser login,publish pics,comments,upload user avatar and so on.
+Laravel Framework 4.1 Example Website,Using bootstrap3.1 template.
+
+it includes:
+1)user login
+2)publish article(using title & image)
+3)upload user avatar using jcrop javascript plugins
+4)display comment tree
+and so on
 
 you can visit http://www.gaoxiaowa.com
+
+if you have any question, please mail to kimhwawoon@gmail.com
 
 ### License
 MIT: http://rem.mit-license.org
