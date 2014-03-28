@@ -2,13 +2,16 @@
 
 Laravel Framework 4.1 Example Website,Using bootstrap3.1 template.
 
-it includes:
-1)user login
-2)publish article(using title & image)
-3)upload user avatar using jcrop javascript plugins
-4)display comment tree
+it includes
+
+- user login
+- publish article(using title & image)
+- upload user avatar using jcrop javascript plugins
+- display comment tree
+
 and so on
 
+###Demo
 you can visit http://www.gaoxiaowa.com
 
 if you have any question, please mail to kimhwawoon@gmail.com
