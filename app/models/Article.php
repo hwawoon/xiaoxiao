@@ -60,9 +60,10 @@ class Article extends Eloquent
      */
     public function getHot($offset,$rownum)
     {
+        $yesterday = Carbon::yesterday();
+
         if(Auth::check())
         {
-            $yesterday = Carbon::yesterday();
             $articles = Article::leftJoin('votes', function($join)
                 {
                     $join->on('articles.id', '=', 'votes.article_id')
@@ -79,6 +80,7 @@ class Article extends Eloquent
         else
         {
             $articles = Article::orderBy('points', 'desc')
+                ->where('articles.created_at', '>', $yesterday)
                 ->skip($offset)
                 ->take($rownum)
                 ->cacheTags(array('article'))->remember(60)

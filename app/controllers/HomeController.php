@@ -37,6 +37,11 @@ class HomeController extends BaseController
         $lobjArticle = new Article();
         $articles = $lobjArticle->getHot($articleOffset,$this->pageRow);
 
+        if($articles->isEmpty())
+        {
+            $articles = $lobjArticle->getLatest($articleOffset,$this->pageRow);
+        }
+
         $loadPage = View::make('includes.article-section')->with('articles',$articles)->render();
 
         return Response::json(array(

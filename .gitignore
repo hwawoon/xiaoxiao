@@ -3,6 +3,7 @@ Thumbs.db
 app/config/*
 app/storage/*
 app/storage/logs/*.*
+app/storage/logs/laravel.log
 public/screenshot/*.*
 public/thumbnail/*.*
 public/upload/*.*
