@@ -103,7 +103,7 @@ class Article extends Eloquent
                 ->skip($offset)
                 ->take($rownum)
                 ->select('articles.id','articles.title','articles.gif','articles.imgpath','articles.screenshot','articles.points','articles.comments','votes.state')
-                ->cacheTags(array('home','latest'))->remember(60)
+                ->cacheTags(array('home','latest','article'))->remember(60)
                 ->get();
         }
         else
