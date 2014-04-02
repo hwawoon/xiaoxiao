@@ -95,7 +95,7 @@ Route::filter('csrf', function()
 
 View::composer('includes.sidebar', function($view)
 {
-    $rarticles = Article::orderBy('comments', 'desc')
+    $rarticles = Article::orderBy(DB::raw('RAND()'))
                         ->skip(0)
                         ->take(10)
                         ->remember(24*60)
