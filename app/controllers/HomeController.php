@@ -81,6 +81,34 @@ class HomeController extends BaseController
         ) , 200 );
     }
 
+    public function showNeihan()
+    {
+        $this->pageRow = 10;
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType(0,$this->pageRow,5);
+
+        return View::make('/home')->with('pageinfo','cute')
+                                ->with('getmore',"moreCute")
+                                ->with('articles',$articles)
+                                ->with('num',$this->pageRow);
+    }
+
+    public function moreNeihan()
+    {
+        $articleOffset = Input::get('offset');
+
+        $lobjArticle = new Article();
+        $articles = $lobjArticle->getArticleByType($articleOffset,$this->pageRow,5);
+
+        $loadPage = View::make('includes.article-section')->with('articles',$articles)->render();
+
+        return Response::json(array(
+            'rows'=> $loadPage,
+            'count'=> count($articles)
+        ) , 200 );
+    }
+
     public function showGif()
     {
         $lobjArticle = new Article();

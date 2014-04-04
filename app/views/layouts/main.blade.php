@@ -40,12 +40,13 @@
                 <li class="sitenav"><a href="{{URL::to('/')}}"><i class="glyphicon glyphicon-fire"></i>热门</a></li>
                 <li class="sitenav"><a href="{{URL::to('/latest')}}">新鲜</a></li>
                 @endif
+                <li class="sitenav"><a href="{{URL::to('/neihan')}}">内涵</a></li>
+                <li class="sitenav"><a href="{{URL::to('/jiong')}}">囧图</a></li>
                 <li class="sitenav"><a href="{{URL::to('/gif')}}">动图</a></li>
                 <li class="dropdown">
                     <a href="#" id="morelist" role="button" class="dropdown-toggle" data-toggle="dropdown">更多<b class="caret"></b></a>
                     <ul class="dropdown-menu" role="menu" aria-labelledby="morelist">
                         <li><a tabindex="-1" href="{{URL::to('/cute')}}">可爱</a></li>
-                        <li><a tabindex="-1" href="{{URL::to('/jiong')}}">囧图</a></li>
                         <li><a tabindex="-1" href="{{URL::to('/beauty')}}">美女</a></li>
                         <li><a tabindex="-1" href="{{URL::to('/tucao')}}">吐槽</a></li>
                         <li><a tabindex="-1" href="{{URL::to('/other')}}">其他</a></li>
@@ -171,6 +172,7 @@
                         <label>分类</label>
                         <select class="form-control" name="uplaodType" id="uplaodType">
                             <option value="0">默认分类</option>
+                            <option value="5">内涵</option>
                             <option value="1">可爱</option>
                             <option value="2">囧图</option>
                             <option value="3">美女</option>
@@ -209,6 +211,7 @@
                         <label>分类</label>
                         <select class="form-control" name="forwardType" id="forwardType">
                             <option value="0">默认分类</option>
+                            <option value="5">内涵</option>
                             <option value="1">可爱</option>
                             <option value="2">囧图</option>
                             <option value="3">美女</option>

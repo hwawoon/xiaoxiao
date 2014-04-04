@@ -19,6 +19,10 @@ Route::get('/latest',  'HomeController@showLatest');
 
 Route::any('moreLatest', 'HomeController@moreLatest');
 
+Route::get('/neihan',  'HomeController@showNeihan');
+
+Route::any('moreNeihan', 'HomeController@moreNeihan');
+
 Route::get('/gif',  'HomeController@showGif');
 
 Route::any('moreGif', 'HomeController@moreGif');
